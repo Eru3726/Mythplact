@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -86,8 +84,8 @@ public class CursorController : MonoBehaviour
         if(conconect.ConConnect == true)
         {
 
-            float lsh = Input.GetAxis("L_stick_H");@@@@//¶ƒXƒeƒBƒbƒN‰¡
-            float lsv = Input.GetAxis("L_stick_V");        //¶ƒXƒeƒBƒbƒNc
+            float lsh = Input.GetAxis("L_stick_H");ã€€ã€€ã€€ã€€//å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯æ¨ª
+            float lsv = Input.GetAxis("L_stick_V");        //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ç¸¦
 
             if (lsv > 0 && (lsh > -0.1f && lsh < 0.1f) && !moveonce)
             {
@@ -183,7 +181,7 @@ public class CursorController : MonoBehaviour
     void MoveCursor()
     {
 
-        // ã‰º¶‰EˆÚ“®
+        // ä¸Šä¸‹å·¦å³ç§»å‹•
         if (up) gameObject.transform.Translate(0, moveVertical, 0, Space.World);
         if (down) gameObject.transform.Translate(0, -moveVertical, 0, Space.World);
         if (left) gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
@@ -194,20 +192,20 @@ public class CursorController : MonoBehaviour
         if (right1) gameObject.transform.Translate(moveSide, -moveVertical / 2, 0, Space.World);
         if (right2) gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
 
-        // ‰ñ“]
+        // å›è»¢
         if (Rspin) gameObject.transform.Rotate(0, 0, -60);
         if (Lspin) gameObject.transform.Rotate(0, 0, 60);
 
 
-        // ‚¿ã‚°”»’è
+        // æŒã¡ä¸Šã’åˆ¤å®š
         if (PickUpProp)
         {
             pickupTfm = touchTfm;
 
 
-            // ‚¿ã‚°‚½ƒIƒuƒWƒFƒNƒg‚ÌqƒIƒuƒWƒFƒNƒg‰»‚ÌØ‚è‘Ö‚¦
-            // ¦parent.parent‚ÍA‚¿ã‚°‚½ƒIƒuƒWƒFƒNƒg(SkillPiece‚Ìq‚ÌSplite)‚Ì
-            // e(SkillPiece)‚ğqƒIƒuƒWƒFƒNƒg‚É‚·‚é‚½‚ß
+            // æŒã¡ä¸Šã’ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŒ–ã®åˆ‡ã‚Šæ›¿ãˆ
+            // â€»parent.parentã¯ã€æŒã¡ä¸Šã’ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ(SkillPieceã®å­ã®Splite)ã®
+            // è¦ª(SkillPiece)ã‚’å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã™ã‚‹ãŸã‚
             if (pickupTfm.parent.parent == null)
             {
                 pickupTfm.parent.position = gameObject.transform.position + (touchTfm.parent.position - touchTfm.position);
@@ -239,24 +237,24 @@ public class CursorController : MonoBehaviour
             backButton.Select();
             skillSetDirector.useCursorProp = false;
         }
-        Debug.Log("‚¿ã‚°‚½Obj" + pickupTfm.parent.name);
-        Debug.Log("G‚ê‚½Obj" + touchTfm.parent.name);
+        Debug.Log("æŒã¡ä¸Šã’ãŸObj" + pickupTfm.parent.name);
+        Debug.Log("è§¦ã‚ŒãŸObj" + touchTfm.parent.name);
 
-        // ƒs[ƒX‚ğ‚Á‚Ä‚¢‚é‚Éƒƒjƒ…[‚É–ß‚Á‚½‚Æ‚«‚Ìˆ—
+        // ãƒ”ãƒ¼ã‚¹ã‚’æŒã£ã¦ã„ã‚‹æ™‚ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«æˆ»ã£ãŸã¨ãã®å‡¦ç†
         if (back && pickupTfm.root == transform)
         {
             if (pickupTfm.parent.name == "SkillPiece1(Clone)")
             {
                 GameObject DeletePiece;
 
-                pickupTfm.parent.parent = null;     // ƒXƒLƒ‹ƒs[ƒX‚ÆƒJ[ƒ\ƒ‹‚ÌeqŠÖŒW‚ğ‰ğœ
-                Skill1_Button.interactable = true;  // ‚»‚ÌƒXƒLƒ‹‚Ìƒ{ƒ^ƒ“‚ğ‘I‘ğ‰Â”\‚É
-                SkillSetDirector.setSkill1 = false; // ‚»‚ÌƒXƒLƒ‹‚ğ–³Œø‚É
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill1_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                SkillSetDirector.setSkill1 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
                 
 
-                DeletePiece = GameObject.Find("SkillPiece1(Clone)");    // ‚Á‚Ä‚¢‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+                DeletePiece = GameObject.Find("SkillPiece1(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
-                Destroy(DeletePiece);                                   // ‚»‚ÌƒXƒLƒ‹ƒs[ƒX‚ğÁ‹
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
             }
             else if (pickupTfm.parent.name == "SkillPiece2(Clone)")
             {
@@ -294,13 +292,13 @@ public class CursorController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        // ƒXƒLƒ‹ƒs[ƒX‚ÉG‚ê‚Ä‚¢‚é‚©”»’è
+        // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã«è§¦ã‚Œã¦ã„ã‚‹ã‹åˆ¤å®š
         if(col.transform.tag == "SkillPiece")
         {
-            Debug.Log("ƒJ[ƒ\ƒ‹‚ªƒs[ƒX‚ÉG‚ê‚½");
-            // G‚ê‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+            Debug.Log("ã‚«ãƒ¼ã‚½ãƒ«ãŒãƒ”ãƒ¼ã‚¹ã«è§¦ã‚ŒãŸ");
+            // è§¦ã‚ŒãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
             touchTfm = col.transform;
-            // G‚ê‚½ƒXƒLƒ‹ƒs[ƒX‚ÌƒXƒNƒŠƒvƒg‚ğæ“¾
+            // è§¦ã‚ŒãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å–å¾—
             skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
             Debug.Log(skillPieceController.OutBaseProp);
 
@@ -309,7 +307,7 @@ public class CursorController : MonoBehaviour
 
                 if (!skillPieceController.OutBaseProp)
                 {
-                    // ‚¿ã‚°”»’è‚É‚·‚é
+                    // æŒã¡ä¸Šã’åˆ¤å®šã«ã™ã‚‹
                     PickUpProp = true;
 
                 }

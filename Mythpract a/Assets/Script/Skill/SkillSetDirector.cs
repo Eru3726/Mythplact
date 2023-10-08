@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +26,7 @@ public class SkillSetDirector : MonoBehaviour
     public static bool setSkill3 = false;
 
     private bool useCursor;
-    // ƒJ[ƒ\ƒ‹g—p‚ÉTrue
+    // ã‚«ãƒ¼ã‚½ãƒ«ä½¿ç”¨æ™‚ã«True
     public bool useCursorProp
     {
         get { return useCursor; }
@@ -71,14 +69,14 @@ public class SkillSetDirector : MonoBehaviour
     }
     public void SkillSelect()
     {
-        SkillSelect_Button.interactable = false;    // ‰Ÿ‚µ‚½ƒ{ƒ^ƒ“‚ğƒCƒ“ƒ^ƒ‰ƒNƒgo—ˆ‚È‚­‚·‚é
-        useCursorProp = true;   // ƒJ[ƒ\ƒ‹g—p
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // cursor‚ÌˆÊ’u‚ğ‰Šú‰»
+        SkillSelect_Button.interactable = false;    // æŠ¼ã—ãŸãƒœã‚¿ãƒ³ã‚’ã‚¤ãƒ³ã‚¿ãƒ©ã‚¯ãƒˆå‡ºæ¥ãªãã™ã‚‹
+        useCursorProp = true;   // ã‚«ãƒ¼ã‚½ãƒ«ä½¿ç”¨
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // cursorã®ä½ç½®ã‚’åˆæœŸåŒ–
 
     }
     public void SetSkill1()
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ‰Šú‰»
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’åˆæœŸåŒ–
 
         Instantiate(Skill1,new Vector3(cursor.transform.position.x,cursor.transform.position.y,0),Quaternion.identity);   
         Skill1_Button.interactable = false;
@@ -97,7 +95,7 @@ public class SkillSetDirector : MonoBehaviour
     }
     public void SetSkill2()
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ‰Šú‰»
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’åˆæœŸåŒ–
 
         Instantiate(Skill2, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill2_Button.interactable = false;
@@ -117,7 +115,7 @@ public class SkillSetDirector : MonoBehaviour
     }
     public void SetSkill3()
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ‰Šú‰»
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’åˆæœŸåŒ–
 
         Instantiate(Skill3, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill3_Button.interactable = false;

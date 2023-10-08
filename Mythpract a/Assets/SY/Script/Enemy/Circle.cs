@@ -1,27 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-//‰~
+//å††
 public class Circle
 {
-    Vector2 o;      //’†S“_
-    Vector2 r;      //”¼Œa
-    Vector2 wave;   //”g
-    int dir;        //•ûŒü
-    float pos;      //ˆÊ’u(ƒ‰ƒWƒAƒ“’l)
+    Vector2 o;      //ä¸­å¿ƒç‚¹
+    Vector2 r;      //åŠå¾„
+    Vector2 wave;   //æ³¢
+    int dir;        //æ–¹å‘
+    float pos;      //ä½ç½®(ãƒ©ã‚¸ã‚¢ãƒ³å€¤)
 
-    //----------ƒvƒƒpƒeƒB----------
+    //----------ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£----------
     public Vector2 Center { get { return o; } }
     public Vector2 Radius { get { return r; } }
     public Vector2 Wave { get { return wave; } }
     public int Direction { get { return dir; } set { dir = value; } }
     public float RadPos { get { return pos; } set { pos = value; } }
 
-    //----------‰^“®----------
+    //----------é‹å‹•----------
     public Vector2 Move(float timer, float speed)
     {
-        //’†S“_ + cos‚Ü‚½‚Ísin((ŠÔŒo‰ß * ‘¬“x * ˆÚ“®•ûŒü + ‰ŠúˆÊ’u) * ”g”) * ”¼Œa
+        //ä¸­å¿ƒç‚¹ + cosã¾ãŸã¯sin((æ™‚é–“çµŒé * é€Ÿåº¦ * ç§»å‹•æ–¹å‘ + åˆæœŸä½ç½®) * æ³¢æ•°) * åŠå¾„
         return new Vector2
             (o.x + Mathf.Cos((timer * speed * dir + pos * Mathf.PI) * wave.x) * r.x,
             o.y + Mathf.Sin((timer * speed * dir + pos * Mathf.PI) * wave.y) * r.y);
@@ -29,13 +27,13 @@ public class Circle
 
     //public Vector2 Move(Vector2 center, Vector2 radius, Vector2 wave, int direction, float startPos, float timer, float speed)
     //{
-    //    //’†S“_ + cos‚Ü‚½‚Ísin((ŠÔŒo‰ß * ‘¬“x * ˆÚ“®•ûŒü + ‰ŠúˆÊ’u) * ”g”) * ”¼Œa
+    //    //ä¸­å¿ƒç‚¹ + cosã¾ãŸã¯sin((æ™‚é–“çµŒé * é€Ÿåº¦ * ç§»å‹•æ–¹å‘ + åˆæœŸä½ç½®) * æ³¢æ•°) * åŠå¾„
     //    return new Vector2
     //        (center.x + Mathf.Cos((timer * speed * direction + startPos * Mathf.PI) * wave.x) * radius.x,
     //        center.y + Mathf.Sin((timer * speed * direction + startPos * Mathf.PI) * wave.y) * radius.y);
     //}
 
-    //----------\¬ƒf[ƒ^‘ã“ü----------
+    //----------æ§‹æˆãƒ‡ãƒ¼ã‚¿ä»£å…¥----------
     public void Data(float centerX, float centerY, float radiusX, float radiusY)
     {
         o.x = centerX; o.y = centerY;
@@ -59,8 +57,8 @@ public class Circle
         pos = startPos;
     }
 
-    //----------‚»‚Ì‘¼ƒT[ƒrƒX----------
-    public void DataClear()    //‰Šú‰»
+    //----------ãã®ä»–ã‚µãƒ¼ãƒ“ã‚¹----------
+    public void DataClear()    //åˆæœŸåŒ–
     {
         o = Vector2.zero;
         r = Vector2.one;

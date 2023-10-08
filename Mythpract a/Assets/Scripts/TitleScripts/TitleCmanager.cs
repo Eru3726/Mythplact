@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,14 +21,14 @@ public class TitleCmanager : MonoBehaviour
 
     private bool connect = true;
 
-    //¶ƒXƒeƒBƒbƒN‚ğ‚Ç‚±‚É“|‚µ‚Ä‚¢‚é‚©‚ğ”»•Ê‚·‚é‚â‚Â
-    private bool lsvup = true;        //ã
-    private bool lsvdown = true;@@@//‰º
-    //\šƒL[‚ğ‚Ç‚±‚É“|‚µ‚Ä‚¢‚é‚©‚ğ”»•Ê‚·‚é‚â‚Â
-    private bool dpvup = true;        //ã
-    private bool dpvdown = true;      //‰º
+    //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’ã©ã“ã«å€’ã—ã¦ã„ã‚‹ã‹ã‚’åˆ¤åˆ¥ã™ã‚‹ã‚„ã¤
+    private bool lsvup = true;        //ä¸Š
+    private bool lsvdown = true;ã€€ã€€ã€€//ä¸‹
+    //åå­—ã‚­ãƒ¼ã‚’ã©ã“ã«å€’ã—ã¦ã„ã‚‹ã‹ã‚’åˆ¤åˆ¥ã™ã‚‹ã‚„ã¤
+    private bool dpvup = true;        //ä¸Š
+    private bool dpvdown = true;      //ä¸‹
 
-    private float deadzone = 0.5f;     //ƒXƒeƒBƒbƒN‚ğ‚Ç‚ê‚¾‚¯“|‚µ‚½‚ç”½‰‚·‚é‚©‚Ì’l
+    private float deadzone = 0.5f;     //ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’ã©ã‚Œã ã‘å€’ã—ãŸã‚‰åå¿œã™ã‚‹ã‹ã®å€¤
     void Start()
     {
 
@@ -45,29 +43,29 @@ public class TitleCmanager : MonoBehaviour
                 start.Select();
                 //ButtonSelect();
                 connect = false;
-                Debug.Log("ƒRƒ“ƒgƒ[ƒ‰[Ú‘±");
+                Debug.Log("ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶š");
             }
             //Debug.Log(Button);
-            //ƒJ[ƒ\ƒ‹‚ğŒ©‚¦‚È‚­‚·‚é
+            //ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¦‹ãˆãªãã™ã‚‹
             Cursor.visible = false;
-            //ƒJ[ƒ\ƒ‹‚ğ‰æ–Ê’†‰›‚ÉƒƒbƒN
+            //ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç”»é¢ä¸­å¤®ã«ãƒ­ãƒƒã‚¯
             Cursor.lockState = CursorLockMode.Locked;
-            //InputManager‚ÅV‚½‚Éİ’è‚µ‚½Axis‚Ì•Ï”‚ğæ“¾
-            //float lsv = Input.GetAxis("L_stick_V");        //¶ƒXƒeƒBƒbƒNc
+            //InputManagerã§æ–°ãŸã«è¨­å®šã—ãŸAxisã®å¤‰æ•°ã‚’å–å¾—
+            //float lsv = Input.GetAxis("L_stick_V");        //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ç¸¦
 
-            //if (lsv >= deadzone)     //¶ƒXƒeƒBƒbƒN‚Ì“|‚µ‚±‚İ‚ªƒfƒbƒhƒ][ƒ“‚ğ’´‚¦‚½‚ç
+            //if (lsv >= deadzone)     //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®å€’ã—ã“ã¿ãŒãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’è¶…ãˆãŸã‚‰
             //{
-            //    if (lsvup == true)@ //ƒXƒeƒBƒbƒN‚ğˆê‰ñ“|‚µ‚½‚çˆêŒÂ‚µ‚©“®‚©‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì‚à‚Ì
+            //    if (lsvup == true)ã€€ //ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’ä¸€å›å€’ã—ãŸã‚‰ä¸€å€‹ã—ã‹å‹•ã‹ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚‚ã®
             //    {
             //        if (PickButton < 3)
             //        {
             //            PickButton += 1;
-            //            Debug.Log("ã");
+            //            Debug.Log("ä¸Š");
             //        }
             //        else
             //        {
             //            PickButton = 1;
-            //            Debug.Log("ã1");
+            //            Debug.Log("ä¸Š1");
             //        }
             //        Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.selectedSprite;
             //        ButtonSelect();
@@ -81,19 +79,19 @@ public class TitleCmanager : MonoBehaviour
             //        if (PickButton > 1)
             //        {
             //            PickButton -= 1;
-            //            Debug.Log("‰º");
+            //            Debug.Log("ä¸‹");
             //        }
             //        else
             //        {
             //            PickButton = 3;
-            //            Debug.Log("‰º3");
+            //            Debug.Log("ä¸‹3");
             //        }
             //        Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.selectedSprite;
             //        ButtonSelect();
             //        lsvdown = false;
             //    }
             //}
-            ////ˆê‰ñ“|‚µ‚½ƒXƒeƒBƒbƒN‚ğ–ß‚·‚Æ‚à‚¤ˆê‰ñ“|‚µ‚ÄˆÚ“®‚³‚¹‚ê‚é‚æ‚¤‚É‚·‚é
+            ////ä¸€å›å€’ã—ãŸã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’æˆ»ã™ã¨ã‚‚ã†ä¸€å›å€’ã—ã¦ç§»å‹•ã•ã›ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
             //if (lsv <= deadzone)
             //{
             //    lsvup = true;
@@ -103,7 +101,7 @@ public class TitleCmanager : MonoBehaviour
             //    lsvdown = true;
             //}
 
-            //float dpv = Input.GetAxis("D_pad_V");        //\šƒL[‚Ìc‚ğæ“¾
+            //float dpv = Input.GetAxis("D_pad_V");        //åå­—ã‚­ãƒ¼ã®ç¸¦ã‚’å–å¾—
             //if (dpv >= deadzone)
             //{
             //    if (dpvup == true)
@@ -139,7 +137,7 @@ public class TitleCmanager : MonoBehaviour
             //        dpvdown = false;
             //    }
             //}
-            ////ã‚ÌƒXƒeƒBƒbƒN‚Æ“¯‚¶
+            ////ä¸Šã®ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã¨åŒã˜
             //if (dpv <= deadzone)
             //{
             //    dpvup = true;
@@ -152,7 +150,7 @@ public class TitleCmanager : MonoBehaviour
 
             //if (Input.GetKeyDown(KeyCode.JoystickButton0))
             //{
-            //    Debug.Log("Œˆ’è");
+            //    Debug.Log("æ±ºå®š");
             //    Button.GetComponent<Button>().onClick.Invoke();
             //    Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.pressedSprite;
             //}
@@ -161,19 +159,19 @@ public class TitleCmanager : MonoBehaviour
             //    Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.highlightedSprite;
             //}
         }
-        else      //ƒRƒ“ƒgƒ[ƒ‰[”ñÚ‘±
+        else      //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼éæ¥ç¶š
         {
             if (connect == false)
             {
-                //ƒJ[ƒ\ƒ‹‚ğ•\¦
+                //ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤º
                 Cursor.visible = true;
-                //ƒJ[ƒ\ƒ‹‚ÌƒƒbƒN‚ğ‰ğœ
+                //ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤
                 Cursor.lockState = CursorLockMode.None;
                 //Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.selectedSprite;
                 connect = true;
                 Button = null;
                 cbutton.Select();
-                Debug.Log("ƒRƒ“ƒgƒ[ƒ‰[”ñÚ‘±");
+                Debug.Log("ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼éæ¥ç¶š");
             }
         }
     }

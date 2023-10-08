@@ -7,10 +7,10 @@ public class Keyconfig : MonoBehaviour
     public Controllerconnect conconnect;               
     public Pickkey pickkey;
 
-    public string keyStr;                        //ƒL[ƒRƒ“‚ğƒXƒgƒŠƒ“ƒO‚É“ü‚ê‚é‚½‚ß‚Ì‚â‚Â
+    public string keyStr;                        //ã‚­ãƒ¼ã‚³ãƒ³ã‚’ã‚¹ãƒˆãƒªãƒ³ã‚°ã«å…¥ã‚Œã‚‹ãŸã‚ã®ã‚„ã¤
     public KeyCode codechange;
 
-    public GameObject rightbutton;              //‘S•”ƒ{ƒ^ƒ“‚Ô‚¿‚Ş
+    public GameObject rightbutton;              //å…¨éƒ¨ãƒœã‚¿ãƒ³ã¶ã¡è¾¼ã‚€
     public GameObject leftbutton;
     public GameObject downbutton;
     public GameObject jumpbutton;
@@ -21,7 +21,7 @@ public class Keyconfig : MonoBehaviour
 
     
 
-    public Righttext rtx;              //‘S•”‚Ìƒ{ƒ^ƒ“‚É‰‚¶‚½ƒeƒLƒXƒg‚Ô‚¿‚Ş
+    public Righttext rtx;              //å…¨éƒ¨ã®ãƒœã‚¿ãƒ³ã«å¿œã˜ãŸãƒ†ã‚­ã‚¹ãƒˆã¶ã¡è¾¼ã‚€
     public Rightkey rk;
     public Lefttext ltx;
     public Leftkey lk;
@@ -38,7 +38,7 @@ public class Keyconfig : MonoBehaviour
     public Interactkey ik;
     public Interacttext itx;
 
-    //ƒL[‚ğ•Ï‚¦‚é‚Æ‚«‘¼‚ÌƒRƒ“ƒtƒBƒO‚à•Ï‚í‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì‚â‚Â
+    //ã‚­ãƒ¼ã‚’å¤‰ãˆã‚‹ã¨ãä»–ã®ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‚‚å¤‰ã‚ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚„ã¤
     public bool right;
     public bool left;
     public bool down;
@@ -48,7 +48,7 @@ public class Keyconfig : MonoBehaviour
     public bool heal;
     public bool interact;
 
-    public bool condec = false;                //ƒRƒ“ƒgƒ[ƒ‰[‚ÌŒˆ’èƒ{ƒ^ƒ“‚àƒL[ƒRƒ“‚Åİ’è‚Å‚«‚é‚æ‚¤‚É‚·‚é‚½‚ß‚Ì‚à‚Ì
+    public bool condec = false;                //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æ±ºå®šãƒœã‚¿ãƒ³ã‚‚ã‚­ãƒ¼ã‚³ãƒ³ã§è¨­å®šã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚‚ã®
     void Start()
     {
         right = false;
@@ -69,7 +69,7 @@ public class Keyconfig : MonoBehaviour
         //    pickkey.ConClick();
         //}
 
-        //İ’è‚·‚éƒ{ƒ^ƒ“ˆÈŠO‚ğƒtƒHƒ‹ƒX‚É
+        //è¨­å®šã™ã‚‹ãƒœã‚¿ãƒ³ä»¥å¤–ã‚’ãƒ•ã‚©ãƒ«ã‚¹ã«
         if (right == true)
         {
             rightbutton.GetComponent<Button>().enabled = false;
@@ -170,7 +170,7 @@ public class Keyconfig : MonoBehaviour
 
     public void keycheck()
     {
-        if (Input.GetAxisRaw("RT") != 0)               //ƒIƒŠƒWƒiƒ‹‚Éì‚Á‚½ƒL[ƒR[ƒh‚ğİ’è‚·‚é
+        if (Input.GetAxisRaw("RT") != 0)               //ã‚ªãƒªã‚¸ãƒŠãƒ«ã«ä½œã£ãŸã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
         {
             codechange = (KeyCode)CustomKeycode.RT; 
             //Debug.Log("codechange" + codechange);
@@ -187,23 +187,23 @@ public class Keyconfig : MonoBehaviour
         if (Input.anyKeyDown && !(Input.GetKeyDown(KeyCode.Escape)) && !(Input.GetKeyDown(KeyCode.JoystickButton7)))
         {
             //keyStr = Input.inputString;
-            //ƒL[ƒ{[ƒh‚Ì‰Ÿ‚³‚ê‚½ƒL[‚ğæ“¾
+            //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®æŠ¼ã•ã‚ŒãŸã‚­ãƒ¼ã‚’å–å¾—
             foreach (KeyCode code in Enum.GetValues(typeof(KeyCode)))
             {
                 if (code == KeyCode.JoystickButton0)
                 {
                     condec = true;
                 }
-                //æ“¾‚µ‚½ƒL[‚ğcodechange‚É‚Ô‚¿‚±‚Ş
+                //å–å¾—ã—ãŸã‚­ãƒ¼ã‚’codechangeã«ã¶ã¡ã“ã‚€
                 if (Input.GetKeyDown(code))
                 {
                     codechange = code;
                     if (codechange != KeyCode.None)
                     {
                         Debug.Log("codechange" + codechange);
-                        keyStr = codechange.ToString();      //ƒL[ƒR[ƒh‚ğƒXƒgƒŠƒ“ƒOŒ^‚É
+                        keyStr = codechange.ToString();      //ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’ã‚¹ãƒˆãƒªãƒ³ã‚°å‹ã«
                     }
-                    KeyChange();              //‰º‚Ö‘±‚­
+                    KeyChange();              //ä¸‹ã¸ç¶šã
                 }
             }
         }
@@ -225,7 +225,7 @@ public class Keyconfig : MonoBehaviour
             jumpbutton.GetComponent<Button>().enabled = true;
             healbutton.GetComponent<Button>().enabled = true;
             interactbutton.GetComponent<Button>().enabled = true;
-            Debug.Log("ƒ{ƒ^ƒ“•œŠˆ");
+            Debug.Log("ãƒœã‚¿ãƒ³å¾©æ´»");
         }
         //Debug.Log("keycheck");
     }
@@ -234,7 +234,7 @@ public class Keyconfig : MonoBehaviour
         //if (keyStr != "Escape" || keyStr != "Q"||conconnect.ConConnect&&keyStr == "None")
 
         {
-            for (int i = 0; i < 10; i++)   //ƒWƒ‡ƒCƒXƒeƒBƒbƒN10ŒÂ•ªŠm‚©‚ß‚é
+            for (int i = 0; i < 10; i++)   //ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯10å€‹åˆ†ç¢ºã‹ã‚ã‚‹
             {
                 if (keyStr == "JoystickButton" + i)
                 {
@@ -329,7 +329,7 @@ public class Keyconfig : MonoBehaviour
                 }
             }
 
-            //F‚ñ‚ÈƒL[ƒR[ƒh–¼‚ğ•ª‚©‚è‚â‚·‚­•ÏX‚·‚é
+            //è‰²ã‚“ãªã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰åã‚’åˆ†ã‹ã‚Šã‚„ã™ãå¤‰æ›´ã™ã‚‹
             if (keyStr == "JoystickButton18")
             {
                 keyStr = "L2";
@@ -360,24 +360,24 @@ public class Keyconfig : MonoBehaviour
             }
             else if (keyStr == "RightArrow")
             {
-                keyStr = "¨";
+                keyStr = "â†’";
             }
             else if (keyStr == "LeftArrow")
             {
-                keyStr = "©";
+                keyStr = "â†";
             }
             else if (keyStr == "UpArrow")
             {
-                keyStr = "ª";
+                keyStr = "â†‘";
             }
             else if (keyStr == "DownArrow")
             {
-                keyStr = "«";
+                keyStr = "â†“";
             }
             //Debug.Log(keyStr);
             if (right == true)
             {
-                //ƒL[‚ª‚©‚Ô‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚â‚Â
+                //ã‚­ãƒ¼ãŒã‹ã¶ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ã‚„ã¤
                 if (!(keyStr == GameData.lefttx ||
                     keyStr == GameData.downtx ||
                     keyStr == GameData.dashtx ||
@@ -387,9 +387,9 @@ public class Keyconfig : MonoBehaviour
                     keyStr == GameData.interacttx)||
                     keyStr == "None")
                 {
-                    rtx.righttextchange();     //ƒeƒLƒXƒg‚ğ•ÏX‚·‚é
-                    rk.rightkeychange();       //ƒL[‚ğ•ÏX‚·‚é
-                    right = false;             //•ÏXI‚í‚è
+                    rtx.righttextchange();     //ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´ã™ã‚‹
+                    rk.rightkeychange();       //ã‚­ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+                    right = false;             //å¤‰æ›´çµ‚ã‚ã‚Š
                     Debug.Log("right");
                 }
                 //else if (keyStr == "None")
@@ -401,14 +401,14 @@ public class Keyconfig : MonoBehaviour
                 //}
                 else if (keyStr == GameData.lefttx)
                 {
-                    KeyCode holdkey;      //ƒL[‚Ìˆê•Û‘¶
-                    //ƒL[‚Ì“ü‚ê‘Ö‚¦
+                    KeyCode holdkey;      //ã‚­ãƒ¼ã®ä¸€æ™‚ä¿å­˜
+                    //ã‚­ãƒ¼ã®å…¥ã‚Œæ›¿ãˆ
                     holdkey = GameData.rightkey;
                     GameData.rightkey = GameData.leftkey;
                     GameData.leftkey = holdkey;
                     GameData.lefttx = GameData.righttx;
                     GameData.righttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     right = false;
                 }
                 else if (keyStr == GameData.downtx)
@@ -419,7 +419,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.downkey = holdkey;
                     GameData.downtx = GameData.righttx;
                     GameData.righttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     right = false;
                 }
                 else if (keyStr == GameData.dashtx)
@@ -430,7 +430,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.dashkey = holdkey;
                     GameData.dashtx = GameData.righttx;
                     GameData.righttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     right = false;
                 }
                 else if (keyStr == GameData.jumptx)
@@ -441,7 +441,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.jumpkey = holdkey;
                     GameData.jumptx = GameData.righttx;
                     GameData.righttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     right = false;
                 }
                 else if (keyStr == GameData.attacktx)
@@ -452,7 +452,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.attackkey = holdkey;
                     GameData.attacktx = GameData.righttx;
                     GameData.righttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     right = false;
                 }
                 else if (keyStr == GameData.healtx)
@@ -463,7 +463,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.healkey = holdkey;
                     GameData.healtx = GameData.righttx;
                     GameData.righttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     right = false;
                 }
                 else if (keyStr == GameData.interacttx)
@@ -474,18 +474,18 @@ public class Keyconfig : MonoBehaviour
                     GameData.interactkey = holdkey;
                     GameData.interacttx = GameData.righttx;
                     GameData.righttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     right = false;
                 }
                 else
                 {
-                    Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+                    Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
                     right = false;
                 }
             }
             else if (left == true)
             {
-                //ƒL[‚ª‚©‚Ô‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚â‚Â
+                //ã‚­ãƒ¼ãŒã‹ã¶ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ã‚„ã¤
                 if (!(keyStr == GameData.righttx ||
                     keyStr == GameData.downtx ||
                     keyStr == GameData.dashtx ||
@@ -495,9 +495,9 @@ public class Keyconfig : MonoBehaviour
                     keyStr == GameData.interacttx)||
                     keyStr == "None")
                 {
-                    ltx.lefttextchange();     //ƒeƒLƒXƒg‚ğ•ÏX‚·‚é
-                    lk.leftkeychange();       //ƒL[‚ğ•ÏX‚·‚é
-                    left = false;             //•ÏXI‚í‚è
+                    ltx.lefttextchange();     //ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´ã™ã‚‹
+                    lk.leftkeychange();       //ã‚­ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+                    left = false;             //å¤‰æ›´çµ‚ã‚ã‚Š
                     //Debug.Log("right");
                 }
                 //else if (keyStr == "None")
@@ -509,14 +509,14 @@ public class Keyconfig : MonoBehaviour
                 //}
                 else if (keyStr == GameData.righttx)
                 {
-                    KeyCode holdkey;      //ƒL[‚Ìˆê•Û‘¶
-                    //ƒL[‚Ì“ü‚ê‘Ö‚¦
+                    KeyCode holdkey;      //ã‚­ãƒ¼ã®ä¸€æ™‚ä¿å­˜
+                    //ã‚­ãƒ¼ã®å…¥ã‚Œæ›¿ãˆ
                     holdkey = GameData.leftkey;
                     GameData.leftkey = GameData.rightkey;
                     GameData.rightkey = holdkey;
                     GameData.righttx = GameData.lefttx;
                     GameData.lefttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     left = false;
                 }
                 else if (keyStr == GameData.downtx)
@@ -527,7 +527,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.downkey = holdkey;
                     GameData.downtx = GameData.lefttx;
                     GameData.lefttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     left = false;
                 }
                 else if (keyStr == GameData.dashtx)
@@ -538,7 +538,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.dashkey = holdkey;
                     GameData.dashtx = GameData.lefttx;
                     GameData.lefttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     left = false;
                 }
                 else if (keyStr == GameData.jumptx)
@@ -549,7 +549,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.jumpkey = holdkey;
                     GameData.jumptx = GameData.lefttx;
                     GameData.lefttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     left = false;
                 }
                 else if (keyStr == GameData.attacktx)
@@ -560,7 +560,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.attackkey = holdkey;
                     GameData.attacktx = GameData.lefttx;
                     GameData.lefttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     left = false;
                 }
                 else if (keyStr == GameData.healtx)
@@ -571,7 +571,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.healkey = holdkey;
                     GameData.healtx = GameData.lefttx;
                     GameData.lefttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     left = false;
                 }
                 else if (keyStr == GameData.interacttx)
@@ -582,12 +582,12 @@ public class Keyconfig : MonoBehaviour
                     GameData.interactkey = holdkey;
                     GameData.interacttx = GameData.lefttx;
                     GameData.lefttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     left = false;
                 }
                 else
                 {
-                    Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+                    Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
                     left = false;
                 }
             }
@@ -617,14 +617,14 @@ public class Keyconfig : MonoBehaviour
 
                 else if (keyStr == GameData.righttx)
                 {
-                    KeyCode holdkey;      //ƒL[‚Ìˆê•Û‘¶
-                    //ƒL[‚Ì“ü‚ê‘Ö‚¦
+                    KeyCode holdkey;      //ã‚­ãƒ¼ã®ä¸€æ™‚ä¿å­˜
+                    //ã‚­ãƒ¼ã®å…¥ã‚Œæ›¿ãˆ
                     holdkey = GameData.downkey;
                     GameData.downkey = GameData.rightkey;
                     GameData.rightkey = holdkey;
                     GameData.righttx = GameData.downtx;
                     GameData.downtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     down = false;
                 }
                 else if (keyStr == GameData.jumptx)
@@ -635,7 +635,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.jumpkey = holdkey;
                     GameData.jumptx = GameData.downtx;
                     GameData.downtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     down = false;
                 }
                 else if (keyStr == GameData.dashtx)
@@ -646,7 +646,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.dashkey = holdkey;
                     GameData.dashtx = GameData.downtx;
                     GameData.downtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     down = false;
                 }
                 else if (keyStr == GameData.lefttx)
@@ -657,7 +657,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.leftkey = holdkey;
                     GameData.lefttx = GameData.downtx;
                     GameData.downtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     down = false;
                 }
                 else if (keyStr == GameData.attacktx)
@@ -668,7 +668,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.attackkey = holdkey;
                     GameData.attacktx = GameData.downtx;
                     GameData.downtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     down = false;
                 }
                 else if (keyStr == GameData.healtx)
@@ -679,7 +679,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.healkey = holdkey;
                     GameData.healtx = GameData.downtx;
                     GameData.downtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     down = false;
                 }
                 else if (keyStr == GameData.interacttx)
@@ -690,12 +690,12 @@ public class Keyconfig : MonoBehaviour
                     GameData.interactkey = holdkey;
                     GameData.interacttx = GameData.downtx;
                     GameData.downtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     down = false;
                 }
                 else
                 {
-                    Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+                    Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
                     down = false;
                 }
             }
@@ -716,14 +716,14 @@ public class Keyconfig : MonoBehaviour
                 }
                 else if (keyStr == GameData.righttx)
                 {
-                    KeyCode holdkey;      //ƒL[‚Ìˆê•Û‘¶
-                    //ƒL[‚Ì“ü‚ê‘Ö‚¦
+                    KeyCode holdkey;      //ã‚­ãƒ¼ã®ä¸€æ™‚ä¿å­˜
+                    //ã‚­ãƒ¼ã®å…¥ã‚Œæ›¿ãˆ
                     holdkey = GameData.jumpkey;
                     GameData.jumpkey = GameData.rightkey;
                     GameData.rightkey = holdkey;
                     GameData.righttx = GameData.jumptx;
                     GameData.jumptx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     jump = false;
                 }
                 else if (keyStr == GameData.downtx)
@@ -734,7 +734,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.downkey = holdkey;
                     GameData.downtx = GameData.jumptx;
                     GameData.jumptx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     jump = false;
                 }
                 else if (keyStr == GameData.dashtx)
@@ -745,7 +745,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.dashkey = holdkey;
                     GameData.dashtx = GameData.jumptx;
                     GameData.jumptx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     jump = false;
                 }
                 else if (keyStr == GameData.lefttx)
@@ -756,7 +756,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.leftkey = holdkey;
                     GameData.lefttx = GameData.jumptx;
                     GameData.jumptx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     jump = false;
                 }
                 else if (keyStr == GameData.attacktx)
@@ -767,7 +767,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.attackkey = holdkey;
                     GameData.attacktx = GameData.jumptx;
                     GameData.jumptx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     jump = false;
                 }
                 else if (keyStr == GameData.healtx)
@@ -778,7 +778,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.healkey = holdkey;
                     GameData.healtx = GameData.jumptx;
                     GameData.jumptx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     jump = false;
                 }
                 else if (keyStr == GameData.interacttx)
@@ -789,12 +789,12 @@ public class Keyconfig : MonoBehaviour
                     GameData.interactkey = holdkey;
                     GameData.interacttx = GameData.jumptx;
                     GameData.jumptx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     jump = false;
                 }
                 else
                 {
-                    Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+                    Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
                     jump = false;
                 }
             }
@@ -815,14 +815,14 @@ public class Keyconfig : MonoBehaviour
                 }
                 else if (keyStr == GameData.righttx)
                 {
-                    KeyCode holdkey;      //ƒL[‚Ìˆê•Û‘¶
-                    //ƒL[‚Ì“ü‚ê‘Ö‚¦
+                    KeyCode holdkey;      //ã‚­ãƒ¼ã®ä¸€æ™‚ä¿å­˜
+                    //ã‚­ãƒ¼ã®å…¥ã‚Œæ›¿ãˆ
                     holdkey = GameData.attackkey;
                     GameData.attackkey = GameData.rightkey;
                     GameData.rightkey = holdkey;
                     GameData.righttx = GameData.attacktx;
                     GameData.attacktx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     attack = false;
                 }
                 else if (keyStr == GameData.downtx)
@@ -833,7 +833,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.downkey = holdkey;
                     GameData.downtx = GameData.attacktx;
                     GameData.attacktx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     attack = false;
                 }
                 else if (keyStr == GameData.dashtx)
@@ -844,7 +844,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.dashkey = holdkey;
                     GameData.dashtx = GameData.attacktx;
                     GameData.attacktx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     attack = false;
                 }
                 else if (keyStr == GameData.lefttx)
@@ -855,7 +855,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.leftkey = holdkey;
                     GameData.lefttx = GameData.attacktx;
                     GameData.attacktx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     attack = false;
                 }
                 else if (keyStr == GameData.jumptx)
@@ -866,7 +866,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.jumpkey = holdkey;
                     GameData.jumptx = GameData.attacktx;
                     GameData.attacktx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     attack = false;
                 }
                 else if (keyStr == GameData.healtx)
@@ -877,7 +877,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.healkey = holdkey;
                     GameData.healtx = GameData.attacktx;
                     GameData.attacktx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     attack = false;
                 }
                 else if (keyStr == GameData.interacttx)
@@ -888,12 +888,12 @@ public class Keyconfig : MonoBehaviour
                     GameData.interactkey = holdkey;
                     GameData.interacttx = GameData.attacktx;
                     GameData.attacktx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     attack = false;
                 }
                 else
                 {
-                    Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+                    Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
                     attack = false;
                 }
             }
@@ -914,14 +914,14 @@ public class Keyconfig : MonoBehaviour
                 }
                 else if (keyStr == GameData.righttx)
                 {
-                    KeyCode holdkey;      //ƒL[‚Ìˆê•Û‘¶
-                    //ƒL[‚Ì“ü‚ê‘Ö‚¦
+                    KeyCode holdkey;      //ã‚­ãƒ¼ã®ä¸€æ™‚ä¿å­˜
+                    //ã‚­ãƒ¼ã®å…¥ã‚Œæ›¿ãˆ
                     holdkey = GameData.dashkey;
                     GameData.dashkey = GameData.rightkey;
                     GameData.rightkey = holdkey;
                     GameData.righttx = GameData.dashtx;
                     GameData.dashtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     dash = false;
                 }
                 else if (keyStr == GameData.downtx)
@@ -932,7 +932,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.downkey = holdkey;
                     GameData.downtx = GameData.dashtx;
                     GameData.dashtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     dash = false;
                 }
                 else if (keyStr == GameData.attacktx)
@@ -943,7 +943,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.attackkey = holdkey;
                     GameData.attacktx = GameData.dashtx;
                     GameData.dashtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     dash = false;
                 }
                 else if (keyStr == GameData.lefttx)
@@ -954,7 +954,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.leftkey = holdkey;
                     GameData.lefttx = GameData.dashtx;
                     GameData.dashtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     dash = false;
                 }
                 else if (keyStr == GameData.jumptx)
@@ -965,7 +965,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.jumpkey = holdkey;
                     GameData.jumptx = GameData.dashtx;
                     GameData.dashtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     dash = false;
                 }
                 else if (keyStr == GameData.healtx)
@@ -976,7 +976,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.healkey = holdkey;
                     GameData.healtx = GameData.dashtx;
                     GameData.dashtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     dash = false;
                 }
                 else if (keyStr == GameData.interacttx)
@@ -987,12 +987,12 @@ public class Keyconfig : MonoBehaviour
                     GameData.interactkey = holdkey;
                     GameData.interacttx = GameData.dashtx;
                     GameData.dashtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     dash = false;
                 }
                 else
                 {
-                    Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+                    Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
                     dash = false;
                 }
             }
@@ -1013,14 +1013,14 @@ public class Keyconfig : MonoBehaviour
                 }
                 else if (keyStr == GameData.righttx)
                 {
-                    KeyCode holdkey;      //ƒL[‚Ìˆê•Û‘¶
-                    //ƒL[‚Ì“ü‚ê‘Ö‚¦
+                    KeyCode holdkey;      //ã‚­ãƒ¼ã®ä¸€æ™‚ä¿å­˜
+                    //ã‚­ãƒ¼ã®å…¥ã‚Œæ›¿ãˆ
                     holdkey = GameData.healkey;
                     GameData.healkey = GameData.rightkey;
                     GameData.rightkey = holdkey;
                     GameData.righttx = GameData.healtx;
                     GameData.healtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     heal = false;
                 }
                 else if (keyStr == GameData.downtx)
@@ -1031,7 +1031,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.downkey = holdkey;
                     GameData.downtx = GameData.healtx;
                     GameData.healtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     heal = false;
                 }
                 else if (keyStr == GameData.attacktx)
@@ -1042,7 +1042,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.attackkey = holdkey;
                     GameData.attacktx = GameData.healtx;
                     GameData.healtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     heal = false;
                 }
                 else if (keyStr == GameData.lefttx)
@@ -1053,7 +1053,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.leftkey = holdkey;
                     GameData.lefttx = GameData.healtx;
                     GameData.healtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     heal = false;
                 }
                 else if (keyStr == GameData.jumptx)
@@ -1064,7 +1064,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.jumpkey = holdkey;
                     GameData.jumptx = GameData.healtx;
                     GameData.healtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     heal = false;
                 }
                 else if (keyStr == GameData.dashtx)
@@ -1075,7 +1075,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.dashkey = holdkey;
                     GameData.dashtx = GameData.healtx;
                     GameData.healtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     heal = false;
                 }
                 else if (keyStr == GameData.interacttx)
@@ -1086,12 +1086,12 @@ public class Keyconfig : MonoBehaviour
                     GameData.interactkey = holdkey;
                     GameData.interacttx = GameData.healtx;
                     GameData.healtx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     heal = false;
                 }
                 else
                 {
-                    Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+                    Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
                     heal = false;
                 }
             }
@@ -1112,14 +1112,14 @@ public class Keyconfig : MonoBehaviour
                 }
                 else if (keyStr == GameData.righttx)
                 {
-                    KeyCode holdkey;      //ƒL[‚Ìˆê•Û‘¶
-                    //ƒL[‚Ì“ü‚ê‘Ö‚¦
+                    KeyCode holdkey;      //ã‚­ãƒ¼ã®ä¸€æ™‚ä¿å­˜
+                    //ã‚­ãƒ¼ã®å…¥ã‚Œæ›¿ãˆ
                     holdkey = GameData.interactkey;
                     GameData.interactkey = GameData.rightkey;
                     GameData.rightkey = holdkey;
                     GameData.righttx = GameData.interacttx;
                     GameData.interacttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     interact = false;
                 }
                 else if (keyStr == GameData.downtx)
@@ -1130,7 +1130,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.downkey = holdkey;
                     GameData.downtx = GameData.interacttx;
                     GameData.interacttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     interact = false;
                 }
                 else if (keyStr == GameData.attacktx)
@@ -1141,7 +1141,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.attackkey = holdkey;
                     GameData.attacktx = GameData.interacttx;
                     GameData.interacttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     interact = false;
                 }
                 else if (keyStr == GameData.lefttx)
@@ -1152,7 +1152,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.leftkey = holdkey;
                     GameData.lefttx = GameData.interacttx;
                     GameData.interacttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     interact = false;
                 }
                 else if (keyStr == GameData.jumptx)
@@ -1163,7 +1163,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.jumpkey = holdkey;
                     GameData.jumptx = GameData.interacttx;
                     GameData.interacttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     interact = false;
                 }
                 else if (keyStr == GameData.dashtx)
@@ -1174,7 +1174,7 @@ public class Keyconfig : MonoBehaviour
                     GameData.dashkey = holdkey;
                     GameData.dashtx = GameData.interacttx;
                     GameData.interacttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     interact = false;
                 }
                 else if (keyStr == GameData.healtx)
@@ -1185,18 +1185,18 @@ public class Keyconfig : MonoBehaviour
                     GameData.healkey = holdkey;
                     GameData.healtx = GameData.interacttx;
                     GameData.interacttx = keyStr;
-                    Debug.Log("“¯‚¶ƒL[‚ª‚ ‚è‚Ü‚·");
+                    Debug.Log("åŒã˜ã‚­ãƒ¼ãŒã‚ã‚Šã¾ã™");
                     interact = false;
                 }
                 else
                 {
-                    Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+                    Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
                     interact = false;
                 }
             }
             else
             {
-                Debug.Log("‚»‚ÌƒL[‚Í‚¾‚ß");
+                Debug.Log("ãã®ã‚­ãƒ¼ã¯ã ã‚");
                 right = false;
                 left = false;
                 down = false;
@@ -1209,7 +1209,7 @@ public class Keyconfig : MonoBehaviour
         }
         //else
         //{
-        //Debug.Log("‚È‚ñ‚©ƒ_ƒ");
+        //Debug.Log("ãªã‚“ã‹ãƒ€ãƒ¡");
         //}
         
         rightbutton.GetComponent<Button>().enabled = true;
@@ -1220,7 +1220,7 @@ public class Keyconfig : MonoBehaviour
         jumpbutton.GetComponent<Button>().enabled = true;
         healbutton.GetComponent<Button>().enabled = true;
         interactbutton.GetComponent<Button>().enabled = true;
-        Debug.Log("ƒ{ƒ^ƒ“•œŠˆ");
+        Debug.Log("ãƒœã‚¿ãƒ³å¾©æ´»");
     }
 }
 

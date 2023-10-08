@@ -1,17 +1,15 @@
-//ƒ{ƒX2Fƒtƒ@ƒtƒj[ƒ‹
+//ãƒœã‚¹2ï¼šãƒ•ã‚¡ãƒ•ãƒ‹ãƒ¼ãƒ«
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using SY;
 
 public enum Fafnir_MoveType
 {
-    Idle = 1,   //‰¼
-    Pound,      //‚Í‚½‚­
-    Rush,       //“Ëi
-    Breath,     //ƒuƒŒƒX
-    Earthquake, //’nk
+    Idle = 1,   //ä»®
+    Pound,      //ã¯ãŸã
+    Rush,       //çªé€²
+    Breath,     //ãƒ–ãƒ¬ã‚¹
+    Earthquake, //åœ°éœ‡
 }
 
 public class Fafnir : MonoBehaviour
@@ -19,128 +17,128 @@ public class Fafnir : MonoBehaviour
 
     Rigidbody2D rb;
     AudioSource se;
-    HitMng hm;      //“–‚½‚è”»’è
-    GroundCheck gc; //Ú’n”»’è
+    HitMng hm;      //å½“ãŸã‚Šåˆ¤å®š
+    GroundCheck gc; //æ¥åœ°åˆ¤å®š
 
     //
-    GameObject obj; //©g
-    [SerializeField, Tooltip("ƒvƒŒ[ƒ„[")] GameObject pl;
+    GameObject obj; //è‡ªèº«
+    [SerializeField, Tooltip("ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼")] GameObject pl;
 
     //
-    int phase = 0;      //”Ä—ps“®”Ô†
-    float timer = 0;    //”Ä—pƒ^ƒCƒ}[
-    int repeat = 0;     //”Ä—pŒJ‚è•Ô‚µ‰ñ”
-    int no = 0;         //”Ä—pƒiƒ“ƒo
+    int phase = 0;      //æ±ç”¨è¡Œå‹•ç•ªå·
+    float timer = 0;    //æ±ç”¨ã‚¿ã‚¤ãƒãƒ¼
+    int repeat = 0;     //æ±ç”¨ç¹°ã‚Šè¿”ã—å›æ•°
+    int no = 0;         //æ±ç”¨ãƒŠãƒ³ãƒ
 
-    int tableNo = 0;    //ƒe[ƒuƒ‹w’è
-    int moveNo = 0;     //s“®w’è
+    int tableNo = 0;    //ãƒ†ãƒ¼ãƒ–ãƒ«æŒ‡å®š
+    int moveNo = 0;     //è¡Œå‹•æŒ‡å®š
 
     
-    [SerializeField, Tooltip("s“®")] Fafnir_MoveType moveType = Fafnir_MoveType.Idle;
-    [SerializeField, Tooltip("s“®ƒe[ƒuƒ‹")] Fafnir_MoveTable[] moveTable;  //Šeƒe[ƒuƒ‹‚ÌÅ‰‚Ìs“®‚ÍIdle‚É‚·‚é•K—v‚ª‚ ‚é
+    [SerializeField, Tooltip("è¡Œå‹•")] Fafnir_MoveType moveType = Fafnir_MoveType.Idle;
+    [SerializeField, Tooltip("è¡Œå‹•ãƒ†ãƒ¼ãƒ–ãƒ«")] Fafnir_MoveTable[] moveTable;  //å„ãƒ†ãƒ¼ãƒ–ãƒ«ã®æœ€åˆã®è¡Œå‹•ã¯Idleã«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
     [SerializeField] float speed;
 
-    [Header("–{‘Ì")]
-    [SerializeField, Tooltip("ÚGUŒ‚”»’è")] GameObject body;
-    [SerializeField, Tooltip("ÚGˆĞ—Í")] float body_Power = 1.0f;
-    [SerializeField, Tooltip("ƒWƒƒƒ“ƒvƒGƒtƒFƒNƒg")] ParticleSystem jumpEnd_Effect;
-    [SerializeField, Tooltip("ƒ^ƒbƒNƒ‹ƒGƒtƒFƒNƒg")] ParticleSystem tackle_Effect;
-    [SerializeField, Tooltip("’@‚«‚Â‚¯ƒGƒtƒFƒNƒg")] ParticleSystem earthpuake_Effect;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip Move_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float Move_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float Move_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool Move_SELoop;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip jumpStart_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float jumpStart_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float jumpStart_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool jumpStart_SELoop;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip jumpEnd_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float jumpEnd_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float jumpEnd_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool jumpEnd_SELoop;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip attackAnticipation_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float attackAnticipation_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float attackAnticipation_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool attackAnticipation_SELoop;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip die_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float die_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float die_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool die_SELoop;
+    [Header("æœ¬ä½“")]
+    [SerializeField, Tooltip("æ¥è§¦æ”»æ’ƒåˆ¤å®š")] GameObject body;
+    [SerializeField, Tooltip("æ¥è§¦å¨åŠ›")] float body_Power = 1.0f;
+    [SerializeField, Tooltip("ã‚¸ãƒ£ãƒ³ãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSystem jumpEnd_Effect;
+    [SerializeField, Tooltip("ã‚¿ãƒƒã‚¯ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSystem tackle_Effect;
+    [SerializeField, Tooltip("å©ãã¤ã‘ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSystem earthpuake_Effect;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip Move_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float Move_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float Move_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool Move_SELoop;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip jumpStart_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float jumpStart_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float jumpStart_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool jumpStart_SELoop;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip jumpEnd_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float jumpEnd_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float jumpEnd_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool jumpEnd_SELoop;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip attackAnticipation_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float attackAnticipation_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float attackAnticipation_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool attackAnticipation_SELoop;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip die_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float die_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float die_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool die_SELoop;
 
-    Vector2 pos;        //À•W
-    Vector2 plPos;      //ƒvƒŒ[ƒ„[À•W
-    Vector3 defScale;   //Šgk—¦•Û‘¶
-    Vector3 scale;      //Šgk—¦XV
-    float dir;          //¶‰E•ûŒü
-    float gravity;      //d—Í‹­“x•Û‘¶
+    Vector2 pos;        //åº§æ¨™
+    Vector2 plPos;      //ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼åº§æ¨™
+    Vector3 defScale;   //æ‹¡ç¸®ç‡ä¿å­˜
+    Vector3 scale;      //æ‹¡ç¸®ç‡æ›´æ–°
+    float dir;          //å·¦å³æ–¹å‘
+    float gravity;      //é‡åŠ›å¼·åº¦ä¿å­˜
     int soundcount = 0;
 
-    [Header("‘Ò‹@")]
-    [SerializeField, Tooltip("‘Ò‹@ŠÔ")] float idle_BreakTime = 1.0f;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip idle_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float idle_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float idle_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool idle_SELoop;
+    [Header("å¾…æ©Ÿ")]
+    [SerializeField, Tooltip("å¾…æ©Ÿæ™‚é–“")] float idle_BreakTime = 1.0f;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip idle_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float idle_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float idle_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool idle_SELoop;
 
-    [Header("‚Í‚½‚­")]
-    [SerializeField, Tooltip("‚Í‚½‚­")] GameObject pound;
-    [SerializeField, Tooltip("ˆĞ—Í")] float pound_Power = 1.0f;
-    [SerializeField, Tooltip("ˆÚ“®‘¬“x")] float pound_MoveSpd = 5.0f;
-    [SerializeField, Tooltip("Œ„")] float[] pound_BreakTime = { 0.5f, 0.5f };
-    [SerializeField, Tooltip("UŒ‚‹——£")] float pound_AtkDistance = 6.0f;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip pound_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float pound_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float pound_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool pound_SELoop;
+    [Header("ã¯ãŸã")]
+    [SerializeField, Tooltip("ã¯ãŸã")] GameObject pound;
+    [SerializeField, Tooltip("å¨åŠ›")] float pound_Power = 1.0f;
+    [SerializeField, Tooltip("ç§»å‹•é€Ÿåº¦")] float pound_MoveSpd = 5.0f;
+    [SerializeField, Tooltip("éš™")] float[] pound_BreakTime = { 0.5f, 0.5f };
+    [SerializeField, Tooltip("æ”»æ’ƒè·é›¢")] float pound_AtkDistance = 6.0f;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip pound_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float pound_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float pound_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool pound_SELoop;
 
-    [Header("“Ëi")]
-    [SerializeField, Tooltip("ˆÚ“®‘¬“x")] float rush_MoveSpd = 20.0f;
-    [SerializeField, Tooltip("ˆĞ—Í")] float rush_Power = 1.0f;
-    [SerializeField, Tooltip("Œ„")] float rush_BreakTime = 0.5f;
-    [SerializeField, Tooltip("Às‰ñ”")] int rush_AtkTime = 3;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip rush_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float rush_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float rush_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool rush_SELoop;
+    [Header("çªé€²")]
+    [SerializeField, Tooltip("ç§»å‹•é€Ÿåº¦")] float rush_MoveSpd = 20.0f;
+    [SerializeField, Tooltip("å¨åŠ›")] float rush_Power = 1.0f;
+    [SerializeField, Tooltip("éš™")] float rush_BreakTime = 0.5f;
+    [SerializeField, Tooltip("å®Ÿè¡Œå›æ•°")] int rush_AtkTime = 3;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip rush_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float rush_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float rush_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool rush_SELoop;
 
-    [Header("ƒuƒŒƒX")]
-    [SerializeField, Tooltip("ƒuƒŒƒX")] GameObject breath;
-    [SerializeField, Tooltip("ˆĞ—Í")] float breath_Power = 1.0f;
-    [SerializeField, Tooltip("ƒWƒƒƒ“ƒv‚‚³")] float breath_JumpHeight;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip breath_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float breath_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float breath_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool breath_SELoop;
-    float breath_Save;          //•Ï”•Û‘¶
+    [Header("ãƒ–ãƒ¬ã‚¹")]
+    [SerializeField, Tooltip("ãƒ–ãƒ¬ã‚¹")] GameObject breath;
+    [SerializeField, Tooltip("å¨åŠ›")] float breath_Power = 1.0f;
+    [SerializeField, Tooltip("ã‚¸ãƒ£ãƒ³ãƒ—é«˜ã•")] float breath_JumpHeight;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip breath_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float breath_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float breath_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool breath_SELoop;
+    float breath_Save;          //å¤‰æ•°ä¿å­˜
 
-    [Header("’nk")]
-    [SerializeField, Tooltip("’nk")] GameObject earthquake;
-    [SerializeField, Tooltip("ˆĞ—Í")] float earthquake_Power = 1.0f;
-    [SerializeField, Tooltip("ƒWƒƒƒ“ƒv‚‚³")] float earthquake_JumpHeight;
-    [SerializeField, Tooltip("Œp‘±ŠÔ")] float earthquake_Time = 3.0f;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip earthquake_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float earthquake_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float earthquake_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool earthquake_SELoop;
+    [Header("åœ°éœ‡")]
+    [SerializeField, Tooltip("åœ°éœ‡")] GameObject earthquake;
+    [SerializeField, Tooltip("å¨åŠ›")] float earthquake_Power = 1.0f;
+    [SerializeField, Tooltip("ã‚¸ãƒ£ãƒ³ãƒ—é«˜ã•")] float earthquake_JumpHeight;
+    [SerializeField, Tooltip("ç¶™ç¶šæ™‚é–“")] float earthquake_Time = 3.0f;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip earthquake_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float earthquake_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float earthquake_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool earthquake_SELoop;
 
 
-    [Header("ƒJƒƒ‰")]
-    [SerializeField, Tooltip("‰æ–Êî•ñ")] CameraData cameraData;
-    Camera useCamera;       //g—pƒJƒƒ‰
-    Vector2 leftBottom;     //¶‰º
-    Vector2 leftTop;        //¶ã
-    Vector2 rightBottom;    //‰E‰º
-    Vector2 rightTop;       //‰Eã
-    Vector2 center;         //’†‰›
-    float screenWidth;      //•
-    float screenHeight;     //‚‚³
+    [Header("ã‚«ãƒ¡ãƒ©")]
+    [SerializeField, Tooltip("ç”»é¢æƒ…å ±")] CameraData cameraData;
+    Camera useCamera;       //ä½¿ç”¨ã‚«ãƒ¡ãƒ©
+    Vector2 leftBottom;     //å·¦ä¸‹
+    Vector2 leftTop;        //å·¦ä¸Š
+    Vector2 rightBottom;    //å³ä¸‹
+    Vector2 rightTop;       //å³ä¸Š
+    Vector2 center;         //ä¸­å¤®
+    float screenWidth;      //å¹…
+    float screenHeight;     //é«˜ã•
 
-    float hScreenWidth;     //1/2•
-    float qScreenWidth;     //1/4•
-    float hScreenHeight;    //1/2‚‚³
-    float qScreenHeight;    //1/4‚‚³
+    float hScreenWidth;     //1/2å¹…
+    float qScreenWidth;     //1/4å¹…
+    float hScreenHeight;    //1/2é«˜ã•
+    float qScreenHeight;    //1/4é«˜ã•
 
-    //ƒAƒjƒ[ƒVƒ‡ƒ“
+    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
     Anim anim;
     float anim_JumpFlag;
     [SerializeField] bool isLock;
@@ -225,7 +223,7 @@ public class Fafnir : MonoBehaviour
         hm.PostUpdate();
     }
 
-    //----------ƒAƒNƒVƒ‡ƒ“----------
+    //----------ã‚¢ã‚¯ã‚·ãƒ§ãƒ³----------
     void Idle()
     {
         switch(phase)
@@ -251,7 +249,7 @@ public class Fafnir : MonoBehaviour
         }
     }
 
-    void Pound()        //‚Í‚½‚­
+    void Pound()        //ã¯ãŸã
     {
         switch(phase)
         {
@@ -270,7 +268,7 @@ public class Fafnir : MonoBehaviour
                 if(timer < pound_BreakTime[no]) { break; }
                 SetPower(pound, pound_Power);
                 anim.AnimChage("Pound",isLock);
-                Debug.Log("UŒ‚ˆ—");
+                Debug.Log("æ”»æ’ƒå‡¦ç†");
                 if (anim.Play != GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name || anim.NormalizedTime < 0.7f) { break; }
                 Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
                 SetAudio(pound_SE, pound_SEVolume, pound_SEPitch, pound_SELoop);
@@ -297,13 +295,13 @@ public class Fafnir : MonoBehaviour
     {
         switch(phase)
         {
-            case 0:     //“ËiˆĞ—Íİ’èAn“®ƒAƒjƒ[ƒVƒ‡ƒ“ŠJn
+            case 0:     //çªé€²å¨åŠ›è¨­å®šã€å§‹å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
                 SetPower(body, rush_Power);
                 SetAudio(attackAnticipation_SE, attackAnticipation_SEVolume, attackAnticipation_SEPitch, attackAnticipation_SELoop);
-                anim.AnimChage("Rush_Start", isLock);   //ƒAƒjƒ[ƒVƒ‡ƒ““K—p‚É1ƒtƒŒ[ƒ€•K—v‚ç‚µ‚¢
+                anim.AnimChage("Rush_Start", isLock);   //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é©ç”¨ã«1ãƒ•ãƒ¬ãƒ¼ãƒ å¿…è¦ã‚‰ã—ã„
                 phase++;
                 break;
-            case 1:     //n“®ƒAƒjƒ[ƒVƒ‡ƒ“I—¹¨“ËiƒAƒjƒ[ƒVƒ‡ƒ“ŠJn
+            case 1:     //å§‹å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†â†’çªé€²ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
                 tackle_Effect.Play();
                 if (anim.NormalizedTime < 1.0f) { break; }
                 SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
@@ -311,7 +309,7 @@ public class Fafnir : MonoBehaviour
                 repeat++;
                 phase++;
                 break;
-            case 2:     //“ËiŠJnA‰æ–Ê’[‚Ü‚½‰æ–Ê’†‰›•t‹ß‚É“’B¨’â~AˆĞ—Íİ’èAI—¹ƒAƒjƒ[ƒVƒ‡ƒ“ŠJn
+            case 2:     //çªé€²é–‹å§‹ã€ç”»é¢ç«¯ã¾ãŸç”»é¢ä¸­å¤®ä»˜è¿‘ã«åˆ°é”â†’åœæ­¢ã€å¨åŠ›è¨­å®šã€çµ‚äº†ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
                 timer += Time.deltaTime;
                 rb.velocity = (-dir * Vector2.right).normalized * rush_MoveSpd;
                 if (timer < 0.5f) { break; }
@@ -329,11 +327,11 @@ public class Fafnir : MonoBehaviour
                 timer = 0;
                 phase++;
                 break;
-            case 3:     //I—¹ƒAƒjƒ[ƒVƒ‡ƒ“I—¹
+            case 3:     //çµ‚äº†ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†
                 if (anim.NormalizedTime < 1.0f) { break; }
                 phase++;
                 break;
-            case 4:     //Ü‚è•Ô‚µŠÔ¨Œü‚«XVA‰ñ”‚É‰‚¶‚ÄŸƒAƒNƒVƒ‡ƒ“’è‹`
+            case 4:     //æŠ˜ã‚Šè¿”ã—æ™‚é–“â†’å‘ãæ›´æ–°ã€å›æ•°ã«å¿œã˜ã¦æ¬¡ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å®šç¾©
                 timer += Time.deltaTime;
                 if (timer < rush_BreakTime) { break; }
                 Direction();
@@ -345,32 +343,32 @@ public class Fafnir : MonoBehaviour
                 //moveType = rush_NextMove;
                 MoveEnd();
                 break;
-            default:    //s“®‘JˆÚ”Ä—p•Ï”‰Šú‰»
+            default:    //è¡Œå‹•é·ç§»æ™‚æ±ç”¨å¤‰æ•°åˆæœŸåŒ–
                 AllVariableClear();
                 break;
         }
     }
 
-    void Breath()       //ƒuƒŒƒX
+    void Breath()       //ãƒ–ãƒ¬ã‚¹
     {
         switch(phase)
         {
-            case 0:     //‹ZˆĞ—Íİ’è
+            case 0:     //æŠ€å¨åŠ›è¨­å®š
                 SetPower(breath.transform.gameObject, breath_Power);
                 phase++;
                 break;
-            case 1:     //ƒvƒŒ[ƒ„[‚ÌˆÊ’u‚Æ’n–ÊˆÊ’u‚©‚çUŒ‚ˆÊ’u’è‹`AƒWƒƒƒ“ƒvs“®
+            case 1:     //ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ä½ç½®ã¨åœ°é¢ä½ç½®ã‹ã‚‰æ”»æ’ƒä½ç½®å®šç¾©ã€ã‚¸ãƒ£ãƒ³ãƒ—è¡Œå‹•
                 Vector2 target = (center.x - plPos.x <= 0) ? leftTop : rightTop;
                 target = new Vector2(target.x, GroundPosition(target.x));
                 Jump(target, breath_JumpHeight);
                 if (anim_JumpFlag != 1) { break; }
                 phase++;
                 break;
-            case 2:     //’n–Ê‚ğ—£‚ê‚½‚©
+            case 2:     //åœ°é¢ã‚’é›¢ã‚ŒãŸã‹
                 if (CheckGroundFlag(GroundCheck.GroundCheckFlag.Ground)) { break; }
                 phase++;
                 break;
-            case 3:     //Ú’n”»’è¨ƒvƒŒ[ƒ„[‚Ì•ûŒüŒü‚­AƒuƒŒƒXUŒ‚
+            case 3:     //æ¥åœ°åˆ¤å®šâ†’ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘å‘ãã€ãƒ–ãƒ¬ã‚¹æ”»æ’ƒ
                 if (!CheckGroundFlag(GroundCheck.GroundCheckFlag.Ground)) { break; }
                 if (anim.Action == Products.Type.Jump) { break; }
                 Direction();
@@ -384,31 +382,31 @@ public class Fafnir : MonoBehaviour
                 no++;
                 phase++;
                 break;
-            case 4:     //Œ»İ‚ÌƒAƒNƒVƒ‡ƒ“‚ªƒAƒCƒhƒ‹¨s“®‘JˆÚAƒuƒŒƒXƒIƒuƒWƒFƒNƒg‰ñ“]‰Šú‰»A”Ä—p•Ï”‰Šú‰»
+            case 4:     //ç¾åœ¨ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒã‚¢ã‚¤ãƒ‰ãƒ«â†’è¡Œå‹•é·ç§»ã€ãƒ–ãƒ¬ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå›è»¢åˆæœŸåŒ–ã€æ±ç”¨å¤‰æ•°åˆæœŸåŒ–
                 if(anim.Action != Products.Type.Idle) { break; }
                 breath.transform.localRotation = Quaternion.Euler(Vector3.zero);
                 soundcount = 0;
                 //moveType = breath_NextMove;
                 MoveEnd();
                 break;
-            default:    //s“®‘JˆÚ”Ä—p•Ï”‰Šú‰»
+            default:    //è¡Œå‹•é·ç§»æ™‚æ±ç”¨å¤‰æ•°åˆæœŸåŒ–
                 AllVariableClear();
                 break;
         }
 
-        /* EƒuƒŒƒXUŒ‚s“®
-         * ƒvƒŒ[ƒ„[‚ª‰æ–Ê¶‰E‚Ç‚¿‚ç‚É‚¢‚é‚©Šm”F
-         * ƒvƒŒ[ƒ„[‚Ì”½‘Î‚Ì‰æ–Ê’[‚ÉˆÚ“®
-         *      (ƒvƒŒ[ƒ„[‚Ì•ûŒü‚ğŒü‚«‚È‚ª‚ç  (d—Í‹­“x0)¨—£—¤¨’â~¨ˆÚ“®¨’â~¨(d—Í‹­“x–ß)¨’…—¤)
-         * ƒuƒŒƒXƒ`ƒƒ[ƒWŠJn¨n•bŒã…•½•ûŒü‚É”­Ë
-         * ™X‚Éx²‚ğ‘å‚«‚­
-         * L‚Ñ‚«‚ê‚Î™X‚Éã•ûŒü‚ÉŠp“x‚ğ‚Â‚¯‚é
-         * –ñ40“x‚Å’â~
-         * I—¹
+        /* ãƒ»ãƒ–ãƒ¬ã‚¹æ”»æ’ƒæ™‚è¡Œå‹•
+         * ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãŒç”»é¢å·¦å³ã©ã¡ã‚‰ã«ã„ã‚‹ã‹ç¢ºèª
+         * ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®åå¯¾ã®ç”»é¢ç«¯ã«ç§»å‹•
+         *      (ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å‘ããªãŒã‚‰  (é‡åŠ›å¼·åº¦0)â†’é›¢é™¸â†’åœæ­¢â†’ç§»å‹•â†’åœæ­¢â†’(é‡åŠ›å¼·åº¦æˆ»)â†’ç€é™¸)
+         * ãƒ–ãƒ¬ã‚¹ãƒãƒ£ãƒ¼ã‚¸é–‹å§‹â†’nç§’å¾Œæ°´å¹³æ–¹å‘ã«ç™ºå°„
+         * å¾ã€…ã«xè»¸ã‚’å¤§ãã
+         * ä¼¸ã³ãã‚Œã°å¾ã€…ã«ä¸Šæ–¹å‘ã«è§’åº¦ã‚’ã¤ã‘ã‚‹
+         * ç´„40åº¦ã§åœæ­¢
+         * çµ‚äº†
          */
     }
 
-    void Earthquake()   //’nk
+    void Earthquake()   //åœ°éœ‡
     {
         switch(phase)
         {
@@ -447,15 +445,15 @@ public class Fafnir : MonoBehaviour
                 //moveType = earthquake_NextMove;
                 MoveEnd();
                 break;
-            default:    //s“®‘JˆÚ”Ä—p•Ï”‰Šú‰»
+            default:    //è¡Œå‹•é·ç§»æ™‚æ±ç”¨å¤‰æ•°åˆæœŸåŒ–
                 AllVariableClear();
                 break;
         }
     }
 
-    void MoveEnd()  //s“®I—¹ˆ—
+    void MoveEnd()  //è¡Œå‹•çµ‚äº†æ™‚å‡¦ç†
     {
-        Debug.Log("s“®I—¹");
+        Debug.Log("è¡Œå‹•çµ‚äº†");
         moveNo++;
         if (moveNo == moveTable[tableNo].Move.Length)
         {
@@ -466,26 +464,26 @@ public class Fafnir : MonoBehaviour
         AllVariableClear();
     }
 
-    void Jump(Vector2 targetPos, float height)  //ƒWƒƒƒ“ƒv
+    void Jump(Vector2 targetPos, float height)  //ã‚¸ãƒ£ãƒ³ãƒ—
     {
-        float t1 = RiseorFallTime(pos, height);         //ŠJn‚©‚çÅ‘å‚“x‚Ü‚Å‚ÌŠÔ
-        float t2 = RiseorFallTime(targetPos, height);   //Å‘å‚“x‚©‚ç’…’n‚Ü‚Å‚ÌŠÔ
+        float t1 = RiseorFallTime(pos, height);         //é–‹å§‹ã‹ã‚‰æœ€å¤§é«˜åº¦ã¾ã§ã®æ™‚é–“
+        float t2 = RiseorFallTime(targetPos, height);   //æœ€å¤§é«˜åº¦ã‹ã‚‰ç€åœ°ã¾ã§ã®æ™‚é–“
 
-        float jumpTime = t1 + t2;   //ƒWƒƒƒ“ƒvŠÔ
+        float jumpTime = t1 + t2;   //ã‚¸ãƒ£ãƒ³ãƒ—æ™‚é–“
 
         if (jumpTime <= 0.0f)
         {
-            Debug.LogError("ƒWƒƒƒ“ƒv‚ÌŠÔ‚ª0•b");
+            Debug.LogError("ã‚¸ãƒ£ãƒ³ãƒ—ã®æ™‚é–“ãŒ0ç§’");
             return;
         }
 
-        float speed = VectorFromTime(targetPos, jumpTime);  //‰‘¬
-        float angle = AngleFromTime(targetPos, jumpTime);   //Šp“x
+        float speed = VectorFromTime(targetPos, jumpTime);  //åˆé€Ÿ
+        float angle = AngleFromTime(targetPos, jumpTime);   //è§’åº¦
 
         if (speed <= 0.0f)
         {
-            // ‚»‚ÌˆÊ’u‚É’…’n‚³‚¹‚é‚±‚Æ‚Í•s‰Â”\‚Ì‚æ‚¤‚¾I
-            Debug.LogError("‰‘¬‚ª—^‚¦‚ç‚ê‚È‚¢");
+            // ãã®ä½ç½®ã«ç€åœ°ã•ã›ã‚‹ã“ã¨ã¯ä¸å¯èƒ½ã®ã‚ˆã†ã ï¼
+            Debug.LogError("åˆé€ŸãŒä¸ãˆã‚‰ã‚Œãªã„");
             return;
         }
 
@@ -500,19 +498,19 @@ public class Fafnir : MonoBehaviour
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
-    void Direction()    //Œü‚«(ƒvƒŒ[ƒ„[‚Ì•ûŒü)
+    void Direction()    //å‘ã(ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘)
     {
         dir = ((plPos.x - pos.x <= 0) ? defScale.x : -defScale.x);
         scale.x = dir;
         transform.localScale = scale;
     }
 
-    void Damage()   //”íƒ_ƒ[ƒW
+    void Damage()   //è¢«ãƒ€ãƒ¡ãƒ¼ã‚¸
     {
-        Debug.Log(obj.name + "‚Íƒ_ƒ[ƒW‚ğó‚¯‚½");
+        Debug.Log(obj.name + "ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸ");
     }
 
-    void Die()      //€–S
+    void Die()      //æ­»äº¡
     {
         if (soundcount == 0)
         {
@@ -520,10 +518,10 @@ public class Fafnir : MonoBehaviour
         }
         soundcount++;
         GameSceneDirector2.Bossdead2 = true;
-        Debug.Log(obj.name + "‚Í€‚ñ‚¾");
+        Debug.Log(obj.name + "ã¯æ­»ã‚“ã ");
     }
 
-    //----------ƒAƒjƒ[ƒVƒ‡ƒ“----------
+    //----------ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³----------
     void Anim_Basis()
     {
         if (CheckGroundFlag(GroundCheck.GroundCheckFlag.Ground))
@@ -548,13 +546,13 @@ public class Fafnir : MonoBehaviour
         {
             anim.AnimChage("Jump_Air", isLock);
             anim_JumpFlag = 1;
-            Debug.Log("‘Ø‹óƒAƒjƒ");
+            Debug.Log("æ»ç©ºã‚¢ãƒ‹ãƒ¡");
         }
         else if (CheckGroundFlag(GroundCheck.GroundCheckFlag.Ground) && anim.Action == Products.Type.Jump)
         {
             if(anim_JumpFlag != 0)
             {
-                Debug.Log("ƒWƒƒƒ“ƒvI‚í‚è");
+                Debug.Log("ã‚¸ãƒ£ãƒ³ãƒ—çµ‚ã‚ã‚Š");
                 jumpEnd_Effect.Play();
                 SetAudio(jumpEnd_SE, jumpEnd_SEVolume, jumpStart_SEPitch, jumpEnd_SELoop);
                 anim.AnimChage("Idle", false);
@@ -563,7 +561,7 @@ public class Fafnir : MonoBehaviour
         }
     }
 
-    //----------Šeíƒf[ƒ^ŠÇ—----------
+    //----------å„ç¨®ãƒ‡ãƒ¼ã‚¿ç®¡ç†----------
     Vector2 Distance(Vector3 target)
     {
         Vector2 distance = target - transform.position;
@@ -574,18 +572,18 @@ public class Fafnir : MonoBehaviour
     {
         LayerMask layerMask = 1 << LayerMask.NameToLayer("Ground");
         RaycastHit2D rayHit = 
-            Physics2D.Raycast(new Vector2(axisX, leftTop.y), Vector2.down, screenHeight, layerMask);  //Œõü”­Ë
+            Physics2D.Raycast(new Vector2(axisX, leftTop.y), Vector2.down, screenHeight, layerMask);  //å…‰ç·šç™ºå°„
         Debug.DrawRay(new Vector2(axisX, leftTop.y), Vector2.down * screenHeight, Color.green, 1.0f);
         if (rayHit.collider.tag == "Ground")
         {
-            Vector2 groundPos = rayHit.point;   //’n–ÊˆÊ’uŠm”F
+            Vector2 groundPos = rayHit.point;   //åœ°é¢ä½ç½®ç¢ºèª
             return groundPos.y;
         }
-        Debug.LogError(axisX + "‚É’n–Ê‚Í‚È‚¢");
+        Debug.LogError(axisX + "ã«åœ°é¢ã¯ãªã„");
         return 0;
     }
 
-    //ã¸‚Ü‚½‚Í—‰ºŠÔ
+    //ä¸Šæ˜‡ã¾ãŸã¯è½ä¸‹æ™‚é–“
     float RiseorFallTime(Vector2 pos, float height)
     {
         float g = Physics.gravity.y;
@@ -601,7 +599,7 @@ public class Fafnir : MonoBehaviour
         return time;
     }
 
-    //ŠÔ‚©‚çƒxƒNƒgƒ‹‚Ì‘å‚«‚³‚ğŒvZ
+    //æ™‚é–“ã‹ã‚‰ãƒ™ã‚¯ãƒˆãƒ«ã®å¤§ãã•ã‚’è¨ˆç®—
     float VectorFromTime(Vector2 targetPos, float time)
     {
         Vector2 vec = VectorXYFromTime(targetPos, time);
@@ -610,12 +608,12 @@ public class Fafnir : MonoBehaviour
         float v_y = vec.y;
 
         float vecSquare = v_x * v_x + v_y * v_y;
-        // •‰”‚ğ•½•ûªŒvZ‚·‚é‚Æ‹•”‚É‚È‚Á‚Ä‚µ‚Ü‚¤B
-        // ‹•”‚Ífloat‚Å‚Í•\Œ»‚Å‚«‚È‚¢B
-        // ‚±‚¤‚¢‚¤ê‡‚Í‚±‚êˆÈã‚ÌŒvZ‚Í‘Å‚¿Ø‚ë‚¤B
+        // è² æ•°ã‚’å¹³æ–¹æ ¹è¨ˆç®—ã™ã‚‹ã¨è™šæ•°ã«ãªã£ã¦ã—ã¾ã†ã€‚
+        // è™šæ•°ã¯floatã§ã¯è¡¨ç¾ã§ããªã„ã€‚
+        // ã“ã†ã„ã†å ´åˆã¯ã“ã‚Œä»¥ä¸Šã®è¨ˆç®—ã¯æ‰“ã¡åˆ‡ã‚ã†ã€‚
         if (vecSquare <= 0.0f)
         {
-            Debug.LogError("‹•”‚É‚È‚é");
+            Debug.LogError("è™šæ•°ã«ãªã‚‹");
             //return 0.0f;
         }
 
@@ -623,13 +621,13 @@ public class Fafnir : MonoBehaviour
 
         if (v0 <= 0.0f)
         {
-            Debug.LogError("‰‘¬‚ª—^‚¦‚ç‚ê‚È‚¢");
+            Debug.LogError("åˆé€ŸãŒä¸ãˆã‚‰ã‚Œãªã„");
         }
 
         return v0;
     }
 
-    //ŠÔ‚©‚çŠp“x‚ğŒvZ
+    //æ™‚é–“ã‹ã‚‰è§’åº¦ã‚’è¨ˆç®—
     float AngleFromTime(Vector2 targetPos, float time)
     {
         Vector2 vec = VectorXYFromTime(targetPos, time);
@@ -643,23 +641,23 @@ public class Fafnir : MonoBehaviour
         return angle;
     }
 
-    //ŠÔ‚©‚çƒxƒNƒgƒ‹XY‚ğŒvZ
+    //æ™‚é–“ã‹ã‚‰ãƒ™ã‚¯ãƒˆãƒ«XYã‚’è¨ˆç®—
     private Vector2 VectorXYFromTime(Vector2 targetPos, float time)
     {
-        // uŠÔˆÚ“®‚Í‚¿‚å‚Á‚ÆccB
+        // ç¬é–“ç§»å‹•ã¯ã¡ã‚‡ã£ã¨â€¦â€¦ã€‚
         if (time <= 0.0f)
         {
             return Vector2.zero;
         }
 
 
-        // xz•½–Ê‚Ì‹——£‚ğŒvZB
+        // xzå¹³é¢ã®è·é›¢ã‚’è¨ˆç®—ã€‚
         Vector2 startPos = new Vector2(pos.x, 0);
         Vector2 _targetPos = new Vector2(targetPos.x, 0);
         float distance = Vector2.Distance(targetPos, startPos);
 
         float x = distance;
-        // ‚ÈA‚È‚ºd—Í‚ğ”½“]‚¹‚Ë‚Î‚È‚ç‚È‚¢‚Ì‚¾...
+        // ãªã€ãªãœé‡åŠ›ã‚’åè»¢ã›ã­ã°ãªã‚‰ãªã„ã®ã ...
         float reGravity = -Physics.gravity.y;
         float sPosY = pos.y;
         float tPosY = targetPos.y;
@@ -687,7 +685,7 @@ public class Fafnir : MonoBehaviour
         return vec;
     }
 
-    void CameraData()   //ƒJƒƒ‰
+    void CameraData()   //ã‚«ãƒ¡ãƒ©
     {
         leftBottom = cameraData.LeftBottom;
         leftTop = cameraData.LeftTop;
@@ -703,15 +701,15 @@ public class Fafnir : MonoBehaviour
         qScreenHeight = cameraData.QuarterScreenHeight;
     }
 
-    void AllVariableClear()     //•Ï”‰Šú‰»
+    void AllVariableClear()     //å¤‰æ•°åˆæœŸåŒ–
     {
         GeneralVariableClear();
 
-        //‰~
+        //å††
         //circle.DataClear();
     }
 
-    void GeneralVariableClear() //”Ä—p•Ï”‰Šú‰»
+    void GeneralVariableClear() //æ±ç”¨å¤‰æ•°åˆæœŸåŒ–
     {
         phase = 0;
         timer = 0;
@@ -729,7 +727,7 @@ public class Fafnir : MonoBehaviour
         return gc.CheckGCFlag(flag);
     }
 
-    //ƒTƒEƒ“ƒh
+    //ã‚µã‚¦ãƒ³ãƒ‰
     void SetAudio(AudioClip audio, float Volume, float Pitch, bool isLoop)
     {
         se.clip = audio;
@@ -752,28 +750,28 @@ public class Fafnir_MoveTable
 
 
 
-/*----------í‚Á‚½ƒR[ƒh(Œã‚ÉÁ‹)----------
+/*----------å‰Šã£ãŸã‚³ãƒ¼ãƒ‰(å¾Œã«æ¶ˆå»)----------
 
-//”òãÄ
+//é£›ç¿”
 
-//[Header("”òãÄ")]
-//[SerializeField, Tooltip("ˆÚ“®‘¬“x")] float flap_MoveSpd;
-//[SerializeField, Tooltip("ˆÚ“®•ûŒü")] Vector2 flap_Direction;
-//[SerializeField, Tooltip("—‰º‘¬“x")] float flap_FallSpd = 0.3f;
-//[SerializeField, Tooltip("‰H‚Î‚½‚«ŠÔŠu")] float flap_Interval = 1.0f;
-//[SerializeField, Range(0.0f, 90.0f), Tooltip("Šp“x")] float jump_Angle;
+//[Header("é£›ç¿”")]
+//[SerializeField, Tooltip("ç§»å‹•é€Ÿåº¦")] float flap_MoveSpd;
+//[SerializeField, Tooltip("ç§»å‹•æ–¹å‘")] Vector2 flap_Direction;
+//[SerializeField, Tooltip("è½ä¸‹é€Ÿåº¦")] float flap_FallSpd = 0.3f;
+//[SerializeField, Tooltip("ç¾½ã°ãŸãé–“éš”")] float flap_Interval = 1.0f;
+//[SerializeField, Range(0.0f, 90.0f), Tooltip("è§’åº¦")] float jump_Angle;
 
 //void Flap(float power, Vector2 vec)
 //{
 //    switch (flapPhase)
 //    {
-//        case 0: //ã¸
+//        case 0: //ä¸Šæ˜‡
 //            rb.velocity = new Vector2(vec.x, vec.y * flap_FallSpd) * power;
 //            flapTimer += Time.deltaTime;
 //            if (flapTimer < flap_Interval / 2.0f) { return; }
 //            flapTimer = 0; flapPhase++;
 //            break;
-//        case 1: //‰º~
+//        case 1: //ä¸‹é™
 //            rb.velocity = new Vector2(vec.x, -1.0f * flap_FallSpd) * power;
 //            flapTimer += Time.deltaTime;
 //            if (flapTimer < flap_Interval / 2.0f) { return; }
@@ -782,21 +780,21 @@ public class Fafnir_MoveTable
 //    }
 //}
 
-//ƒuƒŒƒX
+//ãƒ–ãƒ¬ã‚¹
 
-//[SerializeField, Tooltip("ˆÚ“®‘¬“x")] float[] breath_MoveSpd = { 5.0f, 2.0f, 5.0f, 2.0f, 0.0f };
-//[SerializeField, Tooltip("ˆÚ“®•ûŒü")] Vector2[] breath_MoveDir =
+//[SerializeField, Tooltip("ç§»å‹•é€Ÿåº¦")] float[] breath_MoveSpd = { 5.0f, 2.0f, 5.0f, 2.0f, 0.0f };
+//[SerializeField, Tooltip("ç§»å‹•æ–¹å‘")] Vector2[] breath_MoveDir =
 //    { new Vector2(0.0f, 3.0f), new Vector2(0.0f, 1.0f), new Vector2(1.0f, 1.0f), new Vector2(0.0f, 1.0f), new Vector2(0.0f, 0.0f) };
-//[SerializeField, Tooltip("ˆÚ“®ŠÔ")] float[] breath_MoveTime = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
-//[SerializeField, Tooltip("”­Ë“_")] Vector2 breath_Origin = new Vector2(0.0f, 0.0f);
-//[SerializeField, Tooltip("‘¬“x")] float breath_Speed = 20.0f;
-//[SerializeField, Tooltip("Šp“x‘¬“x")] float breath_AngleSpd = 10.0f;
-//[SerializeField, Tooltip("—­‚ßŠÔ")] float breath_ChargeTime = 1.5f;
-//[SerializeField, Tooltip("ÅI”ÍˆÍ")] float breath_MaxDistance = 10.0f;
-//[SerializeField, Tooltip("ÅIŠp“x")] float breath_MaxAngle = 40.0f;
-//Vector3 breath_DefScale;    //ƒuƒŒƒXƒIƒuƒWƒFƒNƒgŠek—¦•Û‘¶
+//[SerializeField, Tooltip("ç§»å‹•æ™‚é–“")] float[] breath_MoveTime = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
+//[SerializeField, Tooltip("ç™ºå°„ç‚¹")] Vector2 breath_Origin = new Vector2(0.0f, 0.0f);
+//[SerializeField, Tooltip("é€Ÿåº¦")] float breath_Speed = 20.0f;
+//[SerializeField, Tooltip("è§’åº¦é€Ÿåº¦")] float breath_AngleSpd = 10.0f;
+//[SerializeField, Tooltip("æºœã‚æ™‚é–“")] float breath_ChargeTime = 1.5f;
+//[SerializeField, Tooltip("æœ€çµ‚ç¯„å›²")] float breath_MaxDistance = 10.0f;
+//[SerializeField, Tooltip("æœ€çµ‚è§’åº¦")] float breath_MaxAngle = 40.0f;
+//Vector3 breath_DefScale;    //ãƒ–ãƒ¬ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå„ç¸®ç‡ä¿å­˜
 
-//case 1:     //no = 0 : breath_Time[no]•bŠÔã¸   no = 1 : breath_Time[no]•bŠÔ’â~¨ƒvƒŒ[ƒ„[‚ÌˆÊ’u‚©‚çˆÚ“®•ûŒü’è‹`
+//case 1:     //no = 0 : breath_Time[no]ç§’é–“ä¸Šæ˜‡   no = 1 : breath_Time[no]ç§’é–“åœæ­¢â†’ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ä½ç½®ã‹ã‚‰ç§»å‹•æ–¹å‘å®šç¾©
 //timer += Time.deltaTime;
 //Flap(breath_MoveSpd[no], breath_MoveDir[no]);
 //if (timer < breath_MoveTime[no]) { break; }
@@ -807,7 +805,7 @@ public class Fafnir_MoveTable
 //breath_MoveDir[no].x *= (center.x - plPos.x <= 0) ? -1 : 1;
 //phase++;
 //break;
-//case 2:     //no = 2 : ‰æ–Ê’[‚Ü‚Å…•½ˆÚ“®
+//case 2:     //no = 2 : ç”»é¢ç«¯ã¾ã§æ°´å¹³ç§»å‹•
 //Flap(breath_MoveSpd[no], breath_MoveDir[no]);
 //if (pos.x < rightTop.x && leftTop.x < pos.x) { break; }
 //pos.x = (rightTop.x < pos.x) ? rightTop.x - 0.1f : leftTop.x + 0.1f;
@@ -815,7 +813,7 @@ public class Fafnir_MoveTable
 //no++;
 //phase++;
 //break;
-//case 3:     //no = 3 : breath_Time[no]•bŠÔ’â~¨d—Í‹­“x•œŒ³
+//case 3:     //no = 3 : breath_Time[no]ç§’é–“åœæ­¢â†’é‡åŠ›å¼·åº¦å¾©å…ƒ
 //timer += Time.deltaTime;
 //Flap(breath_MoveSpd[no], breath_MoveDir[no]);
 //if (timer < breath_MoveTime[no]) { break; }
@@ -824,7 +822,7 @@ public class Fafnir_MoveTable
 //no++;
 //phase++;
 //break;
-//case 5:     //breath_ChargeTime•b—­‚ß“®ì
+//case 5:     //breath_ChargeTimeç§’æºœã‚å‹•ä½œ
 //timer += Time.deltaTime;
 //if (timer < breath_ChargeTime) { break; }
 //breath.transform.localPosition = breath_Origin;
@@ -833,7 +831,7 @@ public class Fafnir_MoveTable
 //timer = 0;
 //phase++;
 //break;
-//case 6:     //breath_MaxDistance‚ğ’´‚¦‚é‚Ü‚ÅŠg‘å
+//case 6:     //breath_MaxDistanceã‚’è¶…ãˆã‚‹ã¾ã§æ‹¡å¤§
 //timer += Time.deltaTime;
 //breath.transform.localScale =
 //new Vector3(breath_Speed * timer + breath_DefScale.x, breath_DefScale.y, breath_DefScale.z);
@@ -841,7 +839,7 @@ public class Fafnir_MoveTable
 //timer = 0;
 //phase++;
 //break;
-//case 7:     //breath_MaxAngle‚ğ’´‚¦‚é‚Ü‚ÅŠp“x‚ğ•t‚¯‚é
+//case 7:     //breath_MaxAngleã‚’è¶…ãˆã‚‹ã¾ã§è§’åº¦ã‚’ä»˜ã‘ã‚‹
 //timer += Time.deltaTime;
 //var quaternion = Quaternion.Euler(timer * breath_AngleSpd * Vector3.forward);
 //breath.transform.localRotation = quaternion;
@@ -851,12 +849,12 @@ public class Fafnir_MoveTable
 //phase++;
 //break;
 
-//’n–Ê
+//åœ°é¢
 
-//[SerializeField, Tooltip("ˆÚ“®‘¬“x")] float[] earthquake_MoveSpd = { 20.0f, 1.0f };
-//[SerializeField, Tooltip("ˆÚ“®•ûŒü")] Vector2[] earthquake_MoveDir =
+//[SerializeField, Tooltip("ç§»å‹•é€Ÿåº¦")] float[] earthquake_MoveSpd = { 20.0f, 1.0f };
+//[SerializeField, Tooltip("ç§»å‹•æ–¹å‘")] Vector2[] earthquake_MoveDir =
 //    { new Vector2(0.0f, 5.0f), new Vector2(0.0f, 1.0f) };
-//[SerializeField, Tooltip("ˆÚ“®ŠÔ")] float[] earthquake_MoveTime = { 1.0f, 0.0f };
+//[SerializeField, Tooltip("ç§»å‹•æ™‚é–“")] float[] earthquake_MoveTime = { 1.0f, 0.0f };
 
 //case 1:
 //timer += Time.deltaTime;
@@ -872,9 +870,9 @@ public class Fafnir_MoveTable
 //break;
 */
 
-/*----------Ql----------
- * Î•û“ŠË
- *  Œö®(wiki)   : https://ja.wikipedia.org/wiki/%E6%96%9C%E6%96%B9%E6%8A%95%E5%B0%84
- *  ƒR[ƒhQl1  : https://qiita.com/_udonba/items/a71e11c8dd039171f86c
- *  ƒR[ƒhQl2  : https://www.urablog.xyz/entry/2017/05/16/235548
+/*----------å‚è€ƒ----------
+ * æ–œæ–¹æŠ•å°„
+ *  å…¬å¼(wiki)   : https://ja.wikipedia.org/wiki/%E6%96%9C%E6%96%B9%E6%8A%95%E5%B0%84
+ *  ã‚³ãƒ¼ãƒ‰å‚è€ƒ1  : https://qiita.com/_udonba/items/a71e11c8dd039171f86c
+ *  ã‚³ãƒ¼ãƒ‰å‚è€ƒ2  : https://www.urablog.xyz/entry/2017/05/16/235548
 */

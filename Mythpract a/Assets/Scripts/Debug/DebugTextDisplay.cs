@@ -20,11 +20,11 @@ public class DebugTextDisplay : MonoBehaviour
 
         if (DataManager.saveData)
         {
-            d.text = "ÉfÅ[É^Ç†ÇË".ToString();
+            d.text = "„Éá„Éº„Çø„ÅÇ„Çä".ToString();
         }
         else
         {
-            d.text = "ÉfÅ[É^Ç»Çµ".ToString();
+            d.text = "„Éá„Éº„Çø„Å™„Åó".ToString();
         }
     }
 }

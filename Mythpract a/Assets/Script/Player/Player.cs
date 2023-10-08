@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SY;
@@ -10,29 +8,29 @@ public partial class Player : MonoBehaviour
     Vector3 dir;
     Rigidbody2D PlayerRb;
 
-    [SerializeField,Tooltip("Å‚‘¬“x")] int maxSpeed;              // ƒvƒŒƒCƒ„[‚ÌÅ‚‘¬“x
-    [SerializeField, Tooltip("ƒWƒƒƒ“ƒv—Í")] float jumpPow;             // ƒWƒƒƒ“ƒv‚É‰Á‚¦‚é—Í
-    [SerializeField, Tooltip("ƒ_ƒuƒ‹ƒWƒƒƒ“ƒv—Í")] float doubleJumpPow;       // ƒ_ƒuƒ‹ƒWƒƒƒ“ƒv‚É‰Á‚¦‚é—Í
-    [SerializeField, Tooltip("ƒuƒŠƒ“ƒN‚Ì‹——£")] float brinkMove;    // ƒuƒŠƒ“ƒN‚ÌƒN[ƒ‹ƒ^ƒCƒ€
-    [SerializeField, Tooltip("ƒuƒŠƒ“ƒN‚ÌƒN[ƒ‹ƒ^ƒCƒ€")] float brinkCoolTimeSec;    // ƒuƒŠƒ“ƒN‚ÌƒN[ƒ‹ƒ^ƒCƒ€
-    [SerializeField, Tooltip("ƒXƒLƒ‹‚ÌƒN[ƒ‹ƒ^ƒCƒ€")] float skillCoolTimeSec;    // ƒuƒŠƒ“ƒN‚ÌƒN[ƒ‹ƒ^ƒCƒ€
-    [SerializeField, Tooltip("ƒK[ƒh‚Ì‘±ŠÔ")] float guardTime;
-    [SerializeField, Tooltip("ƒWƒƒƒXƒgƒK[ƒh‚Ì‹–—eŠÔ")] float justGuardTime;
-    [SerializeField, Tooltip("ƒK[ƒh‚ÌƒN[ƒ‹ƒ^ƒCƒ€")] float guardCoolTime;
-    [SerializeField, Tooltip("ƒmƒbƒNƒoƒbƒNŠÔ")] float knockbuckTime = 1.0f;  // ƒmƒbƒNƒoƒbƒN‚·‚éŠÔ
+    [SerializeField,Tooltip("æœ€é«˜é€Ÿåº¦")] int maxSpeed;              // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æœ€é«˜é€Ÿåº¦
+    [SerializeField, Tooltip("ã‚¸ãƒ£ãƒ³ãƒ—åŠ›")] float jumpPow;             // ã‚¸ãƒ£ãƒ³ãƒ—æ™‚ã«åŠ ãˆã‚‹åŠ›
+    [SerializeField, Tooltip("ãƒ€ãƒ–ãƒ«ã‚¸ãƒ£ãƒ³ãƒ—åŠ›")] float doubleJumpPow;       // ãƒ€ãƒ–ãƒ«ã‚¸ãƒ£ãƒ³ãƒ—æ™‚ã«åŠ ãˆã‚‹åŠ›
+    [SerializeField, Tooltip("ãƒ–ãƒªãƒ³ã‚¯ã®è·é›¢")] float brinkMove;    // ãƒ–ãƒªãƒ³ã‚¯ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
+    [SerializeField, Tooltip("ãƒ–ãƒªãƒ³ã‚¯ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float brinkCoolTimeSec;    // ãƒ–ãƒªãƒ³ã‚¯ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
+    [SerializeField, Tooltip("ã‚¹ã‚­ãƒ«ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float skillCoolTimeSec;    // ãƒ–ãƒªãƒ³ã‚¯ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
+    [SerializeField, Tooltip("ã‚¬ãƒ¼ãƒ‰ã®æŒç¶šæ™‚é–“")] float guardTime;
+    [SerializeField, Tooltip("ã‚¸ãƒ£ã‚¹ãƒˆã‚¬ãƒ¼ãƒ‰ã®è¨±å®¹æ™‚é–“")] float justGuardTime;
+    [SerializeField, Tooltip("ã‚¬ãƒ¼ãƒ‰ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float guardCoolTime;
+    [SerializeField, Tooltip("ãƒãƒƒã‚¯ãƒãƒƒã‚¯æ™‚é–“")] float knockbuckTime = 1.0f;  // ãƒãƒƒã‚¯ãƒãƒƒã‚¯ã™ã‚‹æ™‚é–“
     [SerializeField] Image brinkSlider;
     float jumpPowPlus;
-    float brinkCount = 0;            // ƒuƒŠƒ“ƒN‚ÌƒN[ƒ‹ƒ_ƒEƒ“‚ÌƒJƒEƒ“ƒg
+    float brinkCount = 0;            // ãƒ–ãƒªãƒ³ã‚¯ã®ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³ã®ã‚«ã‚¦ãƒ³ãƒˆ
     float guardCount = 0;
     float skillCount = 0;
-    float knockbuckCount = 0;        // ƒmƒbƒNƒoƒbƒN‚·‚éŠÔ‚ÌƒJƒEƒ“ƒg
+    float knockbuckCount = 0;        // ãƒãƒƒã‚¯ãƒãƒƒã‚¯ã™ã‚‹æ™‚é–“ã®ã‚«ã‚¦ãƒ³ãƒˆ
 
-    bool jumping = false;       // ƒWƒƒƒ“ƒv—‰º‚Ì”»’è
-    bool doublejump = false;    // ƒ_ƒuƒ‹ƒWƒƒƒ“ƒvg—p”»’è
-    bool isbrinkUp;             // ƒWƒƒƒ“ƒv‚ÌƒuƒŠƒ“ƒN”»’è 
-    bool isbrink;               // ƒuƒŠƒ“ƒN‚ÌƒN[ƒ‹ƒ^ƒCƒ€”»’è
-    bool speedreset;            // Ø‚è•Ô‚µ‚Ì‘¬“xƒŠƒZƒbƒg”»’è
-    bool attack;                // UŒ‚”»’è
+    bool jumping = false;       // ã‚¸ãƒ£ãƒ³ãƒ—è½ä¸‹æ™‚ã®åˆ¤å®š
+    bool doublejump = false;    // ãƒ€ãƒ–ãƒ«ã‚¸ãƒ£ãƒ³ãƒ—ä½¿ç”¨åˆ¤å®š
+    bool isbrinkUp;             // ã‚¸ãƒ£ãƒ³ãƒ—æ™‚ã®ãƒ–ãƒªãƒ³ã‚¯åˆ¤å®š 
+    bool isbrink;               // ãƒ–ãƒªãƒ³ã‚¯ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ åˆ¤å®š
+    bool speedreset;            // åˆ‡ã‚Šè¿”ã—æ™‚ã®é€Ÿåº¦ãƒªã‚»ãƒƒãƒˆåˆ¤å®š
+    bool attack;                // æ”»æ’ƒåˆ¤å®š
     bool ltDown;
     bool rtDown;
     bool ltup;
@@ -87,17 +85,17 @@ public partial class Player : MonoBehaviour
         {
             HMng.HitUpdate();
 
-            CheckGround();  // ’n–Ê‚É‚¢‚é‚©‚Ì”»’è
+            CheckGround();  // åœ°é¢ã«ã„ã‚‹ã‹ã®åˆ¤å®š
 
-            MoveInput();        // “ü—Í
-            MoveController();   // ƒvƒŒƒCƒ„[‘€ì
+            MoveInput();        // å…¥åŠ›
+            MoveController();   // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ“ä½œ
                                 //EnemyLockon();      
-            ChangeAnim();       // ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—
+            ChangeAnim();       // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†
 
             CheckRightHit();
             CheckLeftHit();
 
-            DamageReaction();   // UŒ‚ƒqƒbƒg‚ÌƒŠƒAƒNƒVƒ‡ƒ“
+            DamageReaction();   // æ”»æ’ƒãƒ’ãƒƒãƒˆæ™‚ã®ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 
 
             HMng.PostUpdate();
@@ -109,8 +107,8 @@ public partial class Player : MonoBehaviour
 
         if (conconect.ConConnect == true)
         {
-            float lsh = Input.GetAxis("L_stick_H");@@@@//¶ƒXƒeƒBƒbƒN‰¡
-            float lsv = Input.GetAxis("L_stick_V");        //¶ƒXƒeƒBƒbƒNc
+            float lsh = Input.GetAxis("L_stick_H");ã€€ã€€ã€€ã€€//å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯æ¨ª
+            float lsv = Input.GetAxis("L_stick_V");        //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ç¸¦
 
 
             
@@ -147,7 +145,7 @@ public partial class Player : MonoBehaviour
             {
                 speedreset = false;
             }
-            if (GameData.jumpkey == (KeyCode)CustomKeycode.LT)  // LƒgƒŠƒK[g—p‚ÌƒWƒƒƒ“ƒv
+            if (GameData.jumpkey == (KeyCode)CustomKeycode.LT)  // Lãƒˆãƒªã‚¬ãƒ¼ä½¿ç”¨æ™‚ã®ã‚¸ãƒ£ãƒ³ãƒ—
             {
                 float lt = Input.GetAxis("LT");
 
@@ -588,11 +586,11 @@ public partial class Player : MonoBehaviour
 
         if (isGround)
         {
-            jumping = false;       // ‘åƒWƒƒƒ“ƒv”»’è
-            doublejump = false;    // ƒ_ƒuƒ‹ƒWƒƒƒ“ƒv”»’è
-            isbrinkUp = false;     // ‹ó’†ƒuƒŠƒ“ƒN”»’è]
+            jumping = false;       // å¤§ã‚¸ãƒ£ãƒ³ãƒ—åˆ¤å®š
+            doublejump = false;    // ãƒ€ãƒ–ãƒ«ã‚¸ãƒ£ãƒ³ãƒ—åˆ¤å®š
+            isbrinkUp = false;     // ç©ºä¸­ãƒ–ãƒªãƒ³ã‚¯åˆ¤å®š]
 
-            // ƒWƒƒƒ“ƒv
+            // ã‚¸ãƒ£ãƒ³ãƒ—
             if (spaceDown && !isGuard && !hitAnim)
             {
                 PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
@@ -601,20 +599,20 @@ public partial class Player : MonoBehaviour
                 JumpEffect();
                 JumpSE();
             }
-            // ŠŠ‚è~‚ß
+            // æ»‘ã‚Šæ­¢ã‚
             if(inputDir.x == 0)
             {
                 PlayerRb.velocity = new Vector2(0, PlayerRb.velocity.y);
 
             }
         }
-        // Ø‚è•Ô‚µ‚Å‘¬“xƒŠƒZƒbƒg
+        // åˆ‡ã‚Šè¿”ã—ã§é€Ÿåº¦ãƒªã‚»ãƒƒãƒˆ
         if (speedreset)
         {
             PlayerRb.velocity = new Vector2(0, PlayerRb.velocity.y);
         }
 
-        // “ñ’iƒWƒƒƒ“ƒv
+        // äºŒæ®µã‚¸ãƒ£ãƒ³ãƒ—
         if (spaceDown && doublejump && !isGuard && !hitAnim)
         {
             doublejumpAnim = true;
@@ -630,7 +628,7 @@ public partial class Player : MonoBehaviour
         {
             doublejumpAnim = false;
         }
-        // speed(‰Á‘¬“x)
+        // speed(åŠ é€Ÿåº¦)
         if (inputDir.magnitude != 0)
          {
             speed = 4000;
@@ -640,7 +638,7 @@ public partial class Player : MonoBehaviour
         {
             speed = 0;
         }
-        // ’·‰Ÿ‚µ‚ÅƒWƒƒƒ“ƒv‚‚³ƒAƒbƒv
+        // é•·æŠ¼ã—ã§ã‚¸ãƒ£ãƒ³ãƒ—é«˜ã•ã‚¢ãƒƒãƒ—
         if (space && !jumping)  
         {
             jumpPowPlus = 30;
@@ -658,7 +656,7 @@ public partial class Player : MonoBehaviour
 
 
 
-        // ˆÚ“®‘¬“x
+        // ç§»å‹•é€Ÿåº¦
         if (PlayerRb.velocity.magnitude <= maxSpeed)
         {
             PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, PlayerRb.velocity.y);
@@ -675,13 +673,13 @@ public partial class Player : MonoBehaviour
             }
         }
 
-        // ƒvƒŒƒCƒ„[‚ÌˆÚ“®
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•
 
         if (!isAttack && !isGuard &&!hitAnim) {
-            PlayerRb.AddForce(Vector2.right * inputDir.x * speed * Time.deltaTime);            // ƒvƒŒƒCƒ„[‚ÌˆÚ“®
+            PlayerRb.AddForce(Vector2.right * inputDir.x * speed * Time.deltaTime);            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•
         }
 
-        // ƒvƒŒƒCƒ„[‚ÌŒü‚«
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ã
         
         if (dir.x != 0 && !isAttack)
         {
@@ -690,7 +688,7 @@ public partial class Player : MonoBehaviour
 
 
 
-        // ‹ó’†ƒuƒŠƒ“ƒN
+        // ç©ºä¸­ãƒ–ãƒªãƒ³ã‚¯
         if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim)
         {
 
@@ -705,7 +703,7 @@ public partial class Player : MonoBehaviour
             isbrink = true;
             isbrinkUp = true;
         }
-        // ’nãƒuƒŠƒ“ƒN
+        // åœ°ä¸Šãƒ–ãƒªãƒ³ã‚¯
         if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim)
         {
             BrinkEffect();
@@ -719,7 +717,7 @@ public partial class Player : MonoBehaviour
             isbrink = true;
 
         }
-        // ƒuƒŠƒ“ƒN‚ÌƒN[ƒ‹ƒ^ƒCƒ€
+        // ãƒ–ãƒªãƒ³ã‚¯ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
         if (isbrink && !isGuard)
         {
             brinkCount += Time.deltaTime;
@@ -756,7 +754,7 @@ public partial class Player : MonoBehaviour
             isGuard = true;
 
         }
-        else        // ƒK[ƒh‚ÌƒN[ƒ‹ƒ^ƒCƒ€(ƒuƒŠƒ“ƒN‚Æ‹¤—L)
+        else        // ã‚¬ãƒ¼ãƒ‰ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ (ãƒ–ãƒªãƒ³ã‚¯ã¨å…±æœ‰)
         {
             isGuard = false;
             guardCount = 0;
@@ -799,7 +797,7 @@ public partial class Player : MonoBehaviour
             {
                 if(HMng.CheckDamage() == true)
                 {
-                    Debug.Log("ƒWƒƒƒXƒgƒK[ƒh¬Œ÷");
+                    Debug.Log("ã‚¸ãƒ£ã‚¹ãƒˆã‚¬ãƒ¼ãƒ‰æˆåŠŸ");
 
                     EffectJustGuard.Play();
                     guardCount = 0;
@@ -894,7 +892,7 @@ public partial class Player : MonoBehaviour
     {
 
 
-        // ƒmƒbƒNƒoƒbƒN
+        // ãƒãƒƒã‚¯ãƒãƒƒã‚¯
         if (HMng.CheckDamage() == true && !isGuard)
         {
             hitAnim = true;
@@ -950,14 +948,14 @@ public partial class Player : MonoBehaviour
 
     void EnemyLockon()
     {
-        // ƒvƒŒƒCƒ„[‚ÌŒü‚«
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ã
         GameObject[] TargetEnemy;
         int EnemyCount;
 
         TargetEnemy = GameObject.FindGameObjectsWithTag("Enemy");
         EnemyCount = TargetEnemy.Length;
 
-        Debug.Log("ƒGƒlƒ~[”" + EnemyCount);
+        Debug.Log("ã‚¨ãƒãƒŸãƒ¼æ•°" + EnemyCount);
         if(EnemyCount != 0)
         {
             if (TargetEnemy[0].transform.position.x > transform.position.x)
@@ -974,7 +972,7 @@ public partial class Player : MonoBehaviour
         {
             if (dir.x != 0)
             {
-                transform.localScale = new Vector3(dir.x, 1, 1);    // ƒvƒŒƒCƒ„[‚ÌŒü‚«
+                transform.localScale = new Vector3(dir.x, 1, 1);    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ã
             }
 
         }

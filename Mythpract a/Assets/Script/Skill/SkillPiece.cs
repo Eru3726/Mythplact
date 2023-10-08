@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillPiece : MonoBehaviour
@@ -19,7 +17,7 @@ public class SkillPiece : MonoBehaviour
         Renderer pickupclr = this.GetComponent<SpriteRenderer>();
 
 
-        // ‚¿ã‚°’†‚Í“_–Å
+        // æŒã¡ä¸Šã’ä¸­ã¯ç‚¹æ»…
 
         if (CursorController.colorchange && gameObject.transform.root.name == "Cursor")
         {

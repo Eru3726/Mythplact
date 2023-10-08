@@ -5,26 +5,26 @@ namespace SY
 {
     public class HitMng : MonoBehaviour
     {
-        //----------•Ï”----------
+        //----------å¤‰æ•°----------
         [SerializeField] HitLayer layer;
-        //ƒXƒe[ƒ^ƒX
-        [SerializeField, Tooltip("Å‘å‘Ì—Í")] float maxHp;
-        [SerializeField, Tooltip("Œ»İ‘Ì—Í"), ReadOnly] float hp;
-        [SerializeField, Tooltip("UŒ‚—Í")] float atk;
-        [SerializeField, Tooltip("–hŒä—Í")] float def;
-        [SerializeField, Tooltip("UŒ‚ƒgƒŠƒK[")] bool atkActive;
-        [SerializeField, Tooltip("–hŒäƒgƒŠƒK[")] bool defActive;
-        float hitInterval;  //ƒqƒbƒgŒã–³“GŠÔ
+        //ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+        [SerializeField, Tooltip("æœ€å¤§ä½“åŠ›")] float maxHp;
+        [SerializeField, Tooltip("ç¾åœ¨ä½“åŠ›"), ReadOnly] float hp;
+        [SerializeField, Tooltip("æ”»æ’ƒåŠ›")] float atk;
+        [SerializeField, Tooltip("é˜²å¾¡åŠ›")] float def;
+        [SerializeField, Tooltip("æ”»æ’ƒãƒˆãƒªã‚¬ãƒ¼")] bool atkActive;
+        [SerializeField, Tooltip("é˜²å¾¡ãƒˆãƒªã‚¬ãƒ¼")] bool defActive;
+        float hitInterval;  //ãƒ’ãƒƒãƒˆå¾Œç„¡æ•µæ™‚é–“
 
         HitResult result = new HitResult();
 
-        //ŠO•”ŠÖ”(ƒfƒŠƒQ[ƒg)
+        //å¤–éƒ¨é–¢æ•°(ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ)
         public delegate void DmgFunc();
         private DmgFunc dmgFunc;
         public delegate void DieFunc();
         private DieFunc dieFunc;
 
-        //----------ƒvƒƒpƒeƒB----------
+        //----------ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£----------
         public HitLayer Layer { get { return layer; } }
         public float MaxHP { get { return maxHp; } set { maxHp = value; } }
         public float HP { get { return hp; } set { hp = value; } }
@@ -35,7 +35,7 @@ namespace SY
         public float HitInterval { get { return hitInterval; } set { hitInterval = value; } }
         public HitResult Result { get { return result; } }
 
-        //----------ŠÖ”----------
+        //----------é–¢æ•°----------
         void Awake()
         {
             HP = MaxHP;
@@ -43,14 +43,14 @@ namespace SY
             defActive = true;
         }
 
-        //‰Šú‰»
+        //åˆæœŸåŒ–
         public void SetUp(DmgFunc damage, DieFunc die)
         {
             dmgFunc = damage;
             dieFunc = die;
         }
 
-        //–ˆƒtƒŒ[ƒ€XV(æ“ª)
+        //æ¯ãƒ•ãƒ¬ãƒ¼ãƒ æ›´æ–°(å…ˆé ­)
         public void HitUpdate()
         {
             if (HP <= 0)
@@ -62,17 +62,17 @@ namespace SY
                 if (dmgFunc != null) { dmgFunc(); }
             }
 
-            //˜A‘±ƒqƒbƒg–h~
+            //é€£ç¶šãƒ’ãƒƒãƒˆé˜²æ­¢
             hitInterval -= Time.deltaTime;
         }
 
-        //–ˆƒtƒŒ[ƒ€XV(Œã”ö)
+        //æ¯ãƒ•ãƒ¬ãƒ¼ãƒ æ›´æ–°(å¾Œå°¾)
         public void PostUpdate()
         {
             Result.AllClearFlag();
         }
 
-        //ƒ_ƒ[ƒW‚ğó‚¯‚½‚©
+        //ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸã‹
         public bool CheckDamage() { return Result.CheckDefFlag(DefFlag.DefDamage); }
     }
 }

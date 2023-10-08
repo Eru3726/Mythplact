@@ -1,23 +1,23 @@
 using UnityEngine;
 
-//ƒAƒjƒ[ƒ^[‚ğƒAƒ^ƒbƒ`
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ã‚¢ã‚¿ãƒƒãƒ
 [RequireComponent(typeof(Animator))]
 public class Anim : MonoBehaviour
 {
     Animator anim;
     [SerializeField] RuntimeAnimatorController animatorController;
 
-    [Header("Ä¶’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ")]
+    [Header("å†ç”Ÿä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±")]
     [SerializeField, ReadOnly] string play;
     [SerializeField, ReadOnly] Products.Type action;
     [SerializeField, ReadOnly] bool isLoop;
 
-    [Header("ƒAƒjƒ[ƒVƒ‡ƒ“‚Ìİ’è")]
+    [Header("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®š")]
     [SerializeField] Products[] products;
 
-    float normalizedTime;       //ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ŠÔ(0`1)
+    float normalizedTime;       //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ™‚é–“(0ï½1)
 
-    //ƒvƒƒpƒeƒB
+    //ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public string Play { get { return play; } }
     public Products.Type Action { get { return action; } }
     public float NormalizedTime { get { return normalizedTime; } }
@@ -29,7 +29,7 @@ public class Anim : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.runtimeAnimatorController = animatorController;
 
-        //1”Ôã‚ÌIdleƒAƒNƒVƒ‡ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
+        //1ç•ªä¸Šã®Idleã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
         for (int i = 0; i < products.Length; i++)
         {
             if (products[i].ActionType == Products.Type.Idle)
@@ -45,46 +45,46 @@ public class Anim : MonoBehaviour
         Default();
     }
 
-    //ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
+    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
     void Playing()
     {
         anim.Play(play);
     }
 
-    //ƒAƒjƒ[ƒVƒ‡ƒ“I—¹‚ÅIdleƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
+    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã§Idleã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
     void Default()
     {
-        //ƒAƒjƒ[ƒVƒ‡ƒ“‚ª‘JˆÚ‚·‚é‚Ü‚Å‘Ò‹@
+        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒé·ç§»ã™ã‚‹ã¾ã§å¾…æ©Ÿ
         if (play != anim.GetCurrentAnimatorClipInfo(0)[0].clip.name) { normalizedTime = 0; return; }
-        //“¯ƒAƒjƒ[ƒVƒ‡ƒ“˜A‘±Ä¶ŠÔ•Û‘¶
+        //åŒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é€£ç¶šå†ç”Ÿæ™‚é–“ä¿å­˜
         normalizedTime =
             anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex("Base Layer")).normalizedTime;
         //Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + play + " : " + normalizedTime);
 
-        //ƒAƒjƒ[ƒVƒ‡ƒ“I—¹‚Ü‚Å‘Ò‹@
+        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã¾ã§å¾…æ©Ÿ
         if (normalizedTime <= 1) { return; }
-        //Ä¶’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ‹[ƒvƒAƒjƒ[ƒVƒ‡ƒ“‚Å‚È‚¢‚Æ‚«
+        //å†ç”Ÿä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã§ãªã„ã¨ã
         if (!isLoop)
         {
-            //1”Ôã‚ÌIdleƒAƒNƒVƒ‡ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
+            //1ç•ªä¸Šã®Idleã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
             for (int i = 0; i < products.Length; i++)
             {
                 if (products[i].ActionType == Products.Type.Idle)
                 { AnimChage(products[i].Name, false); break; }
             }
         }
-        //Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶‚µ’¼‚·
+        //ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã—ç›´ã™
         else { Playing(); }
     }
 
-    //ƒAƒjƒ[ƒVƒ‡ƒ“‘JˆÚ(Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“–¼,—Dæ“xİ’è‚Ì—L–³)
+    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é·ç§»(æ¬¡ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å,å„ªå…ˆåº¦è¨­å®šã®æœ‰ç„¡)
     public void AnimChage(string nextAnim, bool isPriority)
     {
         int breakFlg = 0;
-        int playProductsNo = 0; //—v‘f•Û‘¶(Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“)
-        int nextProductsNo = 0; //—v‘f•Û‘¶(ƒŠƒNƒGƒXƒg’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“)
+        int playProductsNo = 0; //è¦ç´ ä¿å­˜(ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)
+        int nextProductsNo = 0; //è¦ç´ ä¿å­˜(ãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)
 
-        //‘–¸‚µAˆê’v‚·‚é—v‘f‚ğ”­Œ©Ÿ‘æ•Û‘¶
+        //èµ°æŸ»ã—ã€ä¸€è‡´ã™ã‚‹è¦ç´ ã‚’ç™ºè¦‹æ¬¡ç¬¬ä¿å­˜
         for (int i = 0; i < products.Length; i++)
         {
             if (products[i].Clips.name == play && breakFlg != 1)
@@ -92,28 +92,28 @@ public class Anim : MonoBehaviour
             if (products[i].Name == nextAnim && breakFlg != 2)
             { nextProductsNo = i; breakFlg += 2; }
 
-            //for•¶‚ğo‚é
+            //foræ–‡ã‚’å‡ºã‚‹
             if (breakFlg == 3) { break; }
         }
 
-        //—v‘f‚ğ•Û‘¶‚Å‚«‚Ä‚¢‚È‚¯‚ê‚ÎƒGƒ‰[o—Í
+        //è¦ç´ ã‚’ä¿å­˜ã§ãã¦ã„ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼å‡ºåŠ›
         switch (breakFlg)
         {
             case 0:
-                Debug.LogError("products‚Ì—v‘f‚ğæ“¾‚Å‚«‚È‚¢");
+                Debug.LogError("productsã®è¦ç´ ã‚’å–å¾—ã§ããªã„");
                 break;
             case 1:
-                Debug.LogError("nextProducts‚Ì—v‘f‚ğæ“¾‚Å‚«‚È‚¢");
+                Debug.LogError("nextProductsã®è¦ç´ ã‚’å–å¾—ã§ããªã„");
                 break;
             case 2:
-                Debug.LogError("playProducts‚Ì—v‘f‚ğæ“¾‚Å‚«‚È‚¢");
+                Debug.LogError("playProductsã®è¦ç´ ã‚’å–å¾—ã§ããªã„");
                 break;
         }
 
         if (isPriority &&
             (products[playProductsNo].Priority != null || products[playProductsNo].Priority.Length != 0))
         {
-            //Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Ì—Dæ“x—v‘f‚ğ‘–¸
+            //ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å„ªå…ˆåº¦è¦ç´ ã‚’èµ°æŸ»
             for (int i = 0; i < products[playProductsNo].Priority.Length; i++)
             {
                 if (products[playProductsNo].Priority[i] == products[nextProductsNo].ActionType)
@@ -125,7 +125,7 @@ public class Anim : MonoBehaviour
         Playing();
     }
 
-    //ƒAƒjƒ[ƒVƒ‡ƒ“‘JˆÚ
+    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é·ç§»
     void SetPlayAnim(int animNo)
     {
         play = products[animNo].Clips.name;

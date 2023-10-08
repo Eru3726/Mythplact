@@ -30,8 +30,8 @@ public class SkillPieceData : MonoBehaviour
             GameData.skillPiece1Pos = skillPiece1.transform.position;
             GameData.skillPiece1Deg = skillPiece1.transform.rotation;
             GameData.saveSkill1 = true;
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌPos" + GameData.skillPiece1Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌDeg" + GameData.skillPiece1Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Pos" + GameData.skillPiece1Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Deg" + GameData.skillPiece1Deg);
 
         }
         if (skillPiece2 != null)
@@ -40,8 +40,8 @@ public class SkillPieceData : MonoBehaviour
             GameData.skillPiece2Deg = skillPiece2.transform.rotation;
             GameData.saveSkill2 = true;
 
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌPos" + GameData.skillPiece2Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌDeg" + GameData.skillPiece2Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Pos" + GameData.skillPiece2Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Deg" + GameData.skillPiece2Deg);
 
 
         }
@@ -51,8 +51,8 @@ public class SkillPieceData : MonoBehaviour
             GameData.skillPiece3Deg = skillPiece3.transform.rotation;
             GameData.saveSkill3 = true;
 
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌPos" + GameData.skillPiece3Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌDeg" + GameData.skillPiece3Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Pos" + GameData.skillPiece3Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Deg" + GameData.skillPiece3Deg);
 
 
         }
@@ -68,8 +68,8 @@ public class SkillPieceData : MonoBehaviour
             {
                 skillPiece1.transform.position = GameData.skillPiece1Pos;
                 skillPiece1.transform.rotation = GameData.skillPiece1Deg;
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌPos" + GameData.skillPiece1Pos);
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌDeg" + GameData.skillPiece1Deg);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Pos" + GameData.skillPiece1Pos);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Deg" + GameData.skillPiece1Deg);
 
             }
             else
@@ -90,8 +90,8 @@ public class SkillPieceData : MonoBehaviour
             SkillSetDirector.setSkill1 = true;
             Skill1_Button.interactable = false;
 
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌPos" + GameData.skillPiece1Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌDeg" + GameData.skillPiece1Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Pos" + GameData.skillPiece1Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Deg" + GameData.skillPiece1Deg);
 
             GameData.saveSkill1 = false;
 
@@ -103,8 +103,8 @@ public class SkillPieceData : MonoBehaviour
             {
                 skillPiece2.transform.position = GameData.skillPiece2Pos;
                 skillPiece2.transform.rotation = GameData.skillPiece2Deg;
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌPos" + GameData.skillPiece2Pos);
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌDeg" + GameData.skillPiece2Deg);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Pos" + GameData.skillPiece2Pos);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Deg" + GameData.skillPiece2Deg);
 
 
             }
@@ -128,8 +128,8 @@ public class SkillPieceData : MonoBehaviour
             Skill2_Button.interactable = false;
 
 
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌPos" + GameData.skillPiece2Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌDeg" + GameData.skillPiece2Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Pos" + GameData.skillPiece2Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Deg" + GameData.skillPiece2Deg);
 
             GameData.saveSkill2 = false;
 
@@ -142,8 +142,8 @@ public class SkillPieceData : MonoBehaviour
             {
                 skillPiece3.transform.position = GameData.skillPiece3Pos;
                 skillPiece3.transform.rotation = GameData.skillPiece3Deg;
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌPos" + GameData.skillPiece3Pos);
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌDeg" + GameData.skillPiece3Deg);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Pos" + GameData.skillPiece3Pos);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Deg" + GameData.skillPiece3Deg);
 
             }
             else
@@ -166,8 +166,8 @@ public class SkillPieceData : MonoBehaviour
             SkillSetDirector.setSkill3 = true;
             Skill3_Button.interactable = false;
 
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌPos" + GameData.skillPiece3Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌDeg" + GameData.skillPiece3Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Pos" + GameData.skillPiece3Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Deg" + GameData.skillPiece3Deg);
 
             GameData.saveSkill3 = false;
         }

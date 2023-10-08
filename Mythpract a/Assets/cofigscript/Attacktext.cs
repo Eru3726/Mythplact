@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Attacktext : MonoBehaviour
 {
     public Keyconfig keycon;
     public Text text;
-
 
     void Update()
     {
