@@ -19,6 +19,9 @@ public class TitleScene : MonoBehaviour
 
     public GameObject titleCmana;
 
+    [SerializeField, Header("FPS")]
+    private int fps = 60;
+
     public DataManager data;
     void Start()
     {
@@ -27,6 +30,8 @@ public class TitleScene : MonoBehaviour
         keycon.SetActive(false);
         keyconCmana.SetActive(false);
         titleCmana.SetActive(true);
+
+        Application.targetFrameRate = fps;
     }
 
     void Update()
