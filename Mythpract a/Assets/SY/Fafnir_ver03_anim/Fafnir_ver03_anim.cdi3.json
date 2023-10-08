@@ -1,0 +1,214 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "上顔"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "髪の毛"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "髪の毛後ろ"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "下顎"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "前方上部上腕"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "前方上部前腕"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "マント"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "マント後ろ"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "前方腕上腕"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "前方腕前腕"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "",
+			"Name": "前方太もも"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "",
+			"Name": "前方ふくらはぎ"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "",
+			"Name": "前方足"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "",
+			"Name": "身体"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "尻尾"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "",
+			"Name": "後方上部腕上腕"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "",
+			"Name": "後方上部前腕"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "後方腕上腕"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "後方前腕"
+		},
+		{
+			"Id": "Param20",
+			"GroupId": "",
+			"Name": "後方太もも"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "",
+			"Name": "後方ふくらはぎ"
+		},
+		{
+			"Id": "Param22",
+			"GroupId": "",
+			"Name": "後方足"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part9",
+			"Name": "前方上部前腕"
+		},
+		{
+			"Id": "Part11",
+			"Name": "前方腕前腕"
+		},
+		{
+			"Id": "Part",
+			"Name": "上顔"
+		},
+		{
+			"Id": "Part2",
+			"Name": "瞳孔"
+		},
+		{
+			"Id": "Part3",
+			"Name": "目"
+		},
+		{
+			"Id": "Part4",
+			"Name": "髪"
+		},
+		{
+			"Id": "Part5",
+			"Name": "髪後ろ"
+		},
+		{
+			"Id": "Part6",
+			"Name": "下顎"
+		},
+		{
+			"Id": "Part10",
+			"Name": "前方上部上腕"
+		},
+		{
+			"Id": "Part7",
+			"Name": "マント"
+		},
+		{
+			"Id": "Part8",
+			"Name": "後ろマント"
+		},
+		{
+			"Id": "Part12",
+			"Name": "前方腕上腕"
+		},
+		{
+			"Id": "Part13",
+			"Name": "前方太もも"
+		},
+		{
+			"Id": "Part14",
+			"Name": "前方ふくらはぎ"
+		},
+		{
+			"Id": "Part15",
+			"Name": "前方足"
+		},
+		{
+			"Id": "Part16",
+			"Name": "胴体"
+		},
+		{
+			"Id": "Part17",
+			"Name": "尻尾"
+		},
+		{
+			"Id": "Part18",
+			"Name": "後方上部腕前腕"
+		},
+		{
+			"Id": "Part19",
+			"Name": "後方上部腕上腕"
+		},
+		{
+			"Id": "Part20",
+			"Name": "後方腕前腕"
+		},
+		{
+			"Id": "Part21",
+			"Name": "後方腕上腕"
+		},
+		{
+			"Id": "Part22",
+			"Name": "後方太もも"
+		},
+		{
+			"Id": "Part23",
+			"Name": "後方ふくらはぎ"
+		},
+		{
+			"Id": "Part24",
+			"Name": "後方足"
+		}
+	]
+}

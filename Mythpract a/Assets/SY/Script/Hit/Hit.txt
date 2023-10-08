@@ -1,0 +1,117 @@
+﻿
+Hit関連仕様
+
+
+
+----------使用前に----------
+任意のProject > ProjectSettings > TagManager.assetを
+付属のTagManager.assetに置き換える
+			または、
+新規レイヤーを作成した後、新規レイヤー同士でのみ当たり判定を
+行うよう設定
+
+親オブジェクトにAdd Component > Rigidbody、
+子オブジェクトにAdd Component > Colliderが必要。詳細は下記記載
+
+
+
+----------使用方法	Unity側設定----------
+親オブジェクトにHitMng, Rigidbodyをアタッチ
+	-HitMng > Layer、MaxHp、Atk、Defを設定
+	-Rigidbody > Sleeping Mode > Never Sleep1に変更
+
+上記親の子供として攻撃用オブジェクトと防御用オブジェクトを生成し
+それぞれにHitData, Colliderをアタッチ
+	-HitData > Typeを設定
+	-Inspector > Layer > Hitを設定
+
+
+
+----------使用方法	任意のメインスクリプト側設定----------
+当たり判定の確認(LayerやTypeによる判定、ダメージ処理)なら
+HitMng.csとHitData.csのみで動作する
+
+以下任意のスクリプト
+
+using UnityEngine;
+using SY;   //自作名前空間
+
+public class クラス名 : MonoBehaviour
+{
+    HitMng hitMng;
+
+    void Start()
+    {
+        hitMng = GetComponent<HitMng>();
+        hitMng.SetUp(Damage, Die);
+    }
+
+    void Update()
+    {
+        hitMng.HitUpdate();
+
+        //ここに処理
+
+        hitMng.PostUpdate();
+    }
+
+    /// <summary>
+    /// ダメージ
+    /// </summary>
+    void Damage()
+    {
+        //HP計算処理(HP -= value)は不要
+        Debug.Log("ダメージを受けた");
+    }
+
+    /// <summary>
+    /// 死亡
+    /// </summary>
+    void Die()
+    {
+        //HP参照処理(if (HP <= 0) { })は不要
+        Debug.Log("死亡した");
+    }
+}
+
+
+
+----------スクリプト----------
+HitMng	親オブジェクトにアタッチ
+	-体力や攻撃力等のデータを設定
+
+HitData	子オブジェクトにアタッチ
+	-当たり判定実行部
+
+HitDefine
+	-主にフラグ管理
+    -ダメージ計算式 (ダメージ = (攻撃力 / 2) - (防御力 / 4))
+	-被ダメージ間隔 (変更するかも)
+
+
+
+----------その他詳細----------
+回避時等の無敵処理
+    -無敵　　　hitMng.DEFActive = false;
+    -無敵解除　hitMng.DEFActive = true;
+
+HitMng.csのLayer設定       HitData.csの81行目~ switch文
+    -同じLayerに設定したオブジェクトは当たらない
+
+ダメージ計算式     HitDefine.csの36行目Damageメソッド
+    -プレイヤーダメージ = 相手の攻撃力 * 相手の技威力
+    -敵ダメージ = (相手の攻撃力 / 2) - (自身の防御力 / 4)
+
+被ダメージ時無敵時間      　HitDefine.csの7,8行目HitInterval系統
+    -それぞれ初期値1秒
+
+
+
+
+----------更新履歴----------
+ver1.0.0	実装
+ver1.0.1	特定条件下で無敵状態になり続ける不具合を修正
+ver1.0.2    ダメージが0未満になる不具合を修正
+ver1.0.3    HitDataに威力用の変数を追加しました
+            プレイヤーと敵それぞれに、ダメージ計算式と被ダメージ時無敵時間を用意しました
+ver1.0.4    一部テキストを変更

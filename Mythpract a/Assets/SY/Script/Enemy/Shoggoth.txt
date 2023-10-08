@@ -1,0 +1,48 @@
+﻿
+Shoggoth仕様
+
+
+
+----------使用前に----------
+※※重要※※	PackageManager > AnimationRiggingをインストール
+
+カスタムエディタ使用によりInspectorに表示されている
+変数名とプログラムの変数名が違う場合がある
+
+
+
+----------変数----------
+Player		プレイヤーとなるオブジェクト
+Head		Shoggoth > Model > Headオブジェクト
+Slime		分身体となるオブジェクト
+Camera		CameraData.csをアタッチしたオブジェクト
+Base Speed	直線移動時に参照する速度
+MoveType	実行中のアクション
+
+	※以下MoveTypeの値によって表示変数が変化
+Eight	8の字行動
+ Speed					cos, sinカーブ時に参照する速度
+ Act Transition Time	次アクションへ遷移するまでの時間
+ NextMove				次のアクション
+
+Rotation	旋回行動
+ Speed					cos, sinカーブ時に参照する速度
+ Slime Generate			1回に生成するSlimeの数
+ Slime Generate Time	Slimeを生成する間隔
+
+UpDown	上下行動
+ UpDownNum		上下運動回数
+ Slime Generate	1回に生成するSlimeの数
+
+Rush	突進行動
+ Speed	突進速度
+
+Trac	Plを追尾。使う予定なし。
+Randam	NextMove用
+
+
+
+----------更新履歴----------
+ver1.0.0	移動のみ実装
+ver1.1.0	当たり判定、分身体の実装
+ver1.1.1	Inspector上で変数が変更出来ない不具合を修正
