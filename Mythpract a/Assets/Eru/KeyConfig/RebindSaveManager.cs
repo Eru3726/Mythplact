@@ -6,6 +6,16 @@ using System.Text;
 
 public class RebindSaveManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        Load();
+    }
+
+    private void OnDestroy()
+    {
+        Save();
+    }
+
     // 対象となるInputActionAsset
     [SerializeField] private InputActionAsset _actionAsset;
 

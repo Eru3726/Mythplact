@@ -4,9 +4,6 @@ using UnityEngine.InputSystem;
 public class KeyManager : MonoBehaviour
 {
     [SerializeField]
-    private InputActionReference pause;
-
-    [SerializeField]
     private GameObject keyPanel,padPanel;
 
     [SerializeField] 
@@ -20,15 +17,12 @@ public class KeyManager : MonoBehaviour
         rsm.Load();
 
         ClosePanel();
-
-        //キーの有効化
-        pause.action.Enable();
     }
 
     void Update()
     {
         //pauseキーが押されたら
-        if (pause.action.triggered)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (openFlg == false) KeyBoardPanel();
             else ClosePanel();
