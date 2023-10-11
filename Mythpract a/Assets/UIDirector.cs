@@ -22,7 +22,7 @@ public class UIDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!player.GameOver && !GameSceneDirector2.Bossdead2)
+        if (!player.GameOver)
         {
             time += Time.deltaTime;
 

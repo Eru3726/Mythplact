@@ -474,7 +474,7 @@ public class Shoggoth : MonoBehaviour
     void Die()
     {
         Debug.Log(gameObject.name + "は死んだ");
-        GameSceneDirector.Bossdead = true;
+        GameData.ShoggothDead = true;
     }
 
     //----------各種データ管理----------

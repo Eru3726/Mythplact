@@ -124,6 +124,9 @@ public class Read : MonoBehaviour
 
         GameData.playerNowHp = saveData.playerNowHp;
 
+        GameData.ShoggothDead = saveData.ShoggothDead;
+        GameData.FafnirDead = saveData.FafnirDead;
+
         GameData.ClearTime = saveData.ClearTime;
         GameData.HitCount = saveData.HitCount;
         GameData.SkillCount = saveData.SkillCount;

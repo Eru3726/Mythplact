@@ -519,7 +519,7 @@ public class Fafnir : MonoBehaviour
             SetAudio(die_SE, die_SEVolume, die_SEPitch, die_SELoop);
         }
         soundcount++;
-        GameSceneDirector2.Bossdead2 = true;
+        GameData.FafnirDead = true;
         Debug.Log(obj.name + "‚ÍŽ€‚ñ‚¾");
     }
 

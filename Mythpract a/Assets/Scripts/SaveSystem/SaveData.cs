@@ -58,6 +58,10 @@ public class SaveData
     // プレイヤーステータス
     public int playerNowHp;
 
+    // フラグ管理
+    public bool ShoggothDead;
+    public bool FafnirDead;
+
     // リザルト
     public float ClearTime;
     public int HitCount;

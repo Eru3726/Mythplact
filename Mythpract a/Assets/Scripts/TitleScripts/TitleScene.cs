@@ -30,6 +30,9 @@ public class TitleScene : MonoBehaviour
         keycon.SetActive(false);
         keyconCmana.SetActive(false);
         titleCmana.SetActive(true);
+
+        GameData.ShoggothDead = false;
+        GameData.FafnirDead = false;
     }
 
     void Update()
@@ -44,6 +47,7 @@ public class TitleScene : MonoBehaviour
 
     public void GameStart()
     {
+        data.Save();
         SceneManager.LoadScene("RestScene");
     }
 

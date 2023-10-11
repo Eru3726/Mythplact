@@ -54,6 +54,10 @@ public class GameData
     // プレイヤーステータス
     public static int playerNowHp = 0;
 
+    // フラグ管理
+    public static bool ShoggothDead = false;
+    public static bool FafnirDead = false;
+
     // リザルト
     public static float ClearTime = 0;
     public static int HitCount = 0;

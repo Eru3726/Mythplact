@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameSceneDirector2 : MonoBehaviour
 {
-    public static bool Bossdead2;
     public DataManager dataManager;
     public FadeManager Fade;
     Player player;
@@ -14,7 +13,6 @@ public class GameSceneDirector2 : MonoBehaviour
         dataManager.Read();
 
         player = GameObject.Find("Player").GetComponent<Player>();
-        Bossdead2 = false;
     }
     private void Update()
     {
@@ -22,7 +20,7 @@ public class GameSceneDirector2 : MonoBehaviour
         {
             Fade.Fadeout();
         }
-        else if (Bossdead2 == true)
+        else if (GameData.FafnirDead == true)
         {
             Fade.Fadeout();
         }
@@ -35,9 +33,9 @@ public class GameSceneDirector2 : MonoBehaviour
         {
             SceneManager.LoadScene("TitleScene");
         }
-        else if (Bossdead2 == true)
+        else if (GameData.FafnirDead == true)
         {
-            SceneManager.LoadScene("ResultScene2");
+            SceneManager.LoadScene("ResultScene");
         }
     }
 }

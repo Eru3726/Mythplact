@@ -20,7 +20,7 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
     [SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTime;
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime = 1.0f;  // ノックバックする時間
-    [SerializeField] Image brinkSlider;
+    Image brinkSlider;
     float jumpPowPlus;
     float brinkCount = 0;            // ブリンクのクールダウンのカウント
     float guardCount = 0;
@@ -67,6 +67,7 @@ public partial class Player : MonoBehaviour
         conconect = GameObject.Find("keycon").GetComponent<Controllerconnect>();
         keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
         HMng = GetComponent<HitMng>();
+        brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
 
         InitCol();
         InitAudio();
@@ -704,6 +705,7 @@ public partial class Player : MonoBehaviour
 
             isbrink = true;
             isbrinkUp = true;
+            brinkCount = 0;
         }
         // 地上ブリンク
         if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim)
@@ -717,6 +719,7 @@ public partial class Player : MonoBehaviour
             BrinkEffect();
 
             isbrink = true;
+            brinkCount = 0;
 
         }
         // ブリンクのクールタイム
@@ -832,7 +835,7 @@ public partial class Player : MonoBehaviour
             else 
             {
                 isbrink = true;
-                guardCount = 0;
+
             }
 
         }
@@ -847,7 +850,6 @@ public partial class Player : MonoBehaviour
             if (guardEnd)
             {
                 isbrink = true;
-                brinkCount = 0;
             }
 
 
@@ -930,7 +932,7 @@ public partial class Player : MonoBehaviour
         {
             knockbuckCount += Time.deltaTime;
         }
-        if(knockbuckCount >= knockbuckTime)
+        if(knockbuckCount >= knockbuckTime  || isGround)
         {
             hitAnim = false;
             knockbuckCount = 0;

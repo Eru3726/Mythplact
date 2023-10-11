@@ -10,6 +10,7 @@ public class ResultDirector : MonoBehaviour
     [SerializeField] Text ClearTimeText;
     [SerializeField] Text HitCountText;
     [SerializeField] Text SkillCountText;
+    [SerializeField] Text BackText;
     public FadeManager Fade;
     void Start()
     {
@@ -26,11 +27,29 @@ public class ResultDirector : MonoBehaviour
         {
             Fade.Fadeout();
         }
+        if (GameData.FafnirDead)
+        {
+            BackText.text = "キーを押してタイトルに戻る";
+        }
+        else if (GameData.ShoggothDead)
+        {
+            BackText.text = "キーを押して待機所に戻る";
+
+        }
+
     }
 
     public void scenetrans()
     {
-        SceneManager.LoadScene("RestScene 2");
+        if (GameData.FafnirDead)
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
+        else if (GameData.ShoggothDead)
+        {
+            SceneManager.LoadScene("RestScene");
+
+        }
     }
 
 

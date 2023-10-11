@@ -117,6 +117,9 @@ public class Save : MonoBehaviour
 
         saveData.playerNowHp = GameData.playerNowHp;
 
+        saveData.ShoggothDead = GameData.ShoggothDead;
+        saveData.FafnirDead = GameData.FafnirDead;
+
         saveData.ClearTime = GameData.ClearTime;
         saveData.HitCount = GameData.HitCount;
         saveData.SkillCount = GameData.SkillCount;

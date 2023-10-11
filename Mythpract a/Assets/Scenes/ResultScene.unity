@@ -481,6 +481,7 @@ MonoBehaviour:
   ClearTimeText: {fileID: 1864901478}
   HitCountText: {fileID: 614659001}
   SkillCountText: {fileID: 1958591700}
+  BackText: {fileID: 1474008332}
   Fade: {fileID: 2687508456344944780}
 --- !u!1 &614658999
 GameObject:

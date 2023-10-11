@@ -33,11 +33,19 @@ public class Teleport : MonoBehaviour
 
     public void scenetrans()
     {
-        SceneManager.LoadScene("ShoggothScene");
+        if (GameData.ShoggothDead)
+        {
+            SceneManager.LoadScene("FafnirScene");
+
+        }
+        else
+        {
+            SceneManager.LoadScene("ShoggothScene");
+
+        }
     }
 
     public void scenetrans2()
     {
-        SceneManager.LoadScene("FafnirScene");
     }
 }
