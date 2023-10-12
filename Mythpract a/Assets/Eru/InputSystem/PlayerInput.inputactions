@@ -111,7 +111,7 @@
                 {
                     "name": "",
                     "id": "d6727d94-7589-400a-bd9f-3e0d01ad881b",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -126,6 +126,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9d13cbb-2a63-4133-9a96-0c2635da2e17",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "MoveLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -166,7 +177,7 @@
                 {
                     "name": "",
                     "id": "1e3faec2-aa0a-4f62-84a2-a5f52df6e282",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -188,7 +199,7 @@
                 {
                     "name": "",
                     "id": "c96eb1d7-7e62-426c-8bbc-7b816bd0ad28",
-                    "path": "<Gamepad>/rightStick/down",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -209,11 +220,33 @@
                 },
                 {
                     "name": "",
+                    "id": "2215df63-1c7f-4f30-8b52-a849e22e0966",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Skill1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c998074e-7163-45c1-9685-bf9229355411",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "033ece14-de5f-442f-83bd-da0c66abb423",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "MoveRight",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -231,6 +264,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d53a9274-a57b-4f27-a2db-a69f321cee6b",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Skill2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "24217e75-4994-4281-92d0-5c69e4bb2cd7",
                     "path": "<Keyboard>/c",
                     "interactions": "",
@@ -242,11 +286,33 @@
                 },
                 {
                     "name": "",
+                    "id": "7c10d0ad-648b-4171-b284-f5e9995d728e",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Skill3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "dba8a55e-fc95-4aeb-8262-a85e09b1298c",
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Skill4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c36d99a4-239c-41dc-ab5c-ba73de28244c",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Skill4",
                     "isComposite": false,
                     "isPartOfComposite": false
