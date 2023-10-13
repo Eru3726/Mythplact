@@ -40,9 +40,39 @@ public class GameData
     public static KeyCode keyinteractkey = KeyCode.E;
 
     // スキルピース
-    public static bool saveSkill1 = false;
+    public static bool saveSkill1= false;
     public static bool saveSkill2 = false;
     public static bool saveSkill3 = false;
+    public static bool saveSkill4 = false;
+    public static bool saveSkill5 = false;
+    public static bool saveSkill6 = false;
+    public static bool saveSkill7 = false;
+    public static bool saveSkill8 = false;
+    public static bool saveSkill9 = false;
+    public static bool saveSkill10 = false;
+    public static bool saveSkill11 = false;
+    public static bool saveSkill12 = false;
+    public static bool saveSkill13 = false;
+    public static bool saveSkill14 = false;
+
+
+
+    public static bool setSkill1 = false;
+    public static bool setSkill2 = false;
+    public static bool setSkill3 = false;
+    public static bool setSkill4 = false;
+    public static bool setSkill5 = false;
+    public static bool setSkill6 = false;
+    public static bool setSkill7 = false;
+    public static bool setSkill8 = false;
+    public static bool setSkill9 = false;
+    public static bool setSkill10 = false;
+    public static bool setSkill11 = false;
+    public static bool setSkill12 = false;
+    public static bool setSkill13 = false;
+    public static bool setSkill14 = false;
+
+
 
     public static Vector3 skillPiece1Pos = new Vector3(0, 0, 0);
     public static Quaternion skillPiece1Deg = new Quaternion(0, 0, 0, 0);
@@ -50,6 +80,33 @@ public class GameData
     public static Quaternion skillPiece2Deg = new Quaternion(0, 0, 0, 0);
     public static Vector3 skillPiece3Pos = new Vector3(0, 0, 0);
     public static Quaternion skillPiece3Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece4Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece4Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece5Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece5Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece6Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece6Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece7Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece7Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece8Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece8Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece9Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece9Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece10Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece10Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece11Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece11Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece12Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece12Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece13Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece13Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece14Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece14Deg = new Quaternion(0, 0, 0, 0);
+
+    public static int skillSlot1 = 0;
+    public static int skillSlot2 = 0;
+    public static int skillSlot3 = 0;
+    public static int skillSlot4 = 0;
 
     // プレイヤーステータス
     public static int playerNowHp = 0;

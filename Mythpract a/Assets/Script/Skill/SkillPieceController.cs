@@ -72,5 +72,10 @@ public class SkillPieceController : MonoBehaviour
             SkillPieceData.skillPiece3 = gameObject;
 
         }
+
+        if(gameObject.name == "SkillPiece10(Clone)")
+        {
+            SkillPieceData.skillPiece10 = gameObject;
+        }
     }
 }

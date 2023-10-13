@@ -48,6 +48,7 @@ public partial class Player : MonoBehaviour
     bool guard;
     bool brink;
     bool skill1;
+    bool skill2;
 
     bool deathDirection;
 
@@ -73,6 +74,7 @@ public partial class Player : MonoBehaviour
         InitAudio();
         InitAnim();
         InitEffect();
+        PassiveSkillController();
 
     }
     void Start()
@@ -92,6 +94,7 @@ public partial class Player : MonoBehaviour
 
             MoveInput();        // 入力
             MoveController();   // プレイヤー操作
+            ActiveSkillController();  // スキル管理
                                 //EnemyLockon();      
             ChangeAnim();       // アニメーション管理
 
@@ -444,8 +447,7 @@ public partial class Player : MonoBehaviour
                 }
 
             }
-
-            if (GameData.interactkey == (KeyCode)CustomKeycode.LT)
+            if (GameData.healkey == (KeyCode)CustomKeycode.LT)
             {
                 float lt = Input.GetAxis("LT");
 
@@ -464,7 +466,7 @@ public partial class Player : MonoBehaviour
                 }
 
             }
-            else if (GameData.interactkey == (KeyCode)CustomKeycode.RT)
+            else if (GameData.healkey == (KeyCode)CustomKeycode.RT)
             {
                 float rt = Input.GetAxis("RT");
 
@@ -485,13 +487,65 @@ public partial class Player : MonoBehaviour
             }
             else
             {
-                if (Input.GetKeyDown(GameData.interactkey))
+                if (Input.GetKeyDown(GameData.healkey))
                 {
                     skill1 = true;
                 }
                 else
                 {
                     skill1 = false;
+                }
+
+            }
+
+
+            if (GameData.interactkey == (KeyCode)CustomKeycode.LT)
+            {
+                float lt = Input.GetAxis("LT");
+
+                if (lt > 0 && !ltDown)
+                {
+                    skill2 = true;
+                    ltDown = true;
+                }
+                else
+                {
+                    skill2 = false;
+                }
+                if (lt == 0)
+                {
+                    ltDown = false;
+                }
+
+            }
+            else if (GameData.interactkey == (KeyCode)CustomKeycode.RT)
+            {
+                float rt = Input.GetAxis("RT");
+
+                if (rt > 0 && !rtDown)
+                {
+                    skill2 = true;
+                    rtDown = true;
+                }
+                else
+                {
+                    skill2 = false;
+                }
+                if (rt == 0)
+                {
+                    rtDown = false;
+                }
+
+            }
+            else
+            {
+                if (Input.GetKeyDown(GameData.interactkey))
+                {
+                    skill2 = true;
+                }
+                else
+                {
+                    skill2 = false;
                 }
 
             }
@@ -570,13 +624,22 @@ public partial class Player : MonoBehaviour
             {
                 guardEnd = false;
             }
-            if (Input.GetKeyDown(GameData.interactkey))
+            if (Input.GetKeyDown(GameData.healkey))
             {
                 skill1 = true;
             }
             else
             {
                 skill1 = false;
+            }
+
+            if (Input.GetKeyDown(GameData.interactkey))
+            {
+                skill2 = true;
+            }
+            else
+            {
+                skill2 = false;
             }
 
 
@@ -939,14 +1002,7 @@ public partial class Player : MonoBehaviour
         }
 
 
-        skillCount += Time.deltaTime;
 
-        if (skill1 && skillCoolTimeSec < skillCount)
-        {
-            SkillDoubleSlash();
-
-            skillCount = 0;
-        }
     }
     
 

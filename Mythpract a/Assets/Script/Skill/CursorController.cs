@@ -16,6 +16,17 @@ public class CursorController : MonoBehaviour
     [SerializeField] Button Skill1_Button;
     [SerializeField] Button Skill2_Button;
     [SerializeField] Button Skill3_Button;
+    [SerializeField] Button Skill4_Button;
+    [SerializeField] Button Skill5_Button;
+    [SerializeField] Button Skill6_Button;
+    [SerializeField] Button Skill7_Button;
+    [SerializeField] Button Skill8_Button;
+    [SerializeField] Button Skill9_Button;
+    [SerializeField] Button Skill10_Button;
+    [SerializeField] Button Skill11_Button;
+    [SerializeField] Button Skill12_Button;
+    [SerializeField] Button Skill13_Button;
+    [SerializeField] Button Skill14_Button;
 
 
     Transform touchTfm;
@@ -43,8 +54,8 @@ public class CursorController : MonoBehaviour
 
     Button backButton;
 
-    float moveVertical = 0.87f; 
-    float moveSide = 0.75f;
+    const float moveVertical = 0.87f; 
+    const float moveSide = 0.75f;
 
     public bool PickUpProp
     {
@@ -249,10 +260,15 @@ public class CursorController : MonoBehaviour
             {
                 GameObject DeletePiece;
 
+                if (GameData.skillSlot1 == 1) GameData.skillSlot1 = 0;    // スキルスロットの登録を無効に (アクティブスキルのみ)
+                else if (GameData.skillSlot2 == 1) GameData.skillSlot2 = 0;
+                else if (GameData.skillSlot3 == 1) GameData.skillSlot3 = 0;
+                else if (GameData.skillSlot4 == 1) GameData.skillSlot4 = 0;
+
                 pickupTfm.parent.parent = null;     // スキルピースとカーソルの親子関係を解除
                 Skill1_Button.interactable = true;  // そのスキルのボタンを選択可能に
-                SkillSetDirector.setSkill1 = false; // そのスキルを無効に
-                
+                GameData.setSkill1 = false; // そのスキルを無効に
+
 
                 DeletePiece = GameObject.Find("SkillPiece1(Clone)");    // 持っていたスキルピースを取得
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
@@ -262,9 +278,15 @@ public class CursorController : MonoBehaviour
             {
                 GameObject DeletePiece;
 
+                if (GameData.skillSlot1 == 2) GameData.skillSlot1 = 0;    // スキルスロットの登録を無効に
+                else if (GameData.skillSlot2 == 2) GameData.skillSlot2 = 0;
+                else if (GameData.skillSlot3 == 2) GameData.skillSlot3 = 0;
+                else if (GameData.skillSlot4 == 2) GameData.skillSlot4 = 0;
+
+
                 pickupTfm.parent.parent = null;
                 Skill2_Button.interactable = true;
-                SkillSetDirector.setSkill2 = false;
+                GameData.setSkill2 = false;
 
                 DeletePiece = GameObject.Find("SkillPiece2(Clone)");
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
@@ -275,9 +297,16 @@ public class CursorController : MonoBehaviour
             {
                 GameObject DeletePiece;
 
+                if (GameData.skillSlot1 == 3) GameData.skillSlot1 = 0;    // スキルスロットの登録を無効に
+                else if (GameData.skillSlot2 == 3) GameData.skillSlot2 = 0;
+                else if (GameData.skillSlot3 == 3) GameData.skillSlot3 = 0;
+                else if (GameData.skillSlot4 == 3) GameData.skillSlot4 = 0;
+
+
                 pickupTfm.parent.parent = null;
                 Skill3_Button.interactable = true;
-                SkillSetDirector.setSkill3 = false;
+                GameData.setSkill3 = false;
+
 
                 DeletePiece = GameObject.Find("SkillPiece3(Clone)");
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
@@ -285,6 +314,25 @@ public class CursorController : MonoBehaviour
                 Destroy(DeletePiece);
 
             }
+            else if (pickupTfm.parent.name == "SkillPiece10(Clone)")
+            {
+                GameObject DeletePiece;
+
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // スキルスロットの登録を無効に (アクティブスキルのみ)
+                //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
+                //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
+                //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
+
+                pickupTfm.parent.parent = null;     // スキルピースとカーソルの親子関係を解除
+                Skill10_Button.interactable = true;  // そのスキルのボタンを選択可能に
+                GameData.setSkill10 = false; // そのスキルを無効に
+
+
+                DeletePiece = GameObject.Find("SkillPiece10(Clone)");    // 持っていたスキルピースを取得
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                Destroy(DeletePiece);                                   // そのスキルピースを消去
+            }
+
         }
 
 

@@ -9,12 +9,36 @@ public class SkillSetDirector : MonoBehaviour
     [SerializeField] Button Skill1_Button;
     [SerializeField] Button Skill2_Button;
     [SerializeField] Button Skill3_Button;
+    [SerializeField] Button Skill4_Button;
+    [SerializeField] Button Skill5_Button;
+    [SerializeField] Button Skill6_Button;
+    [SerializeField] Button Skill7_Button;
+    [SerializeField] Button Skill8_Button;
+    [SerializeField] Button Skill9_Button;
+    [SerializeField] Button Skill10_Button;
+    [SerializeField] Button Skill11_Button;
+    [SerializeField] Button Skill12_Button;
+    [SerializeField] Button Skill13_Button;
+    [SerializeField] Button Skill14_Button;
+
 
     [SerializeField] GameObject NotInteractablePanel;
     [SerializeField] GameObject cursor;
     [SerializeField] GameObject Skill1;
     [SerializeField] GameObject Skill2;
     [SerializeField] GameObject Skill3;
+    [SerializeField] GameObject Skill4;
+    [SerializeField] GameObject Skill5;
+    [SerializeField] GameObject Skill6;
+    [SerializeField] GameObject Skill7;
+    [SerializeField] GameObject Skill8;
+    [SerializeField] GameObject Skill9;
+    [SerializeField] GameObject Skill10;
+    [SerializeField] GameObject Skill11;
+    [SerializeField] GameObject Skill12;
+    [SerializeField] GameObject Skill13;
+    [SerializeField] GameObject Skill14;
+
 
     SkillPieceData spdata;
     CursorController cursorcontroller;
@@ -23,9 +47,6 @@ public class SkillSetDirector : MonoBehaviour
 
     private Button firstSelectButton;
 
-    public static bool setSkill1 = false;
-    public static bool setSkill2 = false;
-    public static bool setSkill3 = false;
 
     private bool useCursor;
     // カーソル使用時にTrue
@@ -54,6 +75,8 @@ public class SkillSetDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("スキルスロット1に入っているもの" + GameData.skillSlot1);
+
         if (useCursorProp == false)
         {
             cursor.gameObject.SetActive(false);
@@ -76,13 +99,17 @@ public class SkillSetDirector : MonoBehaviour
         cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // cursorの位置を初期化
 
     }
-    public void SetSkill1()
+    public void SetSkill1() // スキルスラッシュ
     {
         cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
 
         Instantiate(Skill1,new Vector3(cursor.transform.position.x,cursor.transform.position.y,0),Quaternion.identity);   
         Skill1_Button.interactable = false;
-        setSkill1 = true;
+        GameData.setSkill1 = true;
+        if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 1;
+        else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 1;
+        else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 1;
+        else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 1;
 
         useCursorProp = true;
         CursorController.colorchange = true;
@@ -101,10 +128,14 @@ public class SkillSetDirector : MonoBehaviour
 
         Instantiate(Skill2, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill2_Button.interactable = false;
-        setSkill2 = true;
+        GameData. setSkill2 = true;
         useCursorProp = true;
         CursorController.colorchange = true;
 
+        if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 2;
+        else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 2;
+        else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 2;
+        else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 2;
 
 
         GameObject piece = GameObject.Find("SkillPiece2(Clone)");
@@ -121,11 +152,15 @@ public class SkillSetDirector : MonoBehaviour
 
         Instantiate(Skill3, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill3_Button.interactable = false;
-        setSkill3 = true;
+        GameData.setSkill3 = true;
         useCursorProp = true;
         CursorController.colorchange = true;
 
 
+        if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 3;
+        else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 3;
+        else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 3;
+        else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 3;
 
         GameObject piece = GameObject.Find("SkillPiece3(Clone)");
 
@@ -135,5 +170,30 @@ public class SkillSetDirector : MonoBehaviour
 
 
     }
+    public void SetSkill10() // パッシブスキル体力増強
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill10, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill10_Button.interactable = false;
+        GameData.setSkill10 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece10(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+
+
 
 }
