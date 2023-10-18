@@ -19,7 +19,7 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ガードの持続時間")] float guardTime;
     [SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
     [SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTime;
-    [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime = 1.0f;  // ノックバックする時間
+    [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
     Image brinkSlider;
     float jumpPowPlus;
     float brinkCount = 0;            // ブリンクのクールダウンのカウント
@@ -74,7 +74,7 @@ public partial class Player : MonoBehaviour
         InitAudio();
         InitAnim();
         InitEffect();
-        PassiveSkillController();
+        PassiveSkillStart();
 
     }
     void Start()
@@ -94,7 +94,8 @@ public partial class Player : MonoBehaviour
 
             MoveInput();        // 入力
             MoveController();   // プレイヤー操作
-            ActiveSkillController();  // スキル管理
+            ActiveSkillController();    // スキル管理
+            PassiveSkillUpdate();       // 動的に発動条件が変わるパッシブスキルの管理
                                 //EnemyLockon();      
             ChangeAnim();       // アニメーション管理
 
@@ -747,7 +748,7 @@ public partial class Player : MonoBehaviour
 
         // プレイヤーの向き
         
-        if (dir.x != 0 && !isAttack)
+        if (dir.x != 0 && !isAttack && !isGuard && !hitAnim)
         {
             transform.localScale = new Vector3(dir.x, 1, 1);
         }
@@ -815,6 +816,8 @@ public partial class Player : MonoBehaviour
         if (HMng.CheckDamage())
         {
             HitSE();
+            HitStopManager.hitstop.StartHitStop(0.1f);
+
         }
 
         if (guard && !attack && !isAttack && !isbrink)
@@ -869,6 +872,7 @@ public partial class Player : MonoBehaviour
 
                     EffectJustGuard.Play();
                     guardCount = 0;
+                    HitStopManager.hitstop.StartHitStop(0.3f);
 
 
                     isbrink = true;
@@ -957,7 +961,9 @@ public partial class Player : MonoBehaviour
 
     void DamageReaction()
     {
+        Animation anim;
 
+        anim = gameObject.GetComponent<Animation>();
 
         // ノックバック
         if (HMng.CheckDamage() == true && !isGuard)
@@ -989,7 +995,7 @@ public partial class Player : MonoBehaviour
                 PlayerRb.AddForce(Vector2.right * 15, ForceMode2D.Impulse);
 
             }
-
+            HitStopManager.hitstop.StartHitStop(0.2f);
         }
         if(hitAnim == true)
         {

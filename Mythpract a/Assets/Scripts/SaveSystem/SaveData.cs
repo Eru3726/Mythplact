@@ -59,6 +59,11 @@ public class SaveData
     public bool saveSkill12;
     public bool saveSkill13;
     public bool saveSkill14;
+    public bool saveSkill15;
+    public bool saveSkill16;
+    public bool saveSkill17;
+    public bool saveSkill18;
+    public bool saveSkill19;
     public bool setSkill1;
     public bool setSkill2;
     public bool setSkill3;
@@ -73,6 +78,11 @@ public class SaveData
     public bool setSkill12;
     public bool setSkill13;
     public bool setSkill14;
+    public bool setSkill15;
+    public bool setSkill16;
+    public bool setSkill17;
+    public bool setSkill18;
+    public bool setSkill19;
     public Vector3 skillPiece1Pos;
     public Quaternion skillPiece1Deg;
     public Vector3 skillPiece2Pos;
@@ -90,7 +100,7 @@ public class SaveData
     public Vector3 skillPiece8Pos;
     public Quaternion skillPiece8Deg;
     public Vector3 skillPiece9Pos;
-    public Quaternion skillPiece9Deg ;
+    public Quaternion skillPiece9Deg;
     public Vector3 skillPiece10Pos;
     public Quaternion skillPiece10Deg;
     public Vector3 skillPiece11Pos;
@@ -101,6 +111,17 @@ public class SaveData
     public Quaternion skillPiece13Deg;
     public Vector3 skillPiece14Pos;
     public Quaternion skillPiece14Deg;
+    public Vector3 skillPiece15Pos;
+    public Quaternion skillPiece15Deg;
+    public Vector3 skillPiece16Pos;
+    public Quaternion skillPiece16Deg;
+    public Vector3 skillPiece17Pos;
+    public Quaternion skillPiece17Deg;
+    public Vector3 skillPiece18Pos;
+    public Quaternion skillPiece18Deg;
+    public Vector3 skillPiece19Pos;
+    public Quaternion skillPiece19Deg;
+
     public int skillSlot1;
     public int skillSlot2;
     public int skillSlot3;

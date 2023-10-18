@@ -54,6 +54,12 @@ public class GameData
     public static bool saveSkill12 = false;
     public static bool saveSkill13 = false;
     public static bool saveSkill14 = false;
+    public static bool saveSkill15 = false;
+    public static bool saveSkill16 = false;
+    public static bool saveSkill17 = false;
+    public static bool saveSkill18 = false;
+    public static bool saveSkill19 = false;
+
 
 
 
@@ -71,6 +77,12 @@ public class GameData
     public static bool setSkill12 = false;
     public static bool setSkill13 = false;
     public static bool setSkill14 = false;
+    public static bool setSkill15 = false;
+    public static bool setSkill16 = false;
+    public static bool setSkill17 = false;
+    public static bool setSkill18 = false;
+    public static bool setSkill19 = false;
+
 
 
 
@@ -102,6 +114,17 @@ public class GameData
     public static Quaternion skillPiece13Deg = new Quaternion(0, 0, 0, 0);
     public static Vector3 skillPiece14Pos = new Vector3(0, 0, 0);
     public static Quaternion skillPiece14Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece15Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece15Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece16Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece16Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece17Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece17Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece18Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece18Deg = new Quaternion(0, 0, 0, 0);
+    public static Vector3 skillPiece19Pos = new Vector3(0, 0, 0);
+    public static Quaternion skillPiece19Deg = new Quaternion(0, 0, 0, 0);
+
 
     public static int skillSlot1 = 0;
     public static int skillSlot2 = 0;

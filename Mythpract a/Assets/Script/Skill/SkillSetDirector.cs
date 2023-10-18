@@ -20,6 +20,11 @@ public class SkillSetDirector : MonoBehaviour
     [SerializeField] Button Skill12_Button;
     [SerializeField] Button Skill13_Button;
     [SerializeField] Button Skill14_Button;
+    [SerializeField] Button Skill15_Button;
+    [SerializeField] Button Skill16_Button;
+    [SerializeField] Button Skill17_Button;
+    [SerializeField] Button Skill18_Button;
+    [SerializeField] Button Skill19_Button;
 
 
     [SerializeField] GameObject NotInteractablePanel;
@@ -38,6 +43,11 @@ public class SkillSetDirector : MonoBehaviour
     [SerializeField] GameObject Skill12;
     [SerializeField] GameObject Skill13;
     [SerializeField] GameObject Skill14;
+    [SerializeField] GameObject Skill15;
+    [SerializeField] GameObject Skill16;
+    [SerializeField] GameObject Skill17;
+    [SerializeField] GameObject Skill18;
+    [SerializeField] GameObject Skill19;
 
 
     SkillPieceData spdata;
@@ -193,6 +203,76 @@ public class SkillSetDirector : MonoBehaviour
 
 
     }
+    public void SetSkill11() // パッシブスキルブリンク距離
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill11, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill11_Button.interactable = false;
+        GameData.setSkill11 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece11(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+    public void SetSkill12() // パッシブスキルジャストガード
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill12, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill12_Button.interactable = false;
+        GameData.setSkill12 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece12(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+    public void SetSkill13() // パッシブスキルジャストガード
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill13, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill13_Button.interactable = false;
+        GameData.setSkill13 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece13(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+
 
 
 

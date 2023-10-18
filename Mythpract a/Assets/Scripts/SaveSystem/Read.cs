@@ -127,6 +127,12 @@ public class Read : MonoBehaviour
         GameData.saveSkill12 = saveData.saveSkill12;
         GameData.saveSkill13 = saveData.saveSkill13;
         GameData.saveSkill14 = saveData.saveSkill14;
+        GameData.saveSkill15 = saveData.saveSkill15;
+        GameData.saveSkill16 = saveData.saveSkill16;
+        GameData.saveSkill17 = saveData.saveSkill17;
+        GameData.saveSkill18 = saveData.saveSkill18;
+        GameData.saveSkill19 = saveData.saveSkill19;
+
 
         GameData.setSkill1 = saveData.setSkill1;
         GameData.setSkill2 = saveData.setSkill2;
@@ -142,6 +148,12 @@ public class Read : MonoBehaviour
         GameData.setSkill12 = saveData.setSkill12;
         GameData.setSkill13 = saveData.setSkill13;
         GameData.setSkill14 = saveData.setSkill14;
+        GameData.setSkill15 = saveData.setSkill15;
+        GameData.setSkill16 = saveData.setSkill16;
+        GameData.setSkill17 = saveData.setSkill17;
+        GameData.setSkill18 = saveData.setSkill18;
+        GameData.setSkill19 = saveData.setSkill19;
+
 
 
         GameData.skillPiece1Pos = saveData.skillPiece1Pos;
@@ -172,6 +184,17 @@ public class Read : MonoBehaviour
         GameData.skillPiece13Deg = saveData.skillPiece13Deg;
         GameData.skillPiece14Pos = saveData.skillPiece14Pos;
         GameData.skillPiece14Deg = saveData.skillPiece14Deg;
+        GameData.skillPiece15Pos = saveData.skillPiece15Pos;
+        GameData.skillPiece15Deg = saveData.skillPiece15Deg;
+        GameData.skillPiece16Pos = saveData.skillPiece16Pos;
+        GameData.skillPiece16Deg = saveData.skillPiece16Deg;
+        GameData.skillPiece17Pos = saveData.skillPiece17Pos;
+        GameData.skillPiece17Deg = saveData.skillPiece17Deg;
+        GameData.skillPiece18Pos = saveData.skillPiece18Pos;
+        GameData.skillPiece18Deg = saveData.skillPiece18Deg;
+        GameData.skillPiece19Pos = saveData.skillPiece19Pos;
+        GameData.skillPiece19Deg = saveData.skillPiece19Deg;
+
 
         GameData.skillSlot1 = saveData.skillSlot1;
         GameData.skillSlot2 = saveData.skillSlot2;

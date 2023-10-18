@@ -7,6 +7,11 @@ partial class Player
 
     [SerializeField, Tooltip("スラッシュのクールタイム")] float SkillSlashCT;
 
+    [SerializeField, Tooltip("ブリンク距離スキル")] float SkillBrinkMove;
+    [SerializeField, Tooltip("ジャストガードスキル")] float SkillJustGuard;
+    [SerializeField, Tooltip("スピードアップスキル")] int SkillMaxSpeed;
+
+
     public GameObject slash;
 
     void ActiveSkillController()
@@ -66,14 +71,29 @@ partial class Player
 
         }
     }
-    public void PassiveSkillController()
+    public void PassiveSkillStart()
     {
         if (GameData.setSkill10 == true)
         {
             SkillHPPlus();
         }
+        if(GameData.setSkill11 == true)
+        {
+            SkillBrinkMovePlus();
+        }
+        if(GameData.setSkill12 == true)
+        {
+            SkillJustGuardPlus();
+        }
  
 
+    }
+    public void PassiveSkillUpdate()
+    {
+        if(GameData.saveSkill13 == true)
+        {
+            SkillSpeedUpHpMax();
+        }
     }
 
     /* アクティブスキル */
@@ -98,9 +118,28 @@ partial class Player
     }
 
     /* パッシブスキル */
-    public void SkillHPPlus()
+    public void SkillHPPlus()   // スキル10
     {
         HMng.MaxHP = 20;
         HMng.HP = HMng.MaxHP;
+    }
+    public void SkillBrinkMovePlus()    // スキル11
+    {
+        brinkMove = SkillBrinkMove;
+    }
+    public void SkillJustGuardPlus()    // スキル12
+    {
+        justGuardTime = SkillJustGuard;
+    }
+    public void SkillSpeedUpHpMax()     // スキル13
+    {
+        if(HMng.HP == HMng.MaxHP)
+        {
+            maxSpeed = SkillMaxSpeed;
+        }
+        else
+        {
+            maxSpeed = 12;
+        }
     }
 }

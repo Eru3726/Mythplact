@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class SkillUIDirector : MonoBehaviour
 {
+
+
     [SerializeField] GameObject SkillSlots;
     [SerializeField] GameObject ActiveSkill;
     [SerializeField] GameObject PassiveSkill;
+    [SerializeField] Scrollbar ActiveSkillScroll;
+    [SerializeField] Scrollbar PassiveSkillScroll;
     [SerializeField] Button slotFirstSelect;
     [SerializeField] Button activeFirstSelect;
     [SerializeField] Button passiveFirstSelect;
@@ -46,6 +50,8 @@ public class SkillUIDirector : MonoBehaviour
         {
             if(conconect.ConConnect == true)
             {
+                float rsv = Input.GetAxis("R_stick_V");        //右スティック縦
+
                 if (Input.GetKeyDown(KeyCode.Joystick1Button1))
                 {
                     SkillSlots.SetActive(true);
@@ -59,9 +65,36 @@ public class SkillUIDirector : MonoBehaviour
                     setSlot3 = false;
                     setSlot4 = false;
                 }
+                if(ActiveSkill.activeSelf == true)
+                {
+                    if (rsv > 0)
+                    {
+                        ActiveSkillScroll.value += 0.1f;
+                    }
+                    else if (rsv < 0)
+                    {
+                        ActiveSkillScroll.value -= 0.1f;
+
+                    }
+
+                }
+                else if(PassiveSkill.activeSelf == true)
+                {
+                    if (rsv > 0)
+                    {
+                        PassiveSkillScroll.value += 0.1f;
+                    }
+                    else if (rsv < 0)
+                    {
+                        PassiveSkillScroll.value -= 0.1f;
+
+                    }
+
+                }
             }
             else
             {
+                float mousewheel = Input.GetAxis("Mouse ScrollWheel");
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     SkillSlots.SetActive(true);
@@ -77,6 +110,17 @@ public class SkillUIDirector : MonoBehaviour
                     setSlot4 = false;
 
                 }
+                if (ActiveSkill.activeSelf == true)
+                {
+                    ActiveSkillScroll.value += mousewheel;
+
+                }
+                else if (PassiveSkill.activeSelf == true)
+                {
+                    PassiveSkillScroll.value += mousewheel;
+
+                }
+
 
             }
         }

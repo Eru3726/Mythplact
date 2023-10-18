@@ -17,6 +17,12 @@ public class SkillPieceData : MonoBehaviour
     [SerializeField] GameObject Skill12;
     [SerializeField] GameObject Skill13;
     [SerializeField] GameObject Skill14;
+    [SerializeField] GameObject Skill15;
+    [SerializeField] GameObject Skill16;
+    [SerializeField] GameObject Skill17;
+    [SerializeField] GameObject Skill18;
+    [SerializeField] GameObject Skill19;
+
 
 
     [SerializeField] Button Skill1_Button;
@@ -33,6 +39,11 @@ public class SkillPieceData : MonoBehaviour
     [SerializeField] Button Skill12_Button;
     [SerializeField] Button Skill13_Button;
     [SerializeField] Button Skill14_Button;
+    [SerializeField] Button Skill15_Button;
+    [SerializeField] Button Skill16_Button;
+    [SerializeField] Button Skill17_Button;
+    [SerializeField] Button Skill18_Button;
+    [SerializeField] Button Skill19_Button;
 
 
 
@@ -51,7 +62,11 @@ public class SkillPieceData : MonoBehaviour
     public static GameObject skillPiece12;
     public static GameObject skillPiece13;
     public static GameObject skillPiece14;
-
+    public static GameObject skillPiece15;
+    public static GameObject skillPiece16;
+    public static GameObject skillPiece17;
+    public static GameObject skillPiece18;
+    public static GameObject skillPiece19;
 
 
     private void Update()
@@ -103,6 +118,33 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        if (skillPiece11 != null)
+        {
+            GameData.skillPiece11Pos = skillPiece11.transform.position;
+            GameData.skillPiece11Deg = skillPiece11.transform.rotation;
+            GameData.saveSkill11 = true;
+
+
+        }
+        if (skillPiece12 != null)
+        {
+            GameData.skillPiece12Pos = skillPiece12.transform.position;
+            GameData.skillPiece12Deg = skillPiece12.transform.rotation;
+            GameData.saveSkill12 = true;
+
+
+        }
+        if (skillPiece13 != null)
+        {
+            GameData.skillPiece13Pos = skillPiece13.transform.position;
+            GameData.skillPiece13Deg = skillPiece13.transform.rotation;
+            GameData.saveSkill13 = true;
+
+
+        }
+
+
+
 
 
 
@@ -253,7 +295,98 @@ public class SkillPieceData : MonoBehaviour
 
         }
 
+        if (skillPiece11 != null)
+        {
+            if (GameData.saveSkill11)
+            {
+                skillPiece11.transform.position = GameData.skillPiece11Pos;
+                skillPiece11.transform.rotation = GameData.skillPiece11Deg;
 
+            }
+            else
+            {
+                Destroy(skillPiece11);
+                GameData.setSkill11 = false;
+                Skill11_Button.interactable = true;
+
+            }
+        }
+        else if (GameData.saveSkill11)
+        {
+            Instantiate(Skill11);
+            skillPiece11 = GameObject.Find("SkillPiece11(Clone)");
+            skillPiece11.transform.position = GameData.skillPiece11Pos;
+            skillPiece11.transform.rotation = GameData.skillPiece11Deg;
+
+            GameData.setSkill11 = true;
+            Skill11_Button.interactable = false;
+
+
+            GameData.saveSkill11 = false;
+
+        }
+
+        if (skillPiece12 != null)
+        {
+            if (GameData.saveSkill12)
+            {
+                skillPiece12.transform.position = GameData.skillPiece12Pos;
+                skillPiece12.transform.rotation = GameData.skillPiece12Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece12);
+                GameData.setSkill12 = false;
+                Skill12_Button.interactable = true;
+
+            }
+        }
+        else if (GameData.saveSkill12)
+        {
+            Instantiate(Skill12);
+            skillPiece12 = GameObject.Find("SkillPiece12(Clone)");
+            skillPiece12.transform.position = GameData.skillPiece12Pos;
+            skillPiece12.transform.rotation = GameData.skillPiece12Deg;
+
+            GameData.setSkill12 = true;
+            Skill12_Button.interactable = false;
+
+
+            GameData.saveSkill12 = false;
+
+        }
+
+        if (skillPiece13 != null)
+        {
+            if (GameData.saveSkill12)
+            {
+                skillPiece13.transform.position = GameData.skillPiece13Pos;
+                skillPiece13.transform.rotation = GameData.skillPiece13Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece13);
+                GameData.setSkill13 = false;
+                Skill13_Button.interactable = true;
+
+            }
+        }
+        else if (GameData.saveSkill13)
+        {
+            Instantiate(Skill13);
+            skillPiece13 = GameObject.Find("SkillPiece13(Clone)");
+            skillPiece13.transform.position = GameData.skillPiece13Pos;
+            skillPiece13.transform.rotation = GameData.skillPiece13Deg;
+
+            GameData.setSkill13 = true;
+            Skill13_Button.interactable = false;
+
+
+            GameData.saveSkill13 = false;
+
+        }
 
     }
 

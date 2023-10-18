@@ -18,6 +18,12 @@ public class SkillPieceDisplay : MonoBehaviour
     public GameObject skillpiece12;
     public GameObject skillpiece13;
     public GameObject skillpiece14;
+    public GameObject skillpiece15;
+    public GameObject skillpiece16;
+    public GameObject skillpiece17;
+    public GameObject skillpiece18;
+    public GameObject skillpiece19;
+
 
     void AllInvalidate()
     {
@@ -31,10 +37,16 @@ public class SkillPieceDisplay : MonoBehaviour
         //skillpiece8.SetActive(false);
         //skillpiece9.SetActive(false);
         skillpiece10.SetActive(false);
-        //skillpiece11.SetActive(false);
-        //skillpiece12.SetActive(false);
-        //skillpiece13.SetActive(false);
+        skillpiece11.SetActive(false);
+        skillpiece12.SetActive(false);
+        skillpiece13.SetActive(false);
         //skillpiece14.SetActive(false);
+        //skillpiece15.SetActive(false);
+        //skillpiece16.SetActive(false);
+        //skillpiece17.SetActive(false);
+        //skillpiece18.SetActive(false);
+        //skillpiece19.SetActive(false);
+
 
     }
 
@@ -108,6 +120,31 @@ public class SkillPieceDisplay : MonoBehaviour
     {
         AllInvalidate();
         skillpiece14.SetActive(true);
+    }
+    public void Skill15Select()
+    {
+        AllInvalidate();
+        skillpiece15.SetActive(true);
+    }
+    public void Skill16Select()
+    {
+        AllInvalidate();
+        skillpiece16.SetActive(true);
+    }
+    public void Skill17Select()
+    {
+        AllInvalidate();
+        skillpiece17.SetActive(true);
+    }
+    public void Skill18Select()
+    {
+        AllInvalidate();
+        skillpiece18.SetActive(true);
+    }
+    public void Skill19Select()
+    {
+        AllInvalidate();
+        skillpiece19.SetActive(true);
     }
 
 }

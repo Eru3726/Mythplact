@@ -18,6 +18,11 @@ public class SkillText : MonoBehaviour
     public GameObject skilltext12;
     public GameObject skilltext13;
     public GameObject skilltext14;
+    public GameObject skilltext15;
+    public GameObject skilltext16;
+    public GameObject skilltext17;
+    public GameObject skilltext18;
+    public GameObject skilltext19;
 
 
     void AllInvalidate()
@@ -32,10 +37,15 @@ public class SkillText : MonoBehaviour
         //skilltext8.SetActive(false);
         //skilltext9.SetActive(false);
         skilltext10.SetActive(false);
-        //skilltext11.SetActive(false);
-        //skilltext12.SetActive(false);
-        //skilltext13.SetActive(false);
+        skilltext11.SetActive(false);
+        skilltext12.SetActive(false);
+        skilltext13.SetActive(false);
         //skilltext14.SetActive(false);
+        //skilltext15.SetActive(false);
+        //skilltext16.SetActive(false);
+        //skilltext17.SetActive(false);
+        //skilltext18.SetActive(false);
+        //skilltext19.SetActive(false);
 
     }
     public void Skill1Text()
@@ -109,6 +119,31 @@ public class SkillText : MonoBehaviour
     {
         AllInvalidate();
         skilltext14.SetActive(true);
+    }
+    public void Skill15Text()
+    {
+        AllInvalidate();
+        skilltext15.SetActive(true);
+    }
+    public void Skill16Text()
+    {
+        AllInvalidate();
+        skilltext16.SetActive(true);
+    }
+    public void Skill17Text()
+    {
+        AllInvalidate();
+        skilltext17.SetActive(true);
+    }
+    public void Skill18Text()
+    {
+        AllInvalidate();
+        skilltext18.SetActive(true);
+    }
+    public void Skill19Text()
+    {
+        AllInvalidate();
+        skilltext19.SetActive(true);
     }
 
 

@@ -14840,9 +14840,9 @@ MonoBehaviour:
   brinkCoolTimeSec: 1
   skillCoolTimeSec: 5
   guardTime: 2
-  justGuardTime: 1
+  justGuardTime: 0.1
   guardCoolTime: 2
-  knockbuckTime: 0.2
+  knockbuckTime: 0.5
   brinkSE: {fileID: 8300000, guid: 12a25d0334bcefa4cb431a8efa8a3a30, type: 3}
   jumpSE: {fileID: 8300000, guid: 9cd1d3bd52787644b8227986b92a0479, type: 3}
   landingSE: {fileID: 8300000, guid: 90cd170494e25eb43b36dba19d90e849, type: 3}
@@ -14865,8 +14865,10 @@ MonoBehaviour:
   EffectJustGuard: {fileID: 8922014011833620538}
   EffectDeath: {fileID: 3611334992012454624}
   EffectHeal: {fileID: 1222042325814170449}
-  CheckSkillSlash: {fileID: 4443736792557326085, guid: 16bc0a2f790beb24485a1238b87c19b4, type: 3}
   SkillSlashCT: 5
+  SkillBrinkMove: 10
+  SkillJustGuard: 0.3
+  SkillMaxSpeed: 20
   slash: {fileID: 8438359422445198577, guid: a7264e29880c3e24997be8bf537b70c3, type: 3}
 --- !u!114 &8922014012187984017
 MonoBehaviour:
