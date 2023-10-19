@@ -27,11 +27,11 @@ public class ResultDirector : MonoBehaviour
         }
         if (GameData.FafnirDead)
         {
-            BackText.text = "ƒL[‚ğ‰Ÿ‚µ‚Äƒ^ƒCƒgƒ‹‚É–ß‚é";
+            BackText.text = "ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹";
         }
         else if (GameData.ShoggothDead)
         {
-            BackText.text = "ƒL[‚ğ‰Ÿ‚µ‚Ä‘Ò‹@Š‚É–ß‚é";
+            BackText.text = "ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦å¾…æ©Ÿæ‰€ã«æˆ»ã‚‹";
 
         }
 
