@@ -1,23 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class resetkey : MonoBehaviour
 {
     public Controllerconnect conconnect;
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public void rightreset()
     {
-        if (!conconnect.ConConnect)      //�R���g���[���[��ڑ���
+        if (!conconnect.ConConnect)      //コントローラー非接続時
         {
             //if (GameData.leftkey != KeyCode.D && 
             //    GameData.downkey != KeyCode.D && 
@@ -31,7 +20,7 @@ public class resetkey : MonoBehaviour
                 //GameData.righttx = "D";
             //}
 
-            //���Z�b�g����L�[�Ɠ������̂�����Γ���ւ���
+            //リセットするキーと同じものがあれば入れ替える
             if (GameData.leftkey == KeyCode.D )
             {
                 GameData.leftkey = GameData.rightkey;
@@ -69,7 +58,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.rightkey = KeyCode.D;
             GameData.righttx = "D";
@@ -124,7 +113,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.rightkey = KeyCode.None;
             GameData.righttx = "None";
@@ -182,7 +171,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.leftkey = KeyCode.A;
             GameData.lefttx = "A";
@@ -237,7 +226,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.leftkey = KeyCode.None;
             GameData.lefttx = "None";
@@ -295,7 +284,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.downkey = KeyCode.S;
             GameData.downtx = "S";
@@ -350,7 +339,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.downkey = KeyCode.JoystickButton5;
             GameData.downtx = "R1";
@@ -408,7 +397,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.jumpkey = KeyCode.Space;
             GameData.jumptx = "Space";
@@ -463,7 +452,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.jumpkey = KeyCode.JoystickButton0;
             GameData.jumptx = "a";
@@ -521,7 +510,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.attackkey = KeyCode.Mouse0;
             GameData.attacktx = "Mouse0";
@@ -576,7 +565,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.attackkey = KeyCode.JoystickButton1;
             GameData.attacktx = "b";
@@ -634,7 +623,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.dashkey = KeyCode.LeftShift;
             GameData.dashtx = "LShift";
@@ -689,7 +678,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.dashkey = KeyCode.JoystickButton4;
             GameData.dashtx = "L1";
@@ -748,7 +737,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.healkey = KeyCode.H;
             GameData.healtx = "H";
@@ -803,7 +792,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.healkey = KeyCode.JoystickButton3;
             GameData.healtx = "y";
@@ -861,7 +850,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.interactkey = KeyCode.E;
             GameData.interacttx = "E";
@@ -916,7 +905,7 @@ public class resetkey : MonoBehaviour
             }
             else
             {
-                Debug.Log("�Ȃ񂩃_��");
+                Debug.Log("なんかダメ");
             }
             GameData.interactkey = KeyCode.JoystickButton2;
             GameData.interacttx = "x";

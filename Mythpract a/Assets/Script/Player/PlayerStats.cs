@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 partial class Player
@@ -10,7 +8,7 @@ partial class Player
 
 
 
-    public void InitHP()   // ゲーム開始時にHPをリセット
+    public void InitHP()   // 繧ｲ繝ｼ繝髢句ｧ区凾縺ｫHP繧偵Μ繧ｻ繝�繝�
     {
         MaxHp = 10;
         GameData.playerNowHp = MaxHp;

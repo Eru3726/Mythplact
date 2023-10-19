@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +12,7 @@ public class UIDirector : MonoBehaviour
         GameData.ClearTime = 0;
         GameData.SkillCount = 0;
         GameData.HitCount = 0;
-        Debug.Log("ƒ^ƒCƒ€ƒŠƒZƒbƒg");
+        Debug.Log("ã‚¿ã‚¤ãƒ ãƒªã‚»ãƒƒãƒˆ");
         time = 0;
         player = GameObject.Find("Player").GetComponent<Player>();
     }
@@ -27,7 +25,7 @@ public class UIDirector : MonoBehaviour
             time += Time.deltaTime;
 
         }
-        GameTime.text = time.ToString("F1") + "•b";
+        GameTime.text = time.ToString("F1") + "ç§’";
         GameData.ClearTime = time;
     }
 }

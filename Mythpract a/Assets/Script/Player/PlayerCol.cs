@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 partial class Player
@@ -22,7 +20,7 @@ partial class Player
     Vector3 GetCenterPos()
     {
         Vector3 pos = transform.position;
-        // ƒ{ƒbƒNƒXƒRƒ‰ƒCƒ_[‚ÌƒIƒtƒZƒbƒg‚©‚ç’†S‚ğŒvZ
+        // ãƒœãƒƒã‚¯ã‚¹ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‹ã‚‰ä¸­å¿ƒã‚’è¨ˆç®—
         pos.y += col.offset.y;
 
         return pos;
@@ -31,38 +29,38 @@ partial class Player
     Vector3 GetFootPos()
     {
         Vector3 pos = GetCenterPos();
-        // ƒ{ƒbƒNƒXƒRƒ‰ƒCƒ_[‚ÌƒTƒCƒY‚©‚ç‘«Œ³‚ğŒvZ
+        // ãƒœãƒƒã‚¯ã‚¹ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã®ã‚µã‚¤ã‚ºã‹ã‚‰è¶³å…ƒã‚’è¨ˆç®—
         pos.y += -col.size.y / 2;
         return pos;
     }
 
-    // ’n–Ê‚Éİ’u‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+    // åœ°é¢ã«è¨­ç½®ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
     void CheckGround()
     {
-        isGround = false;   // ˆê’U‹ó’†”»’è‚É‚µ‚Ä‚¨‚­
+        isGround = false;   // ä¸€æ—¦ç©ºä¸­åˆ¤å®šã«ã—ã¦ãŠã
 
-        Vector3 foot = GetFootPos();            // n“_
-        Vector3 len = Vector3.up * -0.2f;         // ’·‚³
-        float width = col.size.x / 2;           // “–‚½‚è”»’è‚Ì•
+        Vector3 foot = GetFootPos();            // å§‹ç‚¹
+        Vector3 len = Vector3.up * -0.2f;         // é•·ã•
+        float width = col.size.x / 2;           // å½“ãŸã‚Šåˆ¤å®šã®å¹…
 
-        // ¶’[A’†‰›AA‰E’[‚Ì‡‚Éƒ`ƒFƒbƒN‚µ‚Ä‚¢‚­
+        // å·¦ç«¯ã€ä¸­å¤®ã€ã€å³ç«¯ã®é †ã«ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã
         foot.x += -width;
         for (int no = 0; no < 3; ++no)
         {
-            RaycastHit2D resultGround;    // “–‚½‚è”»’è‚ÌŒ‹‰Ê—p‚Ì•Ï”
-            // ƒŒƒC‚ğ”ò‚Î‚µ‚ÄAw’è‚µ‚½ƒŒƒCƒ„[‚É‚Ô‚Â‚©‚é‚©ƒ`ƒFƒbƒN
+            RaycastHit2D resultGround;    // å½“ãŸã‚Šåˆ¤å®šã®çµæœç”¨ã®å¤‰æ•°
+            // ãƒ¬ã‚¤ã‚’é£›ã°ã—ã¦ã€æŒ‡å®šã—ãŸãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¶ã¤ã‹ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
             resultGround = Physics2D.Linecast(foot, foot + len, layerMask_Ground);
 
-            // ƒfƒoƒbƒO•\¦
+            // ãƒ‡ãƒãƒƒã‚°è¡¨ç¤º
             Debug.DrawLine(foot, foot + len);
 
-            foot.x += width;                // xÀ•W‚ğ‚¸‚ç‚·
-            // ƒRƒ‰ƒCƒ_[‚ÆÚG‚µ‚½‚©ƒ`ƒFƒbƒN
+            foot.x += width;                // xåº§æ¨™ã‚’ãšã‚‰ã™
+            // ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã¨æ¥è§¦ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
             if (resultGround.collider)
             {
-                isGround = true;            // ’n–Ê‚ÆÚG‚µ‚½
-                                            //Debug.Log("’n–Ê‚ÆÚG");
-                return;                     // I—¹
+                isGround = true;            // åœ°é¢ã¨æ¥è§¦ã—ãŸ
+                                            //Debug.Log("åœ°é¢ã¨æ¥è§¦");
+                return;                     // çµ‚äº†
             }
 
         }
@@ -79,22 +77,22 @@ partial class Player
     public bool CheckRightHit()
     {
         Vector3 right = GetRightPos();
-        Vector3 len = Vector3.right * 0.05f;         // ’·‚³
-        float width = col.size.y / 2;           // “–‚½‚è”»’è‚Ì•
+        Vector3 len = Vector3.right * 0.05f;         // é•·ã•
+        float width = col.size.y / 2;           // å½“ãŸã‚Šåˆ¤å®šã®å¹…
 
         right.y -= width;
 
         for (int no = 0; no < 3; ++no)
         {
-            RaycastHit2D resultGround;    // “–‚½‚è”»’è‚ÌŒ‹‰Ê—p‚Ì•Ï”
-            // ƒŒƒC‚ğ”ò‚Î‚µ‚ÄAw’è‚µ‚½ƒŒƒCƒ„[‚É‚Ô‚Â‚©‚é‚©ƒ`ƒFƒbƒN
+            RaycastHit2D resultGround;    // å½“ãŸã‚Šåˆ¤å®šã®çµæœç”¨ã®å¤‰æ•°
+            // ãƒ¬ã‚¤ã‚’é£›ã°ã—ã¦ã€æŒ‡å®šã—ãŸãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¶ã¤ã‹ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
             resultGround = Physics2D.Linecast(right, right + len, layerMask_Hit);
 
-            // ƒfƒoƒbƒO•\¦
+            // ãƒ‡ãƒãƒƒã‚°è¡¨ç¤º
             Debug.DrawLine(right, right + len);
 
-            right.y += width;                // yÀ•W‚ğ‚¸‚ç‚·
-            // ƒRƒ‰ƒCƒ_[‚ÆÚG‚µ‚½‚©ƒ`ƒFƒbƒN
+            right.y += width;                // yåº§æ¨™ã‚’ãšã‚‰ã™
+            // ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã¨æ¥è§¦ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
             if (resultGround.collider)
             {
                 return true;
@@ -113,22 +111,22 @@ partial class Player
     public bool CheckLeftHit()
     {
         Vector3 left = GetLeftPos();
-        Vector3 len = Vector3.left * 0.05f;         // ’·‚³
-        float width = col.size.y / 2;           // “–‚½‚è”»’è‚Ì•
+        Vector3 len = Vector3.left * 0.05f;         // é•·ã•
+        float width = col.size.y / 2;           // å½“ãŸã‚Šåˆ¤å®šã®å¹…
 
         left.y -= width;
 
         for (int no = 0; no < 3; ++no)
         {
-            RaycastHit2D resultGround;    // “–‚½‚è”»’è‚ÌŒ‹‰Ê—p‚Ì•Ï”
-            // ƒŒƒC‚ğ”ò‚Î‚µ‚ÄAw’è‚µ‚½ƒŒƒCƒ„[‚É‚Ô‚Â‚©‚é‚©ƒ`ƒFƒbƒN
+            RaycastHit2D resultGround;    // å½“ãŸã‚Šåˆ¤å®šã®çµæœç”¨ã®å¤‰æ•°
+            // ãƒ¬ã‚¤ã‚’é£›ã°ã—ã¦ã€æŒ‡å®šã—ãŸãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¶ã¤ã‹ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
             resultGround = Physics2D.Linecast(left, left + len, layerMask_Hit);
 
-            // ƒfƒoƒbƒO•\¦
+            // ãƒ‡ãƒãƒƒã‚°è¡¨ç¤º
             Debug.DrawLine(left, left + len);
 
-            left.y += width;                // yÀ•W‚ğ‚¸‚ç‚·
-            // ƒRƒ‰ƒCƒ_[‚ÆÚG‚µ‚½‚©ƒ`ƒFƒbƒN
+            left.y += width;                // yåº§æ¨™ã‚’ãšã‚‰ã™
+            // ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã¨æ¥è§¦ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
             if (resultGround.collider)
             {
                 return true;
@@ -141,7 +139,7 @@ partial class Player
 
     public void AtkNormalHit()
     {
-        Debug.Log("UŒ‚‚ªÚG");
+        Debug.Log("æ”»æ’ƒãŒæ¥è§¦");
     }
 
 }

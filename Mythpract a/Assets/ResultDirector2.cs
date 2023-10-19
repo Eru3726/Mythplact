@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -14,9 +12,9 @@ public class ResultDirector2 : MonoBehaviour
     void Start()
     {
         dataManager.Read();
-        ClearTimeText.text = GameData.ClearTime.ToString("F1") + "•b";
-        HitCountText.text = GameData.HitCount + "‰ñ";
-        SkillCountText.text = GameData.SkillCount + "‰ñ";
+        ClearTimeText.text = GameData.ClearTime.ToString("F1") + "ç§’";
+        HitCountText.text = GameData.HitCount + "å›ž";
+        SkillCountText.text = GameData.SkillCount + "å›ž";
     }
 
     // Update is called once per frame

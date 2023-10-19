@@ -6,15 +6,15 @@ public class Pickkey : MonoBehaviour
     public Controllerconnect controllerconnect;
     public Keyconfig keycon;
 
-    public GameObject rk;             //ƒ‰ƒCƒgƒL[
-    public GameObject lk;             //ƒŒƒtƒgƒL[
-    public GameObject dwk;            //ƒ_ƒEƒ“ƒL[
-    public GameObject ak;             //ƒAƒ^ƒbƒNƒL[
-    public GameObject jk;             //ƒWƒƒƒ“ƒvƒL[
-    public GameObject dk;             //ƒ_ƒbƒVƒ…ƒL[
-    public GameObject hk;             //ƒq[ƒ‹ƒL[
-    public GameObject ik;             //ƒCƒ“ƒ^ƒ‰ƒNƒgƒL[
-    public GameObject rkr;            //r•t‚«‚Í‚»‚ÌƒL[‚ÌƒŠƒZƒbƒgƒL[
+    public GameObject rk;             //ãƒ©ã‚¤ãƒˆã‚­ãƒ¼
+    public GameObject lk;             //ãƒ¬ãƒ•ãƒˆã‚­ãƒ¼
+    public GameObject dwk;            //ãƒ€ã‚¦ãƒ³ã‚­ãƒ¼
+    public GameObject ak;             //ã‚¢ã‚¿ãƒƒã‚¯ã‚­ãƒ¼
+    public GameObject jk;             //ã‚¸ãƒ£ãƒ³ãƒ—ã‚­ãƒ¼
+    public GameObject dk;             //ãƒ€ãƒƒã‚·ãƒ¥ã‚­ãƒ¼
+    public GameObject hk;             //ãƒ’ãƒ¼ãƒ«ã‚­ãƒ¼
+    public GameObject ik;             //ã‚¤ãƒ³ã‚¿ãƒ©ã‚¯ãƒˆã‚­ãƒ¼
+    public GameObject rkr;            //rä»˜ãã¯ãã®ã‚­ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆã‚­ãƒ¼
     public GameObject lkr;            //
     public GameObject dwkr;           //
     public GameObject akr;            //
@@ -22,31 +22,31 @@ public class Pickkey : MonoBehaviour
     public GameObject dkr;            //
     public GameObject hkr;            //
     public GameObject ikr;            // 
-    public GameObject save;           //ƒZ[ƒuƒL[
-    public GameObject escape;           //ƒGƒXƒP[ƒvƒL[
-    public GameObject skill;           //ƒXƒLƒ‹ƒL[
-    //public GameObject load;           //ƒ[ƒhƒL[
-    //public GameObject allr;           //ƒI[ƒ‹ƒŠƒZƒbƒgƒL[
+    public GameObject save;           //ã‚»ãƒ¼ãƒ–ã‚­ãƒ¼
+    public GameObject escape;           //ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã‚­ãƒ¼
+    public GameObject skill;           //ã‚¹ã‚­ãƒ«ã‚­ãƒ¼
+    //public GameObject load;           //ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ¼
+    //public GameObject allr;           //ã‚ªãƒ¼ãƒ«ãƒªã‚»ãƒƒãƒˆã‚­ãƒ¼
 
-    private float buttonnumv = 1;     //ƒ{ƒ^ƒ“‚Ìc‚É“®‚­‚½‚ß‚Ì‚â‚Â
-    private float buttonnumh = 1;     //ƒ{ƒ^ƒ“‚Ì‰¡‚É“®‚­‚½‚ß‚Ì‚â‚Â
+    private float buttonnumv = 1;     //ãƒœã‚¿ãƒ³ã®ç¸¦ã«å‹•ããŸã‚ã®ã‚„ã¤
+    private float buttonnumh = 1;     //ãƒœã‚¿ãƒ³ã®æ¨ªã«å‹•ããŸã‚ã®ã‚„ã¤
 
-    private GameObject Button;        //‰½‚Ìƒ{ƒ^ƒ“‚É‚¢‚é‚©”»•Ê‚·‚é‚½‚ß‚Ì‚â‚Â
+    private GameObject Button;        //ä½•ã®ãƒœã‚¿ãƒ³ã«ã„ã‚‹ã‹åˆ¤åˆ¥ã™ã‚‹ãŸã‚ã®ã‚„ã¤
 
-    //¶ƒXƒeƒBƒbƒN‚ğ‚Ç‚±‚É“|‚µ‚Ä‚¢‚é‚©‚ğ”»•Ê‚·‚é‚â‚Â
-    private bool lsvup = true;        //ã
-    private bool lsvdown = true;@@@//‰º
-    private bool lshup = true;        //‰E
-    private bool lshdown = true;      //¶
-    //\šƒL[‚ğ‚Ç‚±‚É“|‚µ‚Ä‚¢‚é‚©‚ğ”»•Ê‚·‚é‚â‚Â
-    private bool dpvup = true;        //ã
-    private bool dpvdown = true;      //‰º
-    private bool dphup = true;        //¶
-    private bool dphdown = true;      //‰E
+    //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’ã©ã“ã«å€’ã—ã¦ã„ã‚‹ã‹ã‚’åˆ¤åˆ¥ã™ã‚‹ã‚„ã¤
+    private bool lsvup = true;        //ä¸Š
+    private bool lsvdown = true;ã€€ã€€ã€€//ä¸‹
+    private bool lshup = true;        //å³
+    private bool lshdown = true;      //å·¦
+    //åå­—ã‚­ãƒ¼ã‚’ã©ã“ã«å€’ã—ã¦ã„ã‚‹ã‹ã‚’åˆ¤åˆ¥ã™ã‚‹ã‚„ã¤
+    private bool dpvup = true;        //ä¸Š
+    private bool dpvdown = true;      //ä¸‹
+    private bool dphup = true;        //å·¦
+    private bool dphdown = true;      //å³
 
-    private bool connect = false;      //ƒRƒ“ƒgƒ[ƒ‰[Ú‘±‚µ‚½‚Æ‚«‚Ìƒƒ\ƒbƒh‚ª‰½“x‚àÀs‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é‚à‚Ì
+    private bool connect = false;      //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶šã—ãŸã¨ãã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒä½•åº¦ã‚‚å®Ÿè¡Œã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹ã‚‚ã®
 
-    private float deadzone = 0.5f;     //ƒXƒeƒBƒbƒN‚ğ‚Ç‚ê‚¾‚¯“|‚µ‚½‚ç”½‰‚·‚é‚©‚Ì’l
+    private float deadzone = 0.5f;     //ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’ã©ã‚Œã ã‘å€’ã—ãŸã‚‰åå¿œã™ã‚‹ã‹ã®å€¤
 
     private bool Cnotcon = false;
     void Start()
@@ -57,23 +57,23 @@ public class Pickkey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ƒRƒ“ƒgƒ[ƒ‰[Ú‘±
+        //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶š
         if (controllerconnect.ConConnect && !connect) 
         {
             buttonnumh = 2;
             buttonnumv = 1;
             Button = rk;
             Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.highlightedSprite;
-            //Buttonselect();    //c‚Æ‰¡‚Ìƒ{ƒ^ƒ“‚Ì•Ï”‚Ì’l‚É‚æ‚Á‚Äƒ{ƒ^ƒ“‚ÌˆÊ’u‚ğ“®‚©‚· 
+            //Buttonselect();    //ç¸¦ã¨æ¨ªã®ãƒœã‚¿ãƒ³ã®å¤‰æ•°ã®å€¤ã«ã‚ˆã£ã¦ãƒœã‚¿ãƒ³ã®ä½ç½®ã‚’å‹•ã‹ã™ 
             connect = true;
-            Debug.Log("ƒRƒ“ƒgƒ[ƒ‰[Ú‘±");
+            Debug.Log("ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶š");
         }
-        //ƒRƒ“ƒgƒ[ƒ‰[”ñÚ‘±
+        //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼éæ¥ç¶š
         else if (!controllerconnect.ConConnect&&connect)
         {
             Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.disabledSprite;
             connect = false;
-            Debug.Log("ƒRƒ“ƒgƒ[ƒ‰[Ø’f");
+            Debug.Log("ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼åˆ‡æ–­");
         }
         //////////////////////////////////
         /////////////////////////////////
@@ -83,9 +83,9 @@ public class Pickkey : MonoBehaviour
         //if (keycon.right == false && keycon.left == false && keycon.down == false && keycon.jump == false && keycon.dash == false && keycon.attack == false && keycon.heal == false && keycon.interact == false)
         
         
-        if (keycon.condec == false)         //ƒRƒ“ƒgƒ[ƒ‰[‚ÌŒˆ’èƒ{ƒ^ƒ“‚àƒL[ƒRƒ“‚Åİ’è‚Å‚«‚é‚æ‚¤‚É‚·‚é‚½‚ß‚Ì‚à‚Ì
+        if (keycon.condec == false)         //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®æ±ºå®šãƒœã‚¿ãƒ³ã‚‚ã‚­ãƒ¼ã‚³ãƒ³ã§è¨­å®šã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚‚ã®
         {
-            ConClick();                   //ƒRƒ“ƒgƒ[ƒ‰[‚Åƒ{ƒ^ƒ“‚ğƒNƒŠƒbƒN‚³‚¹‚é‚½‚ß‚Ì‚à‚Ì
+            ConClick();                   //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã§ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã•ã›ã‚‹ãŸã‚ã®ã‚‚ã®
         }
         else
         {
@@ -101,16 +101,16 @@ public class Pickkey : MonoBehaviour
         //        }
         //    }
         //}
-        //ƒRƒ“ƒgƒ[ƒ‰[Ú‘±‚ÌƒXƒeƒBƒbƒN“ü—Í‚ğ”»•Ê
+        //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶šæ™‚ã®ã‚¹ãƒ†ã‚£ãƒƒã‚¯å…¥åŠ›ã‚’åˆ¤åˆ¥
         if (controllerconnect.ConConnect)
         {
-            //ƒJ[ƒ\ƒ‹‚ğŒ©‚¦‚È‚­‚·‚é
+            //ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¦‹ãˆãªãã™ã‚‹
             Cursor.visible = false;
-            //ƒJ[ƒ\ƒ‹‚ğ‰æ–Ê’†‰›‚ÉƒƒbƒN
+            //ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç”»é¢ä¸­å¤®ã«ãƒ­ãƒƒã‚¯
             Cursor.lockState = CursorLockMode.Locked;
-            //InputManager‚ÅV‚½‚Éİ’è‚µ‚½Axis‚Ì•Ï”‚ğæ“¾
-            float lsh = Input.GetAxis("L_stick_H");@@@@//¶ƒXƒeƒBƒbƒN‰¡
-            float lsv = Input.GetAxis("L_stick_V");        //¶ƒXƒeƒBƒbƒNc
+            //InputManagerã§æ–°ãŸã«è¨­å®šã—ãŸAxisã®å¤‰æ•°ã‚’å–å¾—
+            float lsh = Input.GetAxis("L_stick_H");ã€€ã€€ã€€ã€€//å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯æ¨ª
+            float lsv = Input.GetAxis("L_stick_V");        //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ç¸¦
             //if (Button != beforeb)
             //{
             //    if (Input.GetKeyDown(KeyCode.JoystickButton1))
@@ -119,12 +119,12 @@ public class Pickkey : MonoBehaviour
             //        beforeb = Button;
             //    }
             //}
-            if (lsv >= deadzone)     //¶ƒXƒeƒBƒbƒN‚Ì“|‚µ‚±‚İ‚ªƒfƒbƒhƒ][ƒ“‚ğ’´‚¦‚½‚ç
+            if (lsv >= deadzone)     //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®å€’ã—ã“ã¿ãŒãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’è¶…ãˆãŸã‚‰
             {
-                if (lsvup == true)@ //ƒXƒeƒBƒbƒN‚ğˆê‰ñ“|‚µ‚½‚çˆêŒÂ‚µ‚©“®‚©‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì‚à‚Ì
+                if (lsvup == true)ã€€ //ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’ä¸€å›å€’ã—ãŸã‚‰ä¸€å€‹ã—ã‹å‹•ã‹ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚‚ã®
                 {
-                    Debug.Log("ã");
-                    //ƒ{ƒ^ƒ“‚ÌˆÊ’u‚É‚æ‚Á‚ÄŸ‚Ç‚Ìƒ{ƒ^ƒ“‚ÉˆÚ“®‚·‚é‚©‚ğŒˆ‚ß‚é‚½‚ß‚Ìif•¶
+                    Debug.Log("ä¸Š");
+                    //ãƒœã‚¿ãƒ³ã®ä½ç½®ã«ã‚ˆã£ã¦æ¬¡ã©ã®ãƒœã‚¿ãƒ³ã«ç§»å‹•ã™ã‚‹ã‹ã‚’æ±ºã‚ã‚‹ãŸã‚ã®ifæ–‡
                     if (buttonnumh == 2 && buttonnumv == 1 || buttonnumh == 3 && buttonnumv == 1)
                     {
                         buttonnumv = 8;
@@ -158,7 +158,7 @@ public class Pickkey : MonoBehaviour
             {
                 if (lsvdown == true)
                 {
-                    Debug.Log("‰º");
+                    Debug.Log("ä¸‹");
                     if (buttonnumh == 2 && buttonnumv == 8 || buttonnumh == 3 && buttonnumv == 8)
                     {
                         buttonnumv = 1;
@@ -192,7 +192,7 @@ public class Pickkey : MonoBehaviour
             {
                 if (lshdown == true)
                 {
-                    Debug.Log("¶");
+                    Debug.Log("å·¦");
                     if (buttonnumh == 1 && buttonnumv == 1)
                     {
                         buttonnumh = 4;
@@ -238,7 +238,7 @@ public class Pickkey : MonoBehaviour
             {
                 if (lshup == true)
                 {
-                    Debug.Log("‰E");
+                    Debug.Log("å³");
                     if (buttonnumh == 1 && buttonnumv == 1)
                     {
                         buttonnumh = 2;
@@ -270,7 +270,7 @@ public class Pickkey : MonoBehaviour
                 }
             }
 
-            //ˆê‰ñ“|‚µ‚½ƒXƒeƒBƒbƒN‚ğ–ß‚·‚Æ‚à‚¤ˆê‰ñ“|‚µ‚ÄˆÚ“®‚³‚¹‚ê‚é‚æ‚¤‚É‚·‚é
+            //ä¸€å›å€’ã—ãŸã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’æˆ»ã™ã¨ã‚‚ã†ä¸€å›å€’ã—ã¦ç§»å‹•ã•ã›ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
             if (lsv <= deadzone)
             {
                 lsvup = true;
@@ -288,13 +288,13 @@ public class Pickkey : MonoBehaviour
                 lshdown = true;
             }
 
-            float dph = Input.GetAxis("D_pad_H");        //\šƒL[‚Ì‰¡‚ğæ“¾
-            float dpv = Input.GetAxis("D_pad_V");        //\šƒL[‚Ìc‚ğæ“¾
+            float dph = Input.GetAxis("D_pad_H");        //åå­—ã‚­ãƒ¼ã®æ¨ªã‚’å–å¾—
+            float dpv = Input.GetAxis("D_pad_V");        //åå­—ã‚­ãƒ¼ã®ç¸¦ã‚’å–å¾—
             if (dpv >= deadzone)
             {
                 if (dpvup == true)
                 {
-                    Debug.Log("ã");
+                    Debug.Log("ä¸Š");
                     if (buttonnumh == 2 && buttonnumv == 1 || buttonnumh == 3 && buttonnumv == 1)
                     {
                         buttonnumv = 8;
@@ -328,7 +328,7 @@ public class Pickkey : MonoBehaviour
             {
                 if (dpvdown == true)
                 {
-                    Debug.Log("‰º");
+                    Debug.Log("ä¸‹");
                     if (buttonnumh == 2 && buttonnumv == 8 || buttonnumh == 3 && buttonnumv == 8)
                     {
                         buttonnumv = 1;
@@ -362,7 +362,7 @@ public class Pickkey : MonoBehaviour
             {
                 if (dphdown == true)
                 {
-                    Debug.Log("¶");
+                    Debug.Log("å·¦");
                     if (buttonnumh == 1 && buttonnumv == 1)
                     {
                         buttonnumh = 4;
@@ -408,7 +408,7 @@ public class Pickkey : MonoBehaviour
             {
                 if (dphup == true)
                 {
-                    Debug.Log("‰E");
+                    Debug.Log("å³");
                     if (buttonnumh == 1 && buttonnumv == 1)
                     {
                         buttonnumh = 2;
@@ -440,7 +440,7 @@ public class Pickkey : MonoBehaviour
                 }
             }
 
-            //ã‚ÌƒXƒeƒBƒbƒN‚Æ“¯‚¶
+            //ä¸Šã®ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã¨åŒã˜
             if (dpv <= deadzone)
             {
                 dpvup = true;
@@ -458,11 +458,11 @@ public class Pickkey : MonoBehaviour
                 dphdown = true;
             }
         }
-        else//ƒRƒ“ƒgƒ[ƒ‰[”ñÚ‘±
+        else//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼éæ¥ç¶š
         {
-            //ƒJ[ƒ\ƒ‹‚ğ•\¦
+            //ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤º
             Cursor.visible = true;
-            //ƒJ[ƒ\ƒ‹‚ÌƒƒbƒN‚ğ‰ğœ
+            //ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤
             Cursor.lockState = CursorLockMode.None;
         }
 
@@ -497,14 +497,14 @@ public class Pickkey : MonoBehaviour
         //LRTbutton();
     }
 
-    //QÆ‚µ‚Ä‚¢‚éƒ{ƒ^ƒ“‚ğ•ÏX‚·‚é‚½‚ß‚Ìƒƒ\ƒbƒh
+    //å‚ç…§ã—ã¦ã„ã‚‹ãƒœã‚¿ãƒ³ã‚’å¤‰æ›´ã™ã‚‹ãŸã‚ã®ãƒ¡ã‚½ãƒƒãƒ‰
     public void Buttonselect()
     {
-        //QÆ‚µ‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é@‚Æ‚è‚ÜF‚Å‘ã—p
+        //å‚ç…§ã—ã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹ã€€ã¨ã‚Šã¾è‰²ã§ä»£ç”¨
         Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.disabledSprite;
-        //Debug.Log("‰¡ " + buttonnumh + "  c " + buttonnumv);
+        //Debug.Log("æ¨ª " + buttonnumh + "  ç¸¦ " + buttonnumv);
 
-        //c‰¡‚Ì•Ï”‚É‚æ‚Á‚Ä‘Î‰‚µ‚½ƒ{ƒ^ƒ“‚ğQÆ‚·‚é
+        //ç¸¦æ¨ªã®å¤‰æ•°ã«ã‚ˆã£ã¦å¯¾å¿œã—ãŸãƒœã‚¿ãƒ³ã‚’å‚ç…§ã™ã‚‹
         if (buttonnumh == 1 && buttonnumv == 1)
         {
             Button = escape;
@@ -586,7 +586,7 @@ public class Pickkey : MonoBehaviour
             Button = escape;
         }
         Debug.Log("Button " + Button);
-        //QÆŠm”F
+        //å‚ç…§ç¢ºèª
         Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.highlightedSprite;
     }
     public void LRTbutton()
@@ -625,15 +625,15 @@ public class Pickkey : MonoBehaviour
         //    }
     }
 
-    //ƒRƒ“ƒgƒ[ƒ‰[‚Åƒ{ƒ^ƒ“‚ÌonClick()ƒƒ\ƒbƒh‚ğg—p‚·‚é‚½‚ß‚Ìƒƒ\ƒbƒh
+    //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã§ãƒœã‚¿ãƒ³ã®onClick()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã®ãƒ¡ã‚½ãƒƒãƒ‰
     public void ConClick()
     {
-        if (Button != rk && Button != lk)        //ƒRƒ“ƒgƒ[ƒ‰[‚Ìê‡ˆÚ“®ƒL[‚Í‚¢‚ç‚È‚¢‚Ì‚ÅÈ‚­
+        if (Button != rk && Button != lk)        //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®å ´åˆç§»å‹•ã‚­ãƒ¼ã¯ã„ã‚‰ãªã„ã®ã§çœã
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton0))
             {
                 {
-                    Button.GetComponent<Button>().onClick.Invoke();    //Invoke()ƒƒ\ƒbƒh‚ÅonClick()ƒƒ\ƒbƒh‚ğg—p
+                    Button.GetComponent<Button>().onClick.Invoke();    //Invoke()ãƒ¡ã‚½ãƒƒãƒ‰ã§onClick()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨
                     Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.pressedSprite;
                     Debug.Log("conclick");
                 }

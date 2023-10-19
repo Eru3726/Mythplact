@@ -6,7 +6,7 @@ namespace SY
     public class HitData : MonoBehaviour
     {
         [SerializeField] HitType type;
-        float power;        //‹ZˆĞ—Í
+        float power;        //æŠ€å¨åŠ›
 
         Player player;
 
@@ -19,22 +19,22 @@ namespace SY
         }
         private void OnTriggerStay2D(Collider2D col)
         {
-            //HitDataŠm”F
+            //HitDataç¢ºèª
             HitData colHitData = col.gameObject.GetComponent<HitData>();
             if (CheckData(colHitData) == false) { return; }
 
-            //eŠm”F
+            //è¦ªç¢ºèª
             HitMng defMng = this.transform.root.gameObject.GetComponent<HitMng>();
             HitMng atkMng = col.transform.root.gameObject.GetComponent<HitMng>();
             if (CheckMng(atkMng, defMng, col.gameObject) == false) { return; }
 
-            //UŒ‚ˆ—
+            //æ”»æ’ƒå‡¦ç†
             Attack(atkMng, defMng, colHitData);
         }
 
         void Attack(HitMng atkMng, HitMng defMng, HitData atkData)
         {
-            //HPŒvZ
+            //HPè¨ˆç®—
             if(defMng.Layer == HitLayer.Player)
             {
                 if (player.IsGuard)
@@ -56,34 +56,34 @@ namespace SY
             }
             if (defMng.HP < 0) { defMng.HP = 0; }
 
-            //ƒ_ƒ[ƒWƒtƒ‰ƒO‚ğ—§‚Ä‚é
+            //ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
             atkMng.Result.SetAtkFlag(AtkFlag.AtkDamage);
             defMng.Result.SetDefFlag(DefFlag.DefDamage);
         }
 
         bool CheckMng(HitMng atkMng, HitMng defMng, GameObject col)
         {
-            //nullƒ`ƒFƒbƒN
+            //nullãƒã‚§ãƒƒã‚¯
             if (atkMng == null)
-            { Debug.LogError(col.transform.root.gameObject.name + "‚ÉHitMng‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚È‚¢"); return false; }
+            { Debug.LogError(col.transform.root.gameObject.name + "ã«HitMngãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ãªã„"); return false; }
             if (defMng == null)
-            { Debug.LogError(this.transform.root.gameObject.name + "‚ÉHitMng‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚È‚¢"); return false; }
+            { Debug.LogError(this.transform.root.gameObject.name + "ã«HitMngãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ãªã„"); return false; }
 
-            //—LŒøƒ`ƒFƒbƒN
+            //æœ‰åŠ¹ãƒã‚§ãƒƒã‚¯
             if (atkMng.ATKActive == false) { return false; }
             if (defMng.DEFActive == false) { return false; }
 
-            //ƒŒƒCƒ„[ƒ`ƒFƒbƒN
+            //ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒã‚§ãƒƒã‚¯
             if (CheckLayer(atkMng.Layer, defMng.Layer) == false) { return false; }
 
-            //“–‚½‚è”»’èƒtƒ‰ƒO‚ğ—§‚Ä‚é
+            //å½“ãŸã‚Šåˆ¤å®šãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
             atkMng.Result.SetAtkFlag(AtkFlag.AtkHit);
             defMng.Result.SetDefFlag(DefFlag.DefHit);
 
-            //˜A‘±ƒqƒbƒg–h~
+            //é€£ç¶šãƒ’ãƒƒãƒˆé˜²æ­¢
             if (defMng.HitInterval > 0) { return false; }
 
-            //”íƒ_ƒ[ƒW–³“GŠÔ
+            //è¢«ãƒ€ãƒ¡ãƒ¼ã‚¸æ™‚ç„¡æ•µæ™‚é–“
             if(defMng.Layer == HitLayer.Player)
             { defMng.HitInterval = HitDefine.PlHitInterval; }
             else if(defMng.Layer == HitLayer.Enemy)
@@ -95,11 +95,11 @@ namespace SY
 
         bool CheckData(HitData data)
         {
-            //nullƒ`ƒFƒbƒN
+            //nullãƒã‚§ãƒƒã‚¯
             if (data == null)
-            { Debug.LogError(data.gameObject.name + "‚ÉHitData‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚È‚¢"); return false; }
+            { Debug.LogError(data.gameObject.name + "ã«HitDataãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ãªã„"); return false; }
 
-            //ƒ^ƒCƒvƒ`ƒFƒbƒN
+            //ã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
             if (this.Type != HitType.Defense) { return false; }
             if (data.Type != HitType.Attack) { return false; }
 

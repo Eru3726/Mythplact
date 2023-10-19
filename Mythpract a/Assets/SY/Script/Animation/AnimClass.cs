@@ -4,35 +4,35 @@ using UnityEngine;
 [Serializable]
 public class Products
 {
-    [SerializeField] string name;           //”z—ñ‚Ì–¼‘O
-    [SerializeField] AnimationClip clips;   //ƒAƒjƒ[ƒVƒ‡ƒ“
-    [SerializeField] Type actionType;       //ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒAƒNƒVƒ‡ƒ“ƒ^ƒCƒv
-    [SerializeField] bool isLoop;           //ƒ‹[ƒvƒAƒjƒ[ƒVƒ‡ƒ“
-    [SerializeField] Type[] priority;       //—Dæ“x   ã‘‚«–h~‚İ‚½‚¢‚È‚à‚Ì
+    [SerializeField] string name;           //é…åˆ—ã®åå‰
+    [SerializeField] AnimationClip clips;   //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+    [SerializeField] Type actionType;       //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—
+    [SerializeField] bool isLoop;           //ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+    [SerializeField] Type[] priority;       //å„ªå…ˆåº¦   ä¸Šæ›¸ãé˜²æ­¢ã¿ãŸã„ãªã‚‚ã®
 
-    //ƒvƒƒpƒeƒB
+    //ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public string Name { get { return name; } }
     public AnimationClip Clips { get { return clips; } }
     public Type ActionType { get { return actionType; } }
     public bool IsLoop { get { return isLoop; } }
     public Type[] Priority { get { return priority; } }
 
-    //ƒAƒNƒVƒ‡ƒ“ƒ^ƒCƒvˆê——
+    //ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—ä¸€è¦§
     public enum Type
     {
-//      None,   //”ñƒAƒNƒeƒBƒu
-        Entry,  //“oê
-        Idle,   //ƒAƒNƒeƒBƒu‘Ò‹@
-        Move,   //ˆÚ“®
-        Avoid,  //‰ñ”ğ(ƒ_ƒbƒVƒ…)
-        Jump,   //ƒWƒƒƒ“ƒv
-        Attack, //UŒ‚
-        Guard,  //ƒK[ƒh
-        Buff,   //‹­‰»
-        Debuff, //ã‘Ì‰»
-        Damage, //ƒ_ƒ[ƒW
-        Heal,   //‰ñ•œ
-        Die,    //€
-        Revive, //‘h¶
+//      None,   //éã‚¢ã‚¯ãƒ†ã‚£ãƒ–
+        Entry,  //ç™»å ´æ™‚
+        Idle,   //ã‚¢ã‚¯ãƒ†ã‚£ãƒ–æ™‚å¾…æ©Ÿ
+        Move,   //ç§»å‹•
+        Avoid,  //å›é¿(ãƒ€ãƒƒã‚·ãƒ¥)
+        Jump,   //ã‚¸ãƒ£ãƒ³ãƒ—
+        Attack, //æ”»æ’ƒ
+        Guard,  //ã‚¬ãƒ¼ãƒ‰
+        Buff,   //å¼·åŒ–
+        Debuff, //å¼±ä½“åŒ–
+        Damage, //ãƒ€ãƒ¡ãƒ¼ã‚¸
+        Heal,   //å›å¾©
+        Die,    //æ­»
+        Revive, //è˜‡ç”Ÿ
     }
 }

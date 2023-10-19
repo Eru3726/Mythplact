@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Controllerconnect : MonoBehaviour
 {
-    bool conconnect = false;    //ƒRƒ“ƒgƒ[ƒ‰[‚ğÚ‘±‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
-    string[] connect;           //ƒRƒ“ƒgƒ[ƒ‰[‚Ìí—Ş‚ğ”»•Ê‚·‚é‚½‚ß‚Ì‚â‚Â
-    public Keyconfig keycon;    //ƒL[ƒRƒ“‚ğƒRƒ“ƒgƒ[ƒ‰[Ú‘±‚É•Ï‚¦‚é‚½‚ß‚É‚Ô‚¿‚Ş
+    bool conconnect = false;    //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚’æ¥ç¶šã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+    string[] connect;           //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ç¨®é¡ã‚’åˆ¤åˆ¥ã™ã‚‹ãŸã‚ã®ã‚„ã¤
+    public Keyconfig keycon;    //ã‚­ãƒ¼ã‚³ãƒ³ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶šæ™‚ã«å¤‰ãˆã‚‹ãŸã‚ã«ã¶ã¡è¾¼ã‚€
 
-    //ƒRƒ“ƒgƒ[ƒ‰[Ú‘±‚ÌƒvƒƒpƒeƒB‚ğİ’è
+    //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶šã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¨­å®š
     public bool ConConnect       
     {
         get { return conconnect; }
@@ -23,32 +21,32 @@ public class Controllerconnect : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetJoystickNames().Length > 0)  //ƒRƒ“ƒgƒ[ƒ‰[Ú‘±‚µ‚Ä‚é‚©‚Ç‚¤‚©
+        if (Input.GetJoystickNames().Length > 0)  //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶šã—ã¦ã‚‹ã‹ã©ã†ã‹
         {
-            connect = Input.GetJoystickNames();  //Ú‘±‚µ‚Ä‚¢‚éƒRƒ“ƒgƒ[ƒ‰[‚Ì–¼‘O‚ğæ“¾
-            if (connect[0] == ("Controller (JC-U3613M - Xinput Mode)") && conconnect == false)@@//ƒRƒ“ƒgƒ[ƒ‰[Ú‘±
+            connect = Input.GetJoystickNames();  //æ¥ç¶šã—ã¦ã„ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®åå‰ã‚’å–å¾—
+            if (connect[0] == ("Controller (JC-U3613M - Xinput Mode)") && conconnect == false)ã€€ã€€//ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶š
             {
-                conread();  //ƒL[ƒRƒ“‚ğƒRƒ“ƒgƒ[ƒ‰[—p‚É•ÏX
+                conread();  //ã‚­ãƒ¼ã‚³ãƒ³ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ç”¨ã«å¤‰æ›´
                 //if (keycon.right == false && keycon.left == false && keycon.down == false && keycon.jump == false && keycon.attack == false && keycon.dash == false && keycon.heal == false && keycon.interact == false)
                 {
-                    conconnect = true;@@@@//‚±‚¢‚Â‚ÍƒvƒƒpƒeƒB
+                    conconnect = true;ã€€ã€€ã€€ã€€//ã“ã„ã¤ã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
                 }
-                Debug.Log("ƒRƒ“ƒgƒ[ƒ‰[Ú‘±" + conconnect);
+                Debug.Log("ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶š" + conconnect);
             }
         }
 
-        if (connect[0] == "" && conconnect == true)     //ƒRƒ“ƒgƒ[ƒ‰[”ñÚ‘±
+        if (connect[0] == "" && conconnect == true)     //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼éæ¥ç¶š
         {
-            keyread();       //ƒL[ƒRƒ“‚ğƒL[ƒ{[ƒh—p‚É•ÏX
+            keyread();       //ã‚­ãƒ¼ã‚³ãƒ³ã‚’ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ç”¨ã«å¤‰æ›´
             //if (keycon.right == false && keycon.left == false && keycon.down == false && keycon.jump == false && keycon.attack == false && keycon.dash == false && keycon.heal == false && keycon.interact == false)
             {
-                conconnect = false;@@@@//‚±‚¢‚Â‚ÍƒvƒƒpƒeƒB
+                conconnect = false;ã€€ã€€ã€€ã€€//ã“ã„ã¤ã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
             }
-            Debug.Log("ƒRƒ“ƒgƒ[ƒ‰[Ú‘±" + conconnect);
+            Debug.Log("ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ¥ç¶š" + conconnect);
         }
     }
 
-    //ƒL[ƒRƒ“‚ğƒRƒ“ƒgƒ[ƒ‰[—p‚É•ÏX‚·‚éƒƒ\ƒbƒh
+    //ã‚­ãƒ¼ã‚³ãƒ³ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ç”¨ã«å¤‰æ›´ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     public void conread()
     {
         //GameData.keyrightkey = GameData.rightkey;
@@ -67,12 +65,12 @@ public class Controllerconnect : MonoBehaviour
         //Debug.Log(GameData.keydashkey);
         //Debug.Log(GameData.keyhealkey);
         //Debug.Log(GameData.keyinteractkey);
-        GameData.rightkey = KeyCode.None;@@@@@@@@//GameData‚ÌƒL[‚ğ•Ï‚¦‚é
-        keycon.keyStr = GameData.rightkey.ToString();@@//•Ï‚¦‚½ƒL[‚ğƒXƒgƒŠƒ“ƒOŒ^‚Åæ“¾
+        GameData.rightkey = KeyCode.None;ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€//GameDataã®ã‚­ãƒ¼ã‚’å¤‰ãˆã‚‹
+        keycon.keyStr = GameData.rightkey.ToString();ã€€ã€€//å¤‰ãˆãŸã‚­ãƒ¼ã‚’ã‚¹ãƒˆãƒªãƒ³ã‚°å‹ã§å–å¾—
         Debug.Log(keycon.keyStr);
-        keycon.right = true;                             //‚Ç‚ÌƒL[‚ğ•Ï‚¦‚é‚©‚ğ”»•Ê‚·‚ébool•¶‚ğtrue‚É
-        keycon.codechange = GameData.rightkey;           //•ÏX‚·‚éƒL[ƒR[ƒh‚ğ‚Ô‚¿‚ñ‚Å‚¨‚­
-        keycon.KeyChange();                              //ƒL[‚ğ•ÏX‚·‚éƒƒ\ƒbƒh‚ğg—p     //ˆÈ‰º“¯‚¶
+        keycon.right = true;                             //ã©ã®ã‚­ãƒ¼ã‚’å¤‰ãˆã‚‹ã‹ã‚’åˆ¤åˆ¥ã™ã‚‹boolæ–‡ã‚’trueã«
+        keycon.codechange = GameData.rightkey;           //å¤‰æ›´ã™ã‚‹ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’ã¶ã¡è¾¼ã‚“ã§ãŠã
+        keycon.KeyChange();                              //ã‚­ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨     //ä»¥ä¸‹åŒã˜
         Debug.Log("right" + GameData.rightkey);
         GameData.leftkey = KeyCode.None;
         keycon.keyStr = GameData.leftkey.ToString();
@@ -125,7 +123,7 @@ public class Controllerconnect : MonoBehaviour
         //Debug.Log("interact" + GameData.interactkey);
     }
 
-    //ƒL[ƒRƒ“‚ğƒL[ƒ{[ƒh—p‚É•ÏX‚·‚éƒƒ\ƒbƒh
+    //ã‚­ãƒ¼ã‚³ãƒ³ã‚’ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ç”¨ã«å¤‰æ›´ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     public void keyread()
     {
         //GameData.conjumpkey = GameData.jumpkey;
@@ -204,7 +202,7 @@ public class Controllerconnect : MonoBehaviour
         //Debug.Log("interact" + GameData.interactkey);
     }
 
-    //ƒL[ƒ{[ƒh—p‚ÌƒL[ƒRƒ“‚ğ•Û‘¶
+    //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ç”¨ã®ã‚­ãƒ¼ã‚³ãƒ³ã‚’ä¿å­˜
     public void keysave()
     {
         GameData.keyrightkey = GameData.rightkey;
@@ -217,7 +215,7 @@ public class Controllerconnect : MonoBehaviour
         GameData.keyinteractkey = GameData.interactkey;
     }
     
-    //ƒRƒ“ƒgƒ[ƒ‰[—p‚ÌƒL[ƒRƒ“‚ğ•Û‘¶
+    //ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ç”¨ã®ã‚­ãƒ¼ã‚³ãƒ³ã‚’ä¿å­˜
     public void consave()
     {
         GameData.condownkey = GameData.downkey;

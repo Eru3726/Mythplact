@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using SY;
 
@@ -17,8 +15,8 @@ public class Slime : MonoBehaviour
 
     public enum MoveType
     {
-        First,  //‰Šús“®
-        Walk,   //Šî–{
+        First,  //åˆæœŸè¡Œå‹•
+        Walk,   //åŸºæœ¬
     }
     MoveType moveType;
 
@@ -51,25 +49,25 @@ public class Slime : MonoBehaviour
     Vector2 radPos;
     Vector2 dir;
     int idir;
-    Vector2 r;  //”¼Œa
-    Vector2 o;  //’†S
+    Vector2 r;  //åŠå¾„
+    Vector2 o;  //ä¸­å¿ƒ
 
-    [SerializeField, Tooltip("‘¬“x")] float speed = 2;
-    [SerializeField, Tooltip("ƒmƒbƒNƒoƒbƒN‘¬“x")] float knockBackSpd;
-    [SerializeField, Tooltip("Á‹ŠÔ")] float dieTime;
-    [SerializeField, Tooltip("€ƒVƒ‡ƒSƒXƒ_ƒ[ƒW")] float dieDamage;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip Move_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float Move_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float Move_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool Move_SELoop;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip damage_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float damage_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float damage_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool damage_SELoop;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip die_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float die_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float die_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool die_SELoop;
+    [SerializeField, Tooltip("é€Ÿåº¦")] float speed = 2;
+    [SerializeField, Tooltip("ãƒãƒƒã‚¯ãƒãƒƒã‚¯é€Ÿåº¦")] float knockBackSpd;
+    [SerializeField, Tooltip("æ¶ˆå»æ™‚é–“")] float dieTime;
+    [SerializeField, Tooltip("æ­»æ™‚ã‚·ãƒ§ã‚´ã‚¹ãƒ€ãƒ¡ãƒ¼ã‚¸")] float dieDamage;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip Move_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float Move_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float Move_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool Move_SELoop;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip damage_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float damage_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float damage_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool damage_SELoop;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip die_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float die_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float die_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool die_SELoop;
 
     //[SerializeField] string animName;
     //[SerializeField] bool debug;
@@ -84,7 +82,7 @@ public class Slime : MonoBehaviour
         se = GetComponent<AudioSource>();
         startPos = transform.position;
         GC = GetComponent<GroundCheck>();
-        pos =@rb.position;
+        pos =ã€€rb.position;
         moveType = MoveType.Walk;
 
         HMng.SetUp(Damage, Die);
@@ -109,7 +107,7 @@ public class Slime : MonoBehaviour
 
         switch (moveType)
         {
-            case MoveType.First:    //¶¬‰Šús“®
+            case MoveType.First:    //ç”ŸæˆåˆæœŸè¡Œå‹•
                 switch (firstMove)
                 {
                     case (int)Shoggoth_MoveType.Rotation:
@@ -129,10 +127,10 @@ public class Slime : MonoBehaviour
                 switch(walkType)
                 {
                     case WalkType.Crawl:
-                        Crawl();    //”‡‚¢‚È‚ª‚çˆÚ“®
+                        Crawl();    //é€™ã„ãªãŒã‚‰ç§»å‹•
                         break;
                     case WalkType.Bound:
-                        Bound();    //’µ‚Ë‚È‚ª‚çˆÚ“®
+                        Bound();    //è·³ã­ãªãŒã‚‰ç§»å‹•
                         break;
                 }
                 break;
@@ -144,7 +142,7 @@ public class Slime : MonoBehaviour
         HMng.PostUpdate();
     }
 
-    //‹——£
+    //è·é›¢
     Vector2 Distance(Vector2 currentPos, Vector2 targetPos)
     {
         Vector2 distance = targetPos - currentPos;
@@ -243,16 +241,16 @@ public class Slime : MonoBehaviour
         Destroy(gameObject, dieTime);
     }
 
-    //----------‰Šús“®----------
-    //”ò‚ÑU‚é
+    //----------åˆæœŸè¡Œå‹•----------
+    //é£›ã³æ•£ã‚‹
     void Parabola()
     {
         switch(phase)
         {
             case 0:
-                anim.enabled = false;   //ƒAƒjƒ[ƒ^[–³Œø‰»
+                anim.enabled = false;   //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼ç„¡åŠ¹åŒ–
                 rb.gravityScale = 0;
-                int ran = (Random.value < 0.5f) ? -1 : 1;   //”­Ë•ûŒü
+                int ran = (Random.value < 0.5f) ? -1 : 1;   //ç™ºå°„æ–¹å‘
                 idir = (ran == 1) ? -1 : 1;
                 r.x = (Random.value * 4) / 2;
                 r.y = (Random.value * 6) / 2;
@@ -266,7 +264,7 @@ public class Slime : MonoBehaviour
                 break;
             case 1:
                 timer += Time.deltaTime;
-                pos = circle.Move(timer, 4.0f);  //ƒXƒs[ƒh‚Í‰¼
+                pos = circle.Move(timer, 4.0f);  //ã‚¹ãƒ”ãƒ¼ãƒ‰ã¯ä»®
                 if (pos.y < startPos.y) { phase++; }
                 break;
             case 2:
@@ -276,17 +274,17 @@ public class Slime : MonoBehaviour
         }
     }
 
-    //----------‚»‚Ì‘¼----------
-    //”Ä—p•Ï”‰Šú‰»
+    //----------ãã®ä»–----------
+    //æ±ç”¨å¤‰æ•°åˆæœŸåŒ–
     void GeneralClear()
     {
-        //”Ä—p
+        //æ±ç”¨
         phase = 0;
         timer = 0;
         //repeat = 0;
         //No = 0;
 
-        //‰~
+        //å††
         circle.DataClear();
     }
 
@@ -297,7 +295,7 @@ public class Slime : MonoBehaviour
         return rb.constraints;
     }
 
-    //ƒTƒEƒ“ƒh
+    //ã‚µã‚¦ãƒ³ãƒ‰
     void SetAudio(AudioClip audio, float Volume, float Pitch, bool isLoop)
     {
         se.clip = audio;
