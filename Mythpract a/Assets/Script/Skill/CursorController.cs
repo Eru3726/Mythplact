@@ -392,7 +392,24 @@ public class CursorController : MonoBehaviour
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
                 Destroy(DeletePiece);                                   // そのスキルピースを消去
             }
+            else if (pickupTfm.parent.name == "SkillPiece14(Clone)")
+            {
+                GameObject DeletePiece;
 
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // スキルスロットの登録を無効に (アクティブスキルのみ)
+                //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
+                //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
+                //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
+
+                pickupTfm.parent.parent = null;     // スキルピースとカーソルの親子関係を解除
+                Skill14_Button.interactable = true;  // そのスキルのボタンを選択可能に
+                GameData.setSkill14 = false; // そのスキルを無効に
+
+
+                DeletePiece = GameObject.Find("SkillPiece14(Clone)");    // 持っていたスキルピースを取得
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                Destroy(DeletePiece);                                   // そのスキルピースを消去
+            }
         }
 
 

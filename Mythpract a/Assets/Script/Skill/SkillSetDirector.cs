@@ -273,6 +273,29 @@ public class SkillSetDirector : MonoBehaviour
 
     }
 
+    public void SetSkill14() // パッシブスキルジャストガード
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill14, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill14_Button.interactable = false;
+        GameData.setSkill14 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece14(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
 
 
 

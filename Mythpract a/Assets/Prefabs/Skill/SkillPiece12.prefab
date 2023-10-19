@@ -29,8 +29,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3630916532102003602}
   - {fileID: 8695065270152972818}
+  - {fileID: 3630916532102003602}
   - {fileID: 4314907624670062736}
   - {fileID: 3968817516170400242}
   m_Father: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 3111980793274037109}
   - component: {fileID: 6095322375892284005}
   m_Layer: 0
-  m_Name: 1
+  m_Name: 2
   m_TagString: SkillPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +227,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6480032959525117555}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4328362575537548285
 SpriteRenderer:
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 1184989084663891572}
   - component: {fileID: 4597016298491466544}
   m_Layer: 0
-  m_Name: 2
+  m_Name: 1
   m_TagString: SkillPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,7 +519,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6480032959525117555}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8366916430183211624
 SpriteRenderer:

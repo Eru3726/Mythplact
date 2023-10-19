@@ -40,7 +40,7 @@ public class SkillText : MonoBehaviour
         skilltext11.SetActive(false);
         skilltext12.SetActive(false);
         skilltext13.SetActive(false);
-        //skilltext14.SetActive(false);
+        skilltext14.SetActive(false);
         //skilltext15.SetActive(false);
         //skilltext16.SetActive(false);
         //skilltext17.SetActive(false);

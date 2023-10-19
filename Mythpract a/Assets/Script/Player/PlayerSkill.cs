@@ -5,18 +5,23 @@ using UnityEngine;
 partial class Player
 {
 
-    [SerializeField, Tooltip("スラッシュのクールタイム")] float SkillSlashCT;
+    [SerializeField, Tooltip("スラッシュのクールタイム")] float skillSlashCT;
 
     [SerializeField, Tooltip("ブリンク距離スキル")] float SkillBrinkMove;
     [SerializeField, Tooltip("ジャストガードスキル")] float SkillJustGuard;
     [SerializeField, Tooltip("スピードアップスキル")] int SkillMaxSpeed;
+    [SerializeField, Tooltip("火事場攻撃力アップ")] float SkillKajibaAtk;
 
+    float skillSlashCount = 0;
 
     public GameObject slash;
 
+    public float SkillSlashCT { get { return skillSlashCT; } }
+    
+    public float SkillSlashCount { get { return skillSlashCount; } }
     void ActiveSkillController()
     {
-        skillCount += Time.deltaTime;
+        skillSlashCount += Time.deltaTime;
         bool a = false;
 
         if (GameData.skillSlot1 == 1) { a = true; }
@@ -29,14 +34,14 @@ partial class Player
 
         /* アクティブスキル */
 
-        if (GameData.setSkill1 && SkillSlashCT < skillCount)
+        if (GameData.setSkill1 && skillSlashCT < skillSlashCount)
         {
             if (GameData.skillSlot1 == 1)
             {
                 if (skill1)
                 {
                     SkillSlash();
-                    skillCount = 0;
+                    skillSlashCount = 0;
 
 
                 }
@@ -46,7 +51,7 @@ partial class Player
                 if (skill2)
                 {
                     SkillSlash();
-                    skillCount = 0;
+                    skillSlashCount = 0;
 
                 }
             }
@@ -54,7 +59,7 @@ partial class Player
             {
                 //if (skill3) 
                 //{
-                skillCount = 0;
+                skillSlashCount = 0;
 
                 //}
 
@@ -63,7 +68,7 @@ partial class Player
             {
                 //if (skill4)
                 //{
-                skillCount = 0;
+                skillSlashCount = 0;
 
                 //}
 
@@ -93,6 +98,10 @@ partial class Player
         if(GameData.saveSkill13 == true)
         {
             SkillSpeedUpHpMax();
+        }
+        if(GameData.saveSkill14 == true)
+        {
+            SkillKajiba();
         }
     }
 
@@ -139,7 +148,19 @@ partial class Player
         }
         else
         {
-            maxSpeed = 12;
+            maxSpeed = 12;  // めんどいので初期数値手入力
+        }
+    }
+    public void SkillKajiba()
+    {
+        SkillKajibaAtk = HMng.ATK * 2;
+        if(HMng.HP == 1)
+        {
+            HMng.ATK = SkillKajibaAtk;
+        }
+        else
+        {
+            HMng.ATK = 100;     // めんどいので初期数値手入力
         }
     }
 }

@@ -18,13 +18,12 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("スキルのクールタイム")] float skillCoolTimeSec;    // ブリンクのクールタイム
     [SerializeField, Tooltip("ガードの持続時間")] float guardTime;
     [SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
-    [SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTime;
+    //[SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTime;
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
     Image brinkSlider;
     float jumpPowPlus;
     float brinkCount = 0;            // ブリンクのクールダウンのカウント
     float guardCount = 0;
-    float skillCount = 0;
     float knockbuckCount = 0;        // ノックバックする時間のカウント
 
     bool jumping = false;       // ジャンプ落下時の判定
@@ -53,6 +52,7 @@ public partial class Player : MonoBehaviour
     bool deathDirection;
 
     HitMng HMng;
+    AtkJumpDown atkJumpDown;
     Controllerconnect conconect;
     Keyconfig keycon;
 
@@ -68,6 +68,7 @@ public partial class Player : MonoBehaviour
         conconect = GameObject.Find("keycon").GetComponent<Controllerconnect>();
         keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
         HMng = GetComponent<HitMng>();
+        atkJumpDown = transform.GetChild(4).GetComponent<AtkJumpDown>();
         brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
 
         InitCol();
@@ -132,11 +133,11 @@ public partial class Player : MonoBehaviour
                 inputDir.x = 0;
             }
 
-            if (lsv > 0)
+            if (lsv > 0.1f)
             {
                 inputDir.y = 1;
             }
-            else if (lsv < 0)
+            else if (lsv < -0.1f)
             {
                 inputDir.y = -1;
             }
@@ -400,7 +401,7 @@ public partial class Player : MonoBehaviour
                     guardEnd = false;
                     ltDown = true;
                 }
-                else if(!rtup)
+                else if(!ltup)
                 {
                     guardEnd = true;
                     ltup = true;
@@ -576,6 +577,19 @@ public partial class Player : MonoBehaviour
             {
                 inputDir.x = 0;
             }
+            if (Input.GetKey(KeyCode.W))
+            {
+                inputDir.y = 1;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                inputDir.y = -1;
+
+            }
+            else
+            {
+                inputDir.y = 0;
+            }
 
             if (Input.GetKeyDown(GameData.jumpkey))
             {
@@ -720,6 +734,18 @@ public partial class Player : MonoBehaviour
 
         PlayerRb.AddForce(Vector2.up * jumpPowPlus);
 
+        // ジャンプ下攻撃ヒットでジャンプ
+        if(atkJumpDown.HitAtkJumpDown == true)
+        {
+            hitJumpDown = true;     // アニメーション移行判定
+            doublejump = true;    // ダブルジャンプ判定
+            isbrinkUp = false;     // 空中ブリンク判定
+
+            PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
+            PlayerRb.AddForce(Vector2.up * doubleJumpPow, ForceMode2D.Impulse);
+
+            atkJumpDown.HitAtkJumpDown = false;
+        }
 
 
 
