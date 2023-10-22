@@ -55,7 +55,7 @@ public class TitleScene : MonoBehaviour
         setting.SetActive(false);
         quit.SetActive(false);
         keycon.SetActive(true);
-        keyconCmana.SetActive(true);
+        //keyconCmana.SetActive(true);
         titleCmana.SetActive(false);
         titleCanvas.SetActive(false);
     }
@@ -65,8 +65,8 @@ public class TitleScene : MonoBehaviour
         start.SetActive(true);
         setting.SetActive(true);
         quit.SetActive(true);
-        keycon.SetActive(false);
-        keyconCmana.SetActive(false);
+        //keycon.SetActive(false);
+        //keyconCmana.SetActive(false);
         titleCmana.SetActive(true);
         titleCanvas.SetActive(true);
     }
