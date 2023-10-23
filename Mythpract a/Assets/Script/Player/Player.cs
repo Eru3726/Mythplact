@@ -129,6 +129,8 @@ public partial class Player : MonoBehaviour
         guardInp.action.Enable();
         rightInp.action.Enable();
         leftInp.action.Enable();
+        upInp.action.Enable();
+        downInp.action.Enable();
         jumpInp.action.Enable();
         blinkInp.action.Enable();
         skill1Inp.action.Enable();
@@ -791,7 +793,7 @@ public partial class Player : MonoBehaviour
             speed = 0;
         }
         // 長押しでジャンプ高さアップ
-        if (space && !jumping)  
+        if (space && !jumping && PlayerRb.velocity.y > 0 )  
         {
             jumpPowPlus = 30;
             doublejump = true;
@@ -978,7 +980,7 @@ public partial class Player : MonoBehaviour
                     if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
                     {
                         EffectHeal.Play();
-                        HMng.HP += 1;
+                        SkillWise();
                     }
 
                 }

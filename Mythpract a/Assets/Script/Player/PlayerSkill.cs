@@ -130,6 +130,10 @@ partial class Player
         {
             SkillJustGuardPlus();
         }
+        if(GameData.setSkill18 == true)
+        {
+            SkillCarse();
+        }
  
 
     }
@@ -211,23 +215,30 @@ partial class Player
             HMng.ATK = 100;     // めんどいので初期数値手入力
         }
     }
-    public void SkillStrength()
+    public void SkillStrength() // スキル15
     {
 
     }
-    public void SkillWisse()
+    public void SkillWise()     // スキル16
     {
+        if (GameData.setSkill17 == true)
+        {
+            HMng.HP += 1;
+
+        }
 
     }
-    public void SkillElect()
-    {
+    public void SkillElect()    // スキル17
+    {   
 
     }
-    public void SkillCarse()
+    public void SkillCarse()    // スキル18
     {
+        HMng.MaxHP = 1;
+        HMng.HP = HMng.MaxHP;
 
     }
-    public void SkillHeep()
+    public void SkillHeep()     // スキル19
     {
 
     }

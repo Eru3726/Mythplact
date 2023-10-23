@@ -466,6 +466,23 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill14 = false;
 
         }
+        if (skillPiece15 != null)
+        {
+            if (GameData.saveSkill15)
+            {
+                skillPiece15.transform.position = GameData.skillPiece15Pos;
+                skillPiece15.transform.rotation = GameData.skillPiece15Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece15);
+                GameData.setSkill15 = false;
+                Skill15_Button.interactable = true;
+
+            }
+        }
+
         else if (GameData.saveSkill15)
         {
             Instantiate(Skill15);
@@ -479,6 +496,23 @@ public class SkillPieceData : MonoBehaviour
 
             GameData.saveSkill15 = false;
 
+        }
+
+        if (skillPiece16 != null)
+        {
+            if (GameData.saveSkill16)
+            {
+                skillPiece16.transform.position = GameData.skillPiece16Pos;
+                skillPiece16.transform.rotation = GameData.skillPiece16Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece16);
+                GameData.setSkill16 = false;
+                Skill16_Button.interactable = true;
+
+            }
         }
         else if (GameData.saveSkill16)
         {
@@ -494,6 +528,22 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill16 = false;
 
         }
+        if (skillPiece17 != null)
+        {
+            if (GameData.saveSkill17)
+            {
+                skillPiece17.transform.position = GameData.skillPiece17Pos;
+                skillPiece17.transform.rotation = GameData.skillPiece17Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece17);
+                GameData.setSkill17 = false;
+                Skill17_Button.interactable = true;
+
+            }
+        }
         else if (GameData.saveSkill17)
         {
             Instantiate(Skill17);
@@ -508,6 +558,23 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill17 = false;
 
         }
+
+        if (skillPiece18 != null)
+        {
+            if (GameData.saveSkill18)
+            {
+                skillPiece18.transform.position = GameData.skillPiece18Pos;
+                skillPiece18.transform.rotation = GameData.skillPiece18Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece18);
+                GameData.setSkill18 = false;
+                Skill18_Button.interactable = true;
+
+            }
+        }
         else if (GameData.saveSkill18)
         {
             Instantiate(Skill18);
@@ -521,6 +588,23 @@ public class SkillPieceData : MonoBehaviour
 
             GameData.saveSkill18 = false;
 
+        }
+
+        if (skillPiece19 != null)
+        {
+            if (GameData.saveSkill19)
+            {
+                skillPiece19.transform.position = GameData.skillPiece19Pos;
+                skillPiece19.transform.rotation = GameData.skillPiece19Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece19);
+                GameData.setSkill19 = false;
+                Skill19_Button.interactable = true;
+
+            }
         }
         else if (GameData.saveSkill19)
         {

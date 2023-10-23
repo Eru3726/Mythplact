@@ -39,11 +39,11 @@ public class SkillPieceDisplay : MonoBehaviour
         skillpiece12.SetActive(false);
         skillpiece13.SetActive(false);
         skillpiece14.SetActive(false);
-        //skillpiece15.SetActive(false);
-        //skillpiece16.SetActive(false);
-        //skillpiece17.SetActive(false);
-        //skillpiece18.SetActive(false);
-        //skillpiece19.SetActive(false);
+        skillpiece15.SetActive(false);
+        skillpiece16.SetActive(false);
+        skillpiece17.SetActive(false);
+        skillpiece18.SetActive(false);
+        skillpiece19.SetActive(false);
 
 
     }

@@ -271,7 +271,7 @@ public class SkillSetDirector : MonoBehaviour
 
     }
 
-    public void SetSkill14() // パッシブスキルジャストガード
+    public void SetSkill14() 
     {
         cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
 
@@ -287,6 +287,121 @@ public class SkillSetDirector : MonoBehaviour
         CursorController.colorchange = true;
 
         GameObject piece = GameObject.Find("SkillPiece14(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+    public void SetSkill15()
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill15, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill15_Button.interactable = false;
+        GameData.setSkill15 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece15(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+    public void SetSkill16()
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill16, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill16_Button.interactable = false;
+        GameData.setSkill16 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece16(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+    public void SetSkill17()
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill17, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill17_Button.interactable = false;
+        GameData.setSkill17 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece17(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+    public void SetSkill18()
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill18, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill18_Button.interactable = false;
+        GameData.setSkill18 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece18(Clone)");
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+
+
+        piece.transform.parent = cursor.transform;
+
+
+    }
+    public void SetSkill19()
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+
+        Instantiate(Skill19, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill19_Button.interactable = false;
+        GameData.setSkill19 = true;
+        //if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 10;
+        //else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 10;
+        //else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 10;
+        //else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 10;
+
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+        GameObject piece = GameObject.Find("SkillPiece19(Clone)");
         cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
 
 
