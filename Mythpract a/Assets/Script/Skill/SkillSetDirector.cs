@@ -57,7 +57,7 @@ public class SkillSetDirector : MonoBehaviour
 
 
     private bool useCursor;
-    // カーソル使用時にTrue
+    // 繧ｫ繝ｼ繧ｽ繝ｫ菴ｿ逕ｨ譎ゅ↓True
     public bool useCursorProp
     {
         get { return useCursor; }
@@ -83,7 +83,7 @@ public class SkillSetDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("�X�L���X���b�g1�ɓ����Ă������" + GameData.skillSlot1);
+        Debug.Log("スキルスロット1に入っているもの" + GameData.skillSlot1);
 
         if (useCursorProp == false)
         {
@@ -102,14 +102,14 @@ public class SkillSetDirector : MonoBehaviour
     }
     public void SkillSelect()
     {
-        SkillSelect_Button.interactable = false;    // 押したボタンをインタラクト出来なくする
-        useCursorProp = true;   // カーソル使用
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // cursorの位置を初期化
+        SkillSelect_Button.interactable = false;    // 謚ｼ縺励◆繝懊ち繝ｳ繧偵う繝ｳ繧ｿ繝ｩ繧ｯ繝亥・譚･縺ｪ縺上☆繧・
+        useCursorProp = true;   // 繧ｫ繝ｼ繧ｽ繝ｫ菴ｿ逕ｨ
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // cursor縺ｮ菴咲ｽｮ繧貞・譛溷喧
 
     }
-    public void SetSkill1() // �X�L���X���b�V��
+    public void SetSkill1() // スキルスラッシュ
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // 繧ｫ繝ｼ繧ｽ繝ｫ縺ｮ菴咲ｽｮ繧貞・譛溷喧
 
         Instantiate(Skill1,new Vector3(cursor.transform.position.x,cursor.transform.position.y,0),Quaternion.identity);   
         Skill1_Button.interactable = false;
@@ -132,7 +132,7 @@ public class SkillSetDirector : MonoBehaviour
     }
     public void SetSkill2()
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // 繧ｫ繝ｼ繧ｽ繝ｫ縺ｮ菴咲ｽｮ繧貞・譛溷喧
 
         Instantiate(Skill2, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill2_Button.interactable = false;
@@ -156,7 +156,7 @@ public class SkillSetDirector : MonoBehaviour
     }
     public void SetSkill3()
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // 繧ｫ繝ｼ繧ｽ繝ｫ縺ｮ菴咲ｽｮ繧貞・譛溷喧
 
         Instantiate(Skill3, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill3_Button.interactable = false;
@@ -178,9 +178,9 @@ public class SkillSetDirector : MonoBehaviour
 
 
     }
-    public void SetSkill10() // �p�b�V�u�X�L���̗͑���
+    public void SetSkill10() // パッシブスキル体力増強
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // �J�[�\���̈ʒu��������
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
 
         Instantiate(Skill10, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill10_Button.interactable = false;
@@ -201,9 +201,9 @@ public class SkillSetDirector : MonoBehaviour
 
 
     }
-    public void SetSkill11() // �p�b�V�u�X�L���u�����N����
+    public void SetSkill11() // パッシブスキルブリンク距離
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // �J�[�\���̈ʒu��������
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
 
         Instantiate(Skill11, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill11_Button.interactable = false;
@@ -224,9 +224,9 @@ public class SkillSetDirector : MonoBehaviour
 
 
     }
-    public void SetSkill12() // �p�b�V�u�X�L���W���X�g�K�[�h
+    public void SetSkill12() // パッシブスキルジャストガード
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // �J�[�\���̈ʒu��������
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
 
         Instantiate(Skill12, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill12_Button.interactable = false;
@@ -247,9 +247,9 @@ public class SkillSetDirector : MonoBehaviour
 
 
     }
-    public void SetSkill13() // �p�b�V�u�X�L���W���X�g�K�[�h
+    public void SetSkill13() // パッシブスキルジャストガード
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // �J�[�\���̈ʒu��������
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
 
         Instantiate(Skill13, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill13_Button.interactable = false;
@@ -271,9 +271,9 @@ public class SkillSetDirector : MonoBehaviour
 
     }
 
-    public void SetSkill14() // �p�b�V�u�X�L���W���X�g�K�[�h
+    public void SetSkill14() // パッシブスキルジャストガード
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // �J�[�\���̈ʒu��������
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化
 
         Instantiate(Skill14, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill14_Button.interactable = false;

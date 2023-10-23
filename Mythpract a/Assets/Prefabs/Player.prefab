@@ -14929,6 +14929,18 @@ MonoBehaviour:
   guardTime: 2
   justGuardTime: 0.1
   knockbuckTime: 0.5
+  attackInp: {fileID: -4327428838556983879, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  guardInp: {fileID: 4014162791499612685, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  rightInp: {fileID: 3173363362254018375, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  leftInp: {fileID: -3836052392558874915, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  upInp: {fileID: -298971510032622072, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  downInp: {fileID: 8652914708246220113, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  jumpInp: {fileID: 8324888889075417498, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  blinkInp: {fileID: 4419416704501198529, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  skill1Inp: {fileID: -1851098161676894457, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  skill2Inp: {fileID: 8093098002335912430, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  skill3Inp: {fileID: -3351416296920379119, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  skill4Inp: {fileID: 4872046447432301327, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   brinkSE: {fileID: 8300000, guid: 12a25d0334bcefa4cb431a8efa8a3a30, type: 3}
   jumpSE: {fileID: 8300000, guid: 9cd1d3bd52787644b8227986b92a0479, type: 3}
   landingSE: {fileID: 8300000, guid: 90cd170494e25eb43b36dba19d90e849, type: 3}
@@ -14952,6 +14964,7 @@ MonoBehaviour:
   EffectDeath: {fileID: 3611334992012454624}
   EffectHeal: {fileID: 1222042325814170449}
   skillSlashCT: 5
+  skillFleetCT: 5
   SkillBrinkMove: 10
   SkillJustGuard: 0.3
   SkillMaxSpeed: 20

@@ -14,10 +14,16 @@ partial class Player
 
     BoxCollider2D atknormalcol;
     BoxCollider2D atkjumpcol;
+    BoxCollider2D atkjumpupcol;
+    BoxCollider2D atkjumpdowncol;
     void InitEffect()
     {
         atknormalcol = GameObject.Find("AtkNormalCol").GetComponent<BoxCollider2D>();
         atkjumpcol = GameObject.Find("AtkJumpCol").GetComponent<BoxCollider2D>();
+        atkjumpupcol = GameObject.Find("AtkJumpUpCol").GetComponent<BoxCollider2D>();
+        atkjumpdowncol = GameObject.Find("AtkJumpDownCol").GetComponent<BoxCollider2D>();
+
+
 
     }
     public void HitEffect(GameObject obj)
@@ -29,6 +35,15 @@ partial class Player
         else if(obj.name == "AtkJumpCol")
         {
             EffectInstiate(atkjumpcol);
+        }
+        else if(obj.name == "AtkJumpUpCol")
+        {
+            EffectInstiate(atkjumpupcol);
+
+        }
+        else if(obj.name == "AtkJumpDownCol")
+        {
+            EffectInstiate(atkjumpdowncol);
         }
 
 

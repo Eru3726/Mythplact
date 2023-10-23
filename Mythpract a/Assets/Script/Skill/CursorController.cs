@@ -103,8 +103,8 @@ public class CursorController : MonoBehaviour
         if(conconect.ConConnect == true)
         {
 
-            float lsh = Input.GetAxis("L_stick_H");@@@@//¶ƒXƒeƒBƒbƒN‰¡
-            float lsv = Input.GetAxis("L_stick_V");        //¶ƒXƒeƒBƒbƒNc
+            float lsh = Input.GetAxis("L_stick_H");ã€€ã€€ã€€ã€€//å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯æ¨ª
+            float lsv = Input.GetAxis("L_stick_V");        //å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ç¸¦
 
             if (lsv > 0 && (lsh > -0.1f && lsh < 0.1f) && !moveonce)
             {
@@ -200,7 +200,7 @@ public class CursorController : MonoBehaviour
     void MoveCursor()
     {
 
-        // ã‰º¶‰EˆÚ“®
+        // ä¸Šä¸‹å·¦å³ç§»å‹•
         if (up) gameObject.transform.Translate(0, moveVertical, 0, Space.World);
         if (down) gameObject.transform.Translate(0, -moveVertical, 0, Space.World);
         if (left) gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
@@ -211,20 +211,20 @@ public class CursorController : MonoBehaviour
         if (right1) gameObject.transform.Translate(moveSide, -moveVertical / 2, 0, Space.World);
         if (right2) gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
 
-        // ‰ñ“]
+        // å›è»¢
         if (Rspin) gameObject.transform.Rotate(0, 0, -60);
         if (Lspin) gameObject.transform.Rotate(0, 0, 60);
 
 
-        // ‚¿ã‚°”»’è
+        // æŒã¡ä¸Šã’åˆ¤å®š
         if (PickUpProp)
         {
             pickupTfm = touchTfm;
 
 
-            // ‚¿ã‚°‚½ƒIƒuƒWƒFƒNƒg‚ÌqƒIƒuƒWƒFƒNƒg‰»‚ÌØ‚è‘Ö‚¦
-            // ¦parent.parent‚ÍA‚¿ã‚°‚½ƒIƒuƒWƒFƒNƒg(SkillPiece‚Ìq‚ÌSplite)‚Ì
-            // e(SkillPiece)‚ğqƒIƒuƒWƒFƒNƒg‚É‚·‚é‚½‚ß
+            // æŒã¡ä¸Šã’ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŒ–ã®åˆ‡ã‚Šæ›¿ãˆ
+            // â€»parent.parentã¯ã€æŒã¡ä¸Šã’ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ(SkillPieceã®å­ã®Splite)ã®
+            // è¦ª(SkillPiece)ã‚’å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã™ã‚‹ãŸã‚
             if (pickupTfm.parent.parent == null)
             {
                 pickupTfm.parent.position = gameObject.transform.position + (touchTfm.parent.position - touchTfm.position);
@@ -256,35 +256,35 @@ public class CursorController : MonoBehaviour
             backButton.Select();
             skillSetDirector.useCursorProp = false;
         }
-        Debug.Log("‚¿ã‚°‚½Obj" + pickupTfm.parent.name);
-        Debug.Log("G‚ê‚½Obj" + touchTfm.parent.name);
+        Debug.Log("æŒã¡ä¸Šã’ãŸObj" + pickupTfm.parent.name);
+        Debug.Log("è§¦ã‚ŒãŸObj" + touchTfm.parent.name);
 
-        // ƒs[ƒX‚ğ‚Á‚Ä‚¢‚é‚Éƒƒjƒ…[‚É–ß‚Á‚½‚Æ‚«‚Ìˆ—
+        // ãƒ”ãƒ¼ã‚¹ã‚’æŒã£ã¦ã„ã‚‹æ™‚ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«æˆ»ã£ãŸã¨ãã®å‡¦ç†
         if (back && pickupTfm.root == transform)
         {
             if (pickupTfm.parent.name == "SkillPiece1(Clone)")
             {
                 GameObject DeletePiece;
 
-                if (GameData.skillSlot1 == 1) GameData.skillSlot1 = 0;    // ƒXƒLƒ‹ƒXƒƒbƒg‚Ì“o˜^‚ğ–³Œø‚É (ƒAƒNƒeƒBƒuƒXƒLƒ‹‚Ì‚İ)
+                if (GameData.skillSlot1 == 1) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
                 else if (GameData.skillSlot2 == 1) GameData.skillSlot2 = 0;
                 else if (GameData.skillSlot3 == 1) GameData.skillSlot3 = 0;
                 else if (GameData.skillSlot4 == 1) GameData.skillSlot4 = 0;
 
-                pickupTfm.parent.parent = null;     // ƒXƒLƒ‹ƒs[ƒX‚ÆƒJ[ƒ\ƒ‹‚ÌeqŠÖŒW‚ğ‰ğœ
-                Skill1_Button.interactable = true;  // ‚»‚ÌƒXƒLƒ‹‚Ìƒ{ƒ^ƒ“‚ğ‘I‘ğ‰Â”\‚É
-                GameData.setSkill1 = false; // ‚»‚ÌƒXƒLƒ‹‚ğ–³Œø‚É
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill1_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill1 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
 
 
-                DeletePiece = GameObject.Find("SkillPiece1(Clone)");    // ‚Á‚Ä‚¢‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+                DeletePiece = GameObject.Find("SkillPiece1(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
-                Destroy(DeletePiece);                                   // ‚»‚ÌƒXƒLƒ‹ƒs[ƒX‚ğÁ‹
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
             }
             else if (pickupTfm.parent.name == "SkillPiece2(Clone)")
             {
                 GameObject DeletePiece;
 
-                if (GameData.skillSlot1 == 2) GameData.skillSlot1 = 0;    // ƒXƒLƒ‹ƒXƒƒbƒg‚Ì“o˜^‚ğ–³Œø‚É
+                if (GameData.skillSlot1 == 2) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã«
                 else if (GameData.skillSlot2 == 2) GameData.skillSlot2 = 0;
                 else if (GameData.skillSlot3 == 2) GameData.skillSlot3 = 0;
                 else if (GameData.skillSlot4 == 2) GameData.skillSlot4 = 0;
@@ -303,7 +303,7 @@ public class CursorController : MonoBehaviour
             {
                 GameObject DeletePiece;
 
-                if (GameData.skillSlot1 == 3) GameData.skillSlot1 = 0;    // ƒXƒLƒ‹ƒXƒƒbƒg‚Ì“o˜^‚ğ–³Œø‚É
+                if (GameData.skillSlot1 == 3) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã«
                 else if (GameData.skillSlot2 == 3) GameData.skillSlot2 = 0;
                 else if (GameData.skillSlot3 == 3) GameData.skillSlot3 = 0;
                 else if (GameData.skillSlot4 == 3) GameData.skillSlot4 = 0;
@@ -324,92 +324,183 @@ public class CursorController : MonoBehaviour
             {
                 GameObject DeletePiece;
 
-                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ƒXƒLƒ‹ƒXƒƒbƒg‚Ì“o˜^‚ğ–³Œø‚É (ƒAƒNƒeƒBƒuƒXƒLƒ‹‚Ì‚İ)
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
                 //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
                 //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
                 //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
 
-                pickupTfm.parent.parent = null;     // ƒXƒLƒ‹ƒs[ƒX‚ÆƒJ[ƒ\ƒ‹‚ÌeqŠÖŒW‚ğ‰ğœ
-                Skill10_Button.interactable = true;  // ‚»‚ÌƒXƒLƒ‹‚Ìƒ{ƒ^ƒ“‚ğ‘I‘ğ‰Â”\‚É
-                GameData.setSkill10 = false; // ‚»‚ÌƒXƒLƒ‹‚ğ–³Œø‚É
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill10_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill10 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
 
 
-                DeletePiece = GameObject.Find("SkillPiece10(Clone)");    // ‚Á‚Ä‚¢‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+                DeletePiece = GameObject.Find("SkillPiece10(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
-                Destroy(DeletePiece);                                   // ‚»‚ÌƒXƒLƒ‹ƒs[ƒX‚ğÁ‹
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
             }
             else if (pickupTfm.parent.name == "SkillPiece11(Clone)")
             {
                 GameObject DeletePiece;
 
-                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ƒXƒLƒ‹ƒXƒƒbƒg‚Ì“o˜^‚ğ–³Œø‚É (ƒAƒNƒeƒBƒuƒXƒLƒ‹‚Ì‚İ)
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
                 //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
                 //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
                 //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
 
-                pickupTfm.parent.parent = null;     // ƒXƒLƒ‹ƒs[ƒX‚ÆƒJ[ƒ\ƒ‹‚ÌeqŠÖŒW‚ğ‰ğœ
-                Skill11_Button.interactable = true;  // ‚»‚ÌƒXƒLƒ‹‚Ìƒ{ƒ^ƒ“‚ğ‘I‘ğ‰Â”\‚É
-                GameData.setSkill11 = false; // ‚»‚ÌƒXƒLƒ‹‚ğ–³Œø‚É
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill11_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill11 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
 
 
-                DeletePiece = GameObject.Find("SkillPiece11(Clone)");    // ‚Á‚Ä‚¢‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+                DeletePiece = GameObject.Find("SkillPiece11(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
-                Destroy(DeletePiece);                                   // ‚»‚ÌƒXƒLƒ‹ƒs[ƒX‚ğÁ‹
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
             }
             else if (pickupTfm.parent.name == "SkillPiece12(Clone)")
             {
                 GameObject DeletePiece;
 
-                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ƒXƒLƒ‹ƒXƒƒbƒg‚Ì“o˜^‚ğ–³Œø‚É (ƒAƒNƒeƒBƒuƒXƒLƒ‹‚Ì‚İ)
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
                 //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
                 //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
                 //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
 
-                pickupTfm.parent.parent = null;     // ƒXƒLƒ‹ƒs[ƒX‚ÆƒJ[ƒ\ƒ‹‚ÌeqŠÖŒW‚ğ‰ğœ
-                Skill12_Button.interactable = true;  // ‚»‚ÌƒXƒLƒ‹‚Ìƒ{ƒ^ƒ“‚ğ‘I‘ğ‰Â”\‚É
-                GameData.setSkill12 = false; // ‚»‚ÌƒXƒLƒ‹‚ğ–³Œø‚É
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill12_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill12 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
 
 
-                DeletePiece = GameObject.Find("SkillPiece12(Clone)");    // ‚Á‚Ä‚¢‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+                DeletePiece = GameObject.Find("SkillPiece12(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
-                Destroy(DeletePiece);                                   // ‚»‚ÌƒXƒLƒ‹ƒs[ƒX‚ğÁ‹
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
             }
             else if (pickupTfm.parent.name == "SkillPiece13(Clone)")
             {
                 GameObject DeletePiece;
 
-                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ƒXƒLƒ‹ƒXƒƒbƒg‚Ì“o˜^‚ğ–³Œø‚É (ƒAƒNƒeƒBƒuƒXƒLƒ‹‚Ì‚İ)
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
                 //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
                 //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
                 //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
 
-                pickupTfm.parent.parent = null;     // ƒXƒLƒ‹ƒs[ƒX‚ÆƒJ[ƒ\ƒ‹‚ÌeqŠÖŒW‚ğ‰ğœ
-                Skill13_Button.interactable = true;  // ‚»‚ÌƒXƒLƒ‹‚Ìƒ{ƒ^ƒ“‚ğ‘I‘ğ‰Â”\‚É
-                GameData.setSkill13 = false; // ‚»‚ÌƒXƒLƒ‹‚ğ–³Œø‚É
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill13_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill13 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
 
 
-                DeletePiece = GameObject.Find("SkillPiece13(Clone)");    // ‚Á‚Ä‚¢‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+                DeletePiece = GameObject.Find("SkillPiece13(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
-                Destroy(DeletePiece);                                   // ‚»‚ÌƒXƒLƒ‹ƒs[ƒX‚ğÁ‹
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
             }
             else if (pickupTfm.parent.name == "SkillPiece14(Clone)")
             {
                 GameObject DeletePiece;
 
-                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ƒXƒLƒ‹ƒXƒƒbƒg‚Ì“o˜^‚ğ–³Œø‚É (ƒAƒNƒeƒBƒuƒXƒLƒ‹‚Ì‚İ)
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
                 //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
                 //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
                 //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
 
-                pickupTfm.parent.parent = null;     // ƒXƒLƒ‹ƒs[ƒX‚ÆƒJ[ƒ\ƒ‹‚ÌeqŠÖŒW‚ğ‰ğœ
-                Skill14_Button.interactable = true;  // ‚»‚ÌƒXƒLƒ‹‚Ìƒ{ƒ^ƒ“‚ğ‘I‘ğ‰Â”\‚É
-                GameData.setSkill14 = false; // ‚»‚ÌƒXƒLƒ‹‚ğ–³Œø‚É
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill14_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill14 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
 
 
-                DeletePiece = GameObject.Find("SkillPiece14(Clone)");    // ‚Á‚Ä‚¢‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+                DeletePiece = GameObject.Find("SkillPiece14(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
-                Destroy(DeletePiece);                                   // ‚»‚ÌƒXƒLƒ‹ƒs[ƒX‚ğÁ‹
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
             }
+            else if (pickupTfm.parent.name == "SkillPiece15(Clone)")
+            {
+                GameObject DeletePiece;
+
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
+                //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
+                //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
+                //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
+
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill15_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill15 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
+
+
+                DeletePiece = GameObject.Find("SkillPiece15(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
+            }
+            else if (pickupTfm.parent.name == "SkillPiece16(Clone)")
+            {
+                GameObject DeletePiece;
+
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
+                //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
+                //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
+                //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
+
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill16_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill16 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
+
+
+                DeletePiece = GameObject.Find("SkillPiece16(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
+            }
+            else if (pickupTfm.parent.name == "SkillPiece17(Clone)")
+            {
+                GameObject DeletePiece;
+
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
+                //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
+                //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
+                //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
+
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill17_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill17 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
+
+
+                DeletePiece = GameObject.Find("SkillPiece17(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
+            }
+            else if (pickupTfm.parent.name == "SkillPiece18(Clone)")
+            {
+                GameObject DeletePiece;
+
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
+                //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
+                //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
+                //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
+
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill18_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill18 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
+
+
+                DeletePiece = GameObject.Find("SkillPiece18(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
+            }
+            else if (pickupTfm.parent.name == "SkillPiece19(Clone)")
+            {
+                GameObject DeletePiece;
+
+                //if (GameData.skillSlot1 == 10) GameData.skillSlot1 = 0;    // ã‚¹ã‚­ãƒ«ã‚¹ãƒ­ãƒƒãƒˆã®ç™»éŒ²ã‚’ç„¡åŠ¹ã« (ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã®ã¿)
+                //else if (GameData.skillSlot2 == 10) GameData.skillSlot2 = 0;
+                //else if (GameData.skillSlot3 == 10) GameData.skillSlot3 = 0;
+                //else if (GameData.skillSlot4 == 10) GameData.skillSlot4 = 0;
+
+                pickupTfm.parent.parent = null;     // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã¨ã‚«ãƒ¼ã‚½ãƒ«ã®è¦ªå­é–¢ä¿‚ã‚’è§£é™¤
+                Skill19_Button.interactable = true;  // ãã®ã‚¹ã‚­ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’é¸æŠå¯èƒ½ã«
+                GameData.setSkill19 = false; // ãã®ã‚¹ã‚­ãƒ«ã‚’ç„¡åŠ¹ã«
+
+
+                DeletePiece = GameObject.Find("SkillPiece19(Clone)");    // æŒã£ã¦ã„ãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                Destroy(DeletePiece);                                   // ãã®ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’æ¶ˆå»
+            }
+
         }
 
 
@@ -419,13 +510,13 @@ public class CursorController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        // ƒXƒLƒ‹ƒs[ƒX‚ÉG‚ê‚Ä‚¢‚é‚©”»’è
+        // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã«è§¦ã‚Œã¦ã„ã‚‹ã‹åˆ¤å®š
         if(col.transform.tag == "SkillPiece")
         {
-            Debug.Log("ƒJ[ƒ\ƒ‹‚ªƒs[ƒX‚ÉG‚ê‚½");
-            // G‚ê‚½ƒXƒLƒ‹ƒs[ƒX‚ğæ“¾
+            Debug.Log("ã‚«ãƒ¼ã‚½ãƒ«ãŒãƒ”ãƒ¼ã‚¹ã«è§¦ã‚ŒãŸ");
+            // è§¦ã‚ŒãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã‚’å–å¾—
             touchTfm = col.transform;
-            // G‚ê‚½ƒXƒLƒ‹ƒs[ƒX‚ÌƒXƒNƒŠƒvƒg‚ğæ“¾
+            // è§¦ã‚ŒãŸã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å–å¾—
             skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
             Debug.Log(skillPieceController.OutBaseProp);
 
@@ -434,7 +525,7 @@ public class CursorController : MonoBehaviour
 
                 if (!skillPieceController.OutBaseProp)
                 {
-                    // ‚¿ã‚°”»’è‚É‚·‚é
+                    // æŒã¡ä¸Šã’åˆ¤å®šã«ã™ã‚‹
                     PickUpProp = true;
 
                 }

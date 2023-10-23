@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class SkillIconView : MonoBehaviour
 {
-    [SerializeField, Tooltip("ÉXÉâÉbÉVÉÖ")] Sprite ActiveIcon1;
-    [SerializeField, Tooltip("ÉtÉäÅ[Ég")] Sprite ActiveIcon2;
-    [SerializeField, Tooltip("ÉçÅ[ÉìÉEÉHÅ[ÉäÉAÅ[")] Sprite ActiveIcon3;
-    [SerializeField, Tooltip("ÉOÉäÅ[ÉÄ")] Sprite ActiveIcon4;
-    [SerializeField, Tooltip("ÉfÉBÉXÉsÉåÅ[ÉVÉáÉìÉXÉgÉâÉCÉN")] Sprite ActiveIcon5;
+    [SerializeField, Tooltip("„Çπ„É©„ÉÉ„Ç∑„É•")] Sprite ActiveIcon1;
+    [SerializeField, Tooltip("„Éï„É™„Éº„Éà")] Sprite ActiveIcon2;
+    [SerializeField, Tooltip("„É≠„Éº„É≥„Ç¶„Ç©„Éº„É™„Ç¢„Éº")] Sprite ActiveIcon3;
+    [SerializeField, Tooltip("„Ç∞„É™„Éº„É†")] Sprite ActiveIcon4;
+    [SerializeField, Tooltip("„Éá„Ç£„Çπ„Éî„É¨„Éº„Ç∑„Éß„É≥„Çπ„Éà„É©„Ç§„ÇØ")] Sprite ActiveIcon5;
 
     GameObject Slot1;
     GameObject Slot2;
@@ -58,7 +58,7 @@ public class SkillIconView : MonoBehaviour
             Slot1.SetActive(true);
 
             if (GameData.skillSlot1 == 1) { SlotGauge1.overrideSprite = ActiveIcon1; SlotGauge1.fillAmount = player.SkillSlashCount / player.SkillSlashCT; }
-            else if (GameData.skillSlot1 == 2) SlotGauge1.overrideSprite = ActiveIcon2;
+            else if (GameData.skillSlot1 == 2) { SlotGauge1.overrideSprite = ActiveIcon2; SlotGauge1.fillAmount = player.SkillFleetCount / player.SkillFleetCT; }
             else if (GameData.skillSlot1 == 3) SlotGauge1.overrideSprite = ActiveIcon3;
             else if (GameData.skillSlot1 == 4) SlotGauge1.overrideSprite = ActiveIcon4;
             else if (GameData.skillSlot1 == 5) SlotGauge1.overrideSprite = ActiveIcon5;
@@ -75,7 +75,7 @@ public class SkillIconView : MonoBehaviour
             Slot2.SetActive(true);
 
             if (GameData.skillSlot2 == 1) { SlotGauge2.overrideSprite = ActiveIcon1; SlotGauge2.fillAmount = player.SkillSlashCount / player.SkillSlashCT; }
-            else if (GameData.skillSlot2 == 2) SlotGauge2.overrideSprite = ActiveIcon2;
+            else if (GameData.skillSlot2 == 2) { SlotGauge2.overrideSprite = ActiveIcon2; SlotGauge2.fillAmount = player.SkillFleetCount / player.SkillFleetCT; }
             else if (GameData.skillSlot2 == 3) SlotGauge2.overrideSprite = ActiveIcon3;
             else if (GameData.skillSlot2 == 4) SlotGauge2.overrideSprite = ActiveIcon4;
             else if (GameData.skillSlot2 == 5) SlotGauge2.overrideSprite = ActiveIcon5;
@@ -92,7 +92,7 @@ public class SkillIconView : MonoBehaviour
             Slot3.SetActive(false);
 
             if (GameData.skillSlot3 == 1) { SlotGauge3.overrideSprite = ActiveIcon1; SlotGauge3.fillAmount = player.SkillSlashCount / player.SkillSlashCT; }
-            else if (GameData.skillSlot3 == 2) SlotGauge3.overrideSprite = ActiveIcon2;
+            else if (GameData.skillSlot3 == 2) { SlotGauge3.overrideSprite = ActiveIcon2; SlotGauge3.fillAmount = player.SkillFleetCount / player.SkillFleetCT; }
             else if (GameData.skillSlot3 == 3) SlotGauge3.overrideSprite = ActiveIcon3;
             else if (GameData.skillSlot3 == 4) SlotGauge3.overrideSprite = ActiveIcon4;
             else if (GameData.skillSlot3 == 5) SlotGauge3.overrideSprite = ActiveIcon5;
@@ -110,7 +110,7 @@ public class SkillIconView : MonoBehaviour
             Slot4.SetActive(false);
 
             if (GameData.skillSlot4 == 1) { SlotGauge4.overrideSprite = ActiveIcon1; SlotGauge4.fillAmount = player.SkillSlashCount / player.SkillSlashCT; }
-            else if (GameData.skillSlot4 == 2) SlotGauge4.overrideSprite = ActiveIcon2;
+            else if (GameData.skillSlot4 == 2) { SlotGauge4.overrideSprite = ActiveIcon2; SlotGauge4.fillAmount = player.SkillFleetCount / player.SkillFleetCT; }
             else if (GameData.skillSlot4 == 3) SlotGauge4.overrideSprite = ActiveIcon3;
             else if (GameData.skillSlot4 == 4) SlotGauge4.overrideSprite = ActiveIcon4;
             else if (GameData.skillSlot4 == 5) SlotGauge4.overrideSprite = ActiveIcon5;

@@ -116,6 +116,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""85f800da-4a52-4bce-b6da-b1d464ee41fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""e876b085-08da-4f2d-91b3-478df8edc6a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -338,6 +356,50 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Skill4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94198877-fa70-4b07-8a59-82c14baafab8"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""550c49d9-a3d5-4e41-982e-0f7567bbbbe7"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65eb022d-325e-4501-9fdb-3620cde1b2e3"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a928666-f857-48db-92b8-447a3e192c2d"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -367,6 +429,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_actions_Skill2 = m_actions.FindAction("Skill2", throwIfNotFound: true);
         m_actions_Skill3 = m_actions.FindAction("Skill3", throwIfNotFound: true);
         m_actions_Skill4 = m_actions.FindAction("Skill4", throwIfNotFound: true);
+        m_actions_Down = m_actions.FindAction("Down", throwIfNotFound: true);
+        m_actions_Up = m_actions.FindAction("Up", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -438,6 +502,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_actions_Skill2;
     private readonly InputAction m_actions_Skill3;
     private readonly InputAction m_actions_Skill4;
+    private readonly InputAction m_actions_Down;
+    private readonly InputAction m_actions_Up;
     public struct ActionsActions
     {
         private @PlayerInput m_Wrapper;
@@ -452,6 +518,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Skill2 => m_Wrapper.m_actions_Skill2;
         public InputAction @Skill3 => m_Wrapper.m_actions_Skill3;
         public InputAction @Skill4 => m_Wrapper.m_actions_Skill4;
+        public InputAction @Down => m_Wrapper.m_actions_Down;
+        public InputAction @Up => m_Wrapper.m_actions_Up;
         public InputActionMap Get() { return m_Wrapper.m_actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -491,6 +559,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Skill4.started += instance.OnSkill4;
             @Skill4.performed += instance.OnSkill4;
             @Skill4.canceled += instance.OnSkill4;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -525,6 +599,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Skill4.started -= instance.OnSkill4;
             @Skill4.performed -= instance.OnSkill4;
             @Skill4.canceled -= instance.OnSkill4;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -572,5 +652,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSkill2(InputAction.CallbackContext context);
         void OnSkill3(InputAction.CallbackContext context);
         void OnSkill4(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
     }
 }

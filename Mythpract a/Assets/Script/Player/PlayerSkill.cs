@@ -3,34 +3,32 @@ using UnityEngine;
 partial class Player
 {
 
-    [SerializeField, Tooltip("ƒXƒ‰ƒbƒVƒ…‚ÌƒN[ƒ‹ƒ^ƒCƒ€")] float skillSlashCT;
+    [SerializeField, Tooltip("ã‚¹ãƒ©ãƒƒã‚·ãƒ¥ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float skillSlashCT;
+    [SerializeField, Tooltip("ãƒ•ãƒªãƒ¼ãƒˆã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float skillFleetCT;
 
-    [SerializeField, Tooltip("ƒuƒŠƒ“ƒN‹——£ƒXƒLƒ‹")] float SkillBrinkMove;
-    [SerializeField, Tooltip("ƒWƒƒƒXƒgƒK[ƒhƒXƒLƒ‹")] float SkillJustGuard;
-    [SerializeField, Tooltip("ƒXƒs[ƒhƒAƒbƒvƒXƒLƒ‹")] int SkillMaxSpeed;
-    [SerializeField, Tooltip("‰Î–êUŒ‚—ÍƒAƒbƒv")] float SkillKajibaAtk;
+
+    [SerializeField, Tooltip("ãƒ–ãƒªãƒ³ã‚¯è·é›¢ã‚¹ã‚­ãƒ«")] float SkillBrinkMove;
+    [SerializeField, Tooltip("ã‚¸ãƒ£ã‚¹ãƒˆã‚¬ãƒ¼ãƒ‰ã‚¹ã‚­ãƒ«")] float SkillJustGuard;
+    [SerializeField, Tooltip("ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚¢ãƒƒãƒ—ã‚¹ã‚­ãƒ«")] int SkillMaxSpeed;
+    [SerializeField, Tooltip("ç«äº‹å ´æ”»æ’ƒåŠ›ã‚¢ãƒƒãƒ—")] float SkillKajibaAtk;
+
+    Vector2 fleetStartPos;
 
     float skillSlashCount = 0;
+    float skillFleetCount = 0;
 
     public GameObject slash;
 
     public float SkillSlashCT { get { return skillSlashCT; } }
-    
     public float SkillSlashCount { get { return skillSlashCount; } }
+
+    public float SkillFleetCT { get { return skillFleetCT; } }
+    public float SkillFleetCount { get { return skillFleetCount; } }
+
     void ActiveSkillController()
     {
         skillSlashCount += Time.deltaTime;
-        bool a = false;
-
-        if (GameData.skillSlot1 == 1) { a = true; }
-
-        Debug.Log("ƒXƒLƒ‹ƒXƒ‰ƒbƒVƒ…ƒZƒbƒg" + GameData.setSkill1);
-        Debug.Log("ƒXƒLƒ‹ƒXƒƒbƒg1‚É“ü‚Á‚Ä‚¢‚é‚à‚Ì" + GameData.skillSlot1);
-        Debug.Log("ƒXƒLƒ‹ƒXƒƒbƒg1‚ÆƒXƒLƒ‹ƒXƒ‰ƒbƒVƒ…" + a);
-
-
-
-        /* ƒAƒNƒeƒBƒuƒXƒLƒ‹ */
+        skillFleetCount += Time.deltaTime;
 
         if (GameData.setSkill1 && skillSlashCT < skillSlashCount)
         {
@@ -55,24 +53,68 @@ partial class Player
             }
             else if (GameData.skillSlot3 == 1)
             {
-                //if (skill3) 
-                //{
-                skillSlashCount = 0;
+                if (skill3)
+                {
+                    SkillSlash();
+                    skillSlashCount = 0;
 
-                //}
+                }
 
             }
             else if (GameData.skillSlot4 == 1)
             {
-                //if (skill4)
-                //{
-                skillSlashCount = 0;
+                if (skill4)
+                {
+                    SkillSlash();
+                    skillSlashCount = 0;
 
-                //}
+                }
 
             }
 
         }
+        if (GameData.setSkill2 && skillFleetCT < skillFleetCount)
+        {
+            if (GameData.skillSlot1 == 2)
+            {
+                if (skill1)
+                {
+                    SkillFleet();
+                    skillFleetCount = 0;
+
+
+                }
+            }
+            else if (GameData.skillSlot2 == 2)
+            {
+                if (skill2)
+                {
+                    SkillFleet();
+                    skillFleetCount = 0;
+                }
+            }
+            else if (GameData.skillSlot3 == 2)
+            {
+                if (skill3)
+                {
+                    SkillFleet();
+                    skillFleetCount = 0;
+                }
+
+            }
+            else if (GameData.skillSlot4 == 2)
+            {
+                if (skill4)
+                {
+                    SkillFleet();
+                    skillFleetCount = 0;
+
+                }
+
+            }
+
+        }
+
     }
     public void PassiveSkillStart()
     {
@@ -103,7 +145,7 @@ partial class Player
         }
     }
 
-    /* ƒAƒNƒeƒBƒuƒXƒLƒ‹ */
+    /* ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ« */
     public void SkillSlash()
     {
 
@@ -123,22 +165,30 @@ partial class Player
         }
 
     }
+    public void SkillFleet()
+    {
+        GameData.SkillCount++;
 
-    /* ƒpƒbƒVƒuƒXƒLƒ‹ */
-    public void SkillHPPlus()   // ƒXƒLƒ‹10
+        int fleetPow = 50;
+
+        PlayerRb.AddForce(Vector2.right * dir.x * fleetPow,ForceMode2D.Impulse);
+    }
+
+    /* ãƒ‘ãƒƒã‚·ãƒ–ã‚¹ã‚­ãƒ« */
+    public void SkillHPPlus()   // ã‚¹ã‚­ãƒ«10
     {
         HMng.MaxHP = 20;
         HMng.HP = HMng.MaxHP;
     }
-    public void SkillBrinkMovePlus()    // ƒXƒLƒ‹11
+    public void SkillBrinkMovePlus()    // ã‚¹ã‚­ãƒ«11
     {
         brinkMove = SkillBrinkMove;
     }
-    public void SkillJustGuardPlus()    // ƒXƒLƒ‹12
+    public void SkillJustGuardPlus()    // ã‚¹ã‚­ãƒ«12
     {
         justGuardTime = SkillJustGuard;
     }
-    public void SkillSpeedUpHpMax()     // ƒXƒLƒ‹13
+    public void SkillSpeedUpHpMax()     // ã‚¹ã‚­ãƒ«13
     {
         if(HMng.HP == HMng.MaxHP)
         {
@@ -146,7 +196,7 @@ partial class Player
         }
         else
         {
-            maxSpeed = 12;  // ‚ß‚ñ‚Ç‚¢‚Ì‚Å‰Šú”’lè“ü—Í
+            maxSpeed = 12;  // ã‚ã‚“ã©ã„ã®ã§åˆæœŸæ•°å€¤æ‰‹å…¥åŠ›
         }
     }
     public void SkillKajiba()
@@ -158,7 +208,27 @@ partial class Player
         }
         else
         {
-            HMng.ATK = 100;     // ‚ß‚ñ‚Ç‚¢‚Ì‚Å‰Šú”’lè“ü—Í
+            HMng.ATK = 100;     // ã‚ã‚“ã©ã„ã®ã§åˆæœŸæ•°å€¤æ‰‹å…¥åŠ›
         }
+    }
+    public void SkillStrength()
+    {
+
+    }
+    public void SkillWisse()
+    {
+
+    }
+    public void SkillElect()
+    {
+
+    }
+    public void SkillCarse()
+    {
+
+    }
+    public void SkillHeep()
+    {
+
     }
 }

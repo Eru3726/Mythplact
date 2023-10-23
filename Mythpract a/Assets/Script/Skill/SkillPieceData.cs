@@ -48,7 +48,7 @@ public class SkillPieceData : MonoBehaviour
 
 
 
-    public static GameObject skillPiece1; // ƒAƒNƒeƒBƒuƒXƒLƒ‹ƒXƒ‰ƒbƒVƒ…
+    public static GameObject skillPiece1; // ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¹ã‚­ãƒ«ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
     public static GameObject skillPiece2;
     public static GameObject skillPiece3;
     public static GameObject skillPiece4;
@@ -83,8 +83,8 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill1 = true;
 
 
-            //Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌPos" + GameData.skillPiece1Pos);
-            //Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌDeg" + GameData.skillPiece1Deg);
+            //Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Pos" + GameData.skillPiece1Pos);
+            //Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Deg" + GameData.skillPiece1Deg);
 
         }
         if (skillPiece2 != null)
@@ -93,8 +93,8 @@ public class SkillPieceData : MonoBehaviour
             GameData.skillPiece2Deg = skillPiece2.transform.rotation;
             GameData.saveSkill2 = true;
 
-            //Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌPos" + GameData.skillPiece2Pos);
-            //Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌDeg" + GameData.skillPiece2Deg);
+            //Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Pos" + GameData.skillPiece2Pos);
+            //Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Deg" + GameData.skillPiece2Deg);
 
 
         }
@@ -104,8 +104,8 @@ public class SkillPieceData : MonoBehaviour
             GameData.skillPiece3Deg = skillPiece3.transform.rotation;
             GameData.saveSkill3 = true;
 
-            //Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌPos" + GameData.skillPiece3Pos);
-            //Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌDeg" + GameData.skillPiece3Deg);
+            //Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Pos" + GameData.skillPiece3Pos);
+            //Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Deg" + GameData.skillPiece3Deg);
 
 
         }
@@ -150,6 +150,46 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        if (skillPiece15 != null)
+        {
+            GameData.skillPiece15Pos = skillPiece15.transform.position;
+            GameData.skillPiece15Deg = skillPiece15.transform.rotation;
+            GameData.saveSkill15 = true;
+
+
+        }
+        if (skillPiece16 != null)
+        {
+            GameData.skillPiece16Pos = skillPiece16.transform.position;
+            GameData.skillPiece16Deg = skillPiece16.transform.rotation;
+            GameData.saveSkill16 = true;
+
+
+        }
+        if (skillPiece17 != null)
+        {
+            GameData.skillPiece17Pos = skillPiece17.transform.position;
+            GameData.skillPiece17Deg = skillPiece17.transform.rotation;
+            GameData.saveSkill17 = true;
+
+
+        }
+        if (skillPiece18 != null)
+        {
+            GameData.skillPiece18Pos = skillPiece18.transform.position;
+            GameData.skillPiece18Deg = skillPiece18.transform.rotation;
+            GameData.saveSkill18 = true;
+
+
+        }
+        if (skillPiece19 != null)
+        {
+            GameData.skillPiece19Pos = skillPiece19.transform.position;
+            GameData.skillPiece19Deg = skillPiece19.transform.rotation;
+            GameData.saveSkill19 = true;
+
+
+        }
 
 
 
@@ -166,8 +206,8 @@ public class SkillPieceData : MonoBehaviour
             {
                 skillPiece1.transform.position = GameData.skillPiece1Pos;
                 skillPiece1.transform.rotation = GameData.skillPiece1Deg;
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌPos" + GameData.skillPiece1Pos);
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌDeg" + GameData.skillPiece1Deg);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Pos" + GameData.skillPiece1Pos);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Deg" + GameData.skillPiece1Deg);
 
             }
             else
@@ -188,8 +228,8 @@ public class SkillPieceData : MonoBehaviour
             GameData.setSkill1 = true;
             Skill1_Button.interactable = false;
 
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌPos" + GameData.skillPiece1Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX1‚ÌDeg" + GameData.skillPiece1Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Pos" + GameData.skillPiece1Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹1ã®Deg" + GameData.skillPiece1Deg);
 
             GameData.saveSkill1 = false;
 
@@ -201,8 +241,8 @@ public class SkillPieceData : MonoBehaviour
             {
                 skillPiece2.transform.position = GameData.skillPiece2Pos;
                 skillPiece2.transform.rotation = GameData.skillPiece2Deg;
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌPos" + GameData.skillPiece2Pos);
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌDeg" + GameData.skillPiece2Deg);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Pos" + GameData.skillPiece2Pos);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Deg" + GameData.skillPiece2Deg);
 
 
             }
@@ -226,8 +266,8 @@ public class SkillPieceData : MonoBehaviour
             Skill2_Button.interactable = false;
 
 
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌPos" + GameData.skillPiece2Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX2‚ÌDeg" + GameData.skillPiece2Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Pos" + GameData.skillPiece2Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹2ã®Deg" + GameData.skillPiece2Deg);
 
             GameData.saveSkill2 = false;
 
@@ -240,8 +280,8 @@ public class SkillPieceData : MonoBehaviour
             {
                 skillPiece3.transform.position = GameData.skillPiece3Pos;
                 skillPiece3.transform.rotation = GameData.skillPiece3Deg;
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌPos" + GameData.skillPiece3Pos);
-                Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌDeg" + GameData.skillPiece3Deg);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Pos" + GameData.skillPiece3Pos);
+                Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Deg" + GameData.skillPiece3Deg);
 
             }
             else
@@ -264,8 +304,8 @@ public class SkillPieceData : MonoBehaviour
             GameData.setSkill3 = true;
             Skill3_Button.interactable = false;
 
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌPos" + GameData.skillPiece3Pos);
-            Debug.Log("ƒXƒLƒ‹ƒs[ƒX3‚ÌDeg" + GameData.skillPiece3Deg);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Pos" + GameData.skillPiece3Pos);
+            Debug.Log("ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹3ã®Deg" + GameData.skillPiece3Deg);
 
             GameData.saveSkill3 = false;
         }
@@ -424,6 +464,76 @@ public class SkillPieceData : MonoBehaviour
 
 
             GameData.saveSkill14 = false;
+
+        }
+        else if (GameData.saveSkill15)
+        {
+            Instantiate(Skill15);
+            skillPiece15 = GameObject.Find("SkillPiece15(Clone)");
+            skillPiece15.transform.position = GameData.skillPiece15Pos;
+            skillPiece15.transform.rotation = GameData.skillPiece15Deg;
+
+            GameData.setSkill15 = true;
+            Skill15_Button.interactable = false;
+
+
+            GameData.saveSkill15 = false;
+
+        }
+        else if (GameData.saveSkill16)
+        {
+            Instantiate(Skill16);
+            skillPiece16 = GameObject.Find("SkillPiece16(Clone)");
+            skillPiece16.transform.position = GameData.skillPiece16Pos;
+            skillPiece16.transform.rotation = GameData.skillPiece16Deg;
+
+            GameData.setSkill16 = true;
+            Skill16_Button.interactable = false;
+
+
+            GameData.saveSkill16 = false;
+
+        }
+        else if (GameData.saveSkill17)
+        {
+            Instantiate(Skill17);
+            skillPiece17 = GameObject.Find("SkillPiece17(Clone)");
+            skillPiece17.transform.position = GameData.skillPiece17Pos;
+            skillPiece17.transform.rotation = GameData.skillPiece17Deg;
+
+            GameData.setSkill17 = true;
+            Skill17_Button.interactable = false;
+
+
+            GameData.saveSkill17 = false;
+
+        }
+        else if (GameData.saveSkill18)
+        {
+            Instantiate(Skill18);
+            skillPiece18 = GameObject.Find("SkillPiece18(Clone)");
+            skillPiece18.transform.position = GameData.skillPiece18Pos;
+            skillPiece18.transform.rotation = GameData.skillPiece18Deg;
+
+            GameData.setSkill18 = true;
+            Skill18_Button.interactable = false;
+
+
+            GameData.saveSkill18 = false;
+
+        }
+        else if (GameData.saveSkill19)
+        {
+            Instantiate(Skill19);
+            skillPiece19 = GameObject.Find("SkillPiece19(Clone)");
+            skillPiece19.transform.position = GameData.skillPiece19Pos;
+            skillPiece19.transform.rotation = GameData.skillPiece19Deg;
+
+            GameData.setSkill19 = true;
+            Skill19_Button.interactable = false;
+
+
+            GameData.saveSkill19 = false;
 
         }
 

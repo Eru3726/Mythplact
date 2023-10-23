@@ -24,24 +24,24 @@ public class RestManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (keycon.activeSelf == false)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.JoystickButton7))
-            {
-                keycon.SetActive(true);
-                Cmana.SetActive(true);
-                Time.timeScale = 0;
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
-            {
-                keycon.SetActive(false);
-                Cmana.SetActive(false);
-                Time.timeScale = 1;
-            }
-        }
+        //if (keycon.activeSelf == false)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.JoystickButton7))
+        //    {
+        //        keycon.SetActive(true);
+        //        Cmana.SetActive(true);
+        //        Time.timeScale = 0;
+        //    }
+        //}
+        //else
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
+        //    {
+        //        keycon.SetActive(false);
+        //        Cmana.SetActive(false);
+        //        Time.timeScale = 1;
+        //    }
+        //}
     }
 
     public void Boss1Start()
