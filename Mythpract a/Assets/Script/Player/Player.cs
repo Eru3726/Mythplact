@@ -14,25 +14,31 @@ public partial class Player : MonoBehaviour
     [SerializeField,Tooltip("最高速度")] int maxSpeed;              // プレイヤーの最高速度
     [SerializeField, Tooltip("ジャンプ力")] float jumpPow;             // ジャンプ時に加える力
     [SerializeField, Tooltip("ダブルジャンプ力")] float doubleJumpPow;       // ダブルジャンプ時に加える力
-    [SerializeField, Tooltip("ブリンクの距離")] float brinkMove;    // ブリンクのクールタイム
+    [SerializeField, Tooltip("スタミナの最大値")] float maxStamina;            // スタミナの最大値
+    [SerializeField, Tooltip("スタミナの回復速度")] float healStamina;         // スタミナの回復速度
+    [SerializeField, Tooltip("ブリンクの消費スタミナ")] float brinkStamina;    // ブリンクの消費スタミナ(瞬時)
+    [SerializeField, Tooltip("ガードの消費スタミナ(毎時)")] float guardStamina;     // ガード時の消費スタミナ(毎秒)
+    [SerializeField, Tooltip("ブリンクの距離")] float brinkMove;    // ブリンクの距離
     [SerializeField, Tooltip("ブリンクのクールタイム")] float brinkCoolTimeSec;    // ブリンクのクールタイム
-    [SerializeField, Tooltip("スキルのクールタイム")] float skillCoolTimeSec;    // ブリンクのクールタイム
-    [SerializeField, Tooltip("ガードの持続時間")] float guardTime;
+    [SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTimeSec;    // ガードのクールタイム
     [SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
-    //[SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTime;
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
     Image brinkSlider;
     float jumpPowPlus;
-    float brinkCount = 0;            // ブリンクのクールダウンのカウント
+    float brinkCTCount = 0;            // ブリンクのクールダウンのカウント
+    float guardCTCount = 0;             // ガードのクールタイムのカウント
     float guardCount = 0;
     float knockbuckCount = 0;        // ノックバックする時間のカウント
+    float stamina = 0;              // 現在のスタミナの値
 
     bool jumping = false;       // ジャンプ落下時の判定
     bool doublejump = false;    // ダブルジャンプ使用判定
     bool isbrinkUp;             // ジャンプ時のブリンク判定 
     bool isbrink;               // ブリンクのクールタイム判定
+    bool canGuard;              // ガードのクールタイム判定
     bool speedreset;            // 切り返し時の速度リセット判定
     bool attack;                // 攻撃判定
+    bool guardbreak;            // ガードスタミナ使い切り時のboolian
     bool ltDown;
     bool rtDown;
     bool ltup;
@@ -56,6 +62,7 @@ public partial class Player : MonoBehaviour
 
     HitMng HMng;
     AtkJumpDown atkJumpDown;
+    DeadEffectEnd deadEffectEnd;
     Controllerconnect conconect;
     Keyconfig keycon;
 
@@ -110,19 +117,23 @@ public partial class Player : MonoBehaviour
         keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
         HMng = GetComponent<HitMng>();
         atkJumpDown = transform.GetChild(4).GetComponent<AtkJumpDown>();
+        deadEffectEnd = transform.GetChild(7).GetComponent<DeadEffectEnd>();
         brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
 
         InitCol();
         InitAudio();
         InitAnim();
         InitEffect();
-        PassiveSkillStart();
 
     }
     void Start()
     {
+        PlayerRb.gravityScale = 7;
         dir.x = 1;
+        stamina = maxStamina;
         InitHP();
+        PassiveSkillStart();
+
 
         //有効化
         attackInp.action.Enable();
@@ -138,7 +149,7 @@ public partial class Player : MonoBehaviour
         skill3Inp.action.Enable();
         skill4Inp.action.Enable();
 
-
+        
     }
 
     void Update()
@@ -750,7 +761,6 @@ public partial class Player : MonoBehaviour
                 PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
                 PlayerRb.AddForce(Vector2.up * jumpPow, ForceMode2D.Impulse);
 
-                JumpEffect();
                 JumpSE();
             }
             // 滑り止め
@@ -855,7 +865,7 @@ public partial class Player : MonoBehaviour
 
 
         // 空中ブリンク
-        if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim)
+        if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim && stamina >= brinkStamina)
         {
 
             BrinkEffect();
@@ -865,13 +875,15 @@ public partial class Player : MonoBehaviour
             PlayerRb.velocity = new Vector2(0, 0);
 
             BrinkEffect();
+
+            stamina -= brinkStamina;
 
             isbrink = true;
             isbrinkUp = true;
-            brinkCount = 0;
+            brinkCTCount = 0;
         }
         // 地上ブリンク
-        if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim)
+        if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim && stamina >= brinkStamina)
         {
             BrinkEffect();
             BrinkSE();
@@ -881,32 +893,33 @@ public partial class Player : MonoBehaviour
             PlayerRb.velocity = new Vector2(0, 0);
             BrinkEffect();
 
+            stamina -= brinkStamina;
+
+
             isbrink = true;
-            brinkCount = 0;
+            brinkCTCount = 0;
 
         }
         // ブリンクのクールタイム
         if (isbrink && !isGuard)
         {
-            brinkCount += Time.deltaTime;
-            if(brinkCount >= brinkCoolTimeSec)
+            brinkCTCount += Time.deltaTime;
+            if(brinkCTCount >= brinkCoolTimeSec)
             {
                 isbrink = false;
-                brinkCount = 0;
+                brinkCTCount = 0;
             }
         }
 
-        if (isbrink)
-        {
-            brinkSlider.fillAmount = brinkCount / brinkCoolTimeSec;
+        //if (isbrink)
+        //{
+        //    brinkSlider.fillAmount = brinkCount / brinkCoolTimeSec;
 
-        }
-        else
-        {
-            brinkSlider.fillAmount = 1;
-        }
-
-
+        //}
+        //else
+        //{
+        //    brinkSlider.fillAmount = 1;
+        //}
 
         if (isAttack)
         {
@@ -917,22 +930,41 @@ public partial class Player : MonoBehaviour
             HitSE();
             HitStopManager.hitstop.StartHitStop(0.1f);
 
+        }      
+        // スタミナの処理 
+        if (maxStamina > stamina)
+        {
+            if (!IsGuard)
+            {
+                stamina += Time.deltaTime * healStamina;
+
+            }
+            brinkSlider.fillAmount = stamina / maxStamina;
+        }
+        else
+        {
+            stamina = maxStamina;
+            brinkSlider.fillAmount = 1;
+
+            guardbreak = false;
         }
 
-        if (guard && !attack && !isAttack && !isbrink)
+
+
+        if (guard && !attack && !isAttack && canGuard && !guardbreak)
         {
             isGuard = true;
 
         }
-        else        // ガードのクールタイム(ブリンクと共有)
+        else        // ガードのクールタイム
         {
             isGuard = false;
             guardCount = 0;
-            brinkCount += Time.deltaTime;
-            if (brinkCount >= brinkCoolTimeSec)
+            guardCTCount += Time.deltaTime;
+            if (guardCTCount >= guardCoolTimeSec)
             {
-                isbrink = false;
-                brinkCount = 0;
+                canGuard = true;
+                guardCTCount = 0;
             }
 
 
@@ -945,7 +977,7 @@ public partial class Player : MonoBehaviour
 
             HMng.DEF = 10000;
 
-            brinkSlider.fillAmount = 1 - (guardCount / guardTime) ;
+            stamina -= guardStamina * Time.deltaTime;
             guardCount += Time.deltaTime;
             if (!EffectGuard.isPlaying)
             {
@@ -956,16 +988,38 @@ public partial class Player : MonoBehaviour
             if(HMng.CheckDamage() == true)
             {
 
-                isbrink = true;
-                brinkCount = 0;
+                canGuard = false;
+                guardCTCount = 0;
 
 
 
             }
 
+            if(stamina > 0)
+            {
+                // 普通のガード 
+                if (HMng.CheckDamage() == true)
+                {
+                    guardCount = 0;
+
+                    guardbreak = true;  // ガードブレイクし、スタミナ最大までガード不可
+                    canGuard = false;
+                    guardCTCount = 0;
+
+                    isGuard = false;
+                }
+
+            }
+            
+            else
+            {
+                canGuard = false;
+
+            }
+
             if (justGuardTime > guardCount)
             {
-                if(HMng.CheckDamage() == true)
+                if (HMng.CheckDamage() == true)
                 {
                     Debug.Log("ジャストガード成功");
 
@@ -973,9 +1027,9 @@ public partial class Player : MonoBehaviour
                     guardCount = 0;
                     HitStopManager.hitstop.StartHitStop(0.3f);
 
-
-                    isbrink = true;
-                    brinkCount = 0;
+                    stamina += 30;
+                    canGuard = false;
+                    guardCTCount = 0;
 
                     if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
                     {
@@ -984,24 +1038,6 @@ public partial class Player : MonoBehaviour
                     }
 
                 }
-            }
-            else if(guardTime >= guardCount)
-            {
-                if (HMng.CheckDamage() == true)
-                {
-                    guardCount = 0;
-
-
-                    isbrink = true;
-                    brinkCount = 0;
-
-                    isGuard = false;
-                }
-            }
-            else 
-            {
-                isbrink = true;
-
             }
 
         }
@@ -1015,7 +1051,7 @@ public partial class Player : MonoBehaviour
 
             if (guardEnd)
             {
-                isbrink = true;
+                canGuard = false;
             }
 
 
@@ -1023,6 +1059,8 @@ public partial class Player : MonoBehaviour
 
         if (HMng.HP <= 0)
         {
+            PlayerRb.velocity = new Vector2(0, 0);
+            PlayerRb.gravityScale = 0;
             if(deathDirection == false)
             {
                 EffectDeath.Play();
@@ -1035,8 +1073,7 @@ public partial class Player : MonoBehaviour
             {
 
 
-                EffectDeath.Stop();
-                if (!EffectDeath.isPlaying)
+                if (deadEffectEnd.DeadEffectStoped)
                 {
 
 

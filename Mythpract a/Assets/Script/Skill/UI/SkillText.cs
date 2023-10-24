@@ -28,8 +28,8 @@ public class SkillText : MonoBehaviour
         skilltext1.SetActive(false);
         skilltext2.SetActive(false);
         skilltext3.SetActive(false);
-        //skilltext4.SetActive(false);
-        //skilltext5.SetActive(false);
+        skilltext4.SetActive(false);
+        skilltext5.SetActive(false);
         //skilltext6.SetActive(false);
         //skilltext7.SetActive(false);
         //skilltext8.SetActive(false);

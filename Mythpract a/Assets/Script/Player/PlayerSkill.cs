@@ -5,6 +5,9 @@ partial class Player
 
     [SerializeField, Tooltip("スラッシュのクールタイム")] float skillSlashCT;
     [SerializeField, Tooltip("フリートのクールタイム")] float skillFleetCT;
+    [SerializeField, Tooltip("ローンウォーリアのクールタイム")] float skillLoneWarriorCT;
+    [SerializeField, Tooltip("グリームのクールタイム")] float skillGreemCT;
+    [SerializeField, Tooltip("ディスピレイションストライクのクールタイム")] float skillDStrikeCT;
 
 
     [SerializeField, Tooltip("ブリンク距離スキル")] float SkillBrinkMove;
@@ -16,6 +19,10 @@ partial class Player
 
     float skillSlashCount = 0;
     float skillFleetCount = 0;
+    float skillLoneWarriorCount = 0;
+    float skillGreemCount = 0;
+    float skillDStrikeCount = 0;
+
 
     public GameObject slash;
 
@@ -24,6 +31,15 @@ partial class Player
 
     public float SkillFleetCT { get { return skillFleetCT; } }
     public float SkillFleetCount { get { return skillFleetCount; } }
+
+    public float SkillLoneWarrirorCT { get { return skillLoneWarriorCT; } }
+    public float SkillLoneWarrirorCount { get { return skillLoneWarriorCount; } }
+
+    public float SkillGreemCT { get { return skillGreemCT; } }
+    public float SkillGreemCount { get { return skillGreemCount; } }
+
+    public float SkillDStrikeCT { get { return skillDStrikeCT; } }
+    public float SkillDStrikeCount { get { return skillDStrikeCount; } }
 
     void ActiveSkillController()
     {
@@ -114,6 +130,128 @@ partial class Player
             }
 
         }
+        if (GameData.setSkill3 && skillLoneWarriorCT < skillLoneWarriorCount)
+        {
+            if (GameData.skillSlot1 == 3)
+            {
+                if (skill1)
+                {
+                    SkillLoneWarrior();
+                    skillLoneWarriorCount = 0;
+
+
+                }
+            }
+            else if (GameData.skillSlot2 == 3)
+            {
+                if (skill2)
+                {
+                    SkillLoneWarrior();
+                    skillLoneWarriorCount = 0;
+                }
+            }
+            else if (GameData.skillSlot3 == 3)
+            {
+                if (skill3)
+                {
+                    SkillLoneWarrior();
+                    skillLoneWarriorCount = 0;
+                }
+
+            }
+            else if (GameData.skillSlot4 == 3)
+            {
+                if (skill4)
+                {
+                    SkillLoneWarrior();
+                    skillLoneWarriorCount = 0;
+
+                }
+
+            }
+
+        }
+        if (GameData.setSkill4 && skillGreemCT < skillGreemCount)
+        {
+            if (GameData.skillSlot1 == 4)
+            {
+                if (skill1)
+                {
+                    SkillGreem();
+                    skillGreemCount = 0;
+
+
+                }
+            }
+            else if (GameData.skillSlot2 == 4)
+            {
+                if (skill2)
+                {
+                    SkillGreem();
+                    skillGreemCount = 0;
+                }
+            }
+            else if (GameData.skillSlot3 == 4)
+            {
+                if (skill3)
+                {
+                    SkillGreem();
+                    skillGreemCount = 0;
+                }
+
+            }
+            else if (GameData.skillSlot4 == 4)
+            {
+                if (skill4)
+                {
+                    SkillGreem();
+                    skillGreemCount = 0;
+                }
+
+            }
+
+        }
+        if (GameData.setSkill5 && skillDStrikeCT < skillDStrikeCount)
+        {
+            if (GameData.skillSlot1 == 5)
+            {
+                if (skill1)
+                {
+                    SkillDeathPrationStrike();
+                    skillDStrikeCount = 0;
+
+
+                }
+            }
+            else if (GameData.skillSlot2 == 5)
+            {
+                if (skill2)
+                {
+                    SkillDeathPrationStrike();
+                    skillDStrikeCount = 0;
+                }
+            }
+            else if (GameData.skillSlot3 == 5)
+            {
+                if (skill3)
+                {
+                    SkillDeathPrationStrike();
+                    skillDStrikeCount = 0;
+                }
+
+            }
+            else if (GameData.skillSlot4 == 5)
+            {
+                if (skill4)
+                {
+                    SkillDeathPrationStrike();
+                    skillDStrikeCount = 0;
+
+                }
+
+            }
+
+        }
 
     }
     public void PassiveSkillStart()
@@ -129,6 +267,15 @@ partial class Player
         if(GameData.setSkill12 == true)
         {
             SkillJustGuardPlus();
+        }
+        if(GameData.setSkill15 == true)
+        {
+            SkillStrength();
+        }
+        if (GameData.setSkill17)
+        {
+            Debug.Log("スキルエレクト発動");
+            SkillElect();
         }
         if(GameData.setSkill18 == true)
         {
@@ -177,7 +324,18 @@ partial class Player
 
         PlayerRb.AddForce(Vector2.right * dir.x * fleetPow,ForceMode2D.Impulse);
     }
+    public void SkillLoneWarrior()
+    {
 
+    }
+    public void SkillGreem()
+    {
+
+    }
+    public void SkillDeathPrationStrike()
+    {
+
+    }
     /* パッシブスキル */
     public void SkillHPPlus()   // スキル10
     {
@@ -217,7 +375,7 @@ partial class Player
     }
     public void SkillStrength() // スキル15
     {
-
+        maxStamina *= 2;
     }
     public void SkillWise()     // スキル16
     {
@@ -229,8 +387,8 @@ partial class Player
 
     }
     public void SkillElect()    // スキル17
-    {   
-
+    {
+        healStamina *= 1.5f;
     }
     public void SkillCarse()    // スキル18
     {

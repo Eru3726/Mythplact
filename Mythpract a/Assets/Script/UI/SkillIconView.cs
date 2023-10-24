@@ -59,9 +59,9 @@ public class SkillIconView : MonoBehaviour
 
             if (GameData.skillSlot1 == 1) { SlotGauge1.overrideSprite = ActiveIcon1; SlotGauge1.fillAmount = player.SkillSlashCount / player.SkillSlashCT; }
             else if (GameData.skillSlot1 == 2) { SlotGauge1.overrideSprite = ActiveIcon2; SlotGauge1.fillAmount = player.SkillFleetCount / player.SkillFleetCT; }
-            else if (GameData.skillSlot1 == 3) SlotGauge1.overrideSprite = ActiveIcon3;
-            else if (GameData.skillSlot1 == 4) SlotGauge1.overrideSprite = ActiveIcon4;
-            else if (GameData.skillSlot1 == 5) SlotGauge1.overrideSprite = ActiveIcon5;
+            else if (GameData.skillSlot1 == 3) { SlotGauge1.overrideSprite = ActiveIcon3; SlotGauge1.fillAmount = player.SkillLoneWarrirorCount / player.SkillLoneWarrirorCT; }
+            else if (GameData.skillSlot1 == 4) { SlotGauge1.overrideSprite = ActiveIcon4; SlotGauge1.fillAmount = player.SkillGreemCount / player.SkillGreemCT; }
+            else if (GameData.skillSlot1 == 5) { SlotGauge1.overrideSprite = ActiveIcon5; SlotGauge1.fillAmount = player.SkillDStrikeCount / player.SkillDStrikeCT; }
 
             SlotBack1.overrideSprite = SlotGauge1.overrideSprite;
         }
@@ -76,9 +76,9 @@ public class SkillIconView : MonoBehaviour
 
             if (GameData.skillSlot2 == 1) { SlotGauge2.overrideSprite = ActiveIcon1; SlotGauge2.fillAmount = player.SkillSlashCount / player.SkillSlashCT; }
             else if (GameData.skillSlot2 == 2) { SlotGauge2.overrideSprite = ActiveIcon2; SlotGauge2.fillAmount = player.SkillFleetCount / player.SkillFleetCT; }
-            else if (GameData.skillSlot2 == 3) SlotGauge2.overrideSprite = ActiveIcon3;
-            else if (GameData.skillSlot2 == 4) SlotGauge2.overrideSprite = ActiveIcon4;
-            else if (GameData.skillSlot2 == 5) SlotGauge2.overrideSprite = ActiveIcon5;
+            else if (GameData.skillSlot2 == 3) { SlotGauge2.overrideSprite = ActiveIcon3; SlotGauge2.fillAmount = player.SkillLoneWarrirorCount / player.SkillLoneWarrirorCT; }
+            else if (GameData.skillSlot2 == 4) { SlotGauge2.overrideSprite = ActiveIcon4; SlotGauge2.fillAmount = player.SkillGreemCount / player.SkillGreemCT; }
+            else if (GameData.skillSlot2 == 5) { SlotGauge2.overrideSprite = ActiveIcon5; SlotGauge2.fillAmount = player.SkillDStrikeCount / player.SkillDStrikeCT; }
             else SlotGauge2.overrideSprite = null;
 
             SlotBack2.overrideSprite = SlotGauge2.overrideSprite;
@@ -89,13 +89,13 @@ public class SkillIconView : MonoBehaviour
         }
         if (GameData.skillSlot3 != 0)
         {
-            Slot3.SetActive(false);
+            Slot3.SetActive(true);
 
             if (GameData.skillSlot3 == 1) { SlotGauge3.overrideSprite = ActiveIcon1; SlotGauge3.fillAmount = player.SkillSlashCount / player.SkillSlashCT; }
             else if (GameData.skillSlot3 == 2) { SlotGauge3.overrideSprite = ActiveIcon2; SlotGauge3.fillAmount = player.SkillFleetCount / player.SkillFleetCT; }
-            else if (GameData.skillSlot3 == 3) SlotGauge3.overrideSprite = ActiveIcon3;
-            else if (GameData.skillSlot3 == 4) SlotGauge3.overrideSprite = ActiveIcon4;
-            else if (GameData.skillSlot3 == 5) SlotGauge3.overrideSprite = ActiveIcon5;
+            else if (GameData.skillSlot3 == 3) { SlotGauge3.overrideSprite = ActiveIcon3; SlotGauge3.fillAmount = player.SkillLoneWarrirorCount / player.SkillLoneWarrirorCT; }
+            else if (GameData.skillSlot3 == 4) { SlotGauge3.overrideSprite = ActiveIcon4; SlotGauge3.fillAmount = player.SkillGreemCount / player.SkillGreemCT; }
+            else if (GameData.skillSlot3 == 5) { SlotGauge3.overrideSprite = ActiveIcon5; SlotGauge3.fillAmount = player.SkillDStrikeCount / player.SkillDStrikeCT; }
             else SlotGauge3.overrideSprite = null;
 
             SlotBack3.overrideSprite = SlotGauge3.overrideSprite;
@@ -107,13 +107,13 @@ public class SkillIconView : MonoBehaviour
 
         if (GameData.skillSlot4 != 0)
         {
-            Slot4.SetActive(false);
+            Slot4.SetActive(true);
 
             if (GameData.skillSlot4 == 1) { SlotGauge4.overrideSprite = ActiveIcon1; SlotGauge4.fillAmount = player.SkillSlashCount / player.SkillSlashCT; }
             else if (GameData.skillSlot4 == 2) { SlotGauge4.overrideSprite = ActiveIcon2; SlotGauge4.fillAmount = player.SkillFleetCount / player.SkillFleetCT; }
-            else if (GameData.skillSlot4 == 3) SlotGauge4.overrideSprite = ActiveIcon3;
-            else if (GameData.skillSlot4 == 4) SlotGauge4.overrideSprite = ActiveIcon4;
-            else if (GameData.skillSlot4 == 5) SlotGauge4.overrideSprite = ActiveIcon5;
+            else if (GameData.skillSlot4 == 3) { SlotGauge4.overrideSprite = ActiveIcon3; SlotGauge4.fillAmount = player.SkillLoneWarrirorCount / player.SkillLoneWarrirorCT; }
+            else if (GameData.skillSlot4 == 4) { SlotGauge4.overrideSprite = ActiveIcon4; SlotGauge4.fillAmount = player.SkillGreemCount / player.SkillGreemCT; }
+            else if (GameData.skillSlot4 == 5) { SlotGauge4.overrideSprite = ActiveIcon5; SlotGauge4.fillAmount = player.SkillDStrikeCount / player.SkillDStrikeCT; }
             else SlotGauge4.overrideSprite = null;
 
             SlotBack4.overrideSprite = SlotGauge4.overrideSprite;

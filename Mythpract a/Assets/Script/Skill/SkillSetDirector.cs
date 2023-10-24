@@ -178,6 +178,55 @@ public class SkillSetDirector : MonoBehaviour
 
 
     }
+    public void SetSkill4()
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   
+
+        Instantiate(Skill4, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill4_Button.interactable = false;
+        GameData.setSkill4 = true;
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+
+        if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 4;
+        else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 4;
+        else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 4;
+        else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 4;
+
+        GameObject piece = GameObject.Find("SkillPiece4(Clone)");
+
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+        piece.transform.parent = cursor.transform;
+
+
+
+    }
+    public void SetSkill5()
+    {
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   
+
+        Instantiate(Skill5, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
+        Skill5_Button.interactable = false;
+        GameData.setSkill5 = true;
+        useCursorProp = true;
+        CursorController.colorchange = true;
+
+
+        if (SkillUIDirector.setSlot1) GameData.skillSlot1 = 5;
+        else if (SkillUIDirector.setSlot2) GameData.skillSlot2 = 5;
+        else if (SkillUIDirector.setSlot3) GameData.skillSlot3 = 5;
+        else if (SkillUIDirector.setSlot4) GameData.skillSlot4 = 5;
+
+        GameObject piece = GameObject.Find("SkillPiece5(Clone)");
+
+        cursorcontroller.PickupUpdate(piece.transform.GetChild(0));
+        piece.transform.parent = cursor.transform;
+
+
+
+    }
+
     public void SetSkill10() // パッシブスキル体力増強
     {
         cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // カーソルの位置を初期化

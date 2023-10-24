@@ -27,6 +27,8 @@ public class SkillUIDirector : MonoBehaviour
     public static bool setSlot2 = false;
     public static bool setSlot3 = false;
     public static bool setSlot4 = false;
+
+    bool scrollreset = false;
     void Start()
     {
         SkillSlots.SetActive(true);
@@ -50,7 +52,7 @@ public class SkillUIDirector : MonoBehaviour
         {
             if(conconect.ConConnect == true)
             {
-                float rsv = Input.GetAxis("R_stick_V");        //右スティック縦
+                float rsv = Input.GetAxis("R_stick_V");        //蜿ｳ繧ｹ繝�繧｣繝�繧ｯ邵ｦ
 
                 if (Input.GetKeyDown(KeyCode.Joystick1Button1))
                 {
@@ -123,6 +125,13 @@ public class SkillUIDirector : MonoBehaviour
 
 
             }
+
+            if (!scrollreset)
+            {
+                ActiveSkillScroll.value = 1;
+                PassiveSkillScroll.value = 1;
+                scrollreset = true;
+            }
         }
         else
         {
@@ -135,6 +144,7 @@ public class SkillUIDirector : MonoBehaviour
             if (GameData.skillSlot4 != 0) SkillSlot4_Button.interactable = false;
             else SkillSlot4_Button.interactable = true;
 
+            scrollreset = false;
         }
 
 

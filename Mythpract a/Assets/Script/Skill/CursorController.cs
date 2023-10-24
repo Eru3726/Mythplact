@@ -320,6 +320,50 @@ public class CursorController : MonoBehaviour
                 Destroy(DeletePiece);
 
             }
+            else if (pickupTfm.parent.name == "SkillPiece4(Clone)")
+            {
+                GameObject DeletePiece;
+
+                if (GameData.skillSlot1 == 4) GameData.skillSlot1 = 0;    // スキルスロットの登録を無効に
+                else if (GameData.skillSlot2 == 4) GameData.skillSlot2 = 0;
+                else if (GameData.skillSlot3 == 4) GameData.skillSlot3 = 0;
+                else if (GameData.skillSlot4 == 4) GameData.skillSlot4 = 0;
+
+
+                pickupTfm.parent.parent = null;
+                Skill4_Button.interactable = true;
+                GameData.setSkill4 = false;
+
+
+                DeletePiece = GameObject.Find("SkillPiece4(Clone)");
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+
+                Destroy(DeletePiece);
+
+            }
+
+            else if (pickupTfm.parent.name == "SkillPiece5(Clone)")
+            {
+                GameObject DeletePiece;
+
+                if (GameData.skillSlot1 == 5) GameData.skillSlot1 = 0;    // スキルスロットの登録を無効に
+                else if (GameData.skillSlot2 == 5) GameData.skillSlot2 = 0;
+                else if (GameData.skillSlot3 == 5) GameData.skillSlot3 = 0;
+                else if (GameData.skillSlot4 == 5) GameData.skillSlot4 = 0;
+
+
+                pickupTfm.parent.parent = null;
+                Skill5_Button.interactable = true;
+                GameData.setSkill5 = false;
+
+
+                DeletePiece = GameObject.Find("SkillPiece5(Clone)");
+                DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+
+                Destroy(DeletePiece);
+
+            }
+
             else if (pickupTfm.parent.name == "SkillPiece10(Clone)")
             {
                 GameObject DeletePiece;
