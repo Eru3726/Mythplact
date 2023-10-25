@@ -14969,8 +14969,12 @@ MonoBehaviour:
   skillSlashCT: 5
   skillFleetCT: 5
   skillLoneWarriorCT: 5
+  skillLoneWarriorTime: 10
   skillGreemCT: 5
   skillDStrikeCT: 5
+  SkillLoneAtk: 150
+  SkillLoneAtkPlus: 10
+  SkillLoneComboSpan: 1
   SkillBrinkMove: 10
   SkillJustGuard: 0.3
   SkillMaxSpeed: 20

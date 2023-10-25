@@ -131,6 +131,7 @@ public partial class Player : MonoBehaviour
         PlayerRb.gravityScale = 7;
         dir.x = 1;
         stamina = maxStamina;
+
         InitHP();
         PassiveSkillStart();
 
@@ -163,6 +164,7 @@ public partial class Player : MonoBehaviour
             MoveInput();        // 入力
             MoveController();   // プレイヤー操作
             ActiveSkillController();    // スキル管理
+            ActiveSkillUpdate();
             PassiveSkillUpdate();       // 動的に発動条件が変わるパッシブスキルの管理
                                 //EnemyLockon();      
             ChangeAnim();       // アニメーション管理

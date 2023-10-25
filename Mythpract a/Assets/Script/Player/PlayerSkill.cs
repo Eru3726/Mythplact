@@ -6,8 +6,13 @@ partial class Player
     [SerializeField, Tooltip("スラッシュのクールタイム")] float skillSlashCT;
     [SerializeField, Tooltip("フリートのクールタイム")] float skillFleetCT;
     [SerializeField, Tooltip("ローンウォーリアのクールタイム")] float skillLoneWarriorCT;
+    [SerializeField, Tooltip("ローンウォーリアの持続時間")] float skillLoneWarriorTime;
     [SerializeField, Tooltip("グリームのクールタイム")] float skillGreemCT;
     [SerializeField, Tooltip("ディスピレイションストライクのクールタイム")] float skillDStrikeCT;
+
+    [SerializeField, Tooltip("ローンウォーリアの初期攻撃力")] float SkillLoneAtk;
+    [SerializeField, Tooltip("ローンウォーリアの一回の追加攻撃力")] float SkillLoneAtkPlus;
+    [SerializeField, Tooltip("ローンウォーリアのコンボの許容時間")] float SkillLoneComboSpan;
 
 
     [SerializeField, Tooltip("ブリンク距離スキル")] float SkillBrinkMove;
@@ -17,15 +22,24 @@ partial class Player
 
     Vector2 fleetStartPos;
 
-    float skillSlashCount = 0;
-    float skillFleetCount = 0;
-    float skillLoneWarriorCount = 0;
-    float skillGreemCount = 0;
-    float skillDStrikeCount = 0;
+    float skillSlashCount = 100;
+    float skillFleetCount = 100;
+    float skillLoneWarriorCount = 100;
+    float skillGreemCount = 100;
+    float skillDStrikeCount = 100;
+    float skillLoneWarriorDuration= 0;
+    float skillLoneWarriorComboCount = 0;
+
+    float exAtk = 0;
+
+
 
 
     public GameObject slash;
     public GameObject greem;
+
+    bool isLoneWarrior = false;
+    bool LoneWarriorReset = false;
 
     public float SkillSlashCT { get { return skillSlashCT; } }
     public float SkillSlashCount { get { return skillSlashCount; } }
@@ -134,14 +148,18 @@ partial class Player
             }
 
         }
-        if (GameData.setSkill3 && skillLoneWarriorCT < skillLoneWarriorCount)
+        if (GameData.setSkill3 && skillLoneWarriorCT < skillLoneWarriorCount )
         {
+
             if (GameData.skillSlot1 == 3)
             {
                 if (skill1)
                 {
-                    SkillLoneWarrior();
-                    skillLoneWarriorCount = 0;
+
+                    exAtk = HMng.ATK;     // 元の攻撃力を保存
+                    HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+
+                    isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
 
                 }
@@ -150,16 +168,23 @@ partial class Player
             {
                 if (skill2)
                 {
-                    SkillLoneWarrior();
-                    skillLoneWarriorCount = 0;
+                    exAtk = HMng.ATK;     // 元の攻撃力を保存
+                    HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+
+                    isLoneWarrior = true;       // スキルローンウォーリアを有効化
+
+
                 }
             }
             else if (GameData.skillSlot3 == 3)
             {
                 if (skill3)
                 {
-                    SkillLoneWarrior();
-                    skillLoneWarriorCount = 0;
+                    exAtk = HMng.ATK;     // 元の攻撃力を保存
+                    HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+
+                    isLoneWarrior = true;       // スキルローンウォーリアを有効化
+
                 }
 
             }
@@ -167,8 +192,12 @@ partial class Player
             {
                 if (skill4)
                 {
-                    SkillLoneWarrior();
-                    skillLoneWarriorCount = 0;
+                    exAtk = HMng.ATK;     // 元の攻撃力を保存
+                    HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+
+                    isLoneWarrior = true;       // スキルローンウォーリアを有効化
+
+
 
                 }
 
@@ -258,6 +287,12 @@ partial class Player
         }
 
     }
+ 
+    void ActiveSkillUpdate()
+    {
+        // ローンウォーリア
+        SkillLoneWarrior();
+    }
     public void PassiveSkillStart()
     {
         if (GameData.setSkill10 == true)
@@ -333,6 +368,50 @@ partial class Player
     }
     public void SkillLoneWarrior()
     {
+
+        if (isLoneWarrior == true && skillLoneWarriorTime >= skillLoneWarriorDuration)   
+        {
+            Debug.Log("ローンウォーリア発動中");
+            Debug.Log(skillLoneWarriorComboCount.ToString("F3") + "秒");
+            skillLoneWarriorComboCount += Time.deltaTime;   // コンボ継続のカウント
+            skillLoneWarriorDuration += Time.deltaTime;     // ローンウォーリアの継続時間
+            if (HMng.CheckAttack() == true)
+            {
+                Debug.Log("攻撃ヒット");
+
+                HMng.ATK += SkillLoneAtkPlus;
+                skillLoneWarriorComboCount = 0;
+            }
+
+            if(skillLoneWarriorComboCount >= SkillLoneComboSpan)
+            {
+                LoneWarriorReset = true;
+                isLoneWarrior = false;
+            }
+        }
+        else if(skillLoneWarriorTime < skillLoneWarriorDuration)
+        {
+            LoneWarriorReset = true;
+        }
+        //else
+        //{
+        //    isLoneWarrior = false;
+        //    HMng.ATK = exAtk;
+        //    skillLoneWarriorDuration = 0;
+        //    skillLoneWarriorCount = 0;
+
+        //}
+
+        if(LoneWarriorReset == true)
+        {
+            isLoneWarrior = false;
+            HMng.ATK = exAtk;                   // 攻撃力を戻す
+            skillLoneWarriorDuration = 0;       // 継続時間をリセット
+            skillLoneWarriorComboCount = 0;     // コンボ継続カウントをリセット
+            skillLoneWarriorCount = 0;          // クールタイムをリセット
+
+            LoneWarriorReset = false;
+        }
 
     }
     public void SkillGreem()
