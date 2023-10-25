@@ -25,6 +25,7 @@ partial class Player
 
 
     public GameObject slash;
+    public GameObject greem;
 
     public float SkillSlashCT { get { return skillSlashCT; } }
     public float SkillSlashCount { get { return skillSlashCount; } }
@@ -45,6 +46,9 @@ partial class Player
     {
         skillSlashCount += Time.deltaTime;
         skillFleetCount += Time.deltaTime;
+        skillLoneWarriorCount += Time.deltaTime;
+        skillGreemCount += Time.deltaTime;
+        skillDStrikeCount += Time.deltaTime;
 
         if (GameData.setSkill1 && skillSlashCT < skillSlashCount)
         {
@@ -306,12 +310,15 @@ partial class Player
         
         if(dir.x == 1)
         {
-            Instantiate(slash, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(-127.798f, -55.60699f, 94.236f));
-
+            Instantiate(slash, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(90, 0, 140));
+            GameObject sheriffObj = GameObject.Find("Sheriff(Clone)");
+            sheriffObj.transform.localScale = new Vector3(5, 5, 5);
         }
         else if(dir.x == -1)
         {
-            Instantiate(slash, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(50, 50, -90));
+            Instantiate(slash, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(90, 0, 140));
+            GameObject sheriffObj = GameObject.Find("Sheriff(Clone)");
+            sheriffObj.transform.localScale = new Vector3(-5, -5, -5);
 
         }
 
@@ -330,6 +337,23 @@ partial class Player
     }
     public void SkillGreem()
     {
+        SkillSE();
+
+        GameData.SkillCount++;
+
+        if (dir.x == 1)
+        {
+            Instantiate(greem, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, -50, 90));
+            GameObject greemObj = GameObject.Find("Greem(Clone)");
+            greemObj.transform.localScale = new Vector3(3, 5, 5);
+
+        }
+        else if (dir.x == -1)
+        {
+            Instantiate(greem, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, -50, 90));
+            GameObject greemObj = GameObject.Find("Greem(Clone)");
+            greemObj.transform.localScale = new Vector3(-3, -5, -5);
+        }
 
     }
     public void SkillDeathPrationStrike()

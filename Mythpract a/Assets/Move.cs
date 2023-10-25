@@ -9,7 +9,7 @@ public class Move : MonoBehaviour
     void Update()
     {
         destroyCount += Time.deltaTime;
-        if (gameObject.transform.rotation.z > 0)
+        if (gameObject.transform.localScale.x > 0)
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
         }

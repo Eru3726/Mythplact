@@ -14930,8 +14930,6 @@ MonoBehaviour:
   brinkMove: 5
   brinkCoolTimeSec: 0.5
   guardCoolTimeSec: 1
-  skillCoolTimeSec: 5
-  guardTime: 2
   justGuardTime: 0.1
   knockbuckTime: 0.5
   attackInp: {fileID: -4327428838556983879, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
@@ -14978,6 +14976,7 @@ MonoBehaviour:
   SkillMaxSpeed: 20
   SkillKajibaAtk: 200
   slash: {fileID: 8438359422445198577, guid: a7264e29880c3e24997be8bf537b70c3, type: 3}
+  greem: {fileID: 4028125354744199665, guid: 20215f1e58e9f2444b2164c655f0aed0, type: 3}
 --- !u!114 &8922014012187984017
 MonoBehaviour:
   m_ObjectHideFlags: 0
