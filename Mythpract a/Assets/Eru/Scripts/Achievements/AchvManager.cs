@@ -48,15 +48,56 @@ public class AchvManager : MonoBehaviour
 
 
 
+    [HideInInspector]
+    public bool sheriffUseFlg;
+
+    [HideInInspector]
+    public int sheriffUseCount = 0;
+
+    [Header("実績解除シェリフ回数")]
+    public int sheriffClearCount = 3;
 
 
-    private bool skillCount;
-    private bool guardCount;
-    private bool noDamage;
-    private bool justGuardCount;
-    private bool noGuard;
-    private bool activeSkillOnly;
-    private bool timeAttack;
+
+    [HideInInspector]
+    public bool guardCountFlg;
+
+    [HideInInspector]
+    public int guardCount = 0;
+
+    [Header("実績解除ガード回数")]
+    public int guardClearCount = 3;
+
+
+
+    [HideInInspector]
+    public bool noDamage;
+
+
+
+    [HideInInspector]
+    public bool justGuardFlg;
+
+    [HideInInspector]
+    public int justGuardCount = 0;
+
+    [Header("実績解除ジャストガード回数")]
+    public int justGuardClearCount = 3;
+
+
+
+    [HideInInspector]
+    public bool noGuard;
+
+
+
+    [HideInInspector]
+    public bool activeSkillOnlyFlg;
+
+
+
+    //[HideInInspector]
+    //private bool timeAttack;
 
     public static AchvManager instance;
 
@@ -189,19 +230,22 @@ public class AchvManager : MonoBehaviour
 
             attackComboFlg = false;
 
-            skillCount = false;
+            sheriffUseFlg = false;
+            sheriffUseCount = 0;
 
-            guardCount = false;
+            guardCountFlg = false;
+            guardCount = 0;
 
             noDamage = false;
 
-            justGuardCount = false;
+            justGuardFlg = false;
+            justGuardCount = 0;
 
             noGuard = false;
 
-            activeSkillOnly = false;
+            activeSkillOnlyFlg = false;
 
-            timeAttack = false;
+            //timeAttack = false;
 
             //更新
             //ChangeDisplay();
@@ -228,19 +272,22 @@ public class AchvManager : MonoBehaviour
 
         saveData.attackCombo = attackComboFlg;
 
-        saveData.skillCount = skillCount;
+        saveData.SheriffUseCount = sheriffUseCount;
+        saveData.SheriffUseFlg = sheriffUseFlg;
 
+        saveData.guardCountFlg = guardCountFlg;
         saveData.guardCount = guardCount;
 
         saveData.noDamage = noDamage;
 
+        saveData.justGuardFlg = justGuardFlg;
         saveData.justGuardCount = justGuardCount;
 
         saveData.noGuard = noGuard;
 
-        saveData.activeSkillOnly = activeSkillOnly;
+        saveData.activeSkillOnly = activeSkillOnlyFlg;
 
-        saveData.timeAttack = timeAttack;
+        //saveData.timeAttack = timeAttack;
 
         return saveData;
     }
@@ -260,19 +307,22 @@ public class AchvManager : MonoBehaviour
 
         attackComboFlg = saveData.attackCombo;
 
-        skillCount = saveData.skillCount;
+        sheriffUseCount = saveData.SheriffUseCount;
+        sheriffUseFlg = saveData.SheriffUseFlg;
 
+        guardCountFlg = saveData.guardCountFlg;
         guardCount = saveData.guardCount;
 
         noDamage = saveData.noDamage;
 
+        justGuardFlg = saveData.justGuardFlg;
         justGuardCount = saveData.justGuardCount;
 
         noGuard = saveData.noGuard;
 
-        activeSkillOnly = saveData.activeSkillOnly;
+        activeSkillOnlyFlg = saveData.activeSkillOnly;
 
-        timeAttack = saveData.timeAttack;
+        //timeAttack = saveData.timeAttack;
     }
 
 
@@ -369,17 +419,20 @@ public class AchvSaveData
     public bool attackCombo;
     public int attackComboCount;
 
-    public bool skillCount;
+    public bool SheriffUseFlg;
+    public int SheriffUseCount;
 
-    public bool guardCount;
+    public bool guardCountFlg;
+    public int guardCount;
 
     public bool noDamage;
 
-    public bool justGuardCount;
+    public bool justGuardFlg;
+    public int justGuardCount;
 
     public bool noGuard;
 
     public bool activeSkillOnly;
 
-    public bool timeAttack;
+    //public bool timeAttack;
 }
