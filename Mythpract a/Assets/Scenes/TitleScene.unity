@@ -746,7 +746,6 @@ MonoBehaviour:
   keyconCmana: {fileID: 9185247958088974398}
   titleCanvas: {fileID: 759867846}
   titleCmana: {fileID: 849699994}
-  fps: 60
   data: {fileID: 6104666261915913660}
 --- !u!4 &626164146
 Transform:

@@ -109,6 +109,23 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        if (skillPiece4 != null)
+        {
+            GameData.skillPiece4Pos = skillPiece4.transform.position;
+            GameData.skillPiece4Deg = skillPiece4.transform.rotation;
+            GameData.saveSkill4 = true;
+
+
+        }
+        if (skillPiece5 != null)
+        {
+            GameData.skillPiece5Pos = skillPiece5.transform.position;
+            GameData.skillPiece5Deg = skillPiece5.transform.rotation;
+            GameData.saveSkill5 = true;
+
+
+        }
+
 
         if (skillPiece10 != null)
         {
@@ -310,6 +327,67 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill3 = false;
         }
 
+        if (skillPiece4 != null)
+        {
+            if (GameData.saveSkill4)
+            {
+                skillPiece4.transform.position = GameData.skillPiece4Pos;
+                skillPiece4.transform.rotation = GameData.skillPiece4Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece4);
+                GameData.setSkill4 = false;
+                Skill4_Button.interactable = true;
+
+            }
+        }
+        else if (GameData.saveSkill4)
+        {
+            Instantiate(Skill4);
+            skillPiece4 = GameObject.Find("SkillPiece4(Clone)");
+            skillPiece4.transform.position = GameData.skillPiece4Pos;
+            skillPiece4.transform.rotation = GameData.skillPiece4Deg;
+
+            GameData.setSkill4 = true;
+            Skill4_Button.interactable = false;
+
+
+            GameData.saveSkill4 = false;
+
+        }
+        if (skillPiece5 != null)
+        {
+            if (GameData.saveSkill5)
+            {
+                skillPiece5.transform.position = GameData.skillPiece5Pos;
+                skillPiece5.transform.rotation = GameData.skillPiece5Deg;
+
+            }
+            else
+            {
+                Destroy(skillPiece5);
+                GameData.setSkill5 = false;
+                Skill5_Button.interactable = true;
+
+            }
+        }
+
+        else if (GameData.saveSkill5)
+        {
+            Instantiate(Skill5);
+            skillPiece5 = GameObject.Find("SkillPiece5(Clone)");
+            skillPiece5.transform.position = GameData.skillPiece5Pos;
+            skillPiece5.transform.rotation = GameData.skillPiece5Deg;
+
+            GameData.setSkill5 = true;
+            Skill5_Button.interactable = false;
+
+
+            GameData.saveSkill5 = false;
+
+        }
 
 
         if (skillPiece10 != null)

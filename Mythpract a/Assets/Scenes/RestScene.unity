@@ -4434,6 +4434,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8922014012187984016, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: guardStamina
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8922014012187984023, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
       propertyPath: m_Name
       value: Player

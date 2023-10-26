@@ -28,8 +28,8 @@ public class SkillPieceDisplay : MonoBehaviour
         skillpiece1.SetActive(false);
         skillpiece2.SetActive(false);
         skillpiece3.SetActive(false);
-        //skillpiece4.SetActive(false);
-        //skillpiece5.SetActive(false);
+        skillpiece4.SetActive(false);
+        skillpiece5.SetActive(false);
         //skillpiece6.SetActive(false);
         //skillpiece7.SetActive(false);
         //skillpiece8.SetActive(false);

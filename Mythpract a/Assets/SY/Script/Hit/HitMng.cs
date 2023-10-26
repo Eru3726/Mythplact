@@ -74,5 +74,8 @@ namespace SY
 
         //ダメージを受けたか
         public bool CheckDamage() { return Result.CheckDefFlag(DefFlag.DefDamage); }
+        
+        // ダメージを与えたか
+        public bool CheckAttack() { return Result.CheckAtkFlag(AtkFlag.AtkDamage); }
     }
 }
