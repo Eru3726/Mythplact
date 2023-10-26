@@ -37,6 +37,7 @@ partial class Player
 
     public GameObject slash;
     public GameObject greem;
+    public GameObject dstrike;
 
     bool isLoneWarrior = false;
     bool LoneWarriorReset = false;
@@ -437,6 +438,25 @@ partial class Player
     }
     public void SkillDeathPrationStrike()
     {
+        SkillSE();
+
+        GameData.SkillCount++;
+
+        HMng.HP -= 1;
+
+        if (dir.x == 1)
+        {
+            Instantiate(dstrike, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(90, 0, 140));
+            GameObject dstrikeObj = GameObject.Find("DStrike(Clone)");
+            dstrikeObj.transform.localScale = new Vector3(5, 5, 5);
+        }
+        else if (dir.x == -1)
+        {
+            Instantiate(dstrike, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(90, 0, 140));
+            GameObject dstrikeObj = GameObject.Find("DStrikle(Clone)");
+            dstrikeObj.transform.localScale = new Vector3(-5, -5, -5);
+
+        }
 
     }
     /* パッシブスキル */

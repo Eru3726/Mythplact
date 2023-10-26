@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 1373691771607571094}
   - component: {fileID: 6642747118356355134}
   m_Layer: 6
-  m_Name: Sheriff
+  m_Name: DStrike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,7 +288,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.4386293, g: 1, b: 0.35686278, a: 1}
+      maxColor: {r: 0.8962264, g: 0.28164533, b: 0.2001008, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4947,7 +4947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de2ab06ed51d6e49a2b2f3aeec61587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 25
 --- !u!114 &6642747118356355134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4963,7 +4963,7 @@ MonoBehaviour:
   layer: 0
   maxHp: 10
   hp: 0
-  atk: 100
+  atk: 300
   def: 10
   atkActive: 0
   defActive: 0
