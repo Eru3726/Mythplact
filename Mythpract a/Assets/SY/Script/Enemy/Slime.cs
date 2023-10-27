@@ -111,14 +111,14 @@ public class Slime : MonoBehaviour
                 switch (firstMove)
                 {
                     case (int)Shoggoth_MoveType.Rotation:
-                        if (GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Ground)) { moveType = MoveType.Walk; }
+                        if (GC.CheckFlag(GroundCheck.Flag.Ground)) { moveType = MoveType.Walk; }
                         break;
                     case (int)Shoggoth_MoveType.UpDown:
                         Parabola();
                         rb.position = pos;
                         break;
                     default:
-                        if (GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Ground)) { moveType = MoveType.Walk; }
+                        if (GC.CheckFlag(GroundCheck.Flag.Ground)) { moveType = MoveType.Walk; }
                         break;
                 }
                 break;
@@ -154,7 +154,7 @@ public class Slime : MonoBehaviour
         switch (phase)
         {
             case 0:
-                if (!GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Ground)) { return; }
+                if (!GC.CheckFlag(GroundCheck.Flag.Ground)) { return; }
                 timer += Time.deltaTime;
                 if (2.0f < timer) { phase++; }
                 break;
@@ -171,7 +171,7 @@ public class Slime : MonoBehaviour
         switch(phase)
         {
             case 0:
-                if (!GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Ground)) { return; }
+                if (!GC.CheckFlag(GroundCheck.Flag.Ground)) { return; }
                 SetAudio(Move_SE, Move_SEVolume, Move_SEPitch, Move_SELoop);
                 timer += Time.deltaTime;
                 if (2.3f < timer) { phase++; }
@@ -187,18 +187,18 @@ public class Slime : MonoBehaviour
     void GroundFlagMng()
     {
         MoveDir();
-        if (!GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Ground))
+        if (!GC.CheckFlag(GroundCheck.Flag.Ground))
         {
             transform.localScale = Vector3.one;
             anim.enabled = false;
             moveFlag = (int)MoveFlag.None;
             SlopeFlag = 0; WallFlag = 0; return;
         }
-        if (GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Slope_Left) ||
-        GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Slope_Right)) { SlopeFlag = 1; }
+        if (GC.CheckFlag(GroundCheck.Flag.Slope_Left) ||
+        GC.CheckFlag(GroundCheck.Flag.Slope_Right)) { SlopeFlag = 1; }
         else { SlopeFlag = 0; }
-        if (GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Wall_Left) ||
-            GC.CheckGCFlag(GroundCheck.GroundCheckFlag.Wall_Right)) { WallFlag = 1; }
+        if (GC.CheckFlag(GroundCheck.Flag.Wall_Left) ||
+            GC.CheckFlag(GroundCheck.Flag.Wall_Right)) { WallFlag = 1; }
         else { WallFlag = 0; }
         anim.enabled = true;
     }

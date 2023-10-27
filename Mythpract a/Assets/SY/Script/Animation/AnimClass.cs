@@ -1,3 +1,5 @@
+/*旧アニメーション制御
+
 using System;
 using UnityEngine;
 
@@ -36,3 +38,4 @@ public class Products
         Revive, //蘇生
     }
 }
+*/

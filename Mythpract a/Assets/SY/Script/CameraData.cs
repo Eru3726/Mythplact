@@ -6,7 +6,7 @@ namespace SY
 {
     public class CameraData : MonoBehaviour
     {
-        //----------å¤‰æ•°----------
+        //----------•Ï”----------
         [SerializeField] Camera mainCamera;
         Vector2 leftBottom;
         Vector2 leftTop;
@@ -21,7 +21,7 @@ namespace SY
         float halfScreenHeight;
         float quarterScreenHeight;
 
-        //----------ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£----------
+        //----------ƒvƒƒpƒeƒB----------
         public Camera MainCamera { get { return mainCamera; } }
         public Vector2 LeftBottom { get { return leftBottom; } }
         public Vector2 LeftTop { get { return leftTop; } }
@@ -41,15 +41,15 @@ namespace SY
             SetCameraData();
         }
 
-        //----------ã‚µãƒ¼ãƒ“ã‚¹----------
-        //ä½¿ç”¨ã‚«ãƒ¡ãƒ©åˆ‡ã‚Šæ›¿ãˆ
+        //----------ƒT[ƒrƒX----------
+        //g—pƒJƒƒ‰Ø‚è‘Ö‚¦
         public void SetMainCamera(Camera setCamera)
         {
             mainCamera = setCamera;
             SetCameraData();
         }
 
-        //å„ç”»é¢ãƒ‡ãƒ¼ã‚¿
+        //Še‰æ–Êƒf[ƒ^
         public void SetCameraData()
         {
             leftBottom = mainCamera.ScreenToWorldPoint(new Vector2(0, 0));

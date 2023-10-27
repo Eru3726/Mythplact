@@ -43,6 +43,12 @@ namespace SY
                     defMng.HP -= 0;
                     player.IsGuard = false;
                 }
+                if (player.IsFleet)
+                {
+                    defMng.HP -= 0;
+                    player.IsFleet = false;
+
+                }
                 else
                 {
                     defMng.HP -= defMng.Result.Dmage_Player(atkMng.ATK, atkData.Power);

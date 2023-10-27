@@ -1,3 +1,5 @@
+/*旧接地判定
+
 using UnityEngine;
 
 namespace SY
@@ -148,3 +150,4 @@ namespace SY
         //}
     }
 }
+*/

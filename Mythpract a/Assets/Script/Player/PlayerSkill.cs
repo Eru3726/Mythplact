@@ -53,6 +53,8 @@ partial class Player
     public float SkillFleetCT { get { return skillFleetCT; } }
     public float SkillFleetCount { get { return skillFleetCount; } }
 
+    public bool IsFleet { get { return isFleet; } set { isFleet = value; } }
+
     public float SkillLoneWarrirorCT { get { return skillLoneWarriorCT; } }
     public float SkillLoneWarrirorCount { get { return skillLoneWarriorCount; } }
 

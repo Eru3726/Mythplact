@@ -1,3 +1,5 @@
+/*旧アニメーション制御
+
 using UnityEngine;
 
 //アニメーターをアタッチ
@@ -133,3 +135,4 @@ public class Anim : MonoBehaviour
         isLoop = products[animNo].IsLoop;
     }
 }
+*/

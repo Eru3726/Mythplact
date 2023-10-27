@@ -1,4 +1,4 @@
-//ƒ{ƒX1FƒVƒ‡ƒSƒX
+//ãƒœã‚¹1ï¼šã‚·ãƒ§ã‚´ã‚¹
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,120 +6,120 @@ using SY;
 
 public enum Shoggoth_MoveType
 {
-    Eight,      //Šî–{
-    Rotation,   //‹¤—Lƒƒ‚ƒpƒ^[ƒ“2
-    UpDown,     //‹¤—Lƒƒ‚ƒpƒ^[ƒ“3
-    Rush,       //‹¤—Lƒƒ‚ƒpƒ^[ƒ“4
+    Eight,      //åŸºæœ¬
+    Rotation,   //å…±æœ‰ãƒ¡ãƒ¢ãƒ‘ã‚¿ãƒ¼ãƒ³2
+    UpDown,     //å…±æœ‰ãƒ¡ãƒ¢ãƒ‘ã‚¿ãƒ¼ãƒ³3
+    Rush,       //å…±æœ‰ãƒ¡ãƒ¢ãƒ‘ã‚¿ãƒ¼ãƒ³4
 }
 
 public class Shoggoth : MonoBehaviour
 {
-    Rigidbody2D rb;                 //•¨—‰‰Z
-    AudioSource se;                 //ƒTƒEƒ“ƒh
-    HitMng hm;                      //“–‚½‚è”»’è
-    Circle circle = new Circle();   //‰~
+    Rigidbody2D rb;                 //ç‰©ç†æ¼”ç®—
+    AudioSource se;                 //ã‚µã‚¦ãƒ³ãƒ‰
+    HitMng hm;                      //å½“ãŸã‚Šåˆ¤å®š
+    Circle circle = new Circle();   //å††
 
     //
-    [SerializeField, Tooltip("ƒvƒŒƒCƒ„[")] GameObject pl;
-    [SerializeField, Tooltip("ƒXƒ‰ƒCƒ€")] GameObject slime;
+    [SerializeField, Tooltip("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼")] GameObject pl;
+    [SerializeField, Tooltip("ã‚¹ãƒ©ã‚¤ãƒ ")] GameObject slime;
 
     //
-    int phase = 0;      //”Ä—ps“®”Ô†
-    float timer = 0;    //”Ä—pƒ^ƒCƒ}[
-    int repeat = 0;     //”Ä—pŒJ‚è•Ô‚µ‰ñ”
-    int no = 0;         //”Ä—pƒiƒ“ƒo
+    int phase = 0;      //æ±ç”¨è¡Œå‹•ç•ªå·
+    float timer = 0;    //æ±ç”¨ã‚¿ã‚¤ãƒãƒ¼
+    int repeat = 0;     //æ±ç”¨ç¹°ã‚Šè¿”ã—å›æ•°
+    int no = 0;         //æ±ç”¨ãƒŠãƒ³ãƒ
 
-    int tableNo = 0;    //ƒe[ƒuƒ‹w’è
-    int moveNo = 0;     //s“®w’è
+    int tableNo = 0;    //ãƒ†ãƒ¼ãƒ–ãƒ«æŒ‡å®š
+    int moveNo = 0;     //è¡Œå‹•æŒ‡å®š
 
     //
-    [SerializeField, Tooltip("s“®"), ReadOnly] Shoggoth_MoveType moveType = Shoggoth_MoveType.Eight;
-    [SerializeField, Tooltip("s“®ƒe[ƒuƒ‹")] Shoggoth_MoveTable[] moveTable;
-    [SerializeField, Tooltip("‘¬“x")] float speed;
+    [SerializeField, Tooltip("è¡Œå‹•"), ReadOnly] Shoggoth_MoveType moveType = Shoggoth_MoveType.Eight;
+    [SerializeField, Tooltip("è¡Œå‹•ãƒ†ãƒ¼ãƒ–ãƒ«")] Shoggoth_MoveTable[] moveTable;
+    [SerializeField, Tooltip("é€Ÿåº¦")] float speed;
     const float speed_save = 0.05f;
 
-    [Header("–{‘Ì")]
-    [SerializeField, Tooltip("“ªUŒ‚”»’è")] GameObject head;
-    [SerializeField, Tooltip("‘ÌUŒ‚”»’è")] GameObject[] body;
-    [SerializeField, Tooltip("”öUŒ‚”»’è")] GameObject tail;
-    [SerializeField, Tooltip("“ªÚGˆĞ—Í")] float head_Power = 1.0f;
-    [SerializeField, Tooltip("‘ÌÚGˆĞ—Í")] float body_Power = 1.0f;
-    [SerializeField, Tooltip("”öÚGˆĞ—Í")] float tail_Power = 1.0f;
+    [Header("æœ¬ä½“")]
+    [SerializeField, Tooltip("é ­æ”»æ’ƒåˆ¤å®š")] GameObject head;
+    [SerializeField, Tooltip("ä½“æ”»æ’ƒåˆ¤å®š")] GameObject[] body;
+    [SerializeField, Tooltip("å°¾æ”»æ’ƒåˆ¤å®š")] GameObject tail;
+    [SerializeField, Tooltip("é ­æ¥è§¦å¨åŠ›")] float head_Power = 1.0f;
+    [SerializeField, Tooltip("ä½“æ¥è§¦å¨åŠ›")] float body_Power = 1.0f;
+    [SerializeField, Tooltip("å°¾æ¥è§¦å¨åŠ›")] float tail_Power = 1.0f;
 
-    GameObject obj;     //©g
-    GameObject headObj; //“ª
-    Vector2 pos;        //À•W
-    Vector2 plPos;      //ƒvƒŒ[ƒ„[À•W
-    Quaternion rot;     //Šp“x•Û‘¶
-    Vector3 defScale;   //Šgk—¦•Û‘¶
-    Vector3 scale;      //Šgk—¦XV
-    float gravity;      //d—Í‹­“x•Û‘¶
-    Vector2 dir;        //ˆÚ“®•ûŒü
+    GameObject obj;     //è‡ªèº«
+    GameObject headObj; //é ­
+    Vector2 pos;        //åº§æ¨™
+    Vector2 plPos;      //ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼åº§æ¨™
+    Quaternion rot;     //è§’åº¦ä¿å­˜
+    Vector3 defScale;   //æ‹¡ç¸®ç‡ä¿å­˜
+    Vector3 scale;      //æ‹¡ç¸®ç‡æ›´æ–°
+    float gravity;      //é‡åŠ›å¼·åº¦ä¿å­˜
+    Vector2 dir;        //ç§»å‹•æ–¹å‘
 
-    Vector2 beforePos;  //ˆÚ“®‘O‚ÌˆÊ’u
-    Vector2 afterPos;   //ˆÚ“®Œã‚ÌˆÊ’u
-    Vector2 targetPos;  //–Ú•WˆÊ’u
-    float groundPosY;   //’n–Ê‚Ì‚‚³
+    Vector2 beforePos;  //ç§»å‹•å‰ã®ä½ç½®
+    Vector2 afterPos;   //ç§»å‹•å¾Œã®ä½ç½®
+    Vector2 targetPos;  //ç›®æ¨™ä½ç½®
+    float groundPosY;   //åœ°é¢ã®é«˜ã•
 
-    [Header("”ª‚Ìš")]
-    [SerializeField, Tooltip("‘¬“x")] float eight_Speed;
-    [SerializeField, Tooltip("’†SÀ•W")] Vector2 eight_Center;
-    [SerializeField, Tooltip("”¼Œa")] Vector2 eight_Radius;
-    [SerializeField, Tooltip("‘Ò‹@ŠÔ")] float eight_BreakTime;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip eight_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float eight_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float eight_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool eight_SELoop;
-    [SerializeField, Tooltip("ˆÚ“®”ÍˆÍ‰Â‹‰»")] bool eight_MoveRangeDisplay;
+    [Header("å…«ã®å­—")]
+    [SerializeField, Tooltip("é€Ÿåº¦")] float eight_Speed;
+    [SerializeField, Tooltip("ä¸­å¿ƒåº§æ¨™")] Vector2 eight_Center;
+    [SerializeField, Tooltip("åŠå¾„")] Vector2 eight_Radius;
+    [SerializeField, Tooltip("å¾…æ©Ÿæ™‚é–“")] float eight_BreakTime;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip eight_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float eight_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float eight_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool eight_SELoop;
+    [SerializeField, Tooltip("ç§»å‹•ç¯„å›²å¯è¦–åŒ–")] bool eight_MoveRangeDisplay;
 
-    [Header("ù‰ñ")]
-    [SerializeField, Tooltip("”»’è")] GameObject[] rotation;
-    [SerializeField, Tooltip("‘¬“x")] float rotation_Speed;
-    [SerializeField, Tooltip("’†SÀ•W")] Vector2 rotation_Center;
-    [SerializeField, Tooltip("”¼Œa")] Vector2 rotation_Radius;
-    [SerializeField, Tooltip("ƒXƒ‰ƒCƒ€¶¬”")] int rotation_SlimeGenerate;
-    [SerializeField, Tooltip("ˆĞ—Í")] float rotation_Power;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip rotation_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float rotation_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float rotation_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool rotation_SELoop;
-    [SerializeField, Tooltip("ˆÚ“®”ÍˆÍ‰Â‹‰»")] bool rotation_MoveRangeDisplay;
+    [Header("æ—‹å›")]
+    [SerializeField, Tooltip("åˆ¤å®š")] GameObject[] rotation;
+    [SerializeField, Tooltip("é€Ÿåº¦")] float rotation_Speed;
+    [SerializeField, Tooltip("ä¸­å¿ƒåº§æ¨™")] Vector2 rotation_Center;
+    [SerializeField, Tooltip("åŠå¾„")] Vector2 rotation_Radius;
+    [SerializeField, Tooltip("ã‚¹ãƒ©ã‚¤ãƒ ç”Ÿæˆæ•°")] int rotation_SlimeGenerate;
+    [SerializeField, Tooltip("å¨åŠ›")] float rotation_Power;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip rotation_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float rotation_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float rotation_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool rotation_SELoop;
+    [SerializeField, Tooltip("ç§»å‹•ç¯„å›²å¯è¦–åŒ–")] bool rotation_MoveRangeDisplay;
 
-    [Header("ã‰º")]
-    [SerializeField, Tooltip("”»’è")] GameObject[] upDown;
-    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSystem upDown_Effect;
-    [SerializeField, Tooltip("‘¬“x")] float upDown_Speed;
-    [SerializeField, Tooltip("’†SÀ•W")] Vector2 upDown_Center;
-    [SerializeField, Tooltip("”¼Œa")] Vector2 upDown_Radius;
-    [SerializeField, Tooltip("UŒ‚‰ñ”")] float upDown_AtkTime;
-    [SerializeField, Tooltip("ƒXƒ‰ƒCƒ€¶¬”")] int upDown_SlimeGenerate;
-    [SerializeField, Tooltip("ˆĞ—Í")] float upDown_Power;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip upDown_InSE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float upDown_InSEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float upDown_InSEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool upDown_InSELoop;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip upDown_OutSE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float upDown_OutSEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float upDown_OutSEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool upDown_OutSELoop;
-    [SerializeField, Tooltip("ˆÚ“®”ÍˆÍ‰Â‹‰»")] bool upDown_MoveRangeDisplay;
+    [Header("ä¸Šä¸‹")]
+    [SerializeField, Tooltip("åˆ¤å®š")] GameObject[] upDown;
+    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSystem upDown_Effect;
+    [SerializeField, Tooltip("é€Ÿåº¦")] float upDown_Speed;
+    [SerializeField, Tooltip("ä¸­å¿ƒåº§æ¨™")] Vector2 upDown_Center;
+    [SerializeField, Tooltip("åŠå¾„")] Vector2 upDown_Radius;
+    [SerializeField, Tooltip("æ”»æ’ƒå›æ•°")] float upDown_AtkTime;
+    [SerializeField, Tooltip("ã‚¹ãƒ©ã‚¤ãƒ ç”Ÿæˆæ•°")] int upDown_SlimeGenerate;
+    [SerializeField, Tooltip("å¨åŠ›")] float upDown_Power;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip upDown_InSE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float upDown_InSEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float upDown_InSEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool upDown_InSELoop;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip upDown_OutSE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float upDown_OutSEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float upDown_OutSEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool upDown_OutSELoop;
+    [SerializeField, Tooltip("ç§»å‹•ç¯„å›²å¯è¦–åŒ–")] bool upDown_MoveRangeDisplay;
 
-    [Header("“Ëi")]
-    [SerializeField, Tooltip("”»’è")] GameObject[] rush;
-    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSystem rush_Effect;
-    [SerializeField, Tooltip("‘¬“x")] float rush_Speed;
-    [SerializeField, Tooltip("’†SÀ•W"), ReadOnly] string rush_Center = "ƒvƒŒƒCƒ„[‚ÌˆÊ’u";
-    [SerializeField, Tooltip("ƒIƒtƒZƒbƒg")] Vector2 rush_Offset;
-    [SerializeField, Tooltip("”¼Œa")] Vector2 rush_Radius;
-    [SerializeField, Tooltip("ˆĞ—Í")] float rush_Power;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg")] AudioClip rush_SE;
-    [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float rush_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float rush_SEPitch;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv‰»")] bool rush_SELoop;
-    [SerializeField, Tooltip("ˆÚ“®”ÍˆÍ‰Â‹‰»")] bool rush_MoveRangeDisplay;
+    [Header("çªé€²")]
+    [SerializeField, Tooltip("åˆ¤å®š")] GameObject[] rush;
+    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSystem rush_Effect;
+    [SerializeField, Tooltip("é€Ÿåº¦")] float rush_Speed;
+    [SerializeField, Tooltip("ä¸­å¿ƒåº§æ¨™"), ReadOnly] string rush_Center = "ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®";
+    [SerializeField, Tooltip("ã‚ªãƒ•ã‚»ãƒƒãƒˆ")] Vector2 rush_Offset;
+    [SerializeField, Tooltip("åŠå¾„")] Vector2 rush_Radius;
+    [SerializeField, Tooltip("å¨åŠ›")] float rush_Power;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] AudioClip rush_SE;
+    [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float rush_SEVolume;
+    [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float rush_SEPitch;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—åŒ–")] bool rush_SELoop;
+    [SerializeField, Tooltip("ç§»å‹•ç¯„å›²å¯è¦–åŒ–")] bool rush_MoveRangeDisplay;
 
-    [Header("ƒXƒ‰ƒCƒ€")]
-    [SerializeField, Tooltip("¶¬ŠÔŠu")] float slime_GenerateTime;
+    [Header("ã‚¹ãƒ©ã‚¤ãƒ ")]
+    [SerializeField, Tooltip("ç”Ÿæˆé–“éš”")] float slime_GenerateTime;
 
     public GameObject Player { get { return pl; } }
     public Shoggoth_MoveType MoveType { get { return moveType; } }
@@ -154,9 +154,9 @@ public class Shoggoth : MonoBehaviour
         //Debug.Log(moveType);
         hm.HitUpdate();
 
-        plPos = pl.transform.position;   //ƒvƒŒƒCƒ„[‚ÌˆÊ’u
+        plPos = pl.transform.position;   //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®
 
-        beforePos = rb.position; //ˆÚ“®‘O‚ÌˆÊ’u•Û‘¶(•ûŒüZo‚Ì‚½‚ß)
+        beforePos = rb.position; //ç§»å‹•å‰ã®ä½ç½®ä¿å­˜(æ–¹å‘ç®—å‡ºã®ãŸã‚)
 
         switch (moveType)
         {
@@ -171,9 +171,9 @@ public class Shoggoth : MonoBehaviour
         }
         rb.position = pos;
 
-        afterPos = rb.position;  //ˆÚ“®ˆÚ“®Œã‚ÌˆÊ’u•Û‘¶
+        afterPos = rb.position;  //ç§»å‹•ç§»å‹•å¾Œã®ä½ç½®ä¿å­˜
 
-        //ˆÚ“®•ûŒü‚ÉŒü‚­
+        //ç§»å‹•æ–¹å‘ã«å‘ã
         transform.rotation = MoveDirection(beforePos, afterPos);
         BodyRot();
 
@@ -181,19 +181,19 @@ public class Shoggoth : MonoBehaviour
         hm.PostUpdate();
     }
 
-    //----------ƒAƒNƒVƒ‡ƒ“----------
-    //8‚ÌšˆÚ“®
+    //----------ã‚¢ã‚¯ã‚·ãƒ§ãƒ³----------
+    //8ã®å­—ç§»å‹•
     void Eight()
     {
         switch (phase)
         {
-            case 0: //ˆĞ—Íİ’èA–Ú•WˆÊ’uAˆÚ“®•ûŒü’è‹`
+            case 0: //å¨åŠ›è¨­å®šã€ç›®æ¨™ä½ç½®ã€ç§»å‹•æ–¹å‘å®šç¾©
                 circle.Data(eight_Center.x, eight_Center.y, eight_Radius.x, eight_Radius.y, 1.0f, 1.0f, 1, 0);
                 targetPos = circle.Move(0, 0);
                 dir = Distance(pos, targetPos).normalized;
                 phase++;
                 break;
-            case 1: //ˆÚ“®A–Ú•WˆÊ’u“’…ˆ—
+            case 1: //ç§»å‹•ã€ç›®æ¨™ä½ç½®åˆ°ç€å‡¦ç†
                 pos = Trac(pos, targetPos, dir, speed);
                 if (pos == targetPos)
                 {
@@ -202,7 +202,7 @@ public class Shoggoth : MonoBehaviour
                     phase++;
                 }
                 break;
-            case 2:    //ˆÚ“®ˆ—
+            case 2:    //ç§»å‹•å‡¦ç†
                 timer += Time.deltaTime;
                 pos = circle.Move(timer, eight_Speed);
                 if (timer < eight_BreakTime) { return; }
@@ -215,19 +215,19 @@ public class Shoggoth : MonoBehaviour
     }
 
     
-    //ù‰ñs“®
+    //æ—‹å›è¡Œå‹•
     void Rotation()
     {
         switch (phase)
         {
-            case 0: //ù‰ñŠJnˆÊ’uAˆÚ“®•ûŒü
+            case 0: //æ—‹å›é–‹å§‹ä½ç½®ã€ç§»å‹•æ–¹å‘
                 circle.Data
                     (rotation_Center.x, rotation_Center.y, rotation_Radius.x, rotation_Radius.y, 1.0f, 1.0f, 1, 0);
                 targetPos = circle.Move(0, 0);
                 dir = Distance(pos, targetPos).normalized;
                 phase++;
                 break;
-            case 1: //ˆÚ“®Aù‰ñŠJnˆÊ’u“’…¨ˆĞ—Íİ’è
+            case 1: //ç§»å‹•ã€æ—‹å›é–‹å§‹ä½ç½®åˆ°ç€â†’å¨åŠ›è¨­å®š
                 pos = Trac(pos, targetPos, dir, speed);
                 if (pos == targetPos)
                 {
@@ -239,7 +239,7 @@ public class Shoggoth : MonoBehaviour
                     phase = 2;
                 }
                 break;
-            case 2:    //ù‰ñs“®AƒXƒ‰ƒCƒ€¶¬ŠÔ¨¶¬Aw’è¶¬‰ñ”’B¬ˆ—
+            case 2:    //æ—‹å›è¡Œå‹•ã€ã‚¹ãƒ©ã‚¤ãƒ ç”Ÿæˆæ™‚é–“â†’ç”Ÿæˆã€æŒ‡å®šç”Ÿæˆå›æ•°é”æˆå‡¦ç†
                 timer += Time.deltaTime;
                 pos = circle.Move(timer, rotation_Speed);
                 if ((timer % slime_GenerateTime) + Time.deltaTime > slime_GenerateTime)
@@ -249,7 +249,7 @@ public class Shoggoth : MonoBehaviour
                     if (no > rotation_SlimeGenerate) { phase++; }
                 }
                 break;
-            case 3: //I—¹ˆ—
+            case 3: //çµ‚äº†å‡¦ç†
                 MoveEnd();
                 break;
             default:
@@ -259,17 +259,17 @@ public class Shoggoth : MonoBehaviour
     }
 
     int No;
-    //ã‰ºs“®
+    //ä¸Šä¸‹è¡Œå‹•
     void UpDown()
     {
         switch (phase)
         {
-            case 0:     //w’è’†SÀ•Wã•”AˆÚ“®•ûŒü’è‹`
+            case 0:     //æŒ‡å®šä¸­å¿ƒåº§æ¨™ä¸Šéƒ¨ã€ç§»å‹•æ–¹å‘å®šç¾©
                 targetPos = new Vector2(upDown_Center.x, upDown_Center.y + upDown_Radius.y);
                 dir = Distance(pos, targetPos).normalized;
                 phase++;
                 break;
-            case 1:     //ˆÚ“®A–Ú•WˆÊ’u“’Bˆ—AˆÚ“®•ûŒüÄ’è‹`
+            case 1:     //ç§»å‹•ã€ç›®æ¨™ä½ç½®åˆ°é”å‡¦ç†ã€ç§»å‹•æ–¹å‘å†å®šç¾©
                 pos = Trac(pos, targetPos, dir, speed);
                 if (pos == targetPos)
                 {
@@ -277,46 +277,46 @@ public class Shoggoth : MonoBehaviour
                     phase++;
                 }
                 break;
-            case 2:     //w’è•bŠÔã•”‚ÖˆÚ“®
-                timer += Time.deltaTime;    //ƒ^ƒCƒ}[‹N“®
-                pos = Trac(pos, dir, speed);       //ã‚ÉŒü‚©‚¤
-                if (timer > 1)              //1•bŒã
+            case 2:     //æŒ‡å®šç§’é–“ä¸Šéƒ¨ã¸ç§»å‹•
+                timer += Time.deltaTime;    //ã‚¿ã‚¤ãƒãƒ¼èµ·å‹•
+                pos = Trac(pos, dir, speed);       //ä¸Šã«å‘ã‹ã†
+                if (timer > 1)              //1ç§’å¾Œ
                 {
-                    timer = 0;              //ƒ^ƒCƒ}[ƒŠƒZƒbƒg
+                    timer = 0;              //ã‚¿ã‚¤ãƒãƒ¼ãƒªã‚»ãƒƒãƒˆ
                     phase++;
                 }
                 break;
-            case 3: //1ƒtƒŒ[ƒ€ˆ—
+            case 3: //1ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
                 upDown_Effect.Stop();
                 if (upDown != null || upDown.Length != 0)
                 {
-                    SetPower(upDown, upDown_Power);                             //ˆĞ—Íİ’è
+                    SetPower(upDown, upDown_Power);                             //å¨åŠ›è¨­å®š
                 }
-                float width = upDown_Radius.x * 2.0f;                           //•
-                pos = new Vector2(                                              //“ËiŠJnˆÊ’u’è‹`
+                float width = upDown_Radius.x * 2.0f;                           //å¹…
+                pos = new Vector2(                                              //çªé€²é–‹å§‹ä½ç½®å®šç¾©
                     (upDown_Center.x - upDown_Radius.x) + ((width / (upDown_AtkTime + 1)) * (repeat + 1)),
                     (pos.y > upDown_Center.y + upDown_Radius.y) ? upDown_Center.y + upDown_Radius.y : upDown_Center.y - upDown_Radius.y);
-                dir = (pos.y == upDown_Center.y + upDown_Radius.y) ? Vector2.down : Vector2.up; //“Ëi•ûŒü’è‹`
+                dir = (pos.y == upDown_Center.y + upDown_Radius.y) ? Vector2.down : Vector2.up; //çªé€²æ–¹å‘å®šç¾©
                 Quaternion q = (dir == Vector2.down) ?
                     Quaternion.Euler(90.0f, 0, 0) : Quaternion.Euler(-90.0f, 0, 0);
                 upDown_Effect.transform.localRotation = q;
                 //SetAudio(upDown_SE, upDown_SEVolume, upDown_SEPitch, upDown_SELoop);
                 phase++;
                 repeat++;
-                no = 0;                                                         //ƒXƒ‰ƒCƒ€¶¬‰ñ”ƒŠƒZƒbƒg
-                No = 0; //ƒTƒEƒ“ƒhÄ¶
+                no = 0;                                                         //ã‚¹ãƒ©ã‚¤ãƒ ç”Ÿæˆå›æ•°ãƒªã‚»ãƒƒãƒˆ
+                No = 0; //ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿ
                 break;
-            case 4: //ŒJ‚è•Ô‚µˆ—
-                pos = Trac(pos, dir, upDown_Speed);   //ˆÚ“®
-                if (pos.y > upDown_Center.y + upDown_Radius.y || pos.y < upDown_Center.y - upDown_Radius.y)   //‰æ–Êã•”‚Ü‚½‰º•”‚Éo‚é
+            case 4: //ç¹°ã‚Šè¿”ã—å‡¦ç†
+                pos = Trac(pos, dir, upDown_Speed);   //ç§»å‹•
+                if (pos.y > upDown_Center.y + upDown_Radius.y || pos.y < upDown_Center.y - upDown_Radius.y)   //ç”»é¢ä¸Šéƒ¨ã¾ãŸä¸‹éƒ¨ã«å‡ºã‚‹
                 {
-                    if (repeat == upDown_AtkTime) { phase++; break; }    //“ËiÀs‰ñ”‚ªw¦‰ñ”‚Æ“¯ˆê‚Ìˆ—‚ªi‚Ş
-                    phase--;                                            //ª‚ÌğŒ‚ğ–‚½‚³‚È‚¢ˆ—‚ª–ß‚èÄ’è‹`
+                    if (repeat == upDown_AtkTime) { phase++; break; }    //çªé€²å®Ÿè¡Œå›æ•°ãŒæŒ‡ç¤ºå›æ•°ã¨åŒä¸€ã®æ™‚å‡¦ç†ãŒé€²ã‚€
+                    phase--;                                            //â†‘ã®æ¡ä»¶ã‚’æº€ãŸã•ãªã„æ™‚å‡¦ç†ãŒæˆ»ã‚Šå†å®šç¾©
                 }
 
-                if (dir == Vector2.down)            //ˆÚ“®•ûŒü‚ª‰º
+                if (dir == Vector2.down)            //ç§»å‹•æ–¹å‘ãŒä¸‹
                 {
-                    if (pos.y < groundPosY)        //’n•\ö‚é
+                    if (pos.y < groundPosY)        //åœ°è¡¨æ½œã‚‹
                     {
                         if(No == 0)
                         {
@@ -327,14 +327,14 @@ public class Shoggoth : MonoBehaviour
                         upDown_Effect.Play();
                         upDown_Effect.transform.position = new Vector2
                             (upDown_Effect.transform.position.x, groundPosY + 2.0f);
-                        if (no == upDown_SlimeGenerate) { return; }   //ƒXƒ‰ƒCƒ€¶¬‰ñ”‚ªw¦‰ñ”‚Æ“¯ˆê
-                        Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity); //ƒXƒ‰ƒCƒ€¶¬
-                        no++;                       //ƒXƒ‰ƒCƒ€¶¬‰ñ”
+                        if (no == upDown_SlimeGenerate) { return; }   //ã‚¹ãƒ©ã‚¤ãƒ ç”Ÿæˆå›æ•°ãŒæŒ‡ç¤ºå›æ•°ã¨åŒä¸€
+                        Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity); //ã‚¹ãƒ©ã‚¤ãƒ ç”Ÿæˆ
+                        no++;                       //ã‚¹ãƒ©ã‚¤ãƒ ç”Ÿæˆå›æ•°
                     }
                 }
-                else if (dir == Vector2.up)         //ˆÚ“®•ûŒü‚ªã
+                else if (dir == Vector2.up)         //ç§»å‹•æ–¹å‘ãŒä¸Š
                 {
-                    if (pos.y > groundPosY)        //’n’†‚©‚ço‚½
+                    if (pos.y > groundPosY)        //åœ°ä¸­ã‹ã‚‰å‡ºãŸ
                     {
                         if (No == 0)
                         {
@@ -345,36 +345,36 @@ public class Shoggoth : MonoBehaviour
                         upDown_Effect.Play();
                         upDown_Effect.transform.position = new Vector2
                             (upDown_Effect.transform.position.x, groundPosY + 2.0f);
-                        if (no == upDown_SlimeGenerate) { return; }   //ƒXƒ‰ƒCƒ€¶¬‰ñ”‚ªw¦‰ñ”‚Æ“¯ˆê
+                        if (no == upDown_SlimeGenerate) { return; }   //ã‚¹ãƒ©ã‚¤ãƒ ç”Ÿæˆå›æ•°ãŒæŒ‡ç¤ºå›æ•°ã¨åŒä¸€
                         Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity);
                         no++;
                     }
                 }
                 break;
-            case 5: //1ƒtƒŒ[ƒ€ˆ—
+            case 5: //1ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
                 upDown_Effect.Stop();
                 MoveEnd();
                 break;
-            default:    //1ƒtƒŒ[ƒ€ˆ— (s“®‘JˆÚ‰Šú‰»—p)
+            default:    //1ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç† (è¡Œå‹•é·ç§»æ™‚åˆæœŸåŒ–ç”¨)
                 AllVariableClear();
                 break;
         }
     }
 
-    //ŒÊ‚ğ•`‚¢‚ÄƒvƒŒƒCƒ„[‚Ö“Ëi
+    //å¼§ã‚’æã„ã¦ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¸çªé€²
     void Rush()
     {
         switch (phase)
         {
-            case 0: //–Ú•WˆÊ’uAˆÚ“®•ûŒü’è‹`
-                if (plPos.x > eight_Center.x)         //ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ª’†‰›‚æ‚è‰E
+            case 0: //ç›®æ¨™ä½ç½®ã€ç§»å‹•æ–¹å‘å®šç¾©
+                if (plPos.x > eight_Center.x)         //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ãŒä¸­å¤®ã‚ˆã‚Šå³
                 { targetPos = eight_Center + eight_Radius; }
-                else if (plPos.x <= eight_Center.x)   //ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ª’†‰›‚æ‚è¶
+                else if (plPos.x <= eight_Center.x)   //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ãŒä¸­å¤®ã‚ˆã‚Šå·¦
                 { targetPos = eight_Center + new Vector2(eight_Radius.x * -1.0f, eight_Radius.y); }
-                else { Debug.LogError("targetPos‚ªnull"); }
+                else { Debug.LogError("targetPosãŒnull"); }
                 dir = Distance(pos, targetPos).normalized;
                 phase++; break;
-            case 1: //ˆÚ“®A–Ú•WˆÊ’u“’…ˆ—
+            case 1: //ç§»å‹•ã€ç›®æ¨™ä½ç½®åˆ°ç€å‡¦ç†
                 pos = Trac(pos, targetPos, dir, speed * 1.5f);
                 if (pos == targetPos)
                 {
@@ -382,7 +382,7 @@ public class Shoggoth : MonoBehaviour
                     dir = Distance(pos, pos + Vector2.up).normalized;
                 }
                 break;
-            case 2: //1•bŠÔã‚ÉŒü‚©‚¤(‚±‚ê‚¢‚ç‚È‚¢‚©‚à)
+            case 2: //1ç§’é–“ä¸Šã«å‘ã‹ã†(ã“ã‚Œã„ã‚‰ãªã„ã‹ã‚‚)
                 timer += Time.deltaTime;
                 pos = Trac(pos, dir, speed * 2.0f);
                 if (timer > 1.0f)
@@ -392,14 +392,14 @@ public class Shoggoth : MonoBehaviour
                     timer = 0;
                 }
                 break;
-            case 3:     //“ËiŠJnˆÊ’u‚ÉˆÚ“®
-                if (targetPos == eight_Center + eight_Radius)   //‰E‚©‚ç‚Í‚¯‚½‚ç
+            case 3:     //çªé€²é–‹å§‹ä½ç½®ã«ç§»å‹•
+                if (targetPos == eight_Center + eight_Radius)   //å³ã‹ã‚‰ã¯ã‘ãŸã‚‰
                 { pos = eight_Center + new Vector2(eight_Radius.x * -1.0f, eight_Radius.y) + (Vector2.up * 15.0f); }
-                else if (targetPos == eight_Center + new Vector2(eight_Radius.x * -1.0f, eight_Radius.y))   //¶‚©‚ç‚Í‚¯‚½‚ç
+                else if (targetPos == eight_Center + new Vector2(eight_Radius.x * -1.0f, eight_Radius.y))   //å·¦ã‹ã‚‰ã¯ã‘ãŸã‚‰
                 { pos = eight_Center + eight_Radius + (Vector2.up * 15.0f); }
                 phase++;
                 break;
-            case 4:     //‘Ì‚ÌŒü‚«XV
+            case 4:     //ä½“ã®å‘ãæ›´æ–°
                 timer += Time.deltaTime;
                 float moveDir = (targetPos == eight_Center + eight_Radius) ? 1.0f : -1.0f;
                 pos += new Vector2(moveDir, -1.0f).normalized * 2.0f * speed_save;
@@ -407,14 +407,14 @@ public class Shoggoth : MonoBehaviour
                 timer = 0;
                 phase++;
                 break;
-            case 5:     //ˆĞ—Íİ’èAUŒ‚ŠJnˆÊ’uAƒvƒŒƒCƒ„[‚ÌˆÊ’uAˆÚ“®•ûŒüAˆÚ“®‹——£(”¼Œa)’è‹`
+            case 5:     //å¨åŠ›è¨­å®šã€æ”»æ’ƒé–‹å§‹ä½ç½®ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã€ç§»å‹•æ–¹å‘ã€ç§»å‹•è·é›¢(åŠå¾„)å®šç¾©
                 if (rush != null || rush.Length != 0)
                 {
                     SetPower(rush, rush_Power);
                 }
-                if (targetPos == eight_Center + eight_Radius)       //‰E‚©‚ç‚Í‚¯‚½‚ç¶‚©‚ç“Ëi
+                if (targetPos == eight_Center + eight_Radius)       //å³ã‹ã‚‰ã¯ã‘ãŸã‚‰å·¦ã‹ã‚‰çªé€²
                 { circle.Direction = 1; }
-                else if (targetPos == eight_Center + new Vector2(eight_Radius.x * -1.0f, eight_Radius.y))   //¶‚©‚ç‚Í‚¯‚½‚ç‰E‚©‚ç“Ëi
+                else if (targetPos == eight_Center + new Vector2(eight_Radius.x * -1.0f, eight_Radius.y))   //å·¦ã‹ã‚‰ã¯ã‘ãŸã‚‰å³ã‹ã‚‰çªé€²
                 { circle.Direction = -1; }
                 circle.RadPos = (circle.Direction == 1) ? 1 : 0;
                 circle.Data(plPos.x + rush_Offset.x, plPos.y + rush_Offset.y, rush_Radius.x, rush_Radius.y, 1.0f, 1.0f);
@@ -423,7 +423,7 @@ public class Shoggoth : MonoBehaviour
                 //rush_Effect.transform.rotation = new Quaternion(transform.rotation.x, 90, 0, 1);
                 phase++;
                 break;
-            case 6: //ˆÚ“®AI—¹ˆ—
+            case 6: //ç§»å‹•ã€çµ‚äº†å‡¦ç†
                 pos = circle.Move(timer, rush_Speed);
                 timer += Time.deltaTime;
                 if (pos.y > circle.Move(0, 0).y + rush_Radius.y / 2.0f)
@@ -438,7 +438,7 @@ public class Shoggoth : MonoBehaviour
         }
     }
 
-    void MoveEnd()  //s“®I—¹ˆ—
+    void MoveEnd()  //è¡Œå‹•çµ‚äº†æ™‚å‡¦ç†
     {
         moveNo++;
         if (moveNo == moveTable[tableNo].Move.Length)
@@ -450,7 +450,7 @@ public class Shoggoth : MonoBehaviour
         AllVariableClear();
     }
 
-    //• ‚ªã‚ğŒü‚©‚È‚¢‚æ‚¤‚É
+    //è…¹ãŒä¸Šã‚’å‘ã‹ãªã„ã‚ˆã†ã«
     void BodyRot()
     {
         if ((transform.localEulerAngles.z < 0 && transform.localEulerAngles.z > -180) ||
@@ -468,26 +468,26 @@ public class Shoggoth : MonoBehaviour
 
     void Damage()
     {
-        Debug.Log(gameObject.name + "‚Íƒ_ƒ[ƒWó‚¯‚½");
+        Debug.Log(gameObject.name + "ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸å—ã‘ãŸ");
     }
 
     void Die()
     {
-        Debug.Log(gameObject.name + "‚Í€‚ñ‚¾");
+        Debug.Log(gameObject.name + "ã¯æ­»ã‚“ã ");
         GameData.ShoggothDead = true;
     }
 
-    //----------Šeíƒf[ƒ^ŠÇ—----------
-    void AllVariableClear()     //•Ï”‰Šú‰»
+    //----------å„ç¨®ãƒ‡ãƒ¼ã‚¿ç®¡ç†----------
+    void AllVariableClear()     //å¤‰æ•°åˆæœŸåŒ–
     {
         GeneralVariableClear();
         PowerReset();
 
-        //‰~
+        //å††
         circle.DataClear();
     }
 
-    void GeneralVariableClear() //”Ä—p•Ï”‰Šú‰»
+    void GeneralVariableClear() //æ±ç”¨å¤‰æ•°åˆæœŸåŒ–
     {
         phase = 0;
         timer = 0;
@@ -495,7 +495,7 @@ public class Shoggoth : MonoBehaviour
         no = 0;
     }
 
-    void PowerReset()        //ˆĞ—Í‰Šú‰»
+    void PowerReset()        //å¨åŠ›åˆæœŸåŒ–
     {
         SetPower(head, head_Power);
         SetPower(body, body_Power);
@@ -507,33 +507,33 @@ public class Shoggoth : MonoBehaviour
         LayerMask layerMask = 1 << LayerMask.NameToLayer("Ground");
         RaycastHit2D rayHit =
             Physics2D.Raycast(new Vector2(axisX, eight_Center.y + eight_Radius.y), Vector2.down,
-            eight_Center.y + eight_Radius.y * 5.0f, layerMask);  //Œõü”­Ë
+            eight_Center.y + eight_Radius.y * 5.0f, layerMask);  //å…‰ç·šç™ºå°„
         Debug.DrawRay(new Vector2(axisX, eight_Center.y + eight_Radius.y),
             Vector2.down * (eight_Center.y + eight_Radius.y) * 5.0f, Color.green, 1.0f);
         if (rayHit.collider.tag == "Ground")
         {
-            Vector2 groundPos = rayHit.point;   //’n–ÊˆÊ’uŠm”F
+            Vector2 groundPos = rayHit.point;   //åœ°é¢ä½ç½®ç¢ºèª
             return groundPos.y;
         }
-        Debug.LogError(axisX + "‚É’n–Ê‚Í‚È‚¢");
+        Debug.LogError(axisX + "ã«åœ°é¢ã¯ãªã„");
         return 0;
     }
 
-    //‹——£
+    //è·é›¢
     Vector2 Distance(Vector2 currentPos, Vector2 targetPos)
     {
         Vector2 distance = targetPos - currentPos;
         return distance;
     }
 
-    //’Ç”ö
+    //è¿½å°¾
     Vector2 Trac(Vector2 pos, Vector2 direction, float speed)
     {
         pos += direction * (speed * speed_save);
         return pos;
     }
 
-    //’Ç”ö2   –Ú•WˆÊ’u‚Å~‚Ü‚é
+    //è¿½å°¾2   ç›®æ¨™ä½ç½®ã§æ­¢ã¾ã‚‹
     Vector2 Trac(Vector2 pos, Vector2 targetPos, Vector2 direction, float speed)
     {
         pos += direction * (speed * speed_save);
@@ -544,7 +544,7 @@ public class Shoggoth : MonoBehaviour
         return pos;
     }
 
-    //ˆÚ“®•ûŒü(ˆÚ“®‘O‚ÌˆÊ’u,ˆÚ“®Œã‚ÌˆÊ’u)
+    //ç§»å‹•æ–¹å‘(ç§»å‹•å‰ã®ä½ç½®,ç§»å‹•å¾Œã®ä½ç½®)
     Quaternion MoveDirection(Vector2 before, Vector2 after)
     {
         Vector2 dir = after - before;
@@ -566,7 +566,7 @@ public class Shoggoth : MonoBehaviour
         }
     }
 
-    //ƒTƒEƒ“ƒh
+    //ã‚µã‚¦ãƒ³ãƒ‰
     void SetAudio(AudioClip audio, float Volume, float Pitch, bool isLoop)
     {
         se.clip = audio;
@@ -576,7 +576,7 @@ public class Shoggoth : MonoBehaviour
         se.Play();
     }
 
-    //----------ƒMƒYƒ‚----------
+    //----------ã‚®ã‚ºãƒ¢----------
     private void OnDrawGizmos()
     {
         if (eight_MoveRangeDisplay) { DrawWireGizmo(eight_Center, eight_Radius * 2, Color.white); }

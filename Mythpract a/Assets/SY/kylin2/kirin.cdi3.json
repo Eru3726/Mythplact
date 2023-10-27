@@ -1,0 +1,227 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param3",
+			"GroupId": "ParamGroup",
+			"Name": "前足_手前_上"
+		},
+		{
+			"Id": "Param25",
+			"GroupId": "ParamGroup",
+			"Name": "前足_手前_中"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "ParamGroup",
+			"Name": "前足_手前_下"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "ParamGroup",
+			"Name": "前足_手前_先"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "ParamGroup2",
+			"Name": "前足_奥_上"
+		},
+		{
+			"Id": "Param26",
+			"GroupId": "ParamGroup2",
+			"Name": "前足_奥_中"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "ParamGroup2",
+			"Name": "前足_奥_下"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "ParamGroup2",
+			"Name": "前足_奥_先"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "ParamGroup3",
+			"Name": "後脚_奥_上"
+		},
+		{
+			"Id": "Param27",
+			"GroupId": "ParamGroup3",
+			"Name": "後脚_奥_上中"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "ParamGroup3",
+			"Name": "後脚_奥_中"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "ParamGroup3",
+			"Name": "後足_奥_先"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "ParamGroup4",
+			"Name": "後脚_奥_上"
+		},
+		{
+			"Id": "Param28",
+			"GroupId": "ParamGroup4",
+			"Name": "後脚_奥_上中"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "ParamGroup4",
+			"Name": "後脚_奥_中"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "ParamGroup4",
+			"Name": "前足_奥_先"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "目開閉"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "なんか良い感じに動くやつ"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "頭回転"
+		},
+		{
+			"Id": "Param23",
+			"GroupId": "",
+			"Name": "頭下ge"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "羽衣"
+		},
+		{
+			"Id": "Param24",
+			"GroupId": "",
+			"Name": "炎ループ"
+		},
+		{
+			"Id": "Param20",
+			"GroupId": "",
+			"Name": "しっぽぉ"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "",
+			"Name": "前脚上げ"
+		},
+		{
+			"Id": "Param22",
+			"GroupId": "",
+			"Name": "前脚軸全回転"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "ひげ"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "ひげ風"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "透明度"
+		}
+	],
+	"ParameterGroups": [
+		{
+			"Id": "ParamGroup",
+			"GroupId": "",
+			"Name": "前脚_手前"
+		},
+		{
+			"Id": "ParamGroup2",
+			"GroupId": "",
+			"Name": "前脚_奥"
+		},
+		{
+			"Id": "ParamGroup3",
+			"GroupId": "",
+			"Name": "後脚_手前"
+		},
+		{
+			"Id": "ParamGroup4",
+			"GroupId": "",
+			"Name": "後脚_奥"
+		}
+	],
+	"Parts": [
+		{
+			"Id": "Part12",
+			"Name": "Hagoromo.psd"
+		},
+		{
+			"Id": "Part",
+			"Name": "頭"
+		},
+		{
+			"Id": "Part4",
+			"Name": "目"
+		},
+		{
+			"Id": "Part5",
+			"Name": "左前足"
+		},
+		{
+			"Id": "Part6",
+			"Name": "左後足"
+		},
+		{
+			"Id": "Part7",
+			"Name": "たてがみ"
+		},
+		{
+			"Id": "Part8",
+			"Name": "右後ろ足"
+		},
+		{
+			"Id": "Part9",
+			"Name": "右前足"
+		},
+		{
+			"Id": "Part2",
+			"Name": "表ピアス"
+		},
+		{
+			"Id": "Part3",
+			"Name": "裏ピアス"
+		},
+		{
+			"Id": "Part10",
+			"Name": "Fire.psd"
+		}
+	],
+	"CombinedParameters": [
+		[
+			"Param27",
+			"Param13"
+		],
+		[
+			"Param28",
+			"Param16"
+		],
+		[
+			"Param4",
+			"Param19"
+		]
+	]
+}
