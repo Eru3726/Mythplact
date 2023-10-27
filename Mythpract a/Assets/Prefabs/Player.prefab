@@ -14971,7 +14971,7 @@ MonoBehaviour:
   skillLoneWarriorCT: 5
   skillLoneWarriorTime: 10
   skillGreemCT: 5
-  skillDStrikeCT: 5
+  skillDStrikeCT: 10
   SkillLoneAtk: 150
   SkillLoneAtkPlus: 10
   SkillLoneComboSpan: 1
@@ -14981,6 +14981,7 @@ MonoBehaviour:
   SkillKajibaAtk: 200
   slash: {fileID: 8438359422445198577, guid: a7264e29880c3e24997be8bf537b70c3, type: 3}
   greem: {fileID: 4028125354744199665, guid: 20215f1e58e9f2444b2164c655f0aed0, type: 3}
+  dstrike: {fileID: 8438359422445198577, guid: 1235e179d99a416488b0cf90ea7a8db3, type: 3}
 --- !u!114 &8922014012187984017
 MonoBehaviour:
   m_ObjectHideFlags: 0

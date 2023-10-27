@@ -5,17 +5,105 @@ using System.Text;
 
 public class AchvManager : MonoBehaviour
 {
-    private bool slimeDontKill;
-    private bool withinTime;
-    private bool useActiveSkillsOnly;
-    private bool withoutSettingActiveSkill;
-    private bool dontGuard;
-    private bool deathMatch;
-    private bool justGuardonly;
-    private bool dontBlink;
+    [HideInInspector]
+    public bool dieXFlg;
+
+    [HideInInspector]
+    public int dieXCount = 0;
+
+    [Header("実績解除死亡回数")]
+    public int dieClearCount = 3;
+
+
+
+    [HideInInspector]
+    public bool blinkXFlg;
+
+    [HideInInspector]
+    public int blinkXCount = 0;
+
+    [Header("実績解除ブリンク回数")]
+    public int blinkClearCount = 3;
+
+
+
+    [HideInInspector]
+    public bool allBossFlg;
+
+    [SerializeField, Header("ボスの数")]
+    private int boss = 3;
+
+    [HideInInspector]
+    public bool[] defeatedBoss;
+
+
+
+    [HideInInspector]
+    public bool oneHpFlg;
+
+
+
+    [HideInInspector]
+    public bool attackComboFlg;
+
+
+
+    [HideInInspector]
+    public bool sheriffUseFlg;
+
+    [HideInInspector]
+    public int sheriffUseCount = 0;
+
+    [Header("実績解除シェリフ回数")]
+    public int sheriffClearCount = 3;
+
+
+
+    [HideInInspector]
+    public bool guardCountFlg;
+
+    [HideInInspector]
+    public int guardCount = 0;
+
+    [Header("実績解除ガード回数")]
+    public int guardClearCount = 3;
+
+
+
+    [HideInInspector]
+    public bool noDamage;
+
+
+
+    [HideInInspector]
+    public bool justGuardFlg;
+
+    [HideInInspector]
+    public int justGuardCount = 0;
+
+    [Header("実績解除ジャストガード回数")]
+    public int justGuardClearCount = 3;
+
+
+
+    [HideInInspector]
+    public bool noGuard;
+
+
+
+    [HideInInspector]
+    public bool activeSkillOnlyFlg;
+
+
+
+    //[HideInInspector]
+    //private bool timeAttack;
+
+    public static AchvManager instance;
 
     private void Awake()
     {
+        defeatedBoss = new bool[boss];
         Load();
     }
 
@@ -129,14 +217,35 @@ public class AchvManager : MonoBehaviour
         else
         {
             //初期化
-            slimeDontKill = false;
-            withinTime = false;
-            useActiveSkillsOnly = false;
-            withoutSettingActiveSkill = false;
-            dontGuard = false;
-            deathMatch = false;
-            justGuardonly = false;
-            dontBlink = false;
+            dieXFlg = false;
+            dieXCount = 0;
+
+            blinkXFlg = false;
+            blinkXCount = 0;
+
+            allBossFlg = false;
+            for (int i = 0; i < boss; i++) defeatedBoss[i] = false;
+
+            oneHpFlg = false;
+
+            attackComboFlg = false;
+
+            sheriffUseFlg = false;
+            sheriffUseCount = 0;
+
+            guardCountFlg = false;
+            guardCount = 0;
+
+            noDamage = false;
+
+            justGuardFlg = false;
+            justGuardCount = 0;
+
+            noGuard = false;
+
+            activeSkillOnlyFlg = false;
+
+            //timeAttack = false;
 
             //更新
             //ChangeDisplay();
@@ -151,14 +260,34 @@ public class AchvManager : MonoBehaviour
         //セーブデータのインスタンス化
         AchvSaveData saveData = new AchvSaveData();
 
-        saveData.slimeDontKill = slimeDontKill;
-        saveData.withinTime = withinTime;
-        saveData.useActiveSkillsOnly = useActiveSkillsOnly;
-        saveData.withoutSettingActiveSkill = withoutSettingActiveSkill;
-        saveData.dontGuard = dontGuard;
-        saveData.deathMatch = deathMatch;
-        saveData.justGuardonly = justGuardonly;
-        saveData.dontBlink = dontBlink;
+        saveData.dieXFlg = dieXFlg;
+        saveData.dieXCount = dieXCount;
+
+        saveData.blinkX = blinkXFlg;
+        for (int i = 0; i < boss; i++) saveData.defeatedBoss[i] = defeatedBoss[i];
+
+        saveData.allBoss = allBossFlg;
+
+        saveData.oneHp = oneHpFlg;
+
+        saveData.attackCombo = attackComboFlg;
+
+        saveData.SheriffUseCount = sheriffUseCount;
+        saveData.SheriffUseFlg = sheriffUseFlg;
+
+        saveData.guardCountFlg = guardCountFlg;
+        saveData.guardCount = guardCount;
+
+        saveData.noDamage = noDamage;
+
+        saveData.justGuardFlg = justGuardFlg;
+        saveData.justGuardCount = justGuardCount;
+
+        saveData.noGuard = noGuard;
+
+        saveData.activeSkillOnly = activeSkillOnlyFlg;
+
+        //saveData.timeAttack = timeAttack;
 
         return saveData;
     }
@@ -166,14 +295,34 @@ public class AchvManager : MonoBehaviour
     //データの読み込み（反映）
     private void ReadData(AchvSaveData saveData)
     {
-        slimeDontKill = saveData.slimeDontKill;
-        withinTime = saveData.withinTime;
-        useActiveSkillsOnly = saveData.useActiveSkillsOnly;
-        withoutSettingActiveSkill = saveData.withoutSettingActiveSkill;
-        dontGuard = saveData.dontGuard;
-        deathMatch = saveData.deathMatch;
-        justGuardonly = saveData.justGuardonly;
-        dontBlink = saveData.dontBlink;
+        dieXFlg = saveData.dieXFlg;
+        dieXCount = saveData.dieXCount;
+
+        blinkXFlg = saveData.blinkX;
+        for (int i = 0; i < boss; i++) defeatedBoss[i] = saveData.defeatedBoss[i];
+
+        allBossFlg = saveData.allBoss;
+
+        oneHpFlg = saveData.oneHp;
+
+        attackComboFlg = saveData.attackCombo;
+
+        sheriffUseCount = saveData.SheriffUseCount;
+        sheriffUseFlg = saveData.SheriffUseFlg;
+
+        guardCountFlg = saveData.guardCountFlg;
+        guardCount = saveData.guardCount;
+
+        noDamage = saveData.noDamage;
+
+        justGuardFlg = saveData.justGuardFlg;
+        justGuardCount = saveData.justGuardCount;
+
+        noGuard = saveData.noGuard;
+
+        activeSkillOnlyFlg = saveData.activeSkillOnly;
+
+        //timeAttack = saveData.timeAttack;
     }
 
 
@@ -256,12 +405,34 @@ public class AchvManager : MonoBehaviour
 [System.Serializable]
 public class AchvSaveData
 {
-    public bool slimeDontKill = false;
-    public bool withinTime = false;
-    public bool useActiveSkillsOnly = false;
-    public bool withoutSettingActiveSkill = false;
-    public bool dontGuard = false;
-    public bool deathMatch = false;
-    public bool justGuardonly = false;
-    public bool dontBlink = false;
+    public bool dieXFlg;
+    public int dieXCount;
+
+    public bool blinkX;
+    public int blinkXCount;
+
+    public bool allBoss;
+    public bool[] defeatedBoss;
+
+    public bool oneHp;
+
+    public bool attackCombo;
+    public int attackComboCount;
+
+    public bool SheriffUseFlg;
+    public int SheriffUseCount;
+
+    public bool guardCountFlg;
+    public int guardCount;
+
+    public bool noDamage;
+
+    public bool justGuardFlg;
+    public int justGuardCount;
+
+    public bool noGuard;
+
+    public bool activeSkillOnly;
+
+    //public bool timeAttack;
 }
