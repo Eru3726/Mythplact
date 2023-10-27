@@ -12,6 +12,8 @@ partial class Player
     public ParticleSystem EffectDeath;
     public ParticleSystem EffectHeal;
 
+    public ParticleSystem EffectSkillLoneWarrior;
+
     BoxCollider2D atknormalcol;
     BoxCollider2D atkjumpcol;
     BoxCollider2D atkjumpupcol;

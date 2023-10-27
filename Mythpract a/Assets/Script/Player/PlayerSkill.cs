@@ -5,6 +5,7 @@ partial class Player
 
     [SerializeField, Tooltip("スラッシュのクールタイム")] float skillSlashCT;
     [SerializeField, Tooltip("フリートのクールタイム")] float skillFleetCT;
+    [SerializeField, Tooltip("フリートの持続時間")] float skillFleetTime;
     [SerializeField, Tooltip("ローンウォーリアのクールタイム")] float skillLoneWarriorCT;
     [SerializeField, Tooltip("ローンウォーリアの持続時間")] float skillLoneWarriorTime;
     [SerializeField, Tooltip("グリームのクールタイム")] float skillGreemCT;
@@ -27,7 +28,10 @@ partial class Player
     float skillLoneWarriorCount = 100;
     float skillGreemCount = 100;
     float skillDStrikeCount = 100;
-    float skillLoneWarriorDuration= 0;
+
+    float skillFleetDuration = 0;
+    float skillFleetDirX = 0;
+    float skillLoneWarriorDuration = 0;
     float skillLoneWarriorComboCount = 0;
 
     float exAtk = 0;
@@ -39,6 +43,7 @@ partial class Player
     public GameObject greem;
     public GameObject dstrike;
 
+    bool isFleet = false;
     bool isLoneWarrior = false;
     bool LoneWarriorReset = false;
 
@@ -114,9 +119,9 @@ partial class Player
             {
                 if (skill1)
                 {
-                    SkillFleet();
-                    skillFleetCount = 0;
-
+                    GameData.SkillCount += 1;
+                    skillFleetDirX = dir.x;
+                    isFleet = true;
 
                 }
             }
@@ -124,16 +129,20 @@ partial class Player
             {
                 if (skill2)
                 {
-                    SkillFleet();
-                    skillFleetCount = 0;
+                    GameData.SkillCount += 1;
+                    skillFleetDirX = dir.x;
+
+                    isFleet = true;
                 }
             }
             else if (GameData.skillSlot3 == 2)
             {
                 if (skill3)
                 {
-                    SkillFleet();
-                    skillFleetCount = 0;
+                    GameData.SkillCount += 1;
+                    skillFleetDirX = dir.x;
+
+                    isFleet = true;
                 }
 
             }
@@ -141,9 +150,10 @@ partial class Player
             {
                 if (skill4)
                 {
-                    SkillFleet();
-                    skillFleetCount = 0;
+                    GameData.SkillCount += 1;
+                    skillFleetDirX = dir.x;
 
+                    isFleet = true;
                 }
 
             }
@@ -159,6 +169,7 @@ partial class Player
 
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+                    GameData.SkillCount += 1;
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -171,6 +182,7 @@ partial class Player
                 {
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+                    GameData.SkillCount += 1;
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -183,6 +195,7 @@ partial class Player
                 {
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+                    GameData.SkillCount += 1;
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -195,6 +208,7 @@ partial class Player
                 {
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+                    GameData.SkillCount += 1;
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -291,8 +305,10 @@ partial class Player
  
     void ActiveSkillUpdate()
     {
+        SkillFleet();
         // ローンウォーリア
         SkillLoneWarrior();
+
     }
     public void PassiveSkillStart()
     {
@@ -350,7 +366,7 @@ partial class Player
             GameObject sheriffObj = GameObject.Find("Sheriff(Clone)");
             sheriffObj.transform.localScale = new Vector3(5, 5, 5);
         }
-        else if(dir.x == -1)
+        else
         {
             Instantiate(slash, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(90, 0, 140));
             GameObject sheriffObj = GameObject.Find("Sheriff(Clone)");
@@ -361,11 +377,28 @@ partial class Player
     }
     public void SkillFleet()
     {
-        GameData.SkillCount++;
+        if(isFleet == true)
+        {
+            skillFleetDuration += Time.deltaTime;
 
-        int fleetPow = 50;
+            if(skillFleetDirX > 0)
+            {
+                gameObject.transform.position += new Vector3(Time.deltaTime * 10, 0, 0);
 
-        PlayerRb.AddForce(Vector2.right * dir.x * fleetPow,ForceMode2D.Impulse);
+            }
+            else
+            {
+                gameObject.transform.position += new Vector3(Time.deltaTime * -10, 0, 0);
+
+            }
+
+            if (skillFleetDuration >= skillFleetTime)
+            {
+                isFleet = false;
+
+            }
+
+        }
     }
     public void SkillLoneWarrior()
     {
@@ -376,6 +409,7 @@ partial class Player
             Debug.Log(skillLoneWarriorComboCount.ToString("F3") + "秒");
             skillLoneWarriorComboCount += Time.deltaTime;   // コンボ継続のカウント
             skillLoneWarriorDuration += Time.deltaTime;     // ローンウォーリアの継続時間
+            EffectSkillLoneWarrior.Play();
             if (HMng.CheckAttack() == true)
             {
                 Debug.Log("攻撃ヒット");
@@ -407,6 +441,7 @@ partial class Player
         {
             isLoneWarrior = false;
             HMng.ATK = exAtk;                   // 攻撃力を戻す
+            EffectSkillLoneWarrior.Stop();
             skillLoneWarriorDuration = 0;       // 継続時間をリセット
             skillLoneWarriorComboCount = 0;     // コンボ継続カウントをリセット
             skillLoneWarriorCount = 0;          // クールタイムをリセット
@@ -428,7 +463,7 @@ partial class Player
             greemObj.transform.localScale = new Vector3(3, 5, 5);
 
         }
-        else if (dir.x == -1)
+        else
         {
             Instantiate(greem, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, -50, 90));
             GameObject greemObj = GameObject.Find("Greem(Clone)");
@@ -446,15 +481,15 @@ partial class Player
 
         if (dir.x == 1)
         {
-            Instantiate(dstrike, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(90, 0, 140));
+            Instantiate(dstrike, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, -30, 90));
             GameObject dstrikeObj = GameObject.Find("DStrike(Clone)");
-            dstrikeObj.transform.localScale = new Vector3(5, 5, 5);
+            dstrikeObj.transform.localScale = new Vector3(0.5f, 8, 5);
         }
-        else if (dir.x == -1)
+        else
         {
-            Instantiate(dstrike, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(90, 0, 140));
-            GameObject dstrikeObj = GameObject.Find("DStrikle(Clone)");
-            dstrikeObj.transform.localScale = new Vector3(-5, -5, -5);
+            Instantiate(dstrike, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.Euler(0, -30, 90));
+            GameObject dstrikeObj = GameObject.Find("DStrike(Clone)");
+            dstrikeObj.transform.localScale = new Vector3(-0.5f, -8, -5);
 
         }
 
