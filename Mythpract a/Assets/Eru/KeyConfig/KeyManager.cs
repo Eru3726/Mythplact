@@ -21,12 +21,12 @@ public class KeyManager : MonoBehaviour
 
     void Update()
     {
-        ////pauseキーが押されたら
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    if (openFlg == false) KeyBoardPanel();
-        //    else ClosePanel();
-        //}
+        //pauseキーが押されたら
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (openFlg == false) KeyBoardPanel();
+            else ClosePanel();
+        }
     }
 
     public void KeyBoardPanel()
