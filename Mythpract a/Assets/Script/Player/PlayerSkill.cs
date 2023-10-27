@@ -21,7 +21,7 @@ partial class Player
     [SerializeField, Tooltip("スピードアップスキル")] int SkillMaxSpeed;
     [SerializeField, Tooltip("火事場攻撃力アップ")] float SkillKajibaAtk;
 
-    Vector2 fleetStartPos;
+    [SerializeField] GameObject FleetCol;
 
     float skillSlashCount = 100;
     float skillFleetCount = 100;
@@ -52,6 +52,8 @@ partial class Player
 
     public float SkillFleetCT { get { return skillFleetCT; } }
     public float SkillFleetCount { get { return skillFleetCount; } }
+
+    public bool IsFleet { get { return isFleet; } set { isFleet = value; } }
 
     public float SkillLoneWarrirorCT { get { return skillLoneWarriorCT; } }
     public float SkillLoneWarrirorCount { get { return skillLoneWarriorCount; } }
@@ -121,7 +123,12 @@ partial class Player
                 {
                     GameData.SkillCount += 1;
                     skillFleetDirX = dir.x;
+                    PlayerRb.velocity = new Vector2(0, 0);
+                    skillFleetDuration = 0;
+
                     isFleet = true;
+
+                    skillFleetCount = 0;
 
                 }
             }
@@ -131,8 +138,13 @@ partial class Player
                 {
                     GameData.SkillCount += 1;
                     skillFleetDirX = dir.x;
+                    PlayerRb.velocity = new Vector2(0, 0);
+                    skillFleetDuration = 0;
 
                     isFleet = true;
+
+                    skillFleetCount = 0;
+
                 }
             }
             else if (GameData.skillSlot3 == 2)
@@ -141,8 +153,13 @@ partial class Player
                 {
                     GameData.SkillCount += 1;
                     skillFleetDirX = dir.x;
+                    PlayerRb.velocity = new Vector2(0, 0);
+                    skillFleetDuration = 0;
 
                     isFleet = true;
+
+                    skillFleetCount = 0;
+
                 }
 
             }
@@ -152,8 +169,13 @@ partial class Player
                 {
                     GameData.SkillCount += 1;
                     skillFleetDirX = dir.x;
+                    PlayerRb.velocity = new Vector2(0, 0);
+                    skillFleetDuration = 0;
 
                     isFleet = true;
+
+                    skillFleetCount = 0;
+
                 }
 
             }
@@ -379,25 +401,62 @@ partial class Player
     {
         if(isFleet == true)
         {
+            HMng.DEFActive = false;
             skillFleetDuration += Time.deltaTime;
 
-            if(skillFleetDirX > 0)
-            {
-                gameObject.transform.position += new Vector3(Time.deltaTime * 10, 0, 0);
+            FleetCol.SetActive(true);
 
+            if (skillFleetDirX > 0)
+            {
+                PlayerRb.gravityScale = 0f;
+                gameObject.transform.position += new Vector3(Time.deltaTime * 50, 0, 0);
+                //    if (CheckRightHit())
+                //    {
+                //        PlayerRb.velocity = new Vector2(0, 0);
+                //        PlayerRb.gravityScale = 7f;
+                //        skillFleetDuration = 0;
+
+                //        isFleet = false;
+
+                //    }
+                //}
             }
             else
             {
-                gameObject.transform.position += new Vector3(Time.deltaTime * -10, 0, 0);
+                PlayerRb.gravityScale = 0f;
+                gameObject.transform.position += new Vector3(Time.deltaTime * -50, 0, 0);
+
+                //    if (CheckLeftHit())
+                //    {
+                //        PlayerRb.velocity = new Vector2(0, 0);
+                //        PlayerRb.gravityScale = 7f;
+                //        skillFleetDuration = 0;
+
+                //        isFleet = false;
+
+                //    }
 
             }
+            //if (HMng.CheckDamage())
+            //{
+            //    PlayerRb.gravityScale = 7f;
+            //    isFleet = false;
+
+            //}
 
             if (skillFleetDuration >= skillFleetTime)
             {
+                PlayerRb.gravityScale = 7f;
                 isFleet = false;
 
             }
 
+        }
+        else
+        {
+            HMng.DEFActive = true;
+
+            FleetCol.SetActive(false);
         }
     }
     public void SkillLoneWarrior()
@@ -418,7 +477,7 @@ partial class Player
                 skillLoneWarriorComboCount = 0;
             }
 
-            if(skillLoneWarriorComboCount >= SkillLoneComboSpan)
+            if(skillLoneWarriorComboCount >= SkillLoneComboSpan || HMng.CheckDamage())
             {
                 LoneWarriorReset = true;
                 isLoneWarrior = false;
