@@ -22,12 +22,13 @@ partial class Player
         plAnim.SetBool("Guard", isGuard);
         plAnim.SetBool("Hit",hitAnim);
         plAnim.SetBool("HitAtkJumpDown", hitJumpDown);
+        plAnim.SetBool("IsFleet", isFleet);
         plAnim.SetFloat("Walk", Mathf.Abs(inputDir.x));
         plAnim.SetFloat("VeloV", PlayerRb.velocity.y);
         plAnim.SetFloat("DirY", inputDir.y);
 
     }
-    public void HitJumpDownEnd()    // ジャンプ下攻撃から移行終了
+    public void HitJumpDownEnd()    // 繧ｸ繝｣繝ｳ繝嶺ｸ区判謦�縺九ｉ遘ｻ陦檎ｵゆｺ�
     {
         hitJumpDown = false;
     }

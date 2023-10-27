@@ -1108,6 +1108,7 @@ public partial class Player : MonoBehaviour
         {
             hitAnim = true;
             GameData.HitCount++;
+            PlayerRb.gravityScale = 7f;
             if (CheckRightHit() == true)
             {
                 PlayerRb.velocity = Vector2.zero;

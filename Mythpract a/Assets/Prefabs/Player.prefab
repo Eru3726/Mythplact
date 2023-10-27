@@ -85,6 +85,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3f0bf6f0f6dc6408e0b915f9a8bc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6955964071985105023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6034730857642096377}
+  - component: {fileID: 62246546407088735}
+  - component: {fileID: 5230261739907882520}
+  m_Layer: 6
+  m_Name: AtkSkillFleetCol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6034730857642096377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955964071985105023}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8922014012187984031}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &62246546407088735
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955964071985105023}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.033388138, y: -0.35777473}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.25, y: 3}
+    newSize: {x: 1.2524414, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8159542, y: 2.1379652}
+  m_EdgeRadius: 0
+--- !u!114 &5230261739907882520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955964071985105023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b8e95e882472d43b2c0f2afa473812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &8922014011579265665
 GameObject:
   m_ObjectHideFlags: 0
@@ -14786,6 +14858,7 @@ Transform:
   - {fileID: 6335417109466430233}
   - {fileID: 1222042325814170450}
   - {fileID: 2807696637475736081}
+  - {fileID: 6034730857642096377}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14927,7 +15000,7 @@ MonoBehaviour:
   maxStamina: 100
   healStamina: 50
   brinkStamina: 50
-  guardStamina: 80
+  guardStamina: 100
   brinkMove: 5
   brinkCoolTimeSec: 0.5
   guardCoolTimeSec: 1
@@ -14970,6 +15043,7 @@ MonoBehaviour:
   EffectSkillLoneWarrior: {fileID: 656099588511063386}
   skillSlashCT: 5
   skillFleetCT: 5
+  skillFleetTime: 0.3
   skillLoneWarriorCT: 5
   skillLoneWarriorTime: 10
   skillGreemCT: 5
@@ -14981,9 +15055,10 @@ MonoBehaviour:
   SkillJustGuard: 0.3
   SkillMaxSpeed: 20
   SkillKajibaAtk: 200
+  FleetCol: {fileID: 6955964071985105023}
   slash: {fileID: 8438359422445198577, guid: a7264e29880c3e24997be8bf537b70c3, type: 3}
   greem: {fileID: 4028125354744199665, guid: 20215f1e58e9f2444b2164c655f0aed0, type: 3}
-  dstrike: {fileID: 8438359422445198577, guid: 1235e179d99a416488b0cf90ea7a8db3, type: 3}
+  dstrike: {fileID: 1189577935225991482, guid: 5ab6ec6d85f19bb48b868424e1f674d8, type: 3}
 --- !u!114 &8922014012187984017
 MonoBehaviour:
   m_ObjectHideFlags: 0
