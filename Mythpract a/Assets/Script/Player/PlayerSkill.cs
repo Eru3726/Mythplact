@@ -401,7 +401,7 @@ partial class Player
     {
         if(isFleet == true)
         {
-            HMng.DEFActive = false;
+            //HMng.DEFActive = false;
             skillFleetDuration += Time.deltaTime;
 
             FleetCol.SetActive(true);
@@ -409,7 +409,7 @@ partial class Player
             if (skillFleetDirX > 0)
             {
                 PlayerRb.gravityScale = 0f;
-                gameObject.transform.position += new Vector3(Time.deltaTime * 50, 0, 0);
+                gameObject.transform.position += new Vector3(Time.deltaTime * 40, 0, 0);
                 //    if (CheckRightHit())
                 //    {
                 //        PlayerRb.velocity = new Vector2(0, 0);
@@ -424,7 +424,7 @@ partial class Player
             else
             {
                 PlayerRb.gravityScale = 0f;
-                gameObject.transform.position += new Vector3(Time.deltaTime * -50, 0, 0);
+                gameObject.transform.position += new Vector3(Time.deltaTime * -40, 0, 0);
 
                 //    if (CheckLeftHit())
                 //    {
@@ -454,7 +454,7 @@ partial class Player
         }
         else
         {
-            HMng.DEFActive = true;
+           // HMng.DEFActive = true;
 
             FleetCol.SetActive(false);
         }
