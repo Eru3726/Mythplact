@@ -30,11 +30,11 @@ public class AchvManager : MonoBehaviour
     [HideInInspector]
     public bool allBossFlg;
 
+    [HideInInspector]
+    public bool[] defeatedBoss = new bool[3];
+
     [SerializeField, Header("ボスの数")]
     private int boss = 3;
-
-    [HideInInspector]
-    public bool[] defeatedBoss;
 
 
 
@@ -96,14 +96,32 @@ public class AchvManager : MonoBehaviour
 
 
 
-    //[HideInInspector]
-    //private bool timeAttack;
+    [HideInInspector]
+    public bool timeAttack;
+
+
+
+    [HideInInspector]
+    public int clearAchv;
+
+
+
+    [HideInInspector]
+    public int clearBoss;
+
+
 
     public static AchvManager instance;
 
     private void Awake()
     {
-        defeatedBoss = new bool[boss];
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else Destroy(this.gameObject);
+
         Load();
     }
 
@@ -245,7 +263,11 @@ public class AchvManager : MonoBehaviour
 
             activeSkillOnlyFlg = false;
 
-            //timeAttack = false;
+            timeAttack = false;
+
+            clearAchv = 0;
+
+            clearBoss = 0;
 
             //更新
             //ChangeDisplay();
@@ -287,7 +309,11 @@ public class AchvManager : MonoBehaviour
 
         saveData.activeSkillOnly = activeSkillOnlyFlg;
 
-        //saveData.timeAttack = timeAttack;
+        saveData.timeAttack = timeAttack;
+
+        saveData.clearAchv = clearAchv;
+
+        saveData.clearBoss = clearBoss;
 
         return saveData;
     }
@@ -322,7 +348,11 @@ public class AchvManager : MonoBehaviour
 
         activeSkillOnlyFlg = saveData.activeSkillOnly;
 
-        //timeAttack = saveData.timeAttack;
+        timeAttack = saveData.timeAttack;
+
+        clearAchv = saveData.clearAchv;
+
+        clearBoss = saveData.clearBoss;
     }
 
 
@@ -412,7 +442,7 @@ public class AchvSaveData
     public int blinkXCount;
 
     public bool allBoss;
-    public bool[] defeatedBoss;
+    public bool[] defeatedBoss = new bool[3];
 
     public bool oneHp;
 
@@ -434,5 +464,9 @@ public class AchvSaveData
 
     public bool activeSkillOnly;
 
-    //public bool timeAttack;
+    public bool timeAttack;
+
+    public int clearAchv;
+
+    public int clearBoss;
 }
