@@ -203,6 +203,83 @@ public class SkillUIDirector : MonoBehaviour
         passiveFirstSelect.Select();
     }
 
+    public void Skill1Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill2Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill3Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill4Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill5Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill6Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill7Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill8Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill9Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill10Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill11Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+
+    public void Skill12Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill13Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill14Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill15Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill16Select()
+    {
+        ActiveSkillScroll.value = 1;
+    }
+    public void Skill17Select()
+    {
+        ActiveSkillScroll.value = 0;
+    }
+    public void Skill18Select()
+    {
+        ActiveSkillScroll.value = 0;
+    }
+    public void Skill19Select()
+    {
+        ActiveSkillScroll.value = 0;
+    }
 
 
 }
