@@ -47,6 +47,8 @@ partial class Player
     bool isLoneWarrior = false;
     bool LoneWarriorReset = false;
 
+    bool isSkill = false;
+
     public float SkillSlashCT { get { return skillSlashCT; } }
     public float SkillSlashCount { get { return skillSlashCount; } }
 
@@ -115,7 +117,7 @@ partial class Player
             }
 
         }
-        if (GameData.setSkill2 && skillFleetCT < skillFleetCount)
+        if (GameData.setSkill2 && skillFleetCT < skillFleetCount && !hitAnim)
         {
             if (GameData.skillSlot1 == 2)
             {
@@ -372,6 +374,10 @@ partial class Player
         {
             SkillKajiba();
         }
+        if(GameData.saveSkill19 == true)
+        {
+            SkillHeep();
+        }
     }
 
     /* アクティブスキル */
@@ -401,6 +407,7 @@ partial class Player
     {
         if(isFleet == true)
         {
+            isSkill = true;
             //HMng.DEFActive = false;
             skillFleetDuration += Time.deltaTime;
 
@@ -437,12 +444,12 @@ partial class Player
                 //    }
 
             }
-            //if (HMng.CheckDamage())
-            //{
-            //    PlayerRb.gravityScale = 7f;
-            //    isFleet = false;
+            if (HMng.CheckDamage())
+            {
+                PlayerRb.gravityScale = 7f;
+                isFleet = false;
 
-            //}
+            }
 
             if (skillFleetDuration >= skillFleetTime)
             {
@@ -454,8 +461,8 @@ partial class Player
         }
         else
         {
-           // HMng.DEFActive = true;
-
+            // HMng.DEFActive = true;
+            isSkill = false;
             FleetCol.SetActive(false);
         }
     }
@@ -615,6 +622,35 @@ partial class Player
     }
     public void SkillHeep()     // スキル19
     {
+        // ため攻撃の判定
+        if (attack)
+        {
+            attackCount += Time.deltaTime;
+            isSkill = true;
+
+        }
+        if (attackEnd)
+        {
+            isSkill = false;
+
+            if (attackCount >= chargeAttackTime)
+            {
+                chargeAttack = true;
+                attackCount = 0;
+
+            }
+            else
+            {
+                normalAttack = true;
+                attackCount = 0;
+
+            }
+        }
+        else
+        {
+            normalAttack = false;
+            chargeAttack = false;
+        }
 
     }
 }

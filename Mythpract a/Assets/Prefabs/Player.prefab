@@ -14997,6 +14997,7 @@ MonoBehaviour:
   maxSpeed: 12
   jumpPow: 20
   doubleJumpPow: 25
+  chargeAttackTime: 0.5
   maxStamina: 100
   healStamina: 50
   brinkStamina: 50
