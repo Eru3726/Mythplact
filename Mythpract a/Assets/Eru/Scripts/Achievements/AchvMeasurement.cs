@@ -7,7 +7,7 @@ public class AchvMeasurement : MonoBehaviour
     public void PlayerDie()
     {
         AchvManager.instance.dieXCount++;
-        if (AchvManager.instance.dieXCount >= AchvManager.instance.dieClearCount)
+        if (AchvManager.instance.dieXCount >= AchvManager.instance.dieClearCount && !AchvManager.instance.dieXFlg)
         {
             AchvManager.instance.dieXFlg = true;
             AchvManager.instance.clearAchv++;
@@ -19,7 +19,7 @@ public class AchvMeasurement : MonoBehaviour
     public void UseBlink()
     {
         AchvManager.instance.blinkXCount++;
-        if (AchvManager.instance.blinkXCount >= AchvManager.instance.blinkClearCount)
+        if (AchvManager.instance.blinkXCount >= AchvManager.instance.blinkClearCount && !AchvManager.instance.blinkXFlg)
         {
             AchvManager.instance.blinkXFlg = true;
             AchvManager.instance.clearAchv++;
@@ -29,12 +29,12 @@ public class AchvMeasurement : MonoBehaviour
 
     public void DefeatedBoss(int i)
     {
-        if (AchvManager.instance.defeatedBoss[i] == false)
+        if (!AchvManager.instance.defeatedBoss[i])
         {
             AchvManager.instance.defeatedBoss[i] = true;
             AchvManager.instance.clearBoss++;
         }
-        if (AchvManager.instance.defeatedBoss.All(b => b))
+        if (AchvManager.instance.defeatedBoss.All(b => b) && !AchvManager.instance.allBossFlg)
         {
             AchvManager.instance.allBossFlg = true;
             AchvManager.instance.clearAchv++;
@@ -45,6 +45,7 @@ public class AchvMeasurement : MonoBehaviour
     [ContextMenu("OneHpClear")]
     public void OneHpClear()
     {
+        if (AchvManager.instance.oneHpFlg) return;
         AchvManager.instance.oneHpFlg = true;
         AchvManager.instance.clearAchv++;
         //アドレナリン解放
@@ -53,6 +54,7 @@ public class AchvMeasurement : MonoBehaviour
     [ContextMenu("AttackCombo")]
     public void AttackCombo()
     {
+        if (AchvManager.instance.attackComboFlg) return;
         AchvManager.instance.attackComboFlg = true;
         AchvManager.instance.clearAchv++;
         //ローンウォリアー
@@ -62,7 +64,7 @@ public class AchvMeasurement : MonoBehaviour
     public void UseSheriff()
     {
         AchvManager.instance.sheriffUseCount++;
-        if (AchvManager.instance.sheriffUseCount >= AchvManager.instance.sheriffClearCount)
+        if (AchvManager.instance.sheriffUseCount >= AchvManager.instance.sheriffClearCount && !AchvManager.instance.sheriffUseFlg)
         {
             AchvManager.instance.sheriffUseFlg = true;
             AchvManager.instance.clearAchv++;
@@ -74,7 +76,7 @@ public class AchvMeasurement : MonoBehaviour
     public void GuardNum()
     {
         AchvManager.instance.guardCount++;
-        if(AchvManager.instance.guardClearCount <= AchvManager.instance.guardCount)
+        if(AchvManager.instance.guardClearCount <= AchvManager.instance.guardCount && !AchvManager.instance.guardCountFlg)
         {
             AchvManager.instance.guardCountFlg = true;
             AchvManager.instance.clearAchv++;
@@ -85,6 +87,7 @@ public class AchvMeasurement : MonoBehaviour
     [ContextMenu("NoDamageClear")]
     public void NoDamageClear()
     {
+        if (AchvManager.instance.noDamage) return;
         AchvManager.instance.noDamage = true;
         AchvManager.instance.clearAchv++;
         //カース
@@ -94,7 +97,7 @@ public class AchvMeasurement : MonoBehaviour
     public void JustGuardNum()
     {
         AchvManager.instance.justGuardCount++;
-        if (AchvManager.instance.justGuardCount >= AchvManager.instance.justGuardClearCount)
+        if (AchvManager.instance.justGuardCount >= AchvManager.instance.justGuardClearCount && !AchvManager.instance.justGuardFlg)
         {
             AchvManager.instance.justGuardFlg = true;
             AchvManager.instance.clearAchv++;
@@ -105,6 +108,7 @@ public class AchvMeasurement : MonoBehaviour
     [ContextMenu("NoGuardClear")]
     public void NoGuardClear()
     {
+        if (AchvManager.instance.noGuard) return;
         AchvManager.instance.noGuard = true;
         AchvManager.instance.clearAchv++;
         //ストレングス
@@ -113,8 +117,17 @@ public class AchvMeasurement : MonoBehaviour
     [ContextMenu("ActiveSkillOnlyClear")]
     public void ActiveSkillOnlyClear()
     {
+        if (AchvManager.instance.activeSkillOnlyFlg) return;
         AchvManager.instance.activeSkillOnlyFlg = true;
         AchvManager.instance.clearAchv++;
         //デスピレイションストライク 
+    }
+
+    [ContextMenu("TimeAttack")]
+    public void TimeAttack()
+    {
+        if (AchvManager.instance.timeAttack) return;
+        AchvManager.instance.timeAttack = true;
+        AchvManager.instance.clearAchv++;
     }
 }

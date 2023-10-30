@@ -22,8 +22,8 @@ public class AchvUI : MonoBehaviour
     private Image[] progressComplete = new Image[12];
 
     private const int allAchv = 12;
-    private const int allPassive = 12;
-    private const int allActive = 12;
+    private const int allPassive = 5;
+    private const int allActive = 8;
     private const int allBoss = 3;
 
     void Start()
@@ -52,13 +52,13 @@ public class AchvUI : MonoBehaviour
     private void UpdateUI()
     {
         //左上
-        gaugeText.text = (AchvManager.instance.clearAchv / allAchv * 100).ToString() + "%";
-        gaugeImage.fillAmount = (AchvManager.instance.clearAchv / allAchv);
+        gaugeText.text = ((float)AchvManager.instance.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
+        gaugeImage.fillAmount = ((float)AchvManager.instance.clearAchv / (float)allAchv);
 
         //左下
         detail1Text.text = AchvManager.instance.clearAchv.ToString() + "/" + allAchv.ToString();
-        detail2Text.text = "/" + allPassive.ToString();
-        detail3Text.text = "/" + allActive.ToString();
+        detail2Text.text = "5/" + allPassive.ToString();
+        detail3Text.text = "8/" + allActive.ToString();
         detail4Text.text = AchvManager.instance.clearBoss.ToString() + "/" + allBoss.ToString();
 
         //右
