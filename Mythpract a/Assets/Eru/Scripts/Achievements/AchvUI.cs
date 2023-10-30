@@ -75,15 +75,15 @@ public class AchvUI : MonoBehaviour
         progressComplete[10].enabled = AchvManager.instance.activeSkillOnlyFlg;
         progressComplete[11].enabled = AchvManager.instance.timeAttack;
 
-        progressGauge[0].fillAmount = AchvManager.instance.dieXCount / AchvManager.instance.dieClearCount;
-        progressGauge[1].fillAmount = AchvManager.instance.blinkXCount / AchvManager.instance.blinkClearCount;
-        progressGauge[2].fillAmount = AchvManager.instance.clearBoss / allBoss;
+        progressGauge[0].fillAmount = (float)AchvManager.instance.dieXCount / (float)AchvManager.instance.dieClearCount;
+        progressGauge[1].fillAmount = (float)AchvManager.instance.blinkXCount / (float)AchvManager.instance.blinkClearCount;
+        progressGauge[2].fillAmount = (float)AchvManager.instance.clearBoss / (float)allBoss;
         progressGauge[3].fillAmount = AchvManager.instance.oneHpFlg == false ? 0 : 1;
         progressGauge[4].fillAmount = AchvManager.instance.attackComboFlg == false ? 0 : 1;
-        progressGauge[5].fillAmount = AchvManager.instance.sheriffUseCount / AchvManager.instance.sheriffClearCount;
-        progressGauge[6].fillAmount = AchvManager.instance.guardCount / AchvManager.instance.guardClearCount;
+        progressGauge[5].fillAmount = (float)AchvManager.instance.sheriffUseCount / (float)AchvManager.instance.sheriffClearCount;
+        progressGauge[6].fillAmount = (float)AchvManager.instance.guardCount / (float)AchvManager.instance.guardClearCount;
         progressGauge[7].fillAmount = AchvManager.instance.noDamage == false ? 0 : 1;
-        progressGauge[8].fillAmount = AchvManager.instance.justGuardCount / AchvManager.instance.justGuardClearCount;
+        progressGauge[8].fillAmount = (float)AchvManager.instance.justGuardCount / (float)AchvManager.instance.justGuardClearCount;
         progressGauge[9].fillAmount = AchvManager.instance.noGuard == false ? 0 : 1;
         progressGauge[10].fillAmount = AchvManager.instance.activeSkillOnlyFlg == false ? 0 : 1;
         progressGauge[11].fillAmount = AchvManager.instance.timeAttack == false ? 0 : 1;
