@@ -52,8 +52,8 @@ public class AchvUI : MonoBehaviour
     private void UpdateUI()
     {
         //左上
-        gaugeText.text = (AchvManager.instance.clearAchv / allAchv * 100).ToString() + "%";
-        gaugeImage.fillAmount = (AchvManager.instance.clearAchv / allAchv);
+        gaugeText.text = ((float)AchvManager.instance.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
+        gaugeImage.fillAmount = ((float)AchvManager.instance.clearAchv / (float)allAchv);
 
         //左下
         detail1Text.text = AchvManager.instance.clearAchv.ToString() + "/" + allAchv.ToString();

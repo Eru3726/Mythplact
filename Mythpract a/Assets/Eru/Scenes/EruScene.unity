@@ -5290,7 +5290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0675614a6654156478f0592d05a7499f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41cea5c2861e474419254cf4ff23ddc0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6336,7 +6336,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u7372\u5F97\u30B9\u30AD\u30EB\u540D\uFF1A\u30AB\u30FC\u30B9 "
+  m_Text: "\u7372\u5F97\u30B9\u30AD\u30EB\u540D\uFF1A\u306A\u3057"
 --- !u!222 &1075167667
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7697,7 +7697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0675614a6654156478f0592d05a7499f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41cea5c2861e474419254cf4ff23ddc0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10822,7 +10822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0675614a6654156478f0592d05a7499f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41cea5c2861e474419254cf4ff23ddc0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12083,7 +12083,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0675614a6654156478f0592d05a7499f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41cea5c2861e474419254cf4ff23ddc0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
