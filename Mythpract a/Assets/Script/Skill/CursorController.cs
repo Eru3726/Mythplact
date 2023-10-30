@@ -7,6 +7,8 @@ public class CursorController : MonoBehaviour
 {
     SkillSetDirector skillSetDirector;
     SkillPieceController skillPieceController;
+    SkillPieceDisplay skillPieceDisplay;
+    SkillText skillText;
     SkillPieceData spdata;
     Controllerconnect conconect;
     Keyconfig keycon;
@@ -71,6 +73,8 @@ public class CursorController : MonoBehaviour
     void Start()
     {
         skillSetDirector = GameObject.Find("SkillSetDirector").GetComponent<SkillSetDirector>();
+        skillPieceDisplay = GameObject.Find("Canvas/SkillPieceDisplay").GetComponent<SkillPieceDisplay>();
+        skillText = GameObject.Find("Canvas/SkillText").GetComponent<SkillText>();
 
         backButton = GameObject.Find("Canvas/SkillSelect").GetComponent<Button>();
 
@@ -89,7 +93,7 @@ public class CursorController : MonoBehaviour
 
         MoveCursor();
 
-
+        SkillPieceInfo();
     }
     public void PickupUpdate(Transform piece)
     {
@@ -278,6 +282,11 @@ public class CursorController : MonoBehaviour
 
                 DeletePiece = GameObject.Find("SkillPiece1(Clone)");    // 持っていたスキルピースを取得
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill1Select();
+                skillText.Skill1Text();
+
                 Destroy(DeletePiece);                                   // そのスキルピースを消去
             }
             else if (pickupTfm.parent.name == "SkillPiece2(Clone)")
@@ -296,6 +305,10 @@ public class CursorController : MonoBehaviour
 
                 DeletePiece = GameObject.Find("SkillPiece2(Clone)");
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill2Select();
+                skillText.Skill2Text();
+
 
                 Destroy(DeletePiece);
             }
@@ -316,6 +329,10 @@ public class CursorController : MonoBehaviour
 
                 DeletePiece = GameObject.Find("SkillPiece3(Clone)");
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill3Select();
+                skillText.Skill3Text();
+
 
                 Destroy(DeletePiece);
 
@@ -337,6 +354,10 @@ public class CursorController : MonoBehaviour
 
                 DeletePiece = GameObject.Find("SkillPiece4(Clone)");
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill4Select();
+                skillText.Skill4Text();
+
 
                 Destroy(DeletePiece);
 
@@ -359,6 +380,9 @@ public class CursorController : MonoBehaviour
 
                 DeletePiece = GameObject.Find("SkillPiece5(Clone)");
                 DeletePiece.gameObject.transform.position = new Vector3(0, 0, 0);
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill5Select();
+                skillText.Skill5Text();
 
                 Destroy(DeletePiece);
 
@@ -551,7 +575,103 @@ public class CursorController : MonoBehaviour
 
 
     }
+    void SkillPieceInfo()
+    {
+        if (touchTfm.parent.name == "SkillPiece1(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill1Select();
+            skillText.Skill1Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece2(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill2Select();
+            skillText.Skill2Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece3(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill3Select();
+            skillText.Skill3Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece4(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill4Select();
+            skillText.Skill4Text();
 
+        }
+
+        else if (touchTfm.parent.name == "SkillPiece5(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill5Select();
+            skillText.Skill5Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece10(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill10Select();
+            skillText.Skill5Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece11(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill11Select();
+            skillText.Skill11Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece12(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill12Select();
+            skillText.Skill12Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece13(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill13Select();
+            skillText.Skill13Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece14(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill14Select();
+            skillText.Skill14Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece15(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill15Select();
+            skillText.Skill15Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece16(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill16Select();
+            skillText.Skill16Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece17(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill17Select();
+            skillText.Skill17Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece18(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill18Select();
+            skillText.Skill18Text();
+        }
+        else if (touchTfm.parent.name == "SkillPiece19(Clone)")
+        {
+            // スキルピースの情報を表示
+            skillPieceDisplay.Skill19Select();
+            skillText.Skill19Text();
+        }
+
+
+    }
     private void OnTriggerStay2D(Collider2D col)
     {
         // スキルピースに触れているか判定
