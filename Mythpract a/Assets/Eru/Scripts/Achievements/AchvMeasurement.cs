@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AchvMeasurement : MonoBehaviour
 {
+    [ContextMenu("PlayerDie")]
     public void PlayerDie()
     {
         AchvManager.instance.dieXCount++;
@@ -14,6 +15,7 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    [ContextMenu("UseBlink")]
     public void UseBlink()
     {
         AchvManager.instance.blinkXCount++;
@@ -40,6 +42,7 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    [ContextMenu("OneHpClear")]
     public void OneHpClear()
     {
         AchvManager.instance.oneHpFlg = true;
@@ -47,6 +50,7 @@ public class AchvMeasurement : MonoBehaviour
         //アドレナリン解放
     }
 
+    [ContextMenu("AttackCombo")]
     public void AttackCombo()
     {
         AchvManager.instance.attackComboFlg = true;
@@ -54,6 +58,7 @@ public class AchvMeasurement : MonoBehaviour
         //ローンウォリアー
     }
 
+    [ContextMenu("UseSheriff")]
     public void UseSheriff()
     {
         AchvManager.instance.sheriffUseCount++;
@@ -65,6 +70,7 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    [ContextMenu("GuardNum")]
     public void GuardNum()
     {
         AchvManager.instance.guardCount++;
@@ -76,6 +82,7 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    [ContextMenu("NoDamageClear")]
     public void NoDamageClear()
     {
         AchvManager.instance.noDamage = true;
@@ -83,6 +90,7 @@ public class AchvMeasurement : MonoBehaviour
         //カース
     }
 
+    [ContextMenu("JustGuardNum")]
     public void JustGuardNum()
     {
         AchvManager.instance.justGuardCount++;
@@ -94,6 +102,7 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    [ContextMenu("NoGuardClear")]
     public void NoGuardClear()
     {
         AchvManager.instance.noGuard = true;
@@ -101,6 +110,7 @@ public class AchvMeasurement : MonoBehaviour
         //ストレングス
     }
 
+    [ContextMenu("ActiveSkillOnlyClear")]
     public void ActiveSkillOnlyClear()
     {
         AchvManager.instance.activeSkillOnlyFlg = true;
