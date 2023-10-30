@@ -14,6 +14,7 @@ public partial class Player : MonoBehaviour
     [SerializeField,Tooltip("最高速度")] int maxSpeed;              // プレイヤーの最高速度
     [SerializeField, Tooltip("ジャンプ力")] float jumpPow;             // ジャンプ時に加える力
     [SerializeField, Tooltip("ダブルジャンプ力")] float doubleJumpPow;       // ダブルジャンプ時に加える力
+    [SerializeField, Tooltip("ため攻撃の溜め時間")] float chargeAttackTime;
     [SerializeField, Tooltip("スタミナの最大値")] float maxStamina;            // スタミナの最大値
     [SerializeField, Tooltip("スタミナの回復速度")] float healStamina;         // スタミナの回復速度
     [SerializeField, Tooltip("ブリンクの消費スタミナ")] float brinkStamina;    // ブリンクの消費スタミナ(瞬時)
@@ -25,6 +26,7 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
     Image brinkSlider;
     float jumpPowPlus;
+    float attackCount = 0;
     float brinkCTCount = 0;            // ブリンクのクールダウンのカウント
     float guardCTCount = 0;             // ガードのクールタイムのカウント
     float guardCount = 0;
@@ -48,6 +50,9 @@ public partial class Player : MonoBehaviour
     bool isAttack;
     bool isGuard;
     bool guardEnd;
+    bool attackEnd;
+    bool normalAttack;
+    bool chargeAttack;
  
     bool space;
     bool spaceDown;
@@ -181,570 +186,580 @@ public partial class Player : MonoBehaviour
 
     void MoveInput()
     {
-
-        if (conconect.ConConnect == true)
-        {
-            float lsh = Input.GetAxis("L_stick_H");　　　　//左スティック横
-            float lsv = Input.GetAxis("L_stick_V");        //左スティック縦
-
-
-            
-            if (lsh > 0)
-            {
-                inputDir.x = 1;
-            }
-            else if(lsh < 0)
-            {
-                inputDir.x = -1;
-            }
-            else
-            {
-                inputDir.x = 0;
-            }
-
-            if (lsv > 0.1f)
-            {
-                inputDir.y = 1;
-            }
-            else if (lsv < -0.1f)
-            {
-                inputDir.y = -1;
-            }
-            else
-            {
-                inputDir.y = 0;
-            }
-            if (Input.GetKeyDown(GameData.rightkey) || Input.GetKeyDown(GameData.leftkey) || lsh == 0)
-            {
-                speedreset = true;
-            }
-            else
-            {
-                speedreset = false;
-            }
-            if (GameData.jumpkey == (KeyCode)CustomKeycode.LT)  // Lトリガー使用時のジャンプ
-            {
-                float lt = Input.GetAxis("LT");
-
-                if(lt > 0 && !ltDown)
-                {
-                    spaceDown = true;
-                    ltDown = true;
-                }
-                else
-                {
-                    spaceDown = false;
-                }
-                if (lt == 0)
-                {
-                    ltDown = false;
-                }
-            }
-            else if(GameData.jumpkey == (KeyCode)CustomKeycode.RT)
-            {
-                float rt = Input.GetAxis("RT");
-
-                if(rt > 0 && !rtDown)
-                {
-                    spaceDown = true;
-                    rtDown = true;
-                }
-                else
-                {
-                    spaceDown = false;
-                }
-                if (rt == 0)
-                {
-                    rtDown = false;
-                }
-
-            }
-
-            else
-            {
-                if (Input.GetKeyDown(GameData.jumpkey))
-                {
-                    spaceDown = true;
-                }
-                else
-                {
-                    spaceDown = false;
-                }
-
-            }
-
-            if (GameData.jumpkey == (KeyCode)CustomKeycode.LT)
-            {
-                float lt = Input.GetAxis("LT");
-
-                Debug.Log("ltAxis = " + lt);
-
-                if (lt > 0)
-                {
-                    space = true;
-                }
-                else
-                {
-                    space = false;
-                }
-
-            }
-            else if (GameData.jumpkey == (KeyCode)CustomKeycode.RT)
-            {
-                float rt = Input.GetAxis("RT");
-
-                Debug.Log("rtAxis = " + rt);
-
-                if (rt > 0)
-                {
-                    space = true;
-                }
-                else
-                {
-                    space = false;
-                }
-
-            }
-            else
-            {
-                if (Input.GetKey(GameData.jumpkey))
-                {
-                    space = true;
-                }
-                else
-                {
-                    space = false;
-                }
-
-            }
-            if (GameData.dashkey == (KeyCode)CustomKeycode.LT)
-            {
-                float lt = Input.GetAxis("LT");
-
-                if (lt > 0 && !ltDown)
-                {
-                    brink = true;
-                    ltDown = true;
-                }
-                else
-                {
-                    brink = false;
-                }
-                if (lt == 0)
-                {
-                    ltDown = false;
-                }
-
-            }
-            else if (GameData.dashkey == (KeyCode)CustomKeycode.RT)
-            {
-                float rt = Input.GetAxis("RT");
-
-                if (rt > 0 && !rtDown)
-                {
-                    brink = true;
-                    rtDown = true;
-                }
-                else
-                {
-                    brink = false;
-                }
-                if (rt == 0)
-                {
-                    rtDown = false;
-                }
-
-            }
-            else
-            {
-                if (Input.GetKeyDown(GameData.dashkey))
-                {
-                    brink = true;
-                }
-                else
-                {
-                    brink = false;
-                }
-
-            }
-            if (GameData.attackkey == (KeyCode)CustomKeycode.LT)
-            {
-                float lt = Input.GetAxis("LT");
-
-                if (lt > 0 && !ltDown)
-                {
-                    attack = true;
-                    ltDown = true;
-                }
-                else
-                {
-                    attack = false;
-                }
-                if (lt == 0)
-                {
-                    ltDown = false;
-                }
-
-            }
-            else if (GameData.attackkey == (KeyCode)CustomKeycode.RT)
-            {
-                float rt = Input.GetAxis("RT");
-
-                if (rt > 0 && !rtDown)
-                {
-                    attack = true;
-                    rtDown = true;
-                }
-                else
-                {
-                    attack = false;
-                }
-                if (rt == 0)
-                {
-                    rtDown = false;
-                }
-
-            }
-            else
-            {
-                if (Input.GetKey(GameData.attackkey))
-                {
-                    attack = true;
-                }
-                else
-                {
-                    attack = false;
-
-                }
-            }
-            if (GameData.downkey == (KeyCode)CustomKeycode.LT)
-            {
-                float lt = Input.GetAxis("LT");
-
-                Debug.Log("ltAxis = " + lt);
-
-                if (lt > 0)
-                {
-                    guard = true;
-                }
-                else
-                {
-                    guard = false;
-                }
-            }
-            else if (GameData.downkey == (KeyCode)CustomKeycode.RT)
-            {
-                float rt = Input.GetAxis("RT");
-
-                Debug.Log("rtAxis = " + rt);
-
-                if (rt > 0)
-                {
-                    guard = true;
-                }
-                else
-                {
-                    guard = false;
-                }
-
-            }
-            else
-            {
-                if (Input.GetKey(GameData.downkey))
-                {
-                    guard = true;
-                }
-                else
-                {
-                    guard = false;
-                }
-
-            }
-
-            if (GameData.downkey == (KeyCode)CustomKeycode.LT)
-            {
-                float lt = Input.GetAxis("LT");
-
-                if (lt > 0 && !ltDown)
-                {
-                    guardEnd = false;
-                    ltDown = true;
-                }
-                else if(!ltup)
-                {
-                    guardEnd = true;
-                    ltup = true;
-                }
-                if (lt == 0)
-                {
-                    ltDown = false;
-                    ltup = false;
-                    guardEnd = false;
-                }
-
-
-            }
-            else if (GameData.downkey == (KeyCode)CustomKeycode.RT)
-            {
-                float rt = Input.GetAxis("RT");
-
-                if (rt > 0 && !ltDown)
-                {
-                    guardEnd = false;
-                    rtDown = true;
-                }
-                else if (!rtup)
-                {
-                    guardEnd = true;
-                    rtup = true;
-                }
-                if (rt == 0)
-                {
-                    rtDown = false;
-                    rtup = false;
-                    guardEnd = false;
-                }
-
-            }
-            else
-            {
-                if (Input.GetKeyUp(GameData.downkey))
-                {
-                    guardEnd = true;
-                }
-                else
-                {
-                    guardEnd = false;
-                }
-
-            }
-            if (GameData.healkey == (KeyCode)CustomKeycode.LT)
-            {
-                float lt = Input.GetAxis("LT");
-
-                if (lt > 0 && !ltDown)
-                {
-                    skill1 = true;
-                    ltDown = true;
-                }
-                else
-                {
-                    skill1 = false;
-                }
-                if (lt == 0)
-                {
-                    ltDown = false;
-                }
-
-            }
-            else if (GameData.healkey == (KeyCode)CustomKeycode.RT)
-            {
-                float rt = Input.GetAxis("RT");
-
-                if (rt > 0 && !rtDown)
-                {
-                    skill1 = true;
-                    rtDown = true;
-                }
-                else
-                {
-                    skill1 = false;
-                }
-                if (rt == 0)
-                {
-                    rtDown = false;
-                }
-
-            }
-            else
-            {
-                if (Input.GetKeyDown(GameData.healkey))
-                {
-                    skill1 = true;
-                }
-                else
-                {
-                    skill1 = false;
-                }
-
-            }
-
-
-            if (GameData.interactkey == (KeyCode)CustomKeycode.LT)
-            {
-                float lt = Input.GetAxis("LT");
-
-                if (lt > 0 && !ltDown)
-                {
-                    skill2 = true;
-                    ltDown = true;
-                }
-                else
-                {
-                    skill2 = false;
-                }
-                if (lt == 0)
-                {
-                    ltDown = false;
-                }
-
-            }
-            else if (GameData.interactkey == (KeyCode)CustomKeycode.RT)
-            {
-                float rt = Input.GetAxis("RT");
-
-                if (rt > 0 && !rtDown)
-                {
-                    skill2 = true;
-                    rtDown = true;
-                }
-                else
-                {
-                    skill2 = false;
-                }
-                if (rt == 0)
-                {
-                    rtDown = false;
-                }
-
-            }
-            else
-            {
-                if (Input.GetKeyDown(GameData.interactkey))
-                {
-                    skill2 = true;
-                }
-                else
-                {
-                    skill2 = false;
-                }
-
-            }
+#if false
+        //if (conconect.ConConnect == true)
+        //{
+        //    float lsh = Input.GetAxis("L_stick_H");　　　　//左スティック横
+        //    float lsv = Input.GetAxis("L_stick_V");        //左スティック縦
 
 
 
-        }
+        //    if (lsh > 0)
+        //    {
+        //        inputDir.x = 1;
+        //    }
+        //    else if(lsh < 0)
+        //    {
+        //        inputDir.x = -1;
+        //    }
+        //    else
+        //    {
+        //        inputDir.x = 0;
+        //    }
+
+        //    if (lsv > 0.1f)
+        //    {
+        //        inputDir.y = 1;
+        //    }
+        //    else if (lsv < -0.1f)
+        //    {
+        //        inputDir.y = -1;
+        //    }
+        //    else
+        //    {
+        //        inputDir.y = 0;
+        //    }
+        //    if (Input.GetKeyDown(GameData.rightkey) || Input.GetKeyDown(GameData.leftkey) || lsh == 0)
+        //    {
+        //        speedreset = true;
+        //    }
+        //    else
+        //    {
+        //        speedreset = false;
+        //    }
+        //    if (GameData.jumpkey == (KeyCode)CustomKeycode.LT)  // Lトリガー使用時のジャンプ
+        //    {
+        //        float lt = Input.GetAxis("LT");
+
+        //        if(lt > 0 && !ltDown)
+        //        {
+        //            spaceDown = true;
+        //            ltDown = true;
+        //        }
+        //        else
+        //        {
+        //            spaceDown = false;
+        //        }
+        //        if (lt == 0)
+        //        {
+        //            ltDown = false;
+        //        }
+        //    }
+        //    else if(GameData.jumpkey == (KeyCode)CustomKeycode.RT)
+        //    {
+        //        float rt = Input.GetAxis("RT");
+
+        //        if(rt > 0 && !rtDown)
+        //        {
+        //            spaceDown = true;
+        //            rtDown = true;
+        //        }
+        //        else
+        //        {
+        //            spaceDown = false;
+        //        }
+        //        if (rt == 0)
+        //        {
+        //            rtDown = false;
+        //        }
+
+        //    }
+
+        //    else
+        //    {
+        //        if (Input.GetKeyDown(GameData.jumpkey))
+        //        {
+        //            spaceDown = true;
+        //        }
+        //        else
+        //        {
+        //            spaceDown = false;
+        //        }
+
+        //    }
+
+        //    if (GameData.jumpkey == (KeyCode)CustomKeycode.LT)
+        //    {
+        //        float lt = Input.GetAxis("LT");
+
+        //        Debug.Log("ltAxis = " + lt);
+
+        //        if (lt > 0)
+        //        {
+        //            space = true;
+        //        }
+        //        else
+        //        {
+        //            space = false;
+        //        }
+
+        //    }
+        //    else if (GameData.jumpkey == (KeyCode)CustomKeycode.RT)
+        //    {
+        //        float rt = Input.GetAxis("RT");
+
+        //        Debug.Log("rtAxis = " + rt);
+
+        //        if (rt > 0)
+        //        {
+        //            space = true;
+        //        }
+        //        else
+        //        {
+        //            space = false;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        if (Input.GetKey(GameData.jumpkey))
+        //        {
+        //            space = true;
+        //        }
+        //        else
+        //        {
+        //            space = false;
+        //        }
+
+        //    }
+        //    if (GameData.dashkey == (KeyCode)CustomKeycode.LT)
+        //    {
+        //        float lt = Input.GetAxis("LT");
+
+        //        if (lt > 0 && !ltDown)
+        //        {
+        //            brink = true;
+        //            ltDown = true;
+        //        }
+        //        else
+        //        {
+        //            brink = false;
+        //        }
+        //        if (lt == 0)
+        //        {
+        //            ltDown = false;
+        //        }
+
+        //    }
+        //    else if (GameData.dashkey == (KeyCode)CustomKeycode.RT)
+        //    {
+        //        float rt = Input.GetAxis("RT");
+
+        //        if (rt > 0 && !rtDown)
+        //        {
+        //            brink = true;
+        //            rtDown = true;
+        //        }
+        //        else
+        //        {
+        //            brink = false;
+        //        }
+        //        if (rt == 0)
+        //        {
+        //            rtDown = false;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        if (Input.GetKeyDown(GameData.dashkey))
+        //        {
+        //            brink = true;
+        //        }
+        //        else
+        //        {
+        //            brink = false;
+        //        }
+
+        //    }
+        //    if (GameData.attackkey == (KeyCode)CustomKeycode.LT)
+        //    {
+        //        float lt = Input.GetAxis("LT");
+
+        //        if (lt > 0 && !ltDown)
+        //        {
+        //            attack = true;
+        //            ltDown = true;
+        //        }
+        //        else
+        //        {
+        //            attack = false;
+        //        }
+        //        if (lt == 0)
+        //        {
+        //            ltDown = false;
+        //        }
+
+        //    }
+        //    else if (GameData.attackkey == (KeyCode)CustomKeycode.RT)
+        //    {
+        //        float rt = Input.GetAxis("RT");
+
+        //        if (rt > 0 && !rtDown)
+        //        {
+        //            attack = true;
+        //            rtDown = true;
+        //        }
+        //        else
+        //        {
+        //            attack = false;
+        //        }
+        //        if (rt == 0)
+        //        {
+        //            rtDown = false;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        if (Input.GetKey(GameData.attackkey))
+        //        {
+        //            attack = true;
+        //        }
+        //        else
+        //        {
+        //            attack = false;
+
+        //        }
+        //    }
+        //    if (GameData.downkey == (KeyCode)CustomKeycode.LT)
+        //    {
+        //        float lt = Input.GetAxis("LT");
+
+        //        Debug.Log("ltAxis = " + lt);
+
+        //        if (lt > 0)
+        //        {
+        //            guard = true;
+        //        }
+        //        else
+        //        {
+        //            guard = false;
+        //        }
+        //    }
+        //    else if (GameData.downkey == (KeyCode)CustomKeycode.RT)
+        //    {
+        //        float rt = Input.GetAxis("RT");
+
+        //        Debug.Log("rtAxis = " + rt);
+
+        //        if (rt > 0)
+        //        {
+        //            guard = true;
+        //        }
+        //        else
+        //        {
+        //            guard = false;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        if (Input.GetKey(GameData.downkey))
+        //        {
+        //            guard = true;
+        //        }
+        //        else
+        //        {
+        //            guard = false;
+        //        }
+
+        //    }
+
+        //    if (GameData.downkey == (KeyCode)CustomKeycode.LT)
+        //    {
+        //        float lt = Input.GetAxis("LT");
+
+        //        if (lt > 0 && !ltDown)
+        //        {
+        //            guardEnd = false;
+        //            ltDown = true;
+        //        }
+        //        else if(!ltup)
+        //        {
+        //            guardEnd = true;
+        //            ltup = true;
+        //        }
+        //        if (lt == 0)
+        //        {
+        //            ltDown = false;
+        //            ltup = false;
+        //            guardEnd = false;
+        //        }
+
+
+        //    }
+        //    else if (GameData.downkey == (KeyCode)CustomKeycode.RT)
+        //    {
+        //        float rt = Input.GetAxis("RT");
+
+        //        if (rt > 0 && !ltDown)
+        //        {
+        //            guardEnd = false;
+        //            rtDown = true;
+        //        }
+        //        else if (!rtup)
+        //        {
+        //            guardEnd = true;
+        //            rtup = true;
+        //        }
+        //        if (rt == 0)
+        //        {
+        //            rtDown = false;
+        //            rtup = false;
+        //            guardEnd = false;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        if (Input.GetKeyUp(GameData.downkey))
+        //        {
+        //            guardEnd = true;
+        //        }
+        //        else
+        //        {
+        //            guardEnd = false;
+        //        }
+
+        //    }
+        //    if (GameData.healkey == (KeyCode)CustomKeycode.LT)
+        //    {
+        //        float lt = Input.GetAxis("LT");
+
+        //        if (lt > 0 && !ltDown)
+        //        {
+        //            skill1 = true;
+        //            ltDown = true;
+        //        }
+        //        else
+        //        {
+        //            skill1 = false;
+        //        }
+        //        if (lt == 0)
+        //        {
+        //            ltDown = false;
+        //        }
+
+        //    }
+        //    else if (GameData.healkey == (KeyCode)CustomKeycode.RT)
+        //    {
+        //        float rt = Input.GetAxis("RT");
+
+        //        if (rt > 0 && !rtDown)
+        //        {
+        //            skill1 = true;
+        //            rtDown = true;
+        //        }
+        //        else
+        //        {
+        //            skill1 = false;
+        //        }
+        //        if (rt == 0)
+        //        {
+        //            rtDown = false;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        if (Input.GetKeyDown(GameData.healkey))
+        //        {
+        //            skill1 = true;
+        //        }
+        //        else
+        //        {
+        //            skill1 = false;
+        //        }
+
+        //    }
+
+
+        //    if (GameData.interactkey == (KeyCode)CustomKeycode.LT)
+        //    {
+        //        float lt = Input.GetAxis("LT");
+
+        //        if (lt > 0 && !ltDown)
+        //        {
+        //            skill2 = true;
+        //            ltDown = true;
+        //        }
+        //        else
+        //        {
+        //            skill2 = false;
+        //        }
+        //        if (lt == 0)
+        //        {
+        //            ltDown = false;
+        //        }
+
+        //    }
+        //    else if (GameData.interactkey == (KeyCode)CustomKeycode.RT)
+        //    {
+        //        float rt = Input.GetAxis("RT");
+
+        //        if (rt > 0 && !rtDown)
+        //        {
+        //            skill2 = true;
+        //            rtDown = true;
+        //        }
+        //        else
+        //        {
+        //            skill2 = false;
+        //        }
+        //        if (rt == 0)
+        //        {
+        //            rtDown = false;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        if (Input.GetKeyDown(GameData.interactkey))
+        //        {
+        //            skill2 = true;
+        //        }
+        //        else
+        //        {
+        //            skill2 = false;
+        //        }
+
+        //    }
+
+
+
+        //}
         // キーボード時のインプット
+        //else
+        //{
+#endif
+        if (rightInp.action.WasPressedThisFrame() || leftInp.action.WasPressedThisFrame())
+        {
+            speedreset = true;
+        }
         else
         {
-            if (rightInp.action.WasPressedThisFrame() || leftInp.action.WasPressedThisFrame())
-            {
-                speedreset = true;
-            }
-            else
-            {
-                speedreset = false;
-            }
-            if (rightInp.action.IsPressed())
-            {
-                inputDir.x = 1;
-            }
-            else if (leftInp.action.IsPressed())
-            {
-                inputDir.x = -1;
-            }
-            else
-            {
-                inputDir.x = 0;
-            }
-            if (upInp.action.IsPressed())
-            {
-                inputDir.y = 1;
-            }
-            else if (downInp.action.IsPressed())
-            {
-                inputDir.y = -1;
-
-            }
-            else
-            {
-                inputDir.y = 0;
-            }
-
-            if (jumpInp.action.WasPressedThisFrame())
-            {
-                spaceDown = true;
-            }
-            else
-            {
-                spaceDown = false;
-            }
-            if (jumpInp.action.IsPressed())
-            {
-                space = true;
-            }
-            else
-            {
-                space = false;
-            }
-            if (blinkInp.action.WasPressedThisFrame())
-            {
-                brink = true;
-            }
-            else
-            {
-                brink = false;
-            }
-            if (attackInp.action.IsPressed())
-            {
-                attack = true;
-            }
-            else
-            {
-                attack = false;
-            }
-            if (guardInp.action.IsPressed())
-            {
-                guard = true;
-            }
-            else
-            {
-                guard = false;
-            }
-            if (guardInp.action.WasReleasedThisFrame())
-            {
-                guardEnd = true;
-            }
-            else
-            {
-                guardEnd = false;
-            }
-            if (skill1Inp.action.WasPressedThisFrame())
-            {
-                skill1 = true;
-            }
-            else
-            {
-                skill1 = false;
-            }
-
-            if (skill2Inp.action.WasPressedThisFrame())
-            {
-                skill2 = true;
-            }
-            else
-            {
-                skill2 = false;
-            }
-            if (skill3Inp.action.WasPressedThisFrame())
-            {
-                skill3 = true;
-            }
-            else
-            {
-                skill3 = false;
-            }
-            if (skill4Inp.action.WasPressedThisFrame())
-            {
-                skill4 = true;
-            }
-            else
-            {
-                skill4 = false;
-            }
-
+            speedreset = false;
+        }
+        if (rightInp.action.IsPressed())
+        {
+            inputDir.x = 1;
+        }
+        else if (leftInp.action.IsPressed())
+        {
+            inputDir.x = -1;
+        }
+        else
+        {
+            inputDir.x = 0;
+        }
+        if (upInp.action.IsPressed())
+        {
+            inputDir.y = 1;
+        }
+        else if (downInp.action.IsPressed())
+        {
+            inputDir.y = -1;
 
         }
+        else
+        {
+            inputDir.y = 0;
+        }
+
+        if (jumpInp.action.WasPressedThisFrame())
+        {
+            spaceDown = true;
+        }
+        else
+        {
+            spaceDown = false;
+        }
+        if (jumpInp.action.IsPressed())
+        {
+            space = true;
+        }
+        else
+        {
+            space = false;
+        }
+        if (blinkInp.action.WasPressedThisFrame())
+        {
+            brink = true;
+        }
+        else
+        {
+            brink = false;
+        }
+        if (attackInp.action.IsPressed())
+        {
+            attack = true;
+        }
+        else
+        {
+            attack = false;
+        }
+        if (attackInp.action.WasReleasedThisFrame())
+        {
+            attackEnd = true;
+        }
+        else
+        {
+            attackEnd = false;
+
+        }
+        if (guardInp.action.IsPressed())
+        {
+            guard = true;
+        }
+        else
+        {
+            guard = false;
+        }
+        if (guardInp.action.WasReleasedThisFrame())
+        {
+            guardEnd = true;
+        }
+        else
+        {
+            guardEnd = false;
+        }
+        if (skill1Inp.action.WasPressedThisFrame())
+        {
+            skill1 = true;
+        }
+        else
+        {
+            skill1 = false;
+        }
+
+        if (skill2Inp.action.WasPressedThisFrame())
+        {
+            skill2 = true;
+        }
+        else
+        {
+            skill2 = false;
+        }
+        if (skill3Inp.action.WasPressedThisFrame())
+        {
+            skill3 = true;
+        }
+        else
+        {
+            skill3 = false;
+        }
+        if (skill4Inp.action.WasPressedThisFrame())
+        {
+            skill4 = true;
+        }
+        else
+        {
+            skill4 = false;
+        }
+
+
+        //}
 
     }
     void MoveController()
@@ -758,7 +773,7 @@ public partial class Player : MonoBehaviour
             isbrinkUp = false;     // 空中ブリンク判定]
 
             // ジャンプ
-            if (spaceDown && !isGuard && !hitAnim)
+            if (spaceDown && !isGuard && !isSkill && !hitAnim)
             {
                 PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
                 PlayerRb.AddForce(Vector2.up * jumpPow, ForceMode2D.Impulse);
@@ -779,7 +794,7 @@ public partial class Player : MonoBehaviour
         }
 
         // 二段ジャンプ
-        if (spaceDown && doublejump && !isGuard && !hitAnim)
+        if (spaceDown && doublejump && !isGuard && !isSkill && !hitAnim)
         {
             doublejumpAnim = true;
             PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
@@ -853,7 +868,7 @@ public partial class Player : MonoBehaviour
 
         // プレイヤーの移動
 
-        if (!isAttack && !isGuard &&!hitAnim) {
+        if (!isAttack && !isGuard && !isSkill && !hitAnim) {
             PlayerRb.AddForce(Vector2.right * inputDir.x * speed * Time.deltaTime);            // プレイヤーの移動
         }
 
@@ -867,7 +882,7 @@ public partial class Player : MonoBehaviour
 
 
         // 空中ブリンク
-        if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim && stamina >= brinkStamina)
+        if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim && !isSkill && stamina >= brinkStamina)
         {
 
             BrinkEffect();
@@ -885,7 +900,7 @@ public partial class Player : MonoBehaviour
             brinkCTCount = 0;
         }
         // 地上ブリンク
-        if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim && stamina >= brinkStamina)
+        if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim && !isSkill && stamina >= brinkStamina)
         {
             BrinkEffect();
             BrinkSE();
@@ -922,6 +937,8 @@ public partial class Player : MonoBehaviour
         //{
         //    brinkSlider.fillAmount = 1;
         //}
+        
+
 
         if (isAttack)
         {
@@ -953,7 +970,7 @@ public partial class Player : MonoBehaviour
 
 
 
-        if (guard && !attack && !isAttack && canGuard && !guardbreak)
+        if (guard && !attack && !isAttack && !isSkill && canGuard && !guardbreak)
         {
             isGuard = true;
 
@@ -1096,7 +1113,11 @@ public partial class Player : MonoBehaviour
         }
     }
 
-
+    void AttackReset()
+    {
+        normalAttack = false;
+        chargeAttack = false;
+    }
     void DamageReaction()
     {
         Animation anim;

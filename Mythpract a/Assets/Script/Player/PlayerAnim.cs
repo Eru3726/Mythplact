@@ -19,6 +19,9 @@ partial class Player
         plAnim.SetBool("SpaceDown", spaceDown);
         plAnim.SetBool("IsGround", isGround);
         plAnim.SetBool("Attack", attack);
+        plAnim.SetBool("NormalAttack", normalAttack);
+        plAnim.SetBool("ChargeAttack", chargeAttack);
+        plAnim.SetBool("ChargeFlag", GameData.saveSkill19);
         plAnim.SetBool("Guard", isGuard);
         plAnim.SetBool("Hit",hitAnim);
         plAnim.SetBool("HitAtkJumpDown", hitJumpDown);
