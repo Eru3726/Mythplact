@@ -235,16 +235,16 @@ public class AchvManager : MonoBehaviour
         else
         {
             //初期化
-            dieXFlg = false;
+            /*dieXFlg = false;
             dieXCount = 0;
 
             blinkXFlg = false;
-            blinkXCount = 0;
+            blinkXCount = 0;*/
 
             allBossFlg = false;
             for (int i = 0; i < boss; i++) defeatedBoss[i] = false;
 
-            oneHpFlg = false;
+            /*oneHpFlg = false;
 
             attackComboFlg = false;
 
@@ -265,12 +265,40 @@ public class AchvManager : MonoBehaviour
 
             timeAttack = false;
 
-            clearAchv = 0;
+            clearAchv = 0;*/
 
             clearBoss = 0;
 
-            //更新
-            //ChangeDisplay();
+            //デバッグ用
+
+            dieXFlg = true;
+            dieXCount = 3;
+
+            blinkXFlg = true;
+            blinkXCount = 3;
+
+            oneHpFlg = true;
+
+            attackComboFlg = true;
+
+            sheriffUseFlg = true;
+            sheriffUseCount = 3;
+
+            guardCountFlg = true;
+            guardCount = 3;
+
+            noDamage = true;
+
+            justGuardFlg = true;
+            justGuardCount = 3;
+
+            noGuard = true;
+
+            activeSkillOnlyFlg = true;
+
+            timeAttack = true;
+
+            clearAchv = 11;
         }
     }
 
