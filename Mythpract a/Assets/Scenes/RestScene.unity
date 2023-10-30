@@ -4138,13 +4138,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8922014012187984016, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
-      propertyPath: dstrike
-      value: 
-      objectReference: {fileID: 1189577935225991482, guid: 5ab6ec6d85f19bb48b868424e1f674d8, type: 3}
-    - target: {fileID: 8922014012187984016, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
-      propertyPath: guardStamina
-      value: 100
+    - target: {fileID: 62246546407088735, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 62246546407088735, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 62246546407088735, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 62246546407088735, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955964071985105023, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8922014012187984023, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
       propertyPath: m_Name
