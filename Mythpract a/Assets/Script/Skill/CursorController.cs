@@ -653,7 +653,7 @@ public class CursorController : MonoBehaviour
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill10Select();
-            skillText.Skill5Text();
+            skillText.Skill10Text();
         }
         else if (pickupTfm.parent.name == "SkillPiece11(Clone)")
         {
