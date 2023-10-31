@@ -15133,11 +15133,13 @@ MonoBehaviour:
   JumpUpAtk: {fileID: 9211903540725876237}
   JumpDownAtk: {fileID: 3830640609506620137}
   ChargeAtk: {fileID: 5660995179272322377}
+  FleetAtk: {fileID: 6955964071985105023}
   NormalAtk_Power: 100
   JumpAtk_Power: 150
   JumpUpAtk_Power: 120
   JumpDownAtk_Power: 120
   ChargeAtk_Power: 250
+  FleetAtk_Power: 150
   layerMask_Ground:
     serializedVersion: 2
     m_Bits: 8
