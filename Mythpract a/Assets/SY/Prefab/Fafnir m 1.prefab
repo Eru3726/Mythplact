@@ -2060,9 +2060,9 @@ GameObject:
   - component: {fileID: 2915856969617133316}
   - component: {fileID: 5371794869892205263}
   - component: {fileID: 8633869764194320870}
-  - component: {fileID: 8633869764194320868}
-  - component: {fileID: 8633869764194320890}
-  - component: {fileID: 8633869764194320891}
+  - component: {fileID: 7922254271274962515}
+  - component: {fileID: 7896518753361098901}
+  - component: {fileID: 6560825493382947785}
   m_Layer: 7
   m_Name: Fafnir m 1
   m_TagString: Untagged
@@ -2077,7 +2077,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2700637177937000386}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2139,7 +2139,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!95 &4274373488256962304
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2156,7 +2156,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &177170454325010173
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2380,7 +2381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd9e6647bfff7542acb0200ab74bdd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CubismFadeMotionList: {fileID: 11400000, guid: 8303c662c7abe1842b102a34221b2da3, type: 2}
+  CubismFadeMotionList: {fileID: 11400000, guid: 4d7bdab6da177fc40b72ef65a7121b02, type: 2}
 --- !u!114 &8633869764194320870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,7 +2395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pl: {fileID: 0}
-  moveType: 2
+  moveType: 1
   moveTable:
   - name: Earthquake ~ Pound(4)
     move: 0100000005000000040000000300000002000000
@@ -2465,7 +2466,7 @@ MonoBehaviour:
   breath_SELoop: 0
   earthquake: {fileID: 8633869762583126844}
   earthquake_Power: 1
-  earthquake_JumpHeight: 5
+  earthquake_JumpHeight: 10
   earthquake_Time: 3
   earthquake_SE: {fileID: 8300000, guid: fad1b9831b1b8b544a27cf3f2b1d8c83, type: 3}
   earthquake_SEVolume: 1
@@ -2473,31 +2474,7 @@ MonoBehaviour:
   earthquake_SELoop: 0
   cameraData: {fileID: 0}
   isLock: 1
---- !u!114 &8633869764194320868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2700637177937000386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4042c73d58b2868488835a3af7a7c886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayDisplay: 1
-  ray:
-  - name: Center
-    offset: {x: 0, y: -4.3}
-    radius: 0.2
-    direction: {x: 0, y: 0}
-    distance: 0
-    layer:
-      serializedVersion: 2
-      m_Bits: 1
-    tag: 3
-    isActive: 0
---- !u!114 &8633869764194320890
+--- !u!114 &7922254271274962515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2510,13 +2487,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
-  maxHp: 100
+  maxHp: 1000
   hp: 0
   atk: 1
   def: 100
   atkActive: 0
   defActive: 0
---- !u!114 &8633869764194320891
+--- !u!114 &7896518753361098901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2525,7 +2502,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2700637177937000386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3b6e6ec5d5b30042a39ecfbbb9f0aa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 199b3db696cd579499b38f63b93e3d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animatorController: {fileID: 9100000, guid: e272c035fe9746548bbfa4a1405dd01c, type: 2}
@@ -2540,7 +2517,7 @@ MonoBehaviour:
     priority: 
   - name: Move
     clips: {fileID: 7400000, guid: c1981691b5af86d4e8079c4553e64184, type: 2}
-    actionType: 2
+    actionType: 1
     isLoop: 1
     priority: 01000000
   - name: Jump_Start
@@ -2557,7 +2534,7 @@ MonoBehaviour:
     clips: {fileID: 7400000, guid: 515d8a00a336d6d48a028e6d01d13c8f, type: 2}
     actionType: 4
     isLoop: 0
-    priority: 010000000200000004000000
+    priority: 0100000002000000
   - name: Pound
     clips: {fileID: 7400000, guid: fb0fa905e4aa0b1409775f92c6fdc2a6, type: 2}
     actionType: 5
@@ -2583,6 +2560,37 @@ MonoBehaviour:
     actionType: 5
     isLoop: 0
     priority: 010000000200000004000000
+--- !u!114 &6560825493382947785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700637177937000386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722b6e748b9cb9b4fa86fb16a0dc1db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisplay: 1
+  ray:
+  - name: center
+    offset: {x: 0, y: -4.3}
+    radius: 0.2
+    direction: {x: 0, y: 0}
+    distance: 0
+    layer:
+      serializedVersion: 2
+      m_Bits: 8
+    tag: 3
+    isActive: 1
+    gizmo:
+      mode: 2
+      center: {x: 0, y: -4.3, z: 0}
+      size: {x: 0, y: 0, z: 0}
+      radius: 0.2
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 1
 --- !u!1 &2837016983099282032
 GameObject:
   m_ObjectHideFlags: 0
@@ -6627,7 +6635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8633869762583126835}
   - component: {fileID: 8633869762583126834}
-  - component: {fileID: 8633869762583126845}
+  - component: {fileID: 4654015346083531869}
   m_Layer: 8
   m_Name: Earthquake
   m_TagString: Untagged
@@ -6676,7 +6684,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &8633869762583126845
+--- !u!114 &4654015346083531869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6699,7 +6707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8633869762904387995}
   - component: {fileID: 8633869762904387993}
-  - component: {fileID: 8633869762904387992}
+  - component: {fileID: 2242461789566415462}
   m_Layer: 8
   m_Name: BodyAtk
   m_TagString: Untagged
@@ -6748,7 +6756,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6394083, y: 0.4543677}
   m_EdgeRadius: 0
---- !u!114 &8633869762904387992
+--- !u!114 &2242461789566415462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6807,7 +6815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8633869763637358370}
   - component: {fileID: 8633869763637358368}
-  - component: {fileID: 8633869763637358371}
+  - component: {fileID: 6109662008493996027}
   m_Layer: 8
   m_Name: Breath_Pivot
   m_TagString: Untagged
@@ -6847,7 +6855,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.9, y: 0}
   m_Size: {x: 1.57, y: 0.6}
   m_Direction: 1
---- !u!114 &8633869763637358371
+--- !u!114 &6109662008493996027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6870,7 +6878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8633869764106486350}
   - component: {fileID: 8633869764106486348}
-  - component: {fileID: 8633869764106486351}
+  - component: {fileID: 3777415388720864064}
   m_Layer: 8
   m_Name: BodyDef
   m_TagString: Untagged
@@ -6919,7 +6927,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6394083, y: 0.4543677}
   m_EdgeRadius: 0
---- !u!114 &8633869764106486351
+--- !u!114 &3777415388720864064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6976,7 +6984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8633869764325867536}
   - component: {fileID: 8633869764325867542}
-  - component: {fileID: 8633869764325867537}
+  - component: {fileID: 2639865706059617327}
   m_Layer: 8
   m_Name: PoundAtk
   m_TagString: Untagged
@@ -7025,7 +7033,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.4, y: 2.2}
   m_EdgeRadius: 0
---- !u!114 &8633869764325867537
+--- !u!114 &2639865706059617327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
