@@ -1084,6 +1084,7 @@ MonoBehaviour:
     playerNowHp: 0
     ShoggothDead: 0
     FafnirDead: 0
+    QilinDead: 0
     ClearTime: 0
     HitCount: 0
     SkillCount: 0
@@ -2055,7 +2056,7 @@ GameObject:
   - component: {fileID: 701474803}
   - component: {fileID: 701474802}
   - component: {fileID: 701474801}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7578,7 +7579,7 @@ GameObject:
   - component: {fileID: 1896372703}
   - component: {fileID: 1896372702}
   - component: {fileID: 1896372701}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
