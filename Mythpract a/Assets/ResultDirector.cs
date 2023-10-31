@@ -16,6 +16,8 @@ public class ResultDirector : MonoBehaviour
         ClearTimeText.text = GameData.ClearTime.ToString("F1") + "秒";
         HitCountText.text = GameData.HitCount + "回";
         SkillCountText.text = GameData.SkillCount + "回";
+
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame

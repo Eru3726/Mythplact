@@ -412,6 +412,7 @@ partial class Player
             skillFleetDuration += Time.deltaTime;
 
             FleetCol.SetActive(true);
+            EffectSkillFleet.Play();
 
             if (skillFleetDirX > 0)
             {
@@ -462,6 +463,8 @@ partial class Player
         else
         {
             // HMng.DEFActive = true;
+            EffectSkillFleet.Stop();
+
             isSkill = false;
             FleetCol.SetActive(false);
         }
@@ -622,6 +625,11 @@ partial class Player
     }
     public void SkillHeep()     // スキル19
     {
+        if (attackInp.action.WasPressedThisFrame())
+        {
+            EffectCharge.Play();
+
+        }
         // ため攻撃の判定
         if (attack)
         {
@@ -632,9 +640,13 @@ partial class Player
         if (attackEnd)
         {
             isSkill = false;
+            EffectCharge.Stop();
+            EffectCharge.Clear();
 
             if (attackCount >= chargeAttackTime)
             {
+                EffectChargeAttack.Play();
+
                 chargeAttack = true;
                 attackCount = 0;
 
@@ -650,6 +662,7 @@ partial class Player
         {
             normalAttack = false;
             chargeAttack = false;
+            EffectChargeAttack.Stop();
         }
 
     }
