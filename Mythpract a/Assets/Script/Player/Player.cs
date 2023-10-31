@@ -868,7 +868,7 @@ public partial class Player : MonoBehaviour
 
         // プレイヤーの移動
 
-        if (!isAttack && !isGuard && !isSkill && !hitAnim) {
+        if (!isAttack && !isGuard && !isSkill && !isCharge && !hitAnim && !attack) {
             PlayerRb.AddForce(Vector2.right * inputDir.x * speed * Time.deltaTime);            // プレイヤーの移動
         }
 
@@ -882,7 +882,7 @@ public partial class Player : MonoBehaviour
 
 
         // 空中ブリンク
-        if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim && !isSkill && stamina >= brinkStamina)
+        if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim && !isSkill && !isCharge && stamina >= brinkStamina)
         {
 
             BrinkEffect();
@@ -900,7 +900,7 @@ public partial class Player : MonoBehaviour
             brinkCTCount = 0;
         }
         // 地上ブリンク
-        if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim && !isSkill && stamina >= brinkStamina)
+        if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim && !isSkill && !isCharge && stamina >= brinkStamina)
         {
             BrinkEffect();
             BrinkSE();
@@ -970,7 +970,7 @@ public partial class Player : MonoBehaviour
 
 
 
-        if (guard && !attack && !isAttack && !isSkill && canGuard && !guardbreak)
+        if (guard && !attack && !isAttack && !isSkill && !isCharge && canGuard && !guardbreak)
         {
             isGuard = true;
 
