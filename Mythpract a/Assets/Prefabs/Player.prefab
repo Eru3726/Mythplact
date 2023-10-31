@@ -15128,6 +15128,16 @@ MonoBehaviour:
   hitSE: {fileID: 8300000, guid: b15adfd2175735247a57dcff00f691c6, type: 3}
   guardSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
   skillSE: {fileID: 8300000, guid: d2f4a90ed8690d04194206a8900158b2, type: 3}
+  NormalAtk: {fileID: 8922014011860414499}
+  JumpAtk: {fileID: 8922014012754494223}
+  JumpUpAtk: {fileID: 9211903540725876237}
+  JumpDownAtk: {fileID: 3830640609506620137}
+  ChargeAtk: {fileID: 5660995179272322377}
+  NormalAtk_Power: 100
+  JumpAtk_Power: 150
+  JumpUpAtk_Power: 120
+  JumpDownAtk_Power: 120
+  ChargeAtk_Power: 250
   layerMask_Ground:
     serializedVersion: 2
     m_Bits: 8
@@ -15180,7 +15190,7 @@ MonoBehaviour:
   layer: 0
   maxHp: 10
   hp: 0
-  atk: 100
+  atk: 1
   def: 1
   atkActive: 0
   defActive: 0

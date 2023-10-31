@@ -2,6 +2,21 @@ using UnityEngine;
 
 partial class Player
 {
+    [SerializeField, Tooltip("通常攻撃判定")] GameObject NormalAtk;
+    [SerializeField, Tooltip("ジャンプ攻撃判定")] GameObject JumpAtk;
+    [SerializeField, Tooltip("ジャンプ上攻撃判定")] GameObject JumpUpAtk;
+    [SerializeField, Tooltip("ジャンプ下攻撃判定")] GameObject JumpDownAtk;
+    [SerializeField, Tooltip("溜め攻撃判定")] GameObject ChargeAtk;
+
+
+    [SerializeField, Tooltip("通常攻撃攻撃力")] float NormalAtk_Power;
+    [SerializeField, Tooltip("ジャンプ攻撃攻撃力")] float JumpAtk_Power;
+    [SerializeField, Tooltip("ジャンプ上攻撃攻撃力")] float JumpUpAtk_Power;
+    [SerializeField, Tooltip("ジャンプ下攻撃攻撃力")] float JumpDownAtk_Power;
+    [SerializeField, Tooltip("ジャンプ攻撃攻撃力")] float ChargeAtk_Power;
+
+
+
     public LayerMask layerMask_Ground;
     public LayerMask layerMask_Hit;
 
@@ -135,7 +150,20 @@ partial class Player
         }
         return false;
     }
+    void PowerReset()
+    {
+        SetPower(NormalAtk, NormalAtk_Power);
+        SetPower(JumpAtk, JumpAtk_Power);
+        SetPower(JumpUpAtk, JumpUpAtk_Power);
+        SetPower(JumpDownAtk, JumpDownAtk_Power);
+        SetPower(ChargeAtk, ChargeAtk_Power);
 
+    }
+
+    void SetPower(GameObject obj, float power)
+    {
+        obj.GetComponent<SY.HitData>().Power = power;
+    }
 
     public void AtkNormalHit()
     {
