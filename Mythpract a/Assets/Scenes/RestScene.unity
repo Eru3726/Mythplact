@@ -8542,7 +8542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1121305976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21247,6 +21247,18 @@ PrefabInstance:
     - target: {fileID: 8949046393240006997, guid: 898d388692da3a345a8ed778561516d8, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949046393240006997, guid: 898d388692da3a345a8ed778561516d8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949046393240006997, guid: 898d388692da3a345a8ed778561516d8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949046393240006997, guid: 898d388692da3a345a8ed778561516d8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8949046393395006808, guid: 898d388692da3a345a8ed778561516d8, type: 3}
       propertyPath: m_SortingOrder
