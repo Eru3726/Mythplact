@@ -13,6 +13,9 @@ partial class Player
     public ParticleSystem EffectHeal;
 
     public ParticleSystem EffectSkillLoneWarrior;
+    public ParticleSystem EffectSkillFleet;
+    public ParticleSystem EffectCharge;
+    public ParticleSystem EffectChargeAttack;
 
     BoxCollider2D atknormalcol;
     BoxCollider2D atkjumpcol;
