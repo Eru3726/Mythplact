@@ -1,10 +1,10 @@
 using UnityEngine;
-//ƒZ[ƒu‚·‚é‚½‚ß‚Ì€–Ú
+//ã‚»ãƒ¼ãƒ–ã™ã‚‹ãŸã‚ã®é …ç›®
 
 [System.Serializable]
 public class SaveData
 {
-    // ƒL[ƒRƒ“ƒtƒBƒO
+    // ã‚­ãƒ¼ã‚³ãƒ³ãƒ•ã‚£ã‚°
     public int testInt;
     public float testFloat;
     public string testString;
@@ -44,7 +44,7 @@ public class SaveData
     public KeyCode keydownkey;
     public KeyCode keyinteractkey;
 
-    // ƒXƒLƒ‹ƒs[ƒX
+    // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹
     public bool saveSkill1;
     public bool saveSkill2;
     public bool saveSkill3;
@@ -127,14 +127,15 @@ public class SaveData
     public int skillSlot3;
     public int skillSlot4;
 
-    // ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
     public int playerNowHp;
 
-    // ƒtƒ‰ƒOŠÇ—
+    // ãƒ•ãƒ©ã‚°ç®¡ç†
     public bool ShoggothDead;
     public bool FafnirDead;
+    public bool QilinDead;
 
-    // ƒŠƒUƒ‹ƒg
+    // ãƒªã‚¶ãƒ«ãƒˆ
     public float ClearTime;
     public int HitCount;
     public int SkillCount;

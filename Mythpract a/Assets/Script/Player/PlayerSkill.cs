@@ -609,6 +609,7 @@ partial class Player
         if (GameData.setSkill17 == true)
         {
             HMng.HP += 1;
+            EffectHeal.Play();
 
         }
 
