@@ -609,6 +609,7 @@ partial class Player
         if (GameData.setSkill17 == true)
         {
             HMng.HP += 1;
+            EffectHeal.Play();
 
         }
 
@@ -627,7 +628,12 @@ partial class Player
     {
         if (attackInp.action.WasPressedThisFrame())
         {
-            EffectCharge.Play();
+            if (isGround)
+            {
+                PlayerRb.velocity = new Vector2(0, 0);
+                EffectCharge.Play();
+
+            }
 
         }
         // ため攻撃の判定

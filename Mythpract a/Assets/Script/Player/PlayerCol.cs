@@ -7,6 +7,7 @@ partial class Player
     [SerializeField, Tooltip("ジャンプ上攻撃判定")] GameObject JumpUpAtk;
     [SerializeField, Tooltip("ジャンプ下攻撃判定")] GameObject JumpDownAtk;
     [SerializeField, Tooltip("溜め攻撃判定")] GameObject ChargeAtk;
+    [SerializeField, Tooltip("フリート判定")] GameObject FleetAtk;
 
 
     [SerializeField, Tooltip("通常攻撃攻撃力")] float NormalAtk_Power;
@@ -14,6 +15,8 @@ partial class Player
     [SerializeField, Tooltip("ジャンプ上攻撃攻撃力")] float JumpUpAtk_Power;
     [SerializeField, Tooltip("ジャンプ下攻撃攻撃力")] float JumpDownAtk_Power;
     [SerializeField, Tooltip("ジャンプ攻撃攻撃力")] float ChargeAtk_Power;
+    [SerializeField, Tooltip("フリート攻撃力")] float FleetAtk_Power;
+
 
 
 
@@ -150,15 +153,15 @@ partial class Player
         }
         return false;
     }
-    void PowerReset()
-    {
-        SetPower(NormalAtk, NormalAtk_Power);
-        SetPower(JumpAtk, JumpAtk_Power);
-        SetPower(JumpUpAtk, JumpUpAtk_Power);
-        SetPower(JumpDownAtk, JumpDownAtk_Power);
-        SetPower(ChargeAtk, ChargeAtk_Power);
+    //void PowerReset()
+    //{
+    //    SetPower(NormalAtk, NormalAtk_Power);
+    //    SetPower(JumpAtk, JumpAtk_Power);
+    //    SetPower(JumpUpAtk, JumpUpAtk_Power);
+    //    SetPower(JumpDownAtk, JumpDownAtk_Power);
+    //    SetPower(ChargeAtk, ChargeAtk_Power);
 
-    }
+    //}
 
     void SetPower(GameObject obj, float power)
     {
@@ -167,7 +170,14 @@ partial class Player
 
     public void AtkNormalHit()
     {
-        Debug.Log("攻撃が接触");
+        SetPower(NormalAtk, NormalAtk_Power);
     }
-
+    public void AtkJumpHit()
+    {
+        SetPower(JumpAtk, JumpAtk_Power);
+    }
+    public void AtkJumpDownHit()
+    {
+        SetPower(JumpDownAtk, JumpDownAtk_Power);
+    }
 }
