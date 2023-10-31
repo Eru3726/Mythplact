@@ -2141,13 +2141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pl: {fileID: 0}
   moveType: 1
-  moveTable:
-  - name: Breath,PushUp
-    move: 010000000200000004000000
-  - name: Eruption,Spin
-    move: 010000000300000005000000
-  - name: Meteor
-    move: 0100000006000000
+  moveTable: []
   body: {fileID: 814393538620546786}
   body_Power: 1
   body_Gizmo:
@@ -2327,7 +2321,7 @@ MonoBehaviour:
   layer: 1
   maxHp: 1000
   hp: 0
-  atk: 1
+  atk: 100
   def: 100
   atkActive: 0
   defActive: 0
@@ -2352,8 +2346,8 @@ MonoBehaviour:
     distance: 0
     layer:
       serializedVersion: 2
-      m_Bits: 8
-    tag: 3
+      m_Bits: 1
+    tag: 7
     isActive: 0
     gizmo:
       mode: 2
@@ -9566,7 +9560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unmanagedIndex: 17
-  Value: -0
+  Value: 0
 --- !u!114 &6749498048282466889
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -370,7 +370,7 @@ MonoBehaviour:
     layer:
       serializedVersion: 2
       m_Bits: 8
-    tag: 3
+    tag: 7
     isActive: 0
     gizmo:
       mode: 2
@@ -387,7 +387,7 @@ MonoBehaviour:
     layer:
       serializedVersion: 2
       m_Bits: 8
-    tag: 3
+    tag: 7
     isActive: 0
     gizmo:
       mode: 2
@@ -404,7 +404,7 @@ MonoBehaviour:
     layer:
       serializedVersion: 2
       m_Bits: 8
-    tag: 3
+    tag: 7
     isActive: 0
     gizmo:
       mode: 2
@@ -421,7 +421,7 @@ MonoBehaviour:
     layer:
       serializedVersion: 2
       m_Bits: 8
-    tag: 3
+    tag: 7
     isActive: 0
     gizmo:
       mode: 2
@@ -438,7 +438,7 @@ MonoBehaviour:
     layer:
       serializedVersion: 2
       m_Bits: 8
-    tag: 3
+    tag: 7
     isActive: 0
     gizmo:
       mode: 2
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
-  maxHp: 30
+  maxHp: 100
   hp: 0
   atk: 10
   def: 10

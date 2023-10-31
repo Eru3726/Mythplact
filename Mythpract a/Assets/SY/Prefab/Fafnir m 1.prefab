@@ -2489,7 +2489,7 @@ MonoBehaviour:
   layer: 1
   maxHp: 1000
   hp: 0
-  atk: 1
+  atk: 100
   def: 100
   atkActive: 0
   defActive: 0
@@ -2581,8 +2581,8 @@ MonoBehaviour:
     distance: 0
     layer:
       serializedVersion: 2
-      m_Bits: 8
-    tag: 3
+      m_Bits: 1
+    tag: 7
     isActive: 1
     gizmo:
       mode: 2
