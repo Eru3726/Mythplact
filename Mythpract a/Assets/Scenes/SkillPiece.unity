@@ -17782,7 +17782,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1191995439}
           m_TargetAssemblyTypeName: SkillPieceDisplay, Assembly-CSharp
-          m_MethodName: Skill2Select
+          m_MethodName: Skill3Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -17794,7 +17794,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 597126661}
           m_TargetAssemblyTypeName: SkillText, Assembly-CSharp
-          m_MethodName: Skill2Text
+          m_MethodName: Skill3Text
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

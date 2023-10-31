@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
-  maxHp: 30
+  maxHp: 100
   hp: 0
   atk: 10
   def: 10
