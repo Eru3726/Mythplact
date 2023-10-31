@@ -43,18 +43,8 @@ public class SkillPieceController : MonoBehaviour
     private void Update()
     {
 
-        for(int i = 0; i < pieceCount; ++i)
-        {
-            if (Flag[i] == true)
-            {
-                OutBaseProp = false;
-            }
-            else
-            {
-                OutBaseProp = true;
-                break;
-            }
-        }
+
+        PieceOnBase();
         
         if(gameObject.name == "SkillPiece1(Clone)")
         {
@@ -123,6 +113,23 @@ public class SkillPieceController : MonoBehaviour
             SkillPieceData.skillPiece19 = gameObject;
         }
 
+
+    }
+
+    public void PieceOnBase()
+    {
+        for (int i = 0; i < pieceCount; ++i)
+        {
+            if (Flag[i] == true)
+            {
+                OutBaseProp = false;
+            }
+            else
+            {
+                OutBaseProp = true;
+                break;
+            }
+        }
 
     }
 }

@@ -106,6 +106,7 @@ public class SkillSetDirector : MonoBehaviour
         useCursorProp = true;   // 繧ｫ繝ｼ繧ｽ繝ｫ菴ｿ逕ｨ
         cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   // cursor縺ｮ菴咲ｽｮ繧貞・譛溷喧
 
+
     }
     public void SetSkill1() // スキルスラッシュ
     {

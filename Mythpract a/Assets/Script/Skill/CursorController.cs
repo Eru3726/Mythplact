@@ -53,7 +53,7 @@ public class CursorController : MonoBehaviour
     bool Lspin;
     bool back;
     bool moveonce;
-    bool moving;
+    bool moveCursor;
     bool pieceBack;
     bool onBase;
     private bool pickup;
@@ -219,12 +219,29 @@ public class CursorController : MonoBehaviour
         if (Rspin) gameObject.transform.Rotate(0, 0, -60);
         if (Lspin) gameObject.transform.Rotate(0, 0, 60);
 
+        //if(up || down || left || right || left1 || left2 || right1 || right2 || Rspin || Lspin)
+        //{
+        //    moveCursor = true;
+        //}
+        //else
+        //{
+        //    moveCursor = false;
+        //}
+
+        //if (moveCursor)
+        //{
+        //    skillPieceController.OutOnceProp = false;
+        //}
+        //else
+        //{
+        //    skillPieceController.OutOnceProp = true;
+
+        //}
 
         // 持ち上げ判定
         if (PickUpProp)
         {
             pickupTfm = touchTfm;
-
 
             // 持ち上げたオブジェクトの子オブジェクト化の切り替え
             // ※parent.parentは、持ち上げたオブジェクト(SkillPieceの子のSplite)の
@@ -682,11 +699,11 @@ public class CursorController : MonoBehaviour
             touchTfm = col.transform;
             // 触れたスキルピースのスクリプトを取得
             skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
+
             Debug.Log(skillPieceController.OutBaseProp);
 
             if (space)
             {
-
                 if (!skillPieceController.OutBaseProp)
                 {
                     // 持ち上げ判定にする
