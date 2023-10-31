@@ -139,6 +139,7 @@ public partial class Player : MonoBehaviour
 
         InitHP();
         PassiveSkillStart();
+        PowerReset();
 
 
         //有効化
