@@ -208,8 +208,8 @@ public class Fafnir : MonoBehaviour
         //Debug.Log(phase);
         //Debug.Log(no);
         //Debug.Log(repeat);
-        //Debug.Log(moveTable[tableNo].Name + " : " + moveNo);
-        //Debug.Log("no " + no + " phase " + phase);
+        Debug.Log(moveTable[tableNo].Name + " : " + moveNo);
+        Debug.Log("no " + no + " phase " + phase);
 
         rb.position = pos;
         if (moveType == Fafnir_MoveType.Idle || moveType == Fafnir_MoveType.Pound ||
@@ -268,9 +268,9 @@ public class Fafnir : MonoBehaviour
                 if(timer < pound_BreakTime[no]) { break; }
                 SetPower(pound, pound_Power);
                 anim.AnimChage("Pound",isLock);
-                //Debug.Log("攻撃処理");
+                Debug.Log("攻撃処理");
                 if (anim.Play != GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name || anim.NormalizedTime < 0.7f) { break; }
-                //Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
+                Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
                 SetAudio(pound_SE, pound_SEVolume, pound_SEPitch, pound_SELoop);
                 earthpuake_Effect.Play();
                 timer = 0;
@@ -278,10 +278,10 @@ public class Fafnir : MonoBehaviour
                 phase++;
                 break;
             case 3:
-                if (anim.Action != AnimSetting.Type.Idle) { /*Debug.Log(anim.Action);*/ break; }
-                //Debug.Log(anim.Action);
+                if (anim.Action != AnimSetting.Type.Idle) { Debug.Log(anim.Action); break; }
+                Debug.Log(anim.Action);
                 timer += Time.deltaTime;
-                if(timer < pound_BreakTime[no]) { /*Debug.Log(pound_BreakTime[no]);*/ break; }
+                if(timer < pound_BreakTime[no]) { Debug.Log(pound_BreakTime[no]); break; }
                 //moveType = pound_NextMove;
                 MoveEnd();
                 break;
@@ -293,17 +293,16 @@ public class Fafnir : MonoBehaviour
 
     void Rush()
     {
-        switch (phase)
+        switch(phase)
         {
             case 0:     //突進威力設定、始動アニメーション開始
                 SetPower(body, rush_Power);
                 SetAudio(attackAnticipation_SE, attackAnticipation_SEVolume, attackAnticipation_SEPitch, attackAnticipation_SELoop);
                 anim.AnimChage("Rush_Start", isLock);   //アニメーション適用に1フレーム必要らしい
-                Debug.Log("あ");
                 phase++;
                 break;
             case 1:     //始動アニメーション終了→突進アニメーション開始
-                Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
+                tackle_Effect.Play();
                 if (anim.NormalizedTime < 1.0f) { break; }
                 SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
                 anim.AnimChage("Rush_Air", isLock);
@@ -361,7 +360,6 @@ public class Fafnir : MonoBehaviour
             case 1:     //プレーヤーの位置と地面位置から攻撃位置定義、ジャンプ行動
                 Vector2 target = (center.x - plPos.x <= 0) ? leftTop : rightTop;
                 target = new Vector2(target.x, GroundPosition(target.x));
-                //Debug.Log(target);
                 Jump(target, breath_JumpHeight);
                 if (anim_JumpFlag != 1) { break; }
                 phase++;
@@ -419,8 +417,8 @@ public class Fafnir : MonoBehaviour
                 break;
             case 1:
                 Vector2 target = new Vector2(center.x, GroundPosition(center.x));
-                Debug.Log(target);
                 Jump(target, earthquake_JumpHeight);
+                Debug.Log(anim_JumpFlag);
                 if(anim_JumpFlag != 1) { break; }
                 phase++;
                 break;
@@ -455,7 +453,7 @@ public class Fafnir : MonoBehaviour
 
     void MoveEnd()  //行動終了時処理
     {
-        //Debug.Log("行動終了");
+        Debug.Log("行動終了");
         moveNo++;
         if (moveNo == moveTable[tableNo].Move.Length)
         {
@@ -542,6 +540,8 @@ public class Fafnir : MonoBehaviour
 
     void Anim_Jump()
     {
+        Debug.Log("jumpFlag " + anim_JumpFlag);
+        Debug.Log("CheckGround"+CheckGroundFlag(GroundCheck.Flag.Ground));
         if (!CheckGroundFlag(GroundCheck.Flag.Ground))
         {
             anim.AnimChage("Jump_Air", isLock);
@@ -570,11 +570,11 @@ public class Fafnir : MonoBehaviour
 
     float GroundPosition(float axisX)
     {
-        //LayerMask layerMask = 1 << LayerMask.NameToLayer("Ground");
+        LayerMask layerMask = 1 << LayerMask.NameToLayer("Ground");
         RaycastHit2D rayHit = 
-            Physics2D.Raycast(new Vector2(axisX, leftTop.y), Vector2.down, screenHeight, gc.Ray[0].Layer);  //光線発射
+            Physics2D.Raycast(new Vector2(axisX, leftTop.y), Vector2.down, screenHeight, layerMask);  //光線発射
         Debug.DrawRay(new Vector2(axisX, leftTop.y), Vector2.down * screenHeight, Color.green, 1.0f);
-        if (rayHit.collider.tag == gc.Ray[0].Tag.ToString())
+        if (rayHit.collider.tag == "Ground")
         {
             Vector2 groundPos = rayHit.point;   //地面位置確認
             return groundPos.y;

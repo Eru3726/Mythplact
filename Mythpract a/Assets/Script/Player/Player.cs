@@ -139,6 +139,7 @@ public partial class Player : MonoBehaviour
 
         InitHP();
         PassiveSkillStart();
+        PowerReset();
 
 
         //有効化
@@ -1052,6 +1053,7 @@ public partial class Player : MonoBehaviour
 
                     if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
                     {
+                        EffectHeal.Play();
                         SkillWise();
                     }
 

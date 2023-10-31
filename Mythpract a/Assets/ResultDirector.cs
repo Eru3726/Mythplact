@@ -27,11 +27,11 @@ public class ResultDirector : MonoBehaviour
         {
             Fade.Fadeout();
         }
-        if (GameData.QilinDead)
+        if (GameData.FafnirDead)
         {
             BackText.text = "キーを押してタイトルに戻る";
         }
-        else if (GameData.ShoggothDead || GameData.FafnirDead)
+        else if (GameData.ShoggothDead)
         {
             BackText.text = "キーを押して待機所に戻る";
 
@@ -41,11 +41,11 @@ public class ResultDirector : MonoBehaviour
 
     public void scenetrans()
     {
-        if (GameData.QilinDead)
+        if (GameData.FafnirDead)
         {
             SceneManager.LoadScene("TitleScene");
         }
-        else if (GameData.ShoggothDead || GameData.FafnirDead)
+        else if (GameData.ShoggothDead)
         {
             SceneManager.LoadScene("RestScene");
 

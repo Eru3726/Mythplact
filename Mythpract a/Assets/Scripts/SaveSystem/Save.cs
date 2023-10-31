@@ -197,7 +197,6 @@ public class Save : MonoBehaviour
 
         saveData.ShoggothDead = GameData.ShoggothDead;
         saveData.FafnirDead = GameData.FafnirDead;
-        saveData.QilinDead = GameData.QilinDead;
 
         saveData.ClearTime = GameData.ClearTime;
         saveData.HitCount = GameData.HitCount;

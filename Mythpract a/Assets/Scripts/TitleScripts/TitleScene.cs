@@ -33,7 +33,6 @@ public class TitleScene : MonoBehaviour
 
         GameData.ShoggothDead = false;
         GameData.FafnirDead = false;
-        GameData.QilinDead = false;
     }
 
     void Update()

@@ -17,7 +17,6 @@ public class Shoggoth : MonoBehaviour
     Rigidbody2D rb;                 //物理演算
     AudioSource se;                 //サウンド
     HitMng hm;                      //当たり判定
-    GroundCheck gc; //接地判定
     Circle circle = new Circle();   //円
 
     //

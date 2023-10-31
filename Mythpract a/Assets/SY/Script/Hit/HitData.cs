@@ -43,7 +43,7 @@ namespace SY
                     defMng.HP -= 0;
                     player.IsGuard = false;
                 }
-                else if (player.IsFleet)
+                if (player.IsFleet)
                 {
                     defMng.HP -= 0;
                     player.IsFleet = false;

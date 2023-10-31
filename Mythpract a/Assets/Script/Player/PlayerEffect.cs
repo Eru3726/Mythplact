@@ -21,17 +21,12 @@ partial class Player
     BoxCollider2D atkjumpcol;
     BoxCollider2D atkjumpupcol;
     BoxCollider2D atkjumpdowncol;
-    BoxCollider2D atkskillfleetcol;
-    BoxCollider2D atkchargecol;
-
     void InitEffect()
     {
         atknormalcol = GameObject.Find("AtkNormalCol").GetComponent<BoxCollider2D>();
         atkjumpcol = GameObject.Find("AtkJumpCol").GetComponent<BoxCollider2D>();
         atkjumpupcol = GameObject.Find("AtkJumpUpCol").GetComponent<BoxCollider2D>();
         atkjumpdowncol = GameObject.Find("AtkJumpDownCol").GetComponent<BoxCollider2D>();
-        atkskillfleetcol = GameObject.Find("AtkSkillFleetCol").GetComponent<BoxCollider2D>();
-        atkchargecol = GameObject.Find("AtkSkillHeepCol").GetComponent<BoxCollider2D>();
 
 
 
@@ -55,15 +50,7 @@ partial class Player
         {
             EffectInstiate(atkjumpdowncol);
         }
-        else if(obj.name == "AtkSkillFleetCol")
-        {
-            EffectInstiate(atkskillfleetcol);
-        }
-        else if(obj.name == "AtkSKillHeepCol")
-        {
-            EffectInstiate(atkchargecol);
 
-        }
 
     }
     void EffectInstiate(BoxCollider2D atkcol)

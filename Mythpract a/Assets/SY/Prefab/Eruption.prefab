@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2625066891591357885}
   - component: {fileID: 7622976221506872882}
-  - component: {fileID: 34706111580917660}
+  - component: {fileID: 6476586076901785028}
   m_Layer: 8
   m_Name: Atk
   m_TagString: Untagged
@@ -49,7 +49,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.7}
   m_Size: {x: 0.08, y: 1.4}
   m_Direction: 0
---- !u!114 &34706111580917660
+--- !u!114 &6476586076901785028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4776590688356478371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41b8e95e882472d43b2c0f2afa473812, type: 3}
+  m_Script: {fileID: 11500000, guid: bcf29a3c07af38044ace34fb7ed26460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0

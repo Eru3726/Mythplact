@@ -2,24 +2,24 @@ using UnityEngine;
 
 namespace SY
 {
-    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ã‚¢ã‚¿ãƒƒãƒ
+    //ƒAƒjƒ[ƒ^[‚ğƒAƒ^ƒbƒ`
     [RequireComponent(typeof(Animator))]
     public class Anim : MonoBehaviour
     {
         Animator anim;
         [SerializeField] RuntimeAnimatorController animatorController;
 
-        [Header("å†ç”Ÿä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±")]
+        [Header("Ä¶’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ")]
         [SerializeField, ReadOnly] string play;
         [SerializeField, ReadOnly] AnimSetting.Type action;
         [SerializeField, ReadOnly] bool isLoop;
 
-        [Header("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®š")]
+        [Header("ƒAƒjƒ[ƒVƒ‡ƒ“‚Ìİ’è")]
         [SerializeField] AnimSetting[] products;
 
-        float normalizedTime;       //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ™‚é–“(0ï½1)
+        float normalizedTime;       //ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ŠÔ(0`1)
 
-        //ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+        //ƒvƒƒpƒeƒB
         public string Play { get { return play; } }
         public AnimSetting.Type Action { get { return action; } }
         public float NormalizedTime { get { return normalizedTime; } }
@@ -31,7 +31,7 @@ namespace SY
             anim = GetComponent<Animator>();
             anim.runtimeAnimatorController = animatorController;
 
-            //1ç•ªä¸Šã®Idleã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
+            //1”Ôã‚ÌIdleƒAƒNƒVƒ‡ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
             for (int i = 0; i < products.Length; i++)
             {
                 if (products[i].ActionType == AnimSetting.Type.Idle)
@@ -47,49 +47,49 @@ namespace SY
             Default();
         }
 
-        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
+        //ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
         void Playing()
         {
             anim.Play(play);
         }
 
-        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã§Idleã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
+        //ƒAƒjƒ[ƒVƒ‡ƒ“I—¹‚ÅIdleƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
         void Default()
         {
-            //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒé·ç§»ã™ã‚‹ã¾ã§å¾…æ©Ÿ
+            //ƒAƒjƒ[ƒVƒ‡ƒ“‚ª‘JˆÚ‚·‚é‚Ü‚Å‘Ò‹@
             if (play != anim.GetCurrentAnimatorClipInfo(0)[0].clip.name) { normalizedTime = 0; return; }
-            //åŒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é€£ç¶šå†ç”Ÿæ™‚é–“ä¿å­˜
+            //“¯ƒAƒjƒ[ƒVƒ‡ƒ“˜A‘±Ä¶ŠÔ•Û‘¶
             normalizedTime =
                 anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex("Base Layer")).normalizedTime;
             //Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + play + " : " + normalizedTime);
 
-            //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã¾ã§å¾…æ©Ÿ
+            //ƒAƒjƒ[ƒVƒ‡ƒ“I—¹‚Ü‚Å‘Ò‹@
             if (normalizedTime <= 1) { return; }
-            //å†ç”Ÿä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã§ãªã„ã¨ã
+            //Ä¶’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ‹[ƒvƒAƒjƒ[ƒVƒ‡ƒ“‚Å‚È‚¢‚Æ‚«
             if (!isLoop)
             {
-                //1ç•ªä¸Šã®Idleã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
+                //1”Ôã‚ÌIdleƒAƒNƒVƒ‡ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶
                 for (int i = 0; i < products.Length; i++)
                 {
                     if (products[i].ActionType == AnimSetting.Type.Idle)
                     { AnimChage(products[i].Name, false); break; }
                 }
             }
-            //ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã—ç›´ã™
+            //Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶‚µ’¼‚·
             else { Playing(); }
         }
 
-        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é·ç§»(æ¬¡ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å,å„ªå…ˆåº¦è¨­å®šã®æœ‰ç„¡)
+        //ƒAƒjƒ[ƒVƒ‡ƒ“‘JˆÚ(Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“–¼,—Dæ“xİ’è‚Ì—L–³)
         public void AnimChage(string nextAnim, bool isPriority)
         {
             int breakFlg = 0;
-            int playProductsNo = 0; //è¦ç´ ä¿å­˜(ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)
-            int nextProductsNo = 0; //è¦ç´ ä¿å­˜(ãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)
+            int playProductsNo = 0; //—v‘f•Û‘¶(Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“)
+            int nextProductsNo = 0; //—v‘f•Û‘¶(ƒŠƒNƒGƒXƒg’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“)
 
-            //èµ°æŸ»ã—ã€ä¸€è‡´ã™ã‚‹è¦ç´ ã‚’ç™ºè¦‹æ¬¡ç¬¬ä¿å­˜
+            //‘–¸‚µAˆê’v‚·‚é—v‘f‚ğ”­Œ©Ÿ‘æ•Û‘¶
             for (int i = 0; i < products.Length; i++)
             {
-                //foræ–‡ã‚’å‡ºã‚‹
+                //for•¶‚ğo‚é
                 if (breakFlg == 3) { break; }
 
                 if (products[i].Clips.name == play && breakFlg != 1)
@@ -98,30 +98,30 @@ namespace SY
                 { nextProductsNo = i; breakFlg += 2; }
             }
 
-            //è¦ç´ ã‚’ä¿å­˜ã§ãã¦ã„ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼å‡ºåŠ›
+            //—v‘f‚ğ•Û‘¶‚Å‚«‚Ä‚¢‚È‚¯‚ê‚ÎƒGƒ‰[o—Í
             switch (breakFlg)
             {
                 case 0:
-                    Debug.LogError("productsã®è¦ç´ ã‚’å–å¾—ã§ããªã„");
+                    Debug.LogError("products‚Ì—v‘f‚ğæ“¾‚Å‚«‚È‚¢");
                     break;
                 case 1:
-                    Debug.LogError("nextProductsã®è¦ç´ ã‚’å–å¾—ã§ããªã„");
+                    Debug.LogError("nextProducts‚Ì—v‘f‚ğæ“¾‚Å‚«‚È‚¢");
                     break;
                 case 2:
-                    Debug.LogError("playProductsã®è¦ç´ ã‚’å–å¾—ã§ããªã„");
+                    Debug.LogError("playProducts‚Ì—v‘f‚ğæ“¾‚Å‚«‚È‚¢");
                     break;
                 case 3:
-                    //æ­£å¸¸
+                    //³í
                     break;
                 default:
-                    Debug.LogError("å–å¾—ã§ããªã„");
+                    Debug.LogError("æ“¾‚Å‚«‚È‚¢");
                     break;
             }
 
             if (isPriority &&
                 (products[playProductsNo].Priority != null || products[playProductsNo].Priority.Length != 0))
             {
-                //ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å„ªå…ˆåº¦è¦ç´ ã‚’èµ°æŸ»
+                //Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Ì—Dæ“x—v‘f‚ğ‘–¸
                 for (int i = 0; i < products[playProductsNo].Priority.Length; i++)
                 {
                     if (products[playProductsNo].Priority[i] == products[nextProductsNo].ActionType)
@@ -133,7 +133,7 @@ namespace SY
             Playing();
         }
 
-        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é·ç§»
+        //ƒAƒjƒ[ƒVƒ‡ƒ“‘JˆÚ
         void SetPlayAnim(int animNo)
         {
             play = products[animNo].Clips.name;

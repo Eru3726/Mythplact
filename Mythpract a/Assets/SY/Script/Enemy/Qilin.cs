@@ -1,4 +1,4 @@
-//ãƒœã‚¹3 : éº’éºŸ
+//ƒ{ƒX3 : êi—Ù
 
 using System.Collections;
 using System.Collections.Generic;
@@ -8,13 +8,13 @@ using Live2D.Cubism.Rendering;
 
 public enum Qilin_MoveType
 {
-    Idle = 1,   //ä»®
-    Breath,     //ãƒ–ãƒ¬ã‚¹
-    Eruption,   //ç‚æŸ±
-    PushUp,     //çªãä¸Šã’
-    Spin,       //ç‚æ¸¦
-    Meteor,     //éš•çŸ³
-    Die,        //æ­»
+    Idle = 1,   //‰¼
+    Breath,     //ƒuƒŒƒX
+    Eruption,   //‰Š’Œ
+    PushUp,     //“Ë‚«ã‚°
+    Spin,       //‰Š‰Q
+    Meteor,     //è¦Î
+    Die,        //€
 }
 
 public class Qilin : MonoBehaviour
@@ -23,133 +23,133 @@ public class Qilin : MonoBehaviour
     BoxCollider2D bc;
     AudioSource se;
     CubismRenderController renderController;
-    HitMng hm;      //å½“ãŸã‚Šåˆ¤å®š
-    GroundCheck gc; //æ¥åœ°åˆ¤å®š
+    HitMng hm;      //“–‚½‚è”»’è
+    GroundCheck gc; //Ú’n”»’è
 
     //
-    GameObject obj; //è‡ªèº«
+    GameObject obj; //©g
     Color defColor;
-    [SerializeField, Tooltip("ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼")] GameObject pl;
+    [SerializeField, Tooltip("ƒvƒŒ[ƒ„[")] GameObject pl;
 
     //
-    int phase = 0;      //æ±ç”¨è¡Œå‹•ç•ªå·
-    float timer = 0;    //æ±ç”¨ã‚¿ã‚¤ãƒãƒ¼
-    int repeat = 0;     //æ±ç”¨ç¹°ã‚Šè¿”ã—å›æ•°
-    int no = 0;         //æ±ç”¨ãƒŠãƒ³ãƒ
+    int phase = 0;      //”Ä—ps“®”Ô†
+    float timer = 0;    //”Ä—pƒ^ƒCƒ}[
+    int repeat = 0;     //”Ä—pŒJ‚è•Ô‚µ‰ñ”
+    int no = 0;         //”Ä—pƒiƒ“ƒo
 
-    int tableNo = 0;    //ãƒ†ãƒ¼ãƒ–ãƒ«æŒ‡å®š
-    int moveNo = 0;     //è¡Œå‹•æŒ‡å®š
+    int tableNo = 0;    //ƒe[ƒuƒ‹w’è
+    int moveNo = 0;     //s“®w’è
 
     //
-    Vector2 pos;        //åº§æ¨™
-    Vector3 defScale;   //æ‹¡ç¸®ç‡ä¿å­˜
-    Vector3 scale;      //æ‹¡ç¸®ç‡æ›´æ–°
-    float dir;          //å·¦å³æ–¹å‘
-    int plDir;          //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ–¹å‘(-1or0or1)
-    float gPos;         //åœ°é¢ä½ç½®
-    float gravity;      //é‡åŠ›å¼·åº¦ä¿å­˜
+    Vector2 pos;        //À•W
+    Vector3 defScale;   //Šgk—¦•Û‘¶
+    Vector3 scale;      //Šgk—¦XV
+    float dir;          //¶‰E•ûŒü
+    int plDir;          //ƒvƒŒƒCƒ„[ˆÊ’u•ûŒü(-1or0or1)
+    float gPos;         //’n–ÊˆÊ’u
+    float gravity;      //d—Í‹­“x•Û‘¶
 
-    Vector2 plPos;      //ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼åº§æ¨™
+    Vector2 plPos;      //ƒvƒŒ[ƒ„[À•W
 
-    [SerializeField, Tooltip("è¡Œå‹•")] Qilin_MoveType moveType = Qilin_MoveType.Idle;
-    [SerializeField, Tooltip("è¡Œå‹•ãƒ†ãƒ¼ãƒ–ãƒ«")] Qilin_MoveTable[] moveTable;  //å„ãƒ†ãƒ¼ãƒ–ãƒ«ã®æœ€åˆã®è¡Œå‹•ã¯Idleã«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+    [SerializeField, Tooltip("s“®")] Qilin_MoveType moveType = Qilin_MoveType.Idle;
+    [SerializeField, Tooltip("s“®ƒe[ƒuƒ‹")] Qilin_MoveTable[] moveTable;  //Šeƒe[ƒuƒ‹‚ÌÅ‰‚Ìs“®‚ÍIdle‚É‚·‚é•K—v‚ª‚ ‚é
 
-    [Header("æœ¬ä½“")]
-    [SerializeField, Tooltip("æ¥è§¦æ”»æ’ƒåˆ¤å®š")] GameObject body;
-    [SerializeField, Tooltip("æ¥è§¦å¨åŠ›")] float body_Power = 1.0f;
-    [SerializeField, Tooltip("ã‚®ã‚ºãƒ¢")] GizmoSetting body_Gizmo;
+    [Header("–{‘Ì")]
+    [SerializeField, Tooltip("ÚGUŒ‚”»’è")] GameObject body;
+    [SerializeField, Tooltip("ÚGˆĞ—Í")] float body_Power = 1.0f;
+    [SerializeField, Tooltip("ƒMƒYƒ‚")] GizmoSetting body_Gizmo;
     Vector2 body_Center;
     Vector2 body_Range;
 
-    [Header("å¾…æ©Ÿ")]
-    [SerializeField, Tooltip("å¾…æ©Ÿæ™‚é–“")] float idle_BreakTime = 1.0f;
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting idle_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting idle_SE;
-    [SerializeField, Tooltip("æ”»æ’ƒå‰éš™")] float attackAnticipation_Time = 1.0f;
-    [SerializeField, Tooltip("æ”»æ’ƒå‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting attackAnticipation_Effect;
-    [SerializeField, Tooltip("æ”»æ’ƒå‰ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting attackAnticipation_SE;
+    [Header("‘Ò‹@")]
+    [SerializeField, Tooltip("‘Ò‹@ŠÔ")] float idle_BreakTime = 1.0f;
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting idle_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting idle_SE;
+    [SerializeField, Tooltip("UŒ‚‘OŒ„")] float attackAnticipation_Time = 1.0f;
+    [SerializeField, Tooltip("UŒ‚‘OƒGƒtƒFƒNƒg")] ParticleSetting attackAnticipation_Effect;
+    [SerializeField, Tooltip("UŒ‚‘OƒTƒEƒ“ƒh")] AudioSetting attackAnticipation_SE;
 
-    [Header("ç§»å‹•")]
-    [SerializeField, Tooltip("é€Ÿåº¦")] float move_Speed = 1.0f;
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting move_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting move_SE;
+    [Header("ˆÚ“®")]
+    [SerializeField, Tooltip("‘¬“x")] float move_Speed = 1.0f;
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting move_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting move_SE;
 
-    [Header("ãƒ–ãƒ¬ã‚¹")]
-    [SerializeField, Tooltip("ãƒ–ãƒ¬ã‚¹")] GameObject breath;
-    [SerializeField, Tooltip("å¨åŠ›")] float breath_Power = 1.0f;
-    [SerializeField, Tooltip("æ”»æ’ƒè·é›¢")] float breath_AtkDis = 5.0f;
-    [SerializeField, Tooltip("ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float breath_CoolTime = 0.5f;
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting breath_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting breath_SE;
+    [Header("ƒuƒŒƒX")]
+    [SerializeField, Tooltip("ƒuƒŒƒX")] GameObject breath;
+    [SerializeField, Tooltip("ˆĞ—Í")] float breath_Power = 1.0f;
+    [SerializeField, Tooltip("UŒ‚‹——£")] float breath_AtkDis = 5.0f;
+    [SerializeField, Tooltip("ƒN[ƒ‹ƒ^ƒCƒ€")] float breath_CoolTime = 0.5f;
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting breath_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting breath_SE;
 
-    [Header("ç‚æŸ±")]
-    [SerializeField, Tooltip("ç‚æŸ±")] GameObject eruption;
-    [SerializeField, Tooltip("å¨åŠ›")] float eruption_Power = 1.0f;
-    [SerializeField, Tooltip("ä¸­å¿ƒåº§æ¨™")] Vector2 eruption_Center;
-    [SerializeField, Tooltip("æ”»æ’ƒç¯„å›²")] Vector2 eruption_AtkRange = new Vector2(10.0f, 10.0f);
-    [SerializeField, Tooltip("æ”»æ’ƒé–“éš™")] float eruption_AtkBreakTime = 1.0f;
-    [SerializeField, Tooltip("ç”Ÿæˆæ•°")] int eruption_Generate = 10;
-    [SerializeField, Tooltip("ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float eruption_CoolTime = 0.5f;
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting eruption_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting eruption_SE;
-    [SerializeField, Tooltip("ã‚®ã‚ºãƒ¢")] GizmoSetting eruption_Gizmo;
-    float eruption_Space;           //ç‚æŸ±é–“è·é›¢
-    Vector2 eruption_Generatev2;    //ç”Ÿæˆæ•°   Vector2(Left, Right)
+    [Header("‰Š’Œ")]
+    [SerializeField, Tooltip("‰Š’Œ")] GameObject eruption;
+    [SerializeField, Tooltip("ˆĞ—Í")] float eruption_Power = 1.0f;
+    [SerializeField, Tooltip("’†SÀ•W")] Vector2 eruption_Center;
+    [SerializeField, Tooltip("UŒ‚”ÍˆÍ")] Vector2 eruption_AtkRange = new Vector2(10.0f, 10.0f);
+    [SerializeField, Tooltip("UŒ‚ŠÔŒ„")] float eruption_AtkBreakTime = 1.0f;
+    [SerializeField, Tooltip("¶¬”")] int eruption_Generate = 10;
+    [SerializeField, Tooltip("ƒN[ƒ‹ƒ^ƒCƒ€")] float eruption_CoolTime = 0.5f;
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting eruption_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting eruption_SE;
+    [SerializeField, Tooltip("ƒMƒYƒ‚")] GizmoSetting eruption_Gizmo;
+    float eruption_Space;           //‰Š’ŒŠÔ‹——£
+    Vector2 eruption_Generatev2;    //¶¬”   Vector2(Left, Right)
     GameObject eruption_Last;
 
-    [Header("çªãä¸Šã’")]
-    [SerializeField, Tooltip("çªãä¸Šã’")] GameObject pushUp;
-    [SerializeField, Tooltip("å¨åŠ›")] float pushUp_Power = 1.0f;
-    [SerializeField, Tooltip("ç§»å‹•é€Ÿåº¦")] float pushUp_MoveSpd = 10.0f;
-    [SerializeField, Tooltip("æ”»æ’ƒè·é›¢")] float pushUp_AtkDis = 5.0f;
-    [SerializeField, Tooltip("ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float pushUp_CoolTime = 0.5f;
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting pushUp_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting pushUp_SE;
+    [Header("“Ë‚«ã‚°")]
+    [SerializeField, Tooltip("“Ë‚«ã‚°")] GameObject pushUp;
+    [SerializeField, Tooltip("ˆĞ—Í")] float pushUp_Power = 1.0f;
+    [SerializeField, Tooltip("ˆÚ“®‘¬“x")] float pushUp_MoveSpd = 10.0f;
+    [SerializeField, Tooltip("UŒ‚‹——£")] float pushUp_AtkDis = 5.0f;
+    [SerializeField, Tooltip("ƒN[ƒ‹ƒ^ƒCƒ€")] float pushUp_CoolTime = 0.5f;
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting pushUp_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting pushUp_SE;
 
-    [Header("ç‚æ¸¦")]
-    [SerializeField, Tooltip("ç‚æ¸¦")] GameObject spin;
-    [SerializeField, Tooltip("å¨åŠ›")] float spin_Power = 1.0f;
-    [SerializeField, Tooltip("ä¸­å¿ƒåº§æ¨™")] Vector2 spin_Center;
-    [SerializeField, Tooltip("æ”»æ’ƒç¯„å›²")] Vector2 spin_AtkRange = new Vector2(10.0f, 10.0f);
-    [SerializeField, Tooltip("ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float spin_CoolTime = 0.5f;
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting spin_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting spin_SE;
-    [SerializeField, Tooltip("ã‚®ã‚ºãƒ¢")] GizmoSetting spin_Gizmo;
+    [Header("‰Š‰Q")]
+    [SerializeField, Tooltip("‰Š‰Q")] GameObject spin;
+    [SerializeField, Tooltip("ˆĞ—Í")] float spin_Power = 1.0f;
+    [SerializeField, Tooltip("’†SÀ•W")] Vector2 spin_Center;
+    [SerializeField, Tooltip("UŒ‚”ÍˆÍ")] Vector2 spin_AtkRange = new Vector2(10.0f, 10.0f);
+    [SerializeField, Tooltip("ƒN[ƒ‹ƒ^ƒCƒ€")] float spin_CoolTime = 0.5f;
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting spin_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting spin_SE;
+    [SerializeField, Tooltip("ƒMƒYƒ‚")] GizmoSetting spin_Gizmo;
     GameObject spin_Last;
 
-    [Header("éš•çŸ³")]
-    [SerializeField, Tooltip("éš•çŸ³")] GameObject meteor;
-    [SerializeField, Tooltip("å¨åŠ›")] float meteor_Power = 1.0f;
-    [SerializeField, Tooltip("ä¸­å¿ƒåº§æ¨™")] Vector2 meteor_Center = new Vector2(0.0f, 0.0f);
-    [SerializeField, Tooltip("æ”»æ’ƒç¯„å›²")] Vector2 meteor_AtkRange = new Vector2(10.0f, 10.0f);
-    [SerializeField, Tooltip("æ”»æ’ƒæ™‚é–“")] float meteor_AtkTime = 5.0f;
-    [SerializeField, Tooltip("ç”Ÿæˆæ•°")] float meteor_Generate = 10.0f;
-    [SerializeField, Tooltip("ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ ")] float meteor_CoolTime = 0.5f;
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting meteor_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting meteor_SE;
-    [SerializeField, Tooltip("ã‚®ã‚ºãƒ¢")] GizmoSetting meteor_Gizmo;
+    [Header("è¦Î")]
+    [SerializeField, Tooltip("è¦Î")] GameObject meteor;
+    [SerializeField, Tooltip("ˆĞ—Í")] float meteor_Power = 1.0f;
+    [SerializeField, Tooltip("’†SÀ•W")] Vector2 meteor_Center = new Vector2(0.0f, 0.0f);
+    [SerializeField, Tooltip("UŒ‚”ÍˆÍ")] Vector2 meteor_AtkRange = new Vector2(10.0f, 10.0f);
+    [SerializeField, Tooltip("UŒ‚ŠÔ")] float meteor_AtkTime = 5.0f;
+    [SerializeField, Tooltip("¶¬”")] float meteor_Generate = 10.0f;
+    [SerializeField, Tooltip("ƒN[ƒ‹ƒ^ƒCƒ€")] float meteor_CoolTime = 0.5f;
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting meteor_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting meteor_SE;
+    [SerializeField, Tooltip("ƒMƒYƒ‚")] GizmoSetting meteor_Gizmo;
     GameObject meteor_Last;
 
-    [Header("è¢«ãƒ€ãƒ¡ãƒ¼ã‚¸")]
-    [SerializeField, Tooltip("è‰²")] Color damage_Color = Color.white;
-    [SerializeField, Tooltip("ç‚¹æ»…å›æ•°")] int damage_Number = 10;
-    [SerializeField, Tooltip("æ™‚é–“")] float damage_Time = 0.05f;
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting damage_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting damage_SE;
+    [Header("”íƒ_ƒ[ƒW")]
+    [SerializeField, Tooltip("F")] Color damage_Color = Color.white;
+    [SerializeField, Tooltip("“_–Å‰ñ”")] int damage_Number = 10;
+    [SerializeField, Tooltip("ŠÔ")] float damage_Time = 0.05f;
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting damage_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting damage_SE;
     float damage_Repeat = 0;
 
-    [Header("æ­»")]
-    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting die_Effect;
-    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting die_SE;
+    [Header("€")]
+    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting die_Effect;
+    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting die_SE;
 
-    [Header("ç”»é¢æƒ…å ±")]
-    [SerializeField, Tooltip("ã‚¹ãƒ†ãƒ¼ã‚¸ä¸­å¿ƒåº§æ¨™")] Vector2 stage_Center = new Vector2(0.0f, 0.0f);
-    [SerializeField, Tooltip("ã‚¹ãƒ†ãƒ¼ã‚¸ç¯„å›²")] Vector2 stage_Range = new Vector2(20.0f, 10.0f);
-    [SerializeField, Tooltip("ã‚®ã‚ºãƒ¢")] GizmoSetting stage_Gizmo;
-    Vector2 stage_LeftTop;      //ã‚¹ãƒ†ãƒ¼ã‚¸å·¦ä¸Š
-    Vector2 stage_RightDown;    //ã‚¹ãƒ†ãƒ¼ã‚¸å³ä¸‹
+    [Header("‰æ–Êî•ñ")]
+    [SerializeField, Tooltip("ƒXƒe[ƒW’†SÀ•W")] Vector2 stage_Center = new Vector2(0.0f, 0.0f);
+    [SerializeField, Tooltip("ƒXƒe[ƒW”ÍˆÍ")] Vector2 stage_Range = new Vector2(20.0f, 10.0f);
+    [SerializeField, Tooltip("ƒMƒYƒ‚")] GizmoSetting stage_Gizmo;
+    Vector2 stage_LeftTop;      //ƒXƒe[ƒW¶ã
+    Vector2 stage_RightDown;    //ƒXƒe[ƒW‰E‰º
 
-    [Header("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³")]
+    [Header("ƒAƒjƒ[ƒVƒ‡ƒ“")]
     [SerializeField] bool isLock;
     Anim anim;
 
@@ -168,7 +168,7 @@ public class Qilin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //å®šç¾©
+        //’è‹`
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         se = GetComponent<AudioSource>();
@@ -184,15 +184,15 @@ public class Qilin : MonoBehaviour
         defColor = renderController.ModelScreenColor;
         gravity = rb.gravityScale;
 
-        //è¡Œå‹•
+        //s“®
         tableNo = Random.Range(0, moveTable.Length);
         moveNo = 0;
 
-        //ä½“ç¯„å›²
+        //‘Ì”ÍˆÍ
         body_Center = bc.bounds.center;
         body_Range = bc.bounds.max - bc.bounds.min;
 
-        //æ”»æ’ƒåˆ¤å®šé–¢é€£
+        //UŒ‚”»’èŠÖ˜A
         body.SetActive(true);
         breath.SetActive(false);
         pushUp.SetActive(false);
@@ -268,18 +268,12 @@ public class Qilin : MonoBehaviour
         hm.PostUpdate();
     }
 
-    //----------ã‚¢ã‚¯ã‚·ãƒ§ãƒ³----------
+    //----------ƒAƒNƒVƒ‡ƒ“----------
     void Idle()
     {
         switch (phase)
         {
             case 0:
-                timer += Time.deltaTime;
-                if(timer < idle_BreakTime) { break; }
-                phase++;
-                break;
-            case 1:
-                MoveEnd();
                 break;
             default:
                 AllVariableClear();
@@ -341,7 +335,8 @@ public class Qilin : MonoBehaviour
                 phase++;
                 break;
             case 6:
-                MoveEnd();
+                moveType = Qilin_MoveType.Idle;
+                AllVariableClear();
                 break;
             default:
                 AllVariableClear();
@@ -351,48 +346,46 @@ public class Qilin : MonoBehaviour
 
     void Eruption()
     {
-        Debug.Log(phase);
-
         switch (phase)
         {
-            case 0: //å‰éš™
+            case 0: //‘OŒ„
                 timer += Time.deltaTime;
                 if(timer < attackAnticipation_Time) { break; }
                 timer = 0;
                 phase++;
                 break;
             case 1:
-                float Range = eruption_AtkRange.x - body_Range.x;   //ç‚æŸ±ç”Ÿæˆå¯èƒ½å¹…
+                float Range = eruption_AtkRange.x - body_Range.x;   //‰Š’Œ¶¬‰Â”\•
 
                 Vector2 eruption_Range = Vector2.zero;
-                eruption_Range.x =  //å·¦è·é›¢
+                eruption_Range.x =  //¶‹——£
                     ((body_Center.x) - (body_Range.x * 0.5f)) - 
                     (eruption_Center.x - (eruption_AtkRange.x * 0.5f));
-                eruption_Range.y =  //å³è·é›¢
+                eruption_Range.y =  //‰E‹——£
                     (eruption_Center.x + (eruption_AtkRange.x * 0.5f)) - 
                     ((body_Center.x) + (body_Range.x * 0.5f));
 
-                //æ¯”ã€€ç‚æŸ±ç”Ÿæˆå¯èƒ½å¹…ï¼šå·¦è·é›¢ï¼šå³è·é›¢ = 1ï¼šxï¼šy
+                //”ä@‰Š’Œ¶¬‰Â”\•F¶‹——£F‰E‹——£ = 1FxFy
                 Vector2 eruption_Ratio = Vector2.zero;
                 eruption_Ratio.x = eruption_Range.x / Range;
                 eruption_Ratio.y = eruption_Range.y / Range;
                 if (eruption_Ratio.x < 0) { eruption_Ratio = Vector2.up; }
                 else if (eruption_Ratio.y < 0) { eruption_Ratio = Vector2.right; }
 
-                Vector2 empty = new Vector2 //æ¯”ã‹ã‚‰å·¦å³ã®ç‚æŸ±ç”Ÿæˆæ•°å®šç¾©(å°æ•°ç‚¹ã‚ã‚Š)
+                Vector2 empty = new Vector2 //”ä‚©‚ç¶‰E‚Ì‰Š’Œ¶¬”’è‹`(¬”“_‚ ‚è)
                     (eruption_Generate * eruption_Ratio.x, eruption_Generate * eruption_Ratio.y);
-                //ç‚æŸ±ç”Ÿæˆæ•°ã‚’æ•´æ•°ã«
+                //‰Š’Œ¶¬”‚ğ®”‚É
                 eruption_Generatev2.x = Mathf.Round(empty.x);
                 eruption_Generatev2.y = Mathf.Round(empty.y);
 
-                //ç‚æŸ±é–“è·é›¢å®šç¾©
+                //‰Š’ŒŠÔ‹——£’è‹`
                 eruption_Space = Range / (eruption_Generate + 1);
 
-                //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
+                //ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
                 anim.AnimChage("Pillar", isLock);
                 phase++;
                 break;
-            case 2: //ç‚æŸ±ç”Ÿæˆ
+            case 2: //‰Š’Œ¶¬
                 if (anim.Action != AnimSetting.Type.Idle) { break; }
                 Vector2 genPos = Vector2.zero;
                 if (repeat < eruption_Generatev2.x)
@@ -401,9 +394,37 @@ public class Qilin : MonoBehaviour
                         (body_Center.x - (body_Range.x * 0.5f)) - 
                         (eruption_Space * (repeat + 1)), 
                         gPos);
+                    Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                    no++;
+                }
+                if (repeat < eruption_Generatev2.y)
+                {
+                    genPos = new Vector2(
+                        (body_Center.x + (body_Range.x * 0.5f)) +
+                        (eruption_Space * (repeat + 1)),
+                        gPos);
+                    Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                    no++;
+                }
+                repeat++;
+                phase++;
+                break;
+            case 3: //UŒ‚ŠÔŒ„
+                timer += Time.deltaTime;
+                if (timer < eruption_AtkBreakTime) { break; }
+                timer = 0;
+                if (eruption_Generate - 1 != no) { phase--; }   //–ß‚é
+                else { phase++; }   //i‚Ş
+                break;
+            case 4:
+                if (repeat < eruption_Generatev2.x)
+                {
+                    genPos = new Vector2(
+                        (body_Center.x - (body_Range.x * 0.5f)) -
+                        (eruption_Space * (repeat + 1)),
+                        gPos);
                     eruption_Last =
                         Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                    no++;
                 }
                 if (repeat < eruption_Generatev2.y)
                 {
@@ -413,39 +434,9 @@ public class Qilin : MonoBehaviour
                         gPos);
                     eruption_Last =
                         Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                    no++;
                 }
-                repeat++;
                 phase++;
                 break;
-            case 3: //æ”»æ’ƒé–“éš™
-                timer += Time.deltaTime;
-                if (timer < eruption_AtkBreakTime) { break; }
-                timer = 0;
-                if (eruption_Generate != no) { phase--; }   //æˆ»ã‚‹
-                else { phase = 5; }   //é€²ã‚€
-                break;
-            //case 4:
-            //    if (repeat < eruption_Generatev2.x)
-            //    {
-            //        genPos = new Vector2(
-            //            (body_Center.x - (body_Range.x * 0.5f)) -
-            //            (eruption_Space * (repeat + 1)),
-            //            gPos);
-            //        eruption_Last =
-            //            Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-            //    }
-            //    if (repeat < eruption_Generatev2.y)
-            //    {
-            //        genPos = new Vector2(
-            //            (body_Center.x + (body_Range.x * 0.5f)) +
-            //            (eruption_Space * (repeat + 1)),
-            //            gPos);
-            //        eruption_Last =
-            //            Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-            //    }
-            //    phase++;
-            //    break;
             case 5:
                 if (eruption_Last != null) { break; }
                 phase++;
@@ -457,7 +448,8 @@ public class Qilin : MonoBehaviour
                 phase++;
                 break;
             case 7:
-                MoveEnd();
+                AllVariableClear();
+                moveType = Qilin_MoveType.Idle;
                 break;
             default:
                 AllVariableClear();
@@ -512,7 +504,8 @@ public class Qilin : MonoBehaviour
                 phase++;
                 break;
             case 6:
-                MoveEnd();
+                moveType = Qilin_MoveType.Idle;
+                AllVariableClear();
                 break;
             default:
                 AllVariableClear();
@@ -536,7 +529,7 @@ public class Qilin : MonoBehaviour
                 rb.gravityScale = gravity;
                 phase++;
                 break;
-            case 2://å‰éš™
+            case 2://‘OŒ„
                 timer += Time.deltaTime;
                 if (timer < attackAnticipation_Time) { break; }
                 Direction();
@@ -567,7 +560,8 @@ public class Qilin : MonoBehaviour
                 phase++;
                 break;
             case 7:
-                MoveEnd();
+                AllVariableClear();
+                moveType = Qilin_MoveType.Idle;
                 break;
             default:
                 AllVariableClear();
@@ -658,7 +652,8 @@ public class Qilin : MonoBehaviour
                 phase++;
                 break;
             case 8:
-                MoveEnd();
+                AllVariableClear();
+                moveType = Qilin_MoveType.Idle;
                 break;
             default:
                 AllVariableClear();
@@ -666,9 +661,9 @@ public class Qilin : MonoBehaviour
         }
     }
 
-    void MoveEnd()  //è¡Œå‹•çµ‚äº†æ™‚å‡¦ç†
+    void MoveEnd()  //s“®I—¹ˆ—
     {
-        Debug.Log("è¡Œå‹•çµ‚äº†");
+        Debug.Log("s“®I—¹");
         moveNo++;
         if (moveNo == moveTable[tableNo].Move.Length)
         {
@@ -679,11 +674,11 @@ public class Qilin : MonoBehaviour
         AllVariableClear();
     }
 
-    void Direction()    //å‘ã(ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘)
+    void Direction()    //Œü‚«(ƒvƒŒ[ƒ„[‚Ì•ûŒü)
     {
-        if (0 < plPos.x - pos.x) { plDir = 1; }         //å³
-        else if (plPos.x - pos.x < 0) { plDir = -1; }   //å·¦
-        else { plDir = 0; }                             //åŒä¸€
+        if (0 < plPos.x - pos.x) { plDir = 1; }         //‰E
+        else if (plPos.x - pos.x < 0) { plDir = -1; }   //¶
+        else { plDir = 0; }                             //“¯ˆê
 
         switch (plDir)
         {
@@ -698,25 +693,25 @@ public class Qilin : MonoBehaviour
         transform.localScale = scale;
     }
 
-    void Damage()   //è¢«ãƒ€ãƒ¡ãƒ¼ã‚¸
+    void Damage()   //”íƒ_ƒ[ƒW
     {
         damage_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
         StartCoroutine("Flash");
-        Debug.Log(obj.name + "ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸ");
+        Debug.Log(obj.name + "‚Íƒ_ƒ[ƒW‚ğó‚¯‚½");
     }
 
-    void Die()      //æ­»äº¡
+    void Die()      //€–S
     {
         moveType = Qilin_MoveType.Die;
         anim.AnimChage("Dead", isLock);
         die_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
-        GameData.QilinDead = true;
-        Debug.Log(obj.name + "ã¯æ­»ã‚“ã ");
+        //GameSceneDirector2.Bossdead2 = true;
+        Debug.Log(obj.name + "‚Í€‚ñ‚¾");
     }
 
-    //----------ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³----------
+    //----------ƒAƒjƒ[ƒVƒ‡ƒ“----------
     void Anim_Basis()
     {
         //Debug.Log(rb.velocity.magnitude);
@@ -741,7 +736,7 @@ public class Qilin : MonoBehaviour
         }
     }
 
-    //----------å„ç¨®ãƒ‡ãƒ¼ã‚¿ç®¡ç†----------
+    //----------Šeíƒf[ƒ^ŠÇ—----------
     Vector2 Distance(Vector3 target)
     {
         Vector2 distance = target - transform.position;
@@ -753,14 +748,14 @@ public class Qilin : MonoBehaviour
         //LayerMask layerMask = 1 << LayerMask.NameToLayer("Ground");
         RaycastHit2D rayHit = Physics2D.Raycast
             (new Vector2(axisX, stage_LeftTop.y), Vector2.down,
-            stage_LeftTop.y - stage_RightDown.y, gc.Ray[0].Layer);  //å…‰ç·šç™ºå°„
+            stage_LeftTop.y - stage_RightDown.y, gc.Ray[0].Layer);  //Œõü”­Ë
         Debug.DrawRay(new Vector2(axisX, stage_LeftTop.y), Vector2.down * (stage_LeftTop.y - stage_RightDown.y), Color.green, 1.0f);
         if (rayHit.collider.tag == gc.Ray[0].Tag.ToString())
         {
-            Vector2 groundPos = rayHit.point;   //åœ°é¢ä½ç½®ç¢ºèª
+            Vector2 groundPos = rayHit.point;   //’n–ÊˆÊ’uŠm”F
             return groundPos.y;
         }
-        Debug.LogError(axisX + "ã«åœ°é¢ã¯ãªã„");
+        Debug.LogError(axisX + "‚É’n–Ê‚Í‚È‚¢");
         return 0;
     }
 
@@ -772,34 +767,34 @@ public class Qilin : MonoBehaviour
             {
                 renderController.Renderers[i].ScreenColor = damage_Color;
             }
-            //å¾…ã¤
+            //‘Ò‚Â
             yield return new WaitForSeconds(damage_Time);
             for (int i = 0; i < renderController.Renderers.Length; i++)
             {
                 renderController.Renderers[i].ScreenColor = defColor;
             }
-            //å¾…ã¤
+            //‘Ò‚Â
             yield return new WaitForSeconds(damage_Time);
             damage_Repeat++;
         }
         damage_Repeat = 0;
     }
 
-    void StageData()    //ã‚¹ãƒ†ãƒ¼ã‚¸
+    void StageData()    //ƒXƒe[ƒW
     {
         stage_LeftTop = new Vector2(stage_Center.x - (stage_Range.x * 0.5f), stage_Center.y + (stage_Range.y * 0.5f));
         stage_RightDown = new Vector2(stage_Center.x + (stage_Range.x * 0.5f), stage_Center.y - (stage_Range.y * 0.5f));
     }
 
-    void AllVariableClear()     //å¤‰æ•°åˆæœŸåŒ–
+    void AllVariableClear()     //•Ï”‰Šú‰»
     {
         GeneralVariableClear();
 
-        //å††
+        //‰~
         //circle.DataClear();
     }
 
-    void GeneralVariableClear() //æ±ç”¨å¤‰æ•°åˆæœŸåŒ–
+    void GeneralVariableClear() //”Ä—p•Ï”‰Šú‰»
     {
         phase = 0;
         timer = 0;
@@ -855,15 +850,15 @@ public class Qilin : QilinBase
     {
         base.Start();
 
-        //è¡Œå‹•
+        //s“®
         tableNo = Random.Range(0, moveTable.Length);
         moveNo = 0;
 
-        //ä½“ç¯„å›²
+        //‘Ì”ÍˆÍ
         body_Center = bc.bounds.center;
         body_Range = bc.bounds.max - bc.bounds.min;
 
-        //æ”»æ’ƒåˆ¤å®šé–¢é€£
+        //UŒ‚”»’èŠÖ˜A
         body.SetActive(true);
         breath.SetActive(false);
         pushUp.SetActive(false);
@@ -1016,44 +1011,44 @@ public class QilinAction : QilinBase
     {
         switch (phase)
         {
-            case 0: //å‰éš™
+            case 0: //‘OŒ„
                 timer += Time.deltaTime;
                 if (timer < attackAnticipation_Time) { break; }
                 timer = 0;
                 phase++;
                 break;
             case 1:
-                float Range = eruption_AtkRange.x - body_Range.x;   //ç‚æŸ±ç”Ÿæˆå¯èƒ½å¹…
+                float Range = eruption_AtkRange.x - body_Range.x;   //‰Š’Œ¶¬‰Â”\•
 
                 Vector2 eruption_Range = Vector2.zero;
-                eruption_Range.x =  //å·¦è·é›¢
+                eruption_Range.x =  //¶‹——£
                     ((body_Center.x) - (body_Range.x * 0.5f)) -
                     (eruption_Center.x - (eruption_AtkRange.x * 0.5f));
-                eruption_Range.y =  //å³è·é›¢
+                eruption_Range.y =  //‰E‹——£
                     (eruption_Center.x + (eruption_AtkRange.x * 0.5f)) -
                     ((body_Center.x) + (body_Range.x * 0.5f));
 
-                //æ¯”ã€€ç‚æŸ±ç”Ÿæˆå¯èƒ½å¹…ï¼šå·¦è·é›¢ï¼šå³è·é›¢ = 1ï¼šxï¼šy
+                //”ä@‰Š’Œ¶¬‰Â”\•F¶‹——£F‰E‹——£ = 1FxFy
                 Vector2 eruption_Ratio = Vector2.zero;
                 eruption_Ratio.x = eruption_Range.x / Range;
                 eruption_Ratio.y = eruption_Range.y / Range;
                 if (eruption_Ratio.x < 0) { eruption_Ratio = Vector2.up; }
                 else if (eruption_Ratio.y < 0) { eruption_Ratio = Vector2.right; }
 
-                Vector2 empty = new Vector2 //æ¯”ã‹ã‚‰å·¦å³ã®ç‚æŸ±ç”Ÿæˆæ•°å®šç¾©(å°æ•°ç‚¹ã‚ã‚Š)
+                Vector2 empty = new Vector2 //”ä‚©‚ç¶‰E‚Ì‰Š’Œ¶¬”’è‹`(¬”“_‚ ‚è)
                     (eruption_Generate * eruption_Ratio.x, eruption_Generate * eruption_Ratio.y);
-                //ç‚æŸ±ç”Ÿæˆæ•°ã‚’æ•´æ•°ã«
+                //‰Š’Œ¶¬”‚ğ®”‚É
                 eruption_Generatev2.x = Mathf.Round(empty.x);
                 eruption_Generatev2.y = Mathf.Round(empty.y);
 
-                //ç‚æŸ±é–“è·é›¢å®šç¾©
+                //‰Š’ŒŠÔ‹——£’è‹`
                 eruption_Space = Range / (eruption_Generate + 1);
 
-                //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
+                //ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
                 anim.AnimChage("Pillar", isLock);
                 phase++;
                 break;
-            case 2: //ç‚æŸ±ç”Ÿæˆ
+            case 2: //‰Š’Œ¶¬
                 if (anim.Action != AnimSetting.Type.Idle) { break; }
                 Vector2 genPos = Vector2.zero;
                 if (repeat < eruption_Generatev2.x)
@@ -1077,12 +1072,12 @@ public class QilinAction : QilinBase
                 repeat++;
                 phase++;
                 break;
-            case 3: //æ”»æ’ƒé–“éš™
+            case 3: //UŒ‚ŠÔŒ„
                 timer += Time.deltaTime;
                 if (timer < eruption_AtkBreakTime) { break; }
                 timer = 0;
-                if (eruption_Generate - 1 != no) { phase--; }   //æˆ»ã‚‹
-                else { phase++; }   //é€²ã‚€
+                if (eruption_Generate - 1 != no) { phase--; }   //–ß‚é
+                else { phase++; }   //i‚Ş
                 break;
             case 4:
                 if (repeat < eruption_Generatev2.x)
@@ -1197,7 +1192,7 @@ public class QilinAction : QilinBase
                 rb.gravityScale = gravity;
                 phase++;
                 break;
-            case 2://å‰éš™
+            case 2://‘OŒ„
                 timer += Time.deltaTime;
                 if (timer < attackAnticipation_Time) { break; }
                 Direction();
