@@ -2581,8 +2581,8 @@ MonoBehaviour:
     distance: 0
     layer:
       serializedVersion: 2
-      m_Bits: 1
-    tag: 7
+      m_Bits: 8
+    tag: 3
     isActive: 1
     gizmo:
       mode: 2
