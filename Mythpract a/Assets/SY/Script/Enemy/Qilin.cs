@@ -351,6 +351,8 @@ public class Qilin : MonoBehaviour
 
     void Eruption()
     {
+        Debug.Log(phase);
+
         switch (phase)
         {
             case 0: //前隙
@@ -399,7 +401,8 @@ public class Qilin : MonoBehaviour
                         (body_Center.x - (body_Range.x * 0.5f)) - 
                         (eruption_Space * (repeat + 1)), 
                         gPos);
-                    Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                    eruption_Last =
+                        Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
                     no++;
                 }
                 if (repeat < eruption_Generatev2.y)
@@ -408,7 +411,8 @@ public class Qilin : MonoBehaviour
                         (body_Center.x + (body_Range.x * 0.5f)) +
                         (eruption_Space * (repeat + 1)),
                         gPos);
-                    Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                    eruption_Last =
+                        Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
                     no++;
                 }
                 repeat++;
@@ -418,30 +422,30 @@ public class Qilin : MonoBehaviour
                 timer += Time.deltaTime;
                 if (timer < eruption_AtkBreakTime) { break; }
                 timer = 0;
-                if (eruption_Generate - 1 != no) { phase--; }   //戻る
-                else { phase++; }   //進む
+                if (eruption_Generate != no) { phase--; }   //戻る
+                else { phase = 5; }   //進む
                 break;
-            case 4:
-                if (repeat < eruption_Generatev2.x)
-                {
-                    genPos = new Vector2(
-                        (body_Center.x - (body_Range.x * 0.5f)) -
-                        (eruption_Space * (repeat + 1)),
-                        gPos);
-                    eruption_Last =
-                        Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                }
-                if (repeat < eruption_Generatev2.y)
-                {
-                    genPos = new Vector2(
-                        (body_Center.x + (body_Range.x * 0.5f)) +
-                        (eruption_Space * (repeat + 1)),
-                        gPos);
-                    eruption_Last =
-                        Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                }
-                phase++;
-                break;
+            //case 4:
+            //    if (repeat < eruption_Generatev2.x)
+            //    {
+            //        genPos = new Vector2(
+            //            (body_Center.x - (body_Range.x * 0.5f)) -
+            //            (eruption_Space * (repeat + 1)),
+            //            gPos);
+            //        eruption_Last =
+            //            Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+            //    }
+            //    if (repeat < eruption_Generatev2.y)
+            //    {
+            //        genPos = new Vector2(
+            //            (body_Center.x + (body_Range.x * 0.5f)) +
+            //            (eruption_Space * (repeat + 1)),
+            //            gPos);
+            //        eruption_Last =
+            //            Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+            //    }
+            //    phase++;
+            //    break;
             case 5:
                 if (eruption_Last != null) { break; }
                 phase++;
