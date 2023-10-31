@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4578927911682847359}
   - component: {fileID: 5629081370708050558}
-  - component: {fileID: 4976673573183866986}
+  - component: {fileID: 7106369749121122662}
   m_Layer: 8
   m_Name: Atk
   m_TagString: Untagged
@@ -49,7 +49,7 @@ CapsuleCollider2D:
   m_Offset: {x: 1, y: 0}
   m_Size: {x: 1.5, y: 0.75}
   m_Direction: 1
---- !u!114 &4976673573183866986
+--- !u!114 &7106369749121122662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6804787042626513585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf29a3c07af38044ace34fb7ed26460, type: 3}
+  m_Script: {fileID: 11500000, guid: 41b8e95e882472d43b2c0f2afa473812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 6915276105456889275}
   - component: {fileID: 5803793716195382586}
   - component: {fileID: 8329523517214195388}
-  - component: {fileID: 6379692721615869411}
+  - component: {fileID: 4463895025416163404}
   - component: {fileID: 146310420527138335}
   m_Layer: 7
   m_Name: Meteor
@@ -162,7 +162,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   impact_Time: 0.5
---- !u!114 &6379692721615869411
+--- !u!114 &4463895025416163404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,14 +171,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8282665973735145537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5768163c534fe494a933603985602418, type: 3}
+  m_Script: {fileID: 11500000, guid: 5080bb5eb6ca7c1408d55d8964f0c4d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
   maxHp: 10
   hp: 0
-  atk: 0
-  def: 0
+  atk: 1
+  def: 1
   atkActive: 0
   defActive: 0
 --- !u!114 &146310420527138335
