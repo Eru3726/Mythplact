@@ -13,7 +13,7 @@ public class RestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        keycon.SetActive(false);
+        //keycon.SetActive(false);
         Cmana.SetActive(false);
 
         heal = true;
@@ -26,7 +26,7 @@ public class RestManager : MonoBehaviour
     {
         //if (keycon.activeSelf == false)
         //{
-        //    if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.JoystickButton7))
+        //    if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
         //    {
         //        keycon.SetActive(true);
         //        Cmana.SetActive(true);
