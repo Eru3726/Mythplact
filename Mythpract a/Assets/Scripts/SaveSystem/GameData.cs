@@ -1,9 +1,9 @@
 using UnityEngine;
-//ƒQ[ƒ€’†‚Å•Û‚µ‚Ä‚¨‚«‚½‚¢€–Úi‰Šú‚Ì’l‚Í”CˆÓj
+//ã‚²ãƒ¼ãƒ ä¸­ã§ä¿æŒã—ã¦ãŠããŸã„é …ç›®ï¼ˆåˆæœŸã®å€¤ã¯ä»»æ„ï¼‰
 
 public class GameData
 {
-    // ƒL[ƒRƒ“ƒtƒBƒO
+    // ã‚­ãƒ¼ã‚³ãƒ³ãƒ•ã‚£ã‚°
     public static int testInt = 1;
     public static float testFloat = 1.0f;
     public static string testString = "Text0";
@@ -39,7 +39,7 @@ public class GameData
     public static KeyCode keydownkey = KeyCode.S;
     public static KeyCode keyinteractkey = KeyCode.E;
 
-    // ƒXƒLƒ‹ƒs[ƒX
+    // ã‚¹ã‚­ãƒ«ãƒ”ãƒ¼ã‚¹
     public static bool saveSkill1= false;
     public static bool saveSkill2 = false;
     public static bool saveSkill3 = false;
@@ -131,14 +131,15 @@ public class GameData
     public static int skillSlot3 = 0;
     public static int skillSlot4 = 0;
 
-    // ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
     public static int playerNowHp = 0;
 
-    // ƒtƒ‰ƒOŠÇ—
+    // ãƒ•ãƒ©ã‚°ç®¡ç†
     public static bool ShoggothDead = false;
     public static bool FafnirDead = false;
+    public static bool QilinDead = false;
 
-    // ƒŠƒUƒ‹ƒg
+    // ãƒªã‚¶ãƒ«ãƒˆ
     public static float ClearTime = 0;
     public static int HitCount = 0;
     public static int SkillCount = 0;
