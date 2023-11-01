@@ -202,6 +202,11 @@ public class Save : MonoBehaviour
         saveData.ClearTime = GameData.ClearTime;
         saveData.HitCount = GameData.HitCount;
         saveData.SkillCount = GameData.SkillCount;
+        saveData.justGuardCount = GameData.justGuardCount;
+
+        saveData.bestTimeShoggoth = GameData.bestTimeShoggoth;
+        saveData.bestTimeFafnir = GameData.bestTimeFafnir;
+        saveData.bestTimeQilin = GameData.bestTimeQilin;
 
         return saveData;
     }
