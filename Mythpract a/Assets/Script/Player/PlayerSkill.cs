@@ -677,7 +677,6 @@ partial class Player
             if (isGround)
             {
                 PlayerRb.velocity = new Vector2(0, 0);
-                EffectCharge.Play();
 
             }
 
@@ -685,11 +684,14 @@ partial class Player
         // ため攻撃の判定
         if (attack && isGround)
         {
-            ChargeEffectPlayOnce = true;
- 
+            if(ChargeEffectPlayOnce == false)
+            {
+                EffectCharge.Play();
+                ChargeEffectPlayOnce = true;
+            }
+
             attackCount += Time.deltaTime;
             isCharge = true;
-            EffectCharge.Play();
 
 
         }
