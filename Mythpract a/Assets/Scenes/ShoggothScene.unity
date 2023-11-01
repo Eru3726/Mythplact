@@ -2092,6 +2092,10 @@ MonoBehaviour:
     ClearTime: 0
     HitCount: 0
     SkillCount: 0
+    justGuardCount: 0
+    bestTimeShoggoth: 0
+    bestTimeFafnir: 0
+    bestTimeQilin: 0
 --- !u!1 &520873377
 GameObject:
   m_ObjectHideFlags: 0
@@ -16876,7 +16880,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8922014012187984017, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
       propertyPath: atk
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8922014012187984023, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
       propertyPath: m_Name

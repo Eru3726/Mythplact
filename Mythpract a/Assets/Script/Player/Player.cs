@@ -779,7 +779,7 @@ public partial class Player : MonoBehaviour
             isbrinkUp = false;     // 空中ブリンク判定]
 
             // ジャンプ
-            if (spaceDown && !isGuard && !isSkill && !hitAnim)
+            if (spaceDown && !isGuard && !isSkill && !isAttack &&!hitAnim)
             {
                 PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
                 PlayerRb.AddForce(Vector2.up * jumpPow, ForceMode2D.Impulse);
@@ -800,7 +800,7 @@ public partial class Player : MonoBehaviour
         }
 
         // 二段ジャンプ
-        if (spaceDown && doublejump && !isGuard && !isSkill && !hitAnim)
+        if (spaceDown && doublejump && !isGuard && !isSkill && !isAttack && !hitAnim)
         {
             doublejumpAnim = true;
             PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
@@ -953,7 +953,7 @@ public partial class Player : MonoBehaviour
 
         if (isAttack)
         {
-            PlayerRb.velocity = new Vector2(0, 0);
+            PlayerRb.velocity = new Vector2(0, PlayerRb.velocity.y);
         }
         if (HMng.CheckDamage())
         {
@@ -1053,6 +1053,7 @@ public partial class Player : MonoBehaviour
                 {
                     Debug.Log("ジャストガード成功");
 
+                    GameData.justGuardCount++;
                     EffectJustGuard.Play();
                     guardCount = 0;
                     HitStopManager.hitstop.StartHitStop(0.3f);
@@ -1134,36 +1135,28 @@ public partial class Player : MonoBehaviour
         Animation anim;
 
         anim = gameObject.GetComponent<Animation>();
+        Debug.Log(hitAnim + "HitAnim");
+
 
         // ノックバック
         if (HMng.CheckDamage() == true && !isGuard)
         {
             hitAnim = true;
+            knockbuckCount = 0;
             GameData.HitCount++;
             PlayerRb.gravityScale = 7f;
+
+            PlayerRb.velocity = Vector2.zero;
+            PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+
             if (CheckRightHit() == true)
             {
-                PlayerRb.velocity = Vector2.zero;
-                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
-
                 PlayerRb.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
             }
             else if (CheckLeftHit() == true)
             {
-                PlayerRb.velocity = Vector2.zero;
-
-                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
                 PlayerRb.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
-
-            }
-            else
-            {
-                PlayerRb.velocity = Vector2.zero;
-
-                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
-
-                PlayerRb.AddForce(Vector2.right * 15, ForceMode2D.Impulse);
 
             }
             HitStopManager.hitstop.StartHitStop(0.2f);
@@ -1171,11 +1164,12 @@ public partial class Player : MonoBehaviour
         if(hitAnim == true)
         {
             knockbuckCount += Time.deltaTime;
-        }
-        if(knockbuckCount >= knockbuckTime/*  || isGround*/)
-        {
-            hitAnim = false;
-            knockbuckCount = 0;
+            if (knockbuckCount >= knockbuckTime /*  || isGround*/)
+            {
+                hitAnim = false;
+
+            }
+
         }
 
 
