@@ -15,10 +15,10 @@ partial class Player
     [SerializeField, Tooltip("ローンウォーリアの一回の追加攻撃力")] float SkillLoneAtkPlus;
     [SerializeField, Tooltip("ローンウォーリアのコンボの許容時間")] float SkillLoneComboSpan;
     [SerializeField, Tooltip("ローンウォーリア1段階目")] Color SkillLWFirstColor;
-    [SerializeField, Tooltip("ローンウォーリア1段階目")] Color SkillLWSecondColor;
-    [SerializeField, Tooltip("ローンウォーリア1段階目")] Color SkillLWThirdColor;
-    [SerializeField, Tooltip("ローンウォーリア1段階目")] Color SkillLWFoursColor;
-    [SerializeField, Tooltip("ローンウォーリア1段階目")] Color SkillLWLastColor;
+    [SerializeField, Tooltip("ローンウォーリア2段階目")] Color SkillLWSecondColor;
+    [SerializeField, Tooltip("ローンウォーリア3段階目")] Color SkillLWThirdColor;
+    [SerializeField, Tooltip("ローンウォーリア4段階目")] Color SkillLWFoursColor;
+    [SerializeField, Tooltip("ローンウォーリア5段階目")] Color SkillLWLastColor;
 
 
     [SerializeField, Tooltip("ブリンク距離スキル")] float SkillBrinkMove;
@@ -52,6 +52,8 @@ partial class Player
     bool isLoneWarrior = false;
     bool LoneWarriorReset = false;
     bool ChargeEffectPlayOnce = false;
+    bool kajibaAtkPlusOnce = false;
+    bool kajibaAtkMinusOnce = false;
 
     bool isSkill = false;
     bool isCharge = false;
@@ -638,11 +640,22 @@ partial class Player
         SkillKajibaAtk = HMng.ATK * 2;
         if(HMng.HP == 1)
         {
-            HMng.ATK = SkillKajibaAtk;
+            kajibaAtkMinusOnce = false;
+
+            if (kajibaAtkPlusOnce == false)
+            {
+                HMng.ATK += SkillKajibaAtk;
+                kajibaAtkPlusOnce = true;
+            }
         }
         else
         {
-            HMng.ATK = 100;     // めんどいので初期数値手入力
+            kajibaAtkPlusOnce = false;
+            if (kajibaAtkMinusOnce == false)
+            {
+                HMng.ATK -= SkillKajibaAtk;
+                kajibaAtkMinusOnce = true;
+            }
         }
     }
     public void SkillStrength() // スキル15
