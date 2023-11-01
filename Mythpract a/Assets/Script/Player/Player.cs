@@ -885,7 +885,7 @@ public partial class Player : MonoBehaviour
 
         // プレイヤーの向き
         
-        if (dir.x != 0 && !isAttack && !isGuard && !hitAnim)
+        if (dir.x != 0 && !isAttack && !isGuard && !hitAnim && !isSkill)
         {
             transform.localScale = new Vector3(dir.x, 1, 1);
         }
@@ -1144,6 +1144,7 @@ public partial class Player : MonoBehaviour
             knockbuckCount = 0;
             GameData.HitCount++;
             PlayerRb.gravityScale = 7f;
+            EffectDamage.Play();
 
             PlayerRb.velocity = Vector2.zero;
             PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
@@ -1160,7 +1161,12 @@ public partial class Player : MonoBehaviour
             }
             HitStopManager.hitstop.StartHitStop(0.2f);
         }
-        if(hitAnim == true)
+        else
+        {
+            EffectDamage.Stop();
+
+        }
+        if (hitAnim == true)
         {
             knockbuckCount += Time.deltaTime;
             if (knockbuckCount >= knockbuckTime /*  || isGround*/)

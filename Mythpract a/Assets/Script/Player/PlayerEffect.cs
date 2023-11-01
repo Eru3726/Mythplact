@@ -7,6 +7,7 @@ partial class Player
     public GameObject EffectJump;
     public GameObject EffectBrink;
 
+    public ParticleSystem EffectDamage;
     public ParticleSystem EffectGuard;
     public ParticleSystem EffectGuardBreak;
     public ParticleSystem EffectJustGuard;
