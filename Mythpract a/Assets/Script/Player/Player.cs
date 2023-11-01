@@ -1144,7 +1144,7 @@ public partial class Player : MonoBehaviour
             if (CheckRightHit() == true)
             {
                 PlayerRb.velocity = Vector2.zero;
-                PlayerRb.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
                 PlayerRb.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
             }
@@ -1152,7 +1152,7 @@ public partial class Player : MonoBehaviour
             {
                 PlayerRb.velocity = Vector2.zero;
 
-                PlayerRb.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
                 PlayerRb.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
 
@@ -1161,7 +1161,7 @@ public partial class Player : MonoBehaviour
             {
                 PlayerRb.velocity = Vector2.zero;
 
-                PlayerRb.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
                 PlayerRb.AddForce(Vector2.right * 15, ForceMode2D.Impulse);
 
@@ -1172,7 +1172,7 @@ public partial class Player : MonoBehaviour
         {
             knockbuckCount += Time.deltaTime;
         }
-        if(knockbuckCount >= knockbuckTime  || isGround)
+        if(knockbuckCount >= knockbuckTime/*  || isGround*/)
         {
             hitAnim = false;
             knockbuckCount = 0;
