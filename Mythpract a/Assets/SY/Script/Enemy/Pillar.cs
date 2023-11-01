@@ -12,20 +12,21 @@ public class Pillar : MonoBehaviour
 
     enum State
     {
-        None        = 0,    //”ñƒAƒNƒeƒBƒu
-        Generate    = 1,    //¶¬
-        Up          = 2,    //ã¸
-        Move        = 3,    //ˆÚ“®
-        Keep        = 4,    //’â‘Ø
-        Die         = 5,    //Á–Å
+        None        = 0,    //éã‚¢ã‚¯ãƒ†ã‚£ãƒ–
+        Generate    = 1,    //ç”Ÿæˆ
+        Up          = 2,    //ä¸Šæ˜‡
+        Move        = 3,    //ç§»å‹•
+        Keep        = 4,    //åœæ»
+        Die         = 5,    //æ¶ˆæ»…
     }
     State state = State.None;
-    [SerializeField, Tooltip("UŒ‚”»’è")] GameObject attack;
-    [SerializeField, Tooltip("‘¬“x")] float speed = 5.0f;
-    [SerializeField, Tooltip("ã¸ŠÔ")] float upTime = 1.0f;
-    [SerializeField, Tooltip("UŒ‚ŠÔ")] float time = 5.0f;
-    [SerializeField, Tooltip("ƒGƒtƒFƒNƒg")] ParticleSetting effect;
-    [SerializeField, Tooltip("ƒTƒEƒ“ƒh")] AudioSetting sound;
+    [SerializeField, Tooltip("éº’éºŸ")] string qilinName;
+    [SerializeField, Tooltip("æ”»æ’ƒåˆ¤å®š")] GameObject attack;
+    [SerializeField, Tooltip("é€Ÿåº¦")] float speed = 5.0f;
+    [SerializeField, Tooltip("ä¸Šæ˜‡æ™‚é–“")] float upTime = 1.0f;
+    [SerializeField, Tooltip("æ”»æ’ƒæ™‚é–“")] float time = 5.0f;
+    [SerializeField, Tooltip("ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting effect;
+    [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting sound;
 
     float timer = 0;
     Vector2 pos;
@@ -46,7 +47,7 @@ public class Pillar : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         se = GetComponent<AudioSource>();
         //hm = GetComponent<HitMng>();
-        qilin = transform.root.gameObject.GetComponent<Qilin>();
+        qilin = GameObject.Find(qilinName).gameObject.GetComponent<Qilin>();
         pos = transform.position;
         scale = transform.localScale;
         move = qilin.MoveType;
@@ -57,7 +58,7 @@ public class Pillar : MonoBehaviour
         switch (move)
         {
             case Qilin_MoveType.Eruption:
-                qilin.SetPower(attack, qilin.Eruption_Power); //ˆĞ—Íİ’è
+                qilin.SetPower(attack, qilin.Eruption_Power); //å¨åŠ›è¨­å®š
                 break;
             case Qilin_MoveType.Spin:
                 qilin.SetPower(attack, qilin.Spin_Power);
