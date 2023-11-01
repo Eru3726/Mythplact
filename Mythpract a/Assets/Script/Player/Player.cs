@@ -49,6 +49,7 @@ public partial class Player : MonoBehaviour
     bool ltup;
     bool rtup;
 
+    bool deadStop;
     bool gameover;
     bool isAttack;
     bool isGuard;
@@ -128,6 +129,8 @@ public partial class Player : MonoBehaviour
         deadEffectEnd = transform.GetChild(7).GetComponent<DeadEffectEnd>();
         brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
 
+        deadStop = false;
+
         InitCol();
         InitAudio();
         InitAnim();
@@ -163,7 +166,7 @@ public partial class Player : MonoBehaviour
 
     void Update()
     {
-        if (!gameover)
+        if (!gameover || !deadStop)
         {
             HMng.HitUpdate();
 
@@ -1087,6 +1090,7 @@ public partial class Player : MonoBehaviour
         {
             PlayerRb.velocity = new Vector2(0, 0);
             PlayerRb.gravityScale = 0;
+            deadStop = true;
             if(deathDirection == false)
             {
                 EffectDeath.Play();
@@ -1104,7 +1108,7 @@ public partial class Player : MonoBehaviour
 
 
                     gameover = true;
-
+                    deadStop = false;
                 }
 
             }
