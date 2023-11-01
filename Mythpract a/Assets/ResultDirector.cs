@@ -24,35 +24,43 @@ public class ResultDirector : MonoBehaviour
 
     public FadeManager Fade;
 
+    [SerializeField]
+    private int waitTime = 3;
+
+    private float time = 0;
+
     void Start()
     {
         dataManager.Read();
+        time = 0;
         ClearTimeText.text = GameData.ClearTime.ToString("F1") + "秒";
-        if (GameData.QilinDead && GameData.bestTimeQilin < GameData.ClearTime)
+        if (GameData.QilinDead)
         {
-            GameData.bestTimeQilin = GameData.ClearTime;
+            if(GameData.bestTimeQilin > GameData.ClearTime || GameData.bestTimeQilin == 0) GameData.bestTimeQilin = GameData.ClearTime;
             bestTimeText.text = GameData.bestTimeQilin.ToString("F1") + "秒";
         }
-        else if (GameData.FafnirDead && GameData.bestTimeFafnir < GameData.ClearTime)
+        else if (GameData.FafnirDead)
         {
-            GameData.bestTimeFafnir = GameData.ClearTime;
+            if (GameData.bestTimeFafnir > GameData.ClearTime || GameData.bestTimeFafnir == 0) GameData.bestTimeFafnir = GameData.ClearTime;
             bestTimeText.text = GameData.bestTimeFafnir.ToString("F1") + "秒";
         }
         else
         {
-            GameData.bestTimeShoggoth = GameData.ClearTime;
+            if (GameData.bestTimeShoggoth > GameData.ClearTime || GameData.bestTimeShoggoth == 0) GameData.bestTimeShoggoth = GameData.ClearTime;
             bestTimeText.text = GameData.bestTimeShoggoth.ToString("F1") + "秒";
         }
         justGuardText.text = GameData.justGuardCount + "回";
 
         HitCountText.text = GameData.HitCount + "回";
 
-        score = (int)(100 - GameData.ClearTime) + (GameData.justGuardCount * 3) - GameData.HitCount;
+        score = (int)(150 - GameData.ClearTime) + (GameData.justGuardCount * 3) - (GameData.HitCount * 2);
 
         if (score >= sScore) rankImage.sprite = s;
         else if (score >= aScore) rankImage.sprite = a;
         else if (score >= bScore) rankImage.sprite = b;
         else rankImage.sprite = c;
+
+        dataManager.Save();
 
         Time.timeScale = 1f;
     }
@@ -60,6 +68,7 @@ public class ResultDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time += Time.deltaTime;
         if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Mouse0))
         {
             Fade.Fadeout();
@@ -78,6 +87,7 @@ public class ResultDirector : MonoBehaviour
 
     public void scenetrans()
     {
+        if (time < waitTime) return;
         if (GameData.QilinDead)
         {
             SceneManager.LoadScene("TitleScene");
