@@ -8,27 +8,27 @@ public class Meteor : MonoBehaviour
     Rigidbody2D rb;
     AudioSource se;
     HitMng hm;
-    GroundCheck gc;
+    //GroundCheck gc;
     Qilin qilin;
 
     enum State
     {
-        None        = 0,    //”ñƒAƒNƒeƒBƒu
-        Generate    = 1,    //¶¬
-        Fall        = 2,    //—‰º
-        Impact      = 3,    //”š”­
-        Die         = 4,    //Á–Å
+        None        = 0,    //éã‚¢ã‚¯ãƒ†ã‚£ãƒ–
+        Generate    = 1,    //ç”Ÿæˆ
+        Fall        = 2,    //è½ä¸‹
+        Impact      = 3,    //çˆ†ç™º
+        Die         = 4,    //æ¶ˆæ»…
     }
     State state = State.None;
-    [SerializeField, Tooltip("UŒ‚”»’è")] GameObject attack;
-    [SerializeField, Tooltip("‘¬“x")] float speed = 5.0f;
-    [SerializeField, Tooltip("—‰ºƒGƒtƒFƒNƒg")] ParticleSetting fall_Effect;
-    [SerializeField, Tooltip("—‰ºƒTƒEƒ“ƒh")] AudioSetting fall_SE;
-    [SerializeField, Tooltip("ƒ_ƒ[ƒWƒGƒtƒFƒNƒg")] ParticleSetting damage_Effect;
-    [SerializeField, Tooltip("ƒ_ƒ[ƒWƒTƒEƒ“ƒh")] AudioSetting damage_SE;
-    [SerializeField, Tooltip("”š”­ƒGƒtƒFƒNƒg")] ParticleSetting impact_Effect;
-    [SerializeField, Tooltip("”š”­ƒTƒEƒ“ƒh")] AudioSetting impact_SE;
-    [SerializeField, Tooltip("”š”­ŠÔ")] float impact_Time = 0.5f;
+    [SerializeField, Tooltip("æ”»æ’ƒåˆ¤å®š")] GameObject attack;
+    [SerializeField, Tooltip("é€Ÿåº¦")] float speed = 5.0f;
+    [SerializeField, Tooltip("è½ä¸‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting fall_Effect;
+    [SerializeField, Tooltip("è½ä¸‹ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting fall_SE;
+    [SerializeField, Tooltip("ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting damage_Effect;
+    [SerializeField, Tooltip("ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting damage_SE;
+    [SerializeField, Tooltip("çˆ†ç™ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")] ParticleSetting impact_Effect;
+    [SerializeField, Tooltip("çˆ†ç™ºã‚µã‚¦ãƒ³ãƒ‰")] AudioSetting impact_SE;
+    [SerializeField, Tooltip("çˆ†ç™ºæ™‚é–“")] float impact_Time = 0.5f;
 
     Vector2 pos;
     Vector2 vec;
@@ -44,19 +44,19 @@ public class Meteor : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         se = GetComponent<AudioSource>();
         hm = GetComponent<HitMng>();
-        gc = GetComponent<GroundCheck>();
+        //gc = GetComponent<GroundCheck>();
         qilin = GameObject.Find("Qilin").GetComponent<Qilin>();
         plPos = qilin.Player.transform.position;
 
-        hm.SetUp(Damage, Impact);   //“–‚½‚è”»’è‰Šúİ’è
+        hm.SetUp(Damage, Impact);   //å½“ãŸã‚Šåˆ¤å®šåˆæœŸè¨­å®š
 
-        qilin.SetPower(attack, qilin.Meteor_Power); //ˆĞ—Íİ’è
+        qilin.SetPower(attack, qilin.Meteor_Power); //å¨åŠ›è¨­å®š
 
-        //”ÍˆÍ
+        //ç¯„å›²
         Vector2 center = qilin.Meteor_Center;
         Vector2 Range = qilin.Meteor_AtkRange;
 
-        //‰ŠúˆÊ’uA–Ú•WˆÊ’u’è‹`
+        //åˆæœŸä½ç½®ã€ç›®æ¨™ä½ç½®å®šç¾©
         switch(qilin.PlDir)
         {
             case -1:
@@ -72,16 +72,16 @@ public class Meteor : MonoBehaviour
         startPos.y = center.y + Range.y * 0.5f;
         goalPos.y = center.y - Range.y * 0.5f;
 
-        pos = startPos; //‰ŠúˆÊ’u
-        vec = (goalPos - startPos).normalized * speed;  //ƒxƒNƒgƒ‹
+        pos = startPos; //åˆæœŸä½ç½®
+        vec = (goalPos - startPos).normalized * speed;  //ãƒ™ã‚¯ãƒˆãƒ«
 
-        Quaternion rot = MoveDirection(vec);            //ˆÚ“®•ûŒü‚ÉŒü‚­
-        Vector3 euler = rot.eulerAngles;                //ƒIƒCƒ‰[Šp‚É•ÏŠ·
-        euler.z += 90.0f;                               //•ûŒü’²®
-        //if (Mathf.Abs(euler.z) <= 180.0f) { euler.z += (euler.z < 0) ? 180.0f : -180.0f; }  //¶‰E’²®
-        transform.rotation = Quaternion.Euler(euler);   //ƒNƒH[ƒ^ƒjƒIƒ“‚É•ÏŠ·‚µ‘ã“ü
+        Quaternion rot = MoveDirection(vec);            //ç§»å‹•æ–¹å‘ã«å‘ã
+        Vector3 euler = rot.eulerAngles;                //ã‚ªã‚¤ãƒ©ãƒ¼è§’ã«å¤‰æ›
+        euler.z += 90.0f;                               //æ–¹å‘èª¿æ•´
+        //if (Mathf.Abs(euler.z) <= 180.0f) { euler.z += (euler.z < 0) ? 180.0f : -180.0f; }  //å·¦å³èª¿æ•´
+        transform.rotation = Quaternion.Euler(euler);   //ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã«å¤‰æ›ã—ä»£å…¥
 
-        //Às
+        //å®Ÿè¡Œ
         rb.position = pos;
         rb.velocity = vec;
         fall_Effect.PlayParticle();
@@ -91,23 +91,23 @@ public class Meteor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (state != State.Fall) { rb.constraints = RigidbodyConstraints2D.FreezePosition; return; }    //—‰ºˆÈŠO‹‘”Û
-        if (gc.CheckFlag(GroundCheck.Flag.Ground)) { Impact(); }    //’n–ÊÚG
+        if (state != State.Fall) { rb.constraints = RigidbodyConstraints2D.FreezePosition; return; }    //è½ä¸‹æ™‚ä»¥å¤–æ‹’å¦
+        //if (gc.CheckFlag(GroundCheck.Flag.Ground)) { Impact(); }    //åœ°é¢æ¥è§¦æ™‚
 
         hm.HitUpdate();
         pos = rb.position;
 
-        if (pos.y < goalPos.y) { Die(0); }  //UŒ‚”ÍˆÍ’´‰ßAÁ‹
+        if (pos.y < goalPos.y) { Die(0); }  //æ”»æ’ƒç¯„å›²è¶…éæ™‚ã€æ¶ˆå»
         hm.PostUpdate();
     }
 
-    void Damage()   //”íƒ_ƒ[ƒW
+    void Damage()   //è¢«ãƒ€ãƒ¡ãƒ¼ã‚¸
     {
         damage_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
     }
 
-    void Impact()   //’n–ÊÚGA‹–—e”íƒ_ƒ’´‰ß
+    void Impact()   //åœ°é¢æ¥è§¦ã€è¨±å®¹è¢«ãƒ€ãƒ¡è¶…é
     {
         state = State.Impact;
         impact_Effect.PlayParticle();

@@ -5,24 +5,25 @@ namespace SY
     [System.Serializable]
     public class ParticleSetting
     {
-        //[SerializeField, Tooltip("–¼‘O")] string name;
-        [SerializeField, Tooltip("ƒp[ƒeƒBƒNƒ‹")] ParticleSystem particle;
-        [SerializeField, Tooltip("Œp‘±ŠÔ")] float time = 1.0f;
-        [SerializeField, Tooltip("ƒ‹[ƒv")] bool loop = false;
+        //[SerializeField, Tooltip("åå‰")] string name;
+        [SerializeField, Tooltip("ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«")] ParticleSystem particle;
+        [SerializeField, Tooltip("ç¶™ç¶šæ™‚é–“")] float time = 1.0f;
+        [SerializeField, Tooltip("ãƒ«ãƒ¼ãƒ—")] bool loop = false;
         ParticleStopCheck stopCheck;
         bool isValid = false;
 
-        //----------ƒvƒƒpƒeƒB----------
+        //----------ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£----------
         //public string Name { get { return name; } }
         public ParticleSystem Particle { get { return particle; } }
         public float Time { get { return time; } }
         public bool Loop { get { return loop; } set { loop = value; } }
         public bool IsValid { get { return isValid; } set { isValid = value; } }
 
-        //----------ƒT[ƒrƒX----------
+        //----------ã‚µãƒ¼ãƒ“ã‚¹----------
         public void PlayParticle()
         {
             if (particle == null) { return; }
+            Debug.Log(particle.name);
             var main = particle.main;
             main.duration = time;
             main.loop = loop;
