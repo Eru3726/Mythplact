@@ -711,6 +711,8 @@ partial class Player
             if(ChargeEffectPlayOnce == false)
             {
                 EffectCharge.Play();
+                audioSource.PlayOneShot(chargeSE);
+
                 ChargeEffectPlayOnce = true;
             }
 

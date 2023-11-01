@@ -1097,6 +1097,7 @@ public partial class Player : MonoBehaviour
             if(deathDirection == false)
             {
                 EffectDeath.Play();
+                audioSource.PlayOneShot(deadSE);
                 deathDirection = true;
                 SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
                 sprite.enabled = false;
