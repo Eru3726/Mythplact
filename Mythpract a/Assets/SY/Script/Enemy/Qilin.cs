@@ -131,7 +131,7 @@ public class Qilin : MonoBehaviour
     GameObject meteor_Last;
 
     [Header("被ダメージ")]
-    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    //[SerializeField, Tooltip("色")] Color damage_Color = Color.white;
     [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
     [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
@@ -563,10 +563,10 @@ public class Qilin : MonoBehaviour
                     Instantiate(spin, spin2Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
                 phase++;
                 break;
-            case 5:
-                if (spin_Last != null) { break; }
-                phase++;
-                break;
+            //case 5:
+            //    if (spin_Last != null) { break; }
+            //    phase++;
+            //    break;
             case 6:
                 timer += Time.deltaTime;
                 if (timer < spin_CoolTime) { break; }
