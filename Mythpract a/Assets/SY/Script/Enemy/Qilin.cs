@@ -775,16 +775,18 @@ public class Qilin : MonoBehaviour
     {
         while (damage_Repeat < damage_Number)
         {
-            for (int i = 0; i < renderController.Renderers.Length; i++)
-            {
-                renderController.Renderers[i].ScreenColor = damage_Color;
-            }
+            renderController.Opacity = 0;
+            //for (int i = 0; i < renderController.Renderers.Length; i++)
+            //{
+            //    renderController.Renderers[i].ScreenColor = damage_Color;
+            //}
             //待つ
             yield return new WaitForSeconds(damage_Time);
-            for (int i = 0; i < renderController.Renderers.Length; i++)
-            {
-                renderController.Renderers[i].ScreenColor = defColor;
-            }
+            renderController.Opacity = 1;
+            //for (int i = 0; i < renderController.Renderers.Length; i++)
+            //{
+            //    renderController.Renderers[i].ScreenColor = defColor;
+            //}
             //待つ
             yield return new WaitForSeconds(damage_Time);
             damage_Repeat++;

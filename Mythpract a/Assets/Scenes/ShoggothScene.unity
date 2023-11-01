@@ -5831,6 +5831,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799951082348, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799951082348, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799951082348, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799951082348, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
@@ -5842,6 +5854,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5971913799951082348, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5971913799980852499, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
       propertyPath: m_Name
       value: Shoggoth
@@ -5923,6 +5939,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: damage_Number
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
       propertyPath: rush_Offset.x
       value: 0
       objectReference: {fileID: 0}
@@ -5938,6 +5958,22 @@ PrefabInstance:
       propertyPath: upDown_Effect
       value: 
       objectReference: {fileID: 1155927373}
+    - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: damage_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: damage_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: damage_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: damage_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
       propertyPath: eight_Center.y
       value: 5
