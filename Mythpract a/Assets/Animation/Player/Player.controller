@@ -221,7 +221,7 @@ AnimatorStateMachine:
     m_Position: {x: 1020, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1677759989123871631}
-    m_Position: {x: 1020, y: 360, z: 0}
+    m_Position: {x: 990, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6876407901459661059}
     m_Position: {x: 240, y: 410, z: 0}
@@ -1909,8 +1909,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: HitAtkJumpDown
+  - m_ConditionMode: 2
+    m_ConditionEvent: CanHitDown
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5150027611196542373}
