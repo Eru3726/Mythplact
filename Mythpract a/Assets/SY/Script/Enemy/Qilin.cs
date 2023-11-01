@@ -53,6 +53,7 @@ public class Qilin : MonoBehaviour
 
     [SerializeField, Tooltip("行動")] Qilin_MoveType moveType = Qilin_MoveType.Idle;
     [SerializeField, Tooltip("行動テーブル")] Qilin_MoveTable[] moveTable;  //各テーブルの最初の行動はIdleにする必要がある
+    bool isHalfHP = false; 
 
     [Header("本体")]
     [SerializeField, Tooltip("接触攻撃判定")] GameObject body;
@@ -131,7 +132,7 @@ public class Qilin : MonoBehaviour
     GameObject meteor_Last;
 
     [Header("被ダメージ")]
-    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    //[SerializeField, Tooltip("色")] Color damage_Color = Color.white;
     [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
     [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
@@ -156,6 +157,7 @@ public class Qilin : MonoBehaviour
     public GameObject Player { get { return pl; } }
     public int PlDir { get { return plDir; } }
     public Qilin_MoveType MoveType { get { return moveType; } }
+    public bool IsHalfHP { get { return isHalfHP; } set { isHalfHP = value; } }
     public Vector2 Spin_Center { get { return spin_Center; } }
     public Vector2 Spin_AtkRange { get { return spin_AtkRange; } }
     public float Spin_Power { get { return spin_Power; } }
@@ -558,22 +560,22 @@ public class Qilin : MonoBehaviour
                 if (anim.Action != AnimSetting.Type.Idle) { break; }
                 Vector2 spin1Pos = new Vector2(stage_LeftTop.x, gPos);
                 Vector2 spin2Pos = new Vector2(stage_RightDown.x, gPos);
-                Instantiate(spin, spin1Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                Instantiate(spin, spin1Pos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
                 spin_Last =
-                    Instantiate(spin, spin2Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                    Instantiate(spin, spin2Pos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
                 phase++;
                 break;
+            //case 5:
+            //    if (spin_Last != null) { break; }
+            //    phase++;
+            //    break;
             case 5:
-                if (spin_Last != null) { break; }
-                phase++;
-                break;
-            case 6:
                 timer += Time.deltaTime;
                 if (timer < spin_CoolTime) { break; }
                 timer = 0;
                 phase++;
                 break;
-            case 7:
+            case 6:
                 MoveEnd();
                 break;
             default:
@@ -676,13 +678,17 @@ public class Qilin : MonoBehaviour
     void MoveEnd()  //行動終了時処理
     {
         Debug.Log("行動終了");
-        moveNo++;
-        if (moveNo == moveTable[tableNo].Move.Length)
+        if (!isHalfHP)
         {
-            tableNo = Random.Range(0, moveTable.Length);
-            moveNo = 0;
+            moveNo++;
+            if (moveNo == moveTable[tableNo].Move.Length)
+            {
+                tableNo = Random.Range(0, moveTable.Length);
+                moveNo = 0;
+            }
+            moveType = moveTable[tableNo].Move[moveNo];
         }
-        moveType = moveTable[tableNo].Move[moveNo];
+        else { moveType = Qilin_MoveType.Spin; isHalfHP = false; }
         AllVariableClear();
     }
 
@@ -707,10 +713,11 @@ public class Qilin : MonoBehaviour
 
     void Damage()   //被ダメージ
     {
+        Debug.Log(obj.name + "はダメージを受けた");
         damage_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
         StartCoroutine("Flash");
-        Debug.Log(obj.name + "はダメージを受けた");
+        if ((hm.HP == hm.MaxHP * 0.5f) && !hm.IsHalfHP) { isHalfHP = true; }
     }
 
     void Die()      //死亡

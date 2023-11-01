@@ -130,10 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7540d4302ca489647bc4d80005b780dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  qilinName: Qilin
   attack: {fileID: 4776590688356478371}
   speed: 5
   upTime: 0.5
-  time: 3
+  atkTime: 5
   effect:
     particle: {fileID: 266845582673505909}
     time: 3
