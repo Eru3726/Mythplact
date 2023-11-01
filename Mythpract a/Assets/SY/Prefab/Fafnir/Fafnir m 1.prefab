@@ -2489,7 +2489,7 @@ MonoBehaviour:
   layer: 1
   maxHp: 1000
   hp: 0
-  atk: 100
+  atk: 1
   def: 100
   atkActive: 0
   defActive: 0

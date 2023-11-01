@@ -48,6 +48,7 @@ partial class Player
     bool LoneWarriorReset = false;
 
     bool isSkill = false;
+    bool isCharge = false;
 
     public float SkillSlashCT { get { return skillSlashCT; } }
     public float SkillSlashCount { get { return skillSlashCount; } }
@@ -630,17 +631,23 @@ partial class Player
         {
             EffectCharge.Play();
 
+            if (isGround)
+            {
+                PlayerRb.velocity = new Vector2(0, 0);
+
+            }
+
         }
         // ため攻撃の判定
         if (attack)
         {
             attackCount += Time.deltaTime;
-            isSkill = true;
+            isCharge = true;
 
         }
         if (attackEnd)
         {
-            isSkill = false;
+            isCharge = false;
             EffectCharge.Stop();
             EffectCharge.Clear();
 

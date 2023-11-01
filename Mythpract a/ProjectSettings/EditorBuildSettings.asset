@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ResultScene2.unity
     guid: 34efc6758a3bf3441bf319a0e061b111
+  - enabled: 1
+    path: Assets/Scenes/QilinScene.unity
+    guid: 4f13c056bcf90ab4f983154af0ba773b
   m_configObjects: {}

@@ -712,7 +712,7 @@ public class Qilin : MonoBehaviour
         anim.AnimChage("Dead", isLock);
         die_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
-        //GameSceneDirector2.Bossdead2 = true;
+        GameData.QilinDead = true;
         Debug.Log(obj.name + "は死んだ");
     }
 

@@ -205,15 +205,38 @@ public class CursorController : MonoBehaviour
     {
 
         // 上下左右移動
-        if (up) gameObject.transform.Translate(0, moveVertical, 0, Space.World);
-        if (down) gameObject.transform.Translate(0, -moveVertical, 0, Space.World);
-        if (left) gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
-        if (right) gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
-
-        if (left1) gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
-        if (left2) gameObject.transform.Translate(-moveSide, moveVertical / 2, 0, Space.World);
-        if (right1) gameObject.transform.Translate(moveSide, -moveVertical / 2, 0, Space.World);
-        if (right2) gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+        if (up)
+        {
+            gameObject.transform.Translate(0, moveVertical, 0, Space.World);
+        }
+        if (down)
+        {
+            gameObject.transform.Translate(0, -moveVertical, 0, Space.World);
+        }
+        if (left)
+        {
+            gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
+        }
+        if (right)
+        {
+            gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+        }
+        if (left1)
+        {
+            gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
+        }
+        if (left2)
+        {
+            gameObject.transform.Translate(-moveSide, moveVertical / 2, 0, Space.World);
+        }
+        if (right1)
+        {
+            gameObject.transform.Translate(moveSide, -moveVertical / 2, 0, Space.World);
+        }
+        if (right2)
+        {
+            gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+        }
 
         // 回転
         if (Rspin) gameObject.transform.Rotate(0, 0, -60);
@@ -630,7 +653,7 @@ public class CursorController : MonoBehaviour
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill10Select();
-            skillText.Skill5Text();
+            skillText.Skill10Text();
         }
         else if (pickupTfm.parent.name == "SkillPiece11(Clone)")
         {
