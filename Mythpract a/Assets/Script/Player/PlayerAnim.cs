@@ -7,9 +7,13 @@ partial class Player
     bool doublejumpAnim;
     bool hitAnim;
     bool hitJumpDown;
+    bool canHitDown;
+
     void InitAnim()
     {
         plAnim = GetComponent<Animator>();
+
+        atkJumpDownCount = 0;
     }
 
     void ChangeAnim()
@@ -25,6 +29,7 @@ partial class Player
         plAnim.SetBool("Guard", isGuard);
         plAnim.SetBool("Hit",hitAnim);
         plAnim.SetBool("HitAtkJumpDown", hitJumpDown);
+        plAnim.SetBool("CanHitDown", canHitDown);
         plAnim.SetBool("IsFleet", isFleet);
         plAnim.SetFloat("Walk", Mathf.Abs(inputDir.x));
         plAnim.SetFloat("VeloV", PlayerRb.velocity.y);
@@ -35,7 +40,11 @@ partial class Player
     {
         hitJumpDown = false;
     }
-
+    public void AtkJumpDownEnd()
+    {
+        atkJumpDownCount = 0;
+        canHitDown = false;
+    }
     void AttackStart()
     {
         isAttack = true;
@@ -45,5 +54,7 @@ partial class Player
     {
         isAttack = false;
     }
+
+
 
 }
