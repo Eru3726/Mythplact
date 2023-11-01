@@ -2400,7 +2400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: 1
   maxHp: 1000
-  hp: 0
+  hp: 1
   atk: 1
   def: 100
   atkActive: 0
@@ -9788,17 +9788,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dead
       objectReference: {fileID: 0}
+    - target: {fileID: 1736373518754648309, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.28833103
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.1858277
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
       propertyPath: m_LocalPosition.z

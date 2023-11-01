@@ -210,8 +210,17 @@ public class Qilin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (moveType == Qilin_MoveType.Die) 
+        {
+            die_Effect.StopCheck();
+            if (0.5f <= anim.NormalizedTime) { renderController.Opacity = 0; }
+            if (!die_Effect.IsValid)
+            {
+                GameData.QilinDead = true;
+            }
+            return; 
+        }
         hm.HitUpdate();
-        if (moveType == Qilin_MoveType.Die) { return; }
 
         pos = rb.position;
         plPos = pl.transform.position;
@@ -712,11 +721,6 @@ public class Qilin : MonoBehaviour
         die_Effect.Particle.gameObject.SetActive(true);
         die_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
-        die_Effect.StopCheck();
-        if (!die_Effect.IsValid)
-        {
-            GameData.QilinDead = true;
-        }
     }
 
     //----------アニメーション----------
