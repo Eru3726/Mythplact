@@ -136,6 +136,8 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
+
 
                     isFleet = true;
 
@@ -151,6 +153,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -166,6 +169,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -182,6 +186,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -393,7 +398,7 @@ partial class Player
     public void SkillSlash()
     {
 
-        SkillSE();
+        audioSource.PlayOneShot(skillSheriffSE);
 
         GameData.SkillCount++;
         
