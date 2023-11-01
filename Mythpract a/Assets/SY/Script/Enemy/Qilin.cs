@@ -567,13 +567,13 @@ public class Qilin : MonoBehaviour
             //    if (spin_Last != null) { break; }
             //    phase++;
             //    break;
-            case 6:
+            case 5:
                 timer += Time.deltaTime;
                 if (timer < spin_CoolTime) { break; }
                 timer = 0;
                 phase++;
                 break;
-            case 7:
+            case 6:
                 MoveEnd();
                 break;
             default:
