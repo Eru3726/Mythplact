@@ -139,6 +139,10 @@ public class SaveData
     public float ClearTime;
     public int HitCount;
     public int SkillCount;
+    public int justGuardCount;
 
+    public float bestTimeShoggoth = 0;
+    public float bestTimeFafnir = 0;
+    public float bestTimeQilin = 0;
 
 }

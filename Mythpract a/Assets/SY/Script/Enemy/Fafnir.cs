@@ -121,6 +121,19 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float earthquake_SEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool earthquake_SELoop;
 
+    [Header("死亡")]
+    [SerializeField, Tooltip("変色前時間")] float dead_Time = 0.5f; 
+    [SerializeField]
+    [Tooltip("固まるスピード")]
+    float dead_Speed;
+    [SerializeField]
+    [Tooltip("固まる最大値")]
+    private float max;
+    private Material fafmat;
+    private float goldtime;
+    private bool start = false;
+
+
 
     [Header("カメラ")]
     [SerializeField, Tooltip("画面情報")] CameraData cameraData;
@@ -169,6 +182,7 @@ public class Fafnir : MonoBehaviour
         earthquake.SetActive(false);
 
         hm.SetUp(Damage, Die);
+        fafmat = gameObject.GetComponent<Renderer>().material;
         CameraData();
 
     }
@@ -306,6 +320,8 @@ public class Fafnir : MonoBehaviour
                 Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
                 if (anim.NormalizedTime < 1.0f) { break; }
                 SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
+                tackle_Effect.gameObject.SetActive(true);
+                tackle_Effect.Play();
                 anim.AnimChage("Rush_Air", isLock);
                 repeat++;
                 phase++;
@@ -325,6 +341,7 @@ public class Fafnir : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 SetPower(body, body_Power);
                 anim.AnimChage("Rush_End", isLock);
+                tackle_Effect.gameObject.SetActive(false);
                 timer = 0;
                 phase++;
                 break;
@@ -359,6 +376,7 @@ public class Fafnir : MonoBehaviour
                 phase++;
                 break;
             case 1:     //プレーヤーの位置と地面位置から攻撃位置定義、ジャンプ行動
+                CameraData();
                 Vector2 target = (center.x - plPos.x <= 0) ? leftTop : rightTop;
                 target = new Vector2(target.x, GroundPosition(target.x));
                 //Debug.Log(target);
@@ -514,13 +532,27 @@ public class Fafnir : MonoBehaviour
 
     void Die()      //死亡
     {
+        Debug.Log(obj.name + "は死んだ");
         if (soundcount == 0)
         {
+            timer = 0;
             SetAudio(die_SE, die_SEVolume, die_SEPitch, die_SELoop);
         }
+        anim.AnimChage("Dead", isLock);
         soundcount++;
-        GameData.FafnirDead = true;
-        Debug.Log(obj.name + "は死んだ");
+        timer += Time.deltaTime;
+        if(timer < dead_Time) { return; }
+        Debug.Log(goldtime);
+        start = true;
+        if (start == true)
+        {
+            if (goldtime <= max)
+            {
+                goldtime += dead_Speed;
+                fafmat.SetFloat("time", goldtime);
+            }
+            else { GameData.FafnirDead = true; }
+        }
     }
 
     //----------アニメーション----------
@@ -574,6 +606,7 @@ public class Fafnir : MonoBehaviour
         RaycastHit2D rayHit = 
             Physics2D.Raycast(new Vector2(axisX, leftTop.y), Vector2.down, screenHeight, gc.Ray[0].Layer);  //光線発射
         Debug.DrawRay(new Vector2(axisX, leftTop.y), Vector2.down * screenHeight, Color.green, 1.0f);
+        if (rayHit.collider == null) { Debug.LogError(axisX + "に地面はない"); return 0; }
         if (rayHit.collider.tag == gc.Ray[0].Tag.ToString())
         {
             Vector2 groundPos = rayHit.point;   //地面位置確認

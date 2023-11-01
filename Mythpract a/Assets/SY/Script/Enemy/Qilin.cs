@@ -164,7 +164,6 @@ public class Qilin : MonoBehaviour
     public Vector2 Meteor_AtkRange { get { return meteor_AtkRange; } }
     public float Meteor_Power { get { return meteor_Power; } }
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -211,8 +210,16 @@ public class Qilin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moveType == Qilin_MoveType.Die) { return; }
-
+        if (moveType == Qilin_MoveType.Die) 
+        {
+            die_Effect.StopCheck();
+            if (0.5f <= anim.NormalizedTime) { renderController.Opacity = 0; }
+            if (!die_Effect.IsValid)
+            {
+                GameData.QilinDead = true;
+            }
+            return; 
+        }
         hm.HitUpdate();
 
         pos = rb.position;
@@ -708,12 +715,12 @@ public class Qilin : MonoBehaviour
 
     void Die()      //死亡
     {
+        Debug.Log(obj.name + "は死んだ");
         moveType = Qilin_MoveType.Die;
         anim.AnimChage("Dead", isLock);
+        die_Effect.Particle.gameObject.SetActive(true);
         die_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
-        GameData.QilinDead = true;
-        Debug.Log(obj.name + "は死んだ");
     }
 
     //----------アニメーション----------

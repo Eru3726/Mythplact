@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class KeyManager : MonoBehaviour
 {
@@ -8,6 +8,9 @@ public class KeyManager : MonoBehaviour
 
     [SerializeField] 
     private RebindSaveManager rsm;
+
+    [SerializeField]
+    private AchvUI achv;
 
     private bool openFlg = false;
 
@@ -51,5 +54,16 @@ public class KeyManager : MonoBehaviour
         keyPanel.SetActive(false);
         openFlg = false;
         Time.timeScale = 1;
+    }
+
+    public void AchvOpen()
+    {
+        achv.OpenUI();
+    }
+
+    public void SkillOpen()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SkillPiece");
     }
 }

@@ -9,7 +9,7 @@ namespace SY
         [SerializeField] HitLayer layer;
         //ステータス
         [SerializeField, Tooltip("最大体力")] float maxHp;
-        [SerializeField, Tooltip("現在体力"), ReadOnly] float hp;
+        [SerializeField, Tooltip("現在体力"), ReadOnly] float hp = 1.0f;
         [SerializeField, Tooltip("攻撃力")] float atk;
         [SerializeField, Tooltip("防御力")] float def;
         [SerializeField, Tooltip("攻撃トリガー")] bool atkActive;

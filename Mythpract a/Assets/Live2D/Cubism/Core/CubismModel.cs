@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
  * Use of this source code is governed by the Live2D Open Software license
@@ -448,12 +448,22 @@ namespace Live2D.Cubism.Core
                 return;
             }
 
-
+            //変更
+            // Sync parameters back.
+            //TaskableModel.TryReadParameters(Parameters);
+#if !UNITY_EDITOR
             // Sync parameters back.
             TaskableModel.TryReadParameters(Parameters);
+#else
+            if (Application.isPlaying)
+            {
+                // Sync parameters back.
+                TaskableModel.TryReadParameters(Parameters);
+            }
+#endif
 
             // restore last frame parameters value and parts opacity.
-            if(_parameterStore != null)
+            if (_parameterStore != null)
             {
                 _parameterStore.RestoreParameters();
             }

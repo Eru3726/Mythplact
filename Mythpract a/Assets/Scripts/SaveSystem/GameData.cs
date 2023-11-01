@@ -143,5 +143,9 @@ public class GameData
     public static float ClearTime = 0;
     public static int HitCount = 0;
     public static int SkillCount = 0;
+    public static int justGuardCount = 0;
 
+    public static float bestTimeShoggoth = 0;
+    public static float bestTimeFafnir = 0;
+    public static float bestTimeQilin = 0;
 }

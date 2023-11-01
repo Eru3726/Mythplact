@@ -35,7 +35,7 @@ public class AchvUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) OpenUI();
+        //if (Input.GetKeyDown(KeyCode.Escape)) OpenUI();
     }
 
     public void OpenUI()
