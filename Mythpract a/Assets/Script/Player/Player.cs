@@ -848,6 +848,7 @@ public partial class Player : MonoBehaviour
             PlayerRb.AddForce(Vector2.up * doubleJumpPow, ForceMode2D.Impulse);
 
             atkJumpDown.HitAtkJumpDown = false;
+            canHitDown = false;
         }
 
         atkJumpDownCount += Time.deltaTime;

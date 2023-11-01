@@ -51,6 +51,7 @@ partial class Player
     bool isFleet = false;
     bool isLoneWarrior = false;
     bool LoneWarriorReset = false;
+    bool ChargeEffectPlayOnce = false;
 
     bool isSkill = false;
     bool isCharge = false;
@@ -682,14 +683,19 @@ partial class Player
 
         }
         // ため攻撃の判定
-        if (attack)
+        if (attack && isGround)
         {
+            ChargeEffectPlayOnce = true;
+ 
             attackCount += Time.deltaTime;
             isCharge = true;
+            EffectCharge.Play();
+
 
         }
         if (attackEnd)
         {
+            ChargeEffectPlayOnce = false;
             isCharge = false;
             EffectCharge.Stop();
             EffectCharge.Clear();
