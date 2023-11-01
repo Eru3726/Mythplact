@@ -1168,6 +1168,7 @@ public partial class Player : MonoBehaviour
         }
         if (hitAnim == true)
         {
+
             knockbuckCount += Time.deltaTime;
             if (knockbuckCount >= knockbuckTime /*  || isGround*/)
             {
