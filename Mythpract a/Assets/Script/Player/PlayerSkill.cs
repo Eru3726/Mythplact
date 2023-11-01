@@ -26,7 +26,7 @@ partial class Player
     [SerializeField, Tooltip("スピードアップスキル")] int SkillMaxSpeed;
     [SerializeField, Tooltip("火事場攻撃力アップ")] float SkillKajibaAtk;
 
-    [SerializeField] GameObject FleetCol;
+    [SerializeField] BoxCollider2D FleetCol;
 
     float skillSlashCount = 100;
     float skillFleetCount = 100;
@@ -422,10 +422,11 @@ partial class Player
         if(isFleet == true)
         {
             isSkill = true;
-            //HMng.DEFActive = false;
+            HMng.DEFActive = false;
             skillFleetDuration += Time.deltaTime;
 
-            FleetCol.SetActive(true);
+            FleetCol.size = new Vector2(6f, 2f);
+            FleetCol.offset = new Vector2(0, -0.355f);
             EffectSkillFleet.Play();
 
             if (skillFleetDirX > 0)
@@ -459,12 +460,12 @@ partial class Player
                 //    }
 
             }
-            if (HMng.CheckDamage())
-            {
-                PlayerRb.gravityScale = 7f;
-                isFleet = false;
+            //if (HMng.CheckDamage())
+            //{
+            //    PlayerRb.gravityScale = 7f;
+            //    isFleet = false;
 
-            }
+            //}
 
             if (skillFleetDuration >= skillFleetTime)
             {
@@ -476,11 +477,11 @@ partial class Player
         }
         else
         {
-            // HMng.DEFActive = true;
+            HMng.DEFActive = true;
             EffectSkillFleet.Stop();
 
             isSkill = false;
-            FleetCol.SetActive(false);
+            FleetCol.size = new Vector2(0, 0);
         }
     }
     public void SkillLoneWarrior()
