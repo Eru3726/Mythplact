@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 62246546407088735}
   - component: {fileID: 5230261739907882520}
   - component: {fileID: 7980314384394567725}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: AtkSkillFleetCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15189,7 +15189,7 @@ MonoBehaviour:
   SkillJustGuard: 0.3
   SkillMaxSpeed: 20
   SkillKajibaAtk: 2
-  FleetCol: {fileID: 6955964071985105023}
+  FleetCol: {fileID: 62246546407088735}
   slash: {fileID: 8438359422445198577, guid: a7264e29880c3e24997be8bf537b70c3, type: 3}
   greem: {fileID: 4028125354744199665, guid: 20215f1e58e9f2444b2164c655f0aed0, type: 3}
   dstrike: {fileID: 1189577935225991482, guid: 5ab6ec6d85f19bb48b868424e1f674d8, type: 3}
