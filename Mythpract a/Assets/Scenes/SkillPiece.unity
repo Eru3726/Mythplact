@@ -24919,8 +24919,8 @@ MonoBehaviour:
   Skill1: {fileID: 4443736792557326085, guid: 16bc0a2f790beb24485a1238b87c19b4, type: 3}
   Skill2: {fileID: 2309592032599097976, guid: 98b0ec55a53d9fb4e9cb4a7a7e806f1a, type: 3}
   Skill3: {fileID: 2603658967734975318, guid: 0ee73ebb6ab3dd3419eca78dfba4af33, type: 3}
-  Skill4: {fileID: 2603658967734975318, guid: d7ce9aed48afaea42b0a14aa714325be, type: 3}
-  Skill5: {fileID: 2603658967734975318, guid: b095d557565e82040b19b9f652952313, type: 3}
+  Skill4: {fileID: 4631479779133854362, guid: f0053cfd7e9a57746b871743086df906, type: 3}
+  Skill5: {fileID: 8998496127224549087, guid: efeb9095989d1b2458e14e195823c4e9, type: 3}
   Skill6: {fileID: 0}
   Skill7: {fileID: 0}
   Skill8: {fileID: 0}

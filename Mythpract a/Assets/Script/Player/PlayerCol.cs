@@ -153,15 +153,15 @@ partial class Player
         }
         return false;
     }
-    void PowerReset()
-    {
-        SetPower(NormalAtk, NormalAtk_Power);
-        SetPower(JumpAtk, JumpAtk_Power);
-        SetPower(JumpUpAtk, JumpUpAtk_Power);
-        SetPower(JumpDownAtk, JumpDownAtk_Power);
-        SetPower(ChargeAtk, ChargeAtk_Power);
+    //void PowerReset()
+    //{
+    //    SetPower(NormalAtk, NormalAtk_Power);
+    //    SetPower(JumpAtk, JumpAtk_Power);
+    //    SetPower(JumpUpAtk, JumpUpAtk_Power);
+    //    SetPower(JumpDownAtk, JumpDownAtk_Power);
+    //    SetPower(ChargeAtk, ChargeAtk_Power);
 
-    }
+    //}
 
     void SetPower(GameObject obj, float power)
     {
@@ -170,7 +170,14 @@ partial class Player
 
     public void AtkNormalHit()
     {
-        Debug.Log("攻撃が接触");
+        SetPower(NormalAtk, NormalAtk_Power);
     }
-
+    public void AtkJumpHit()
+    {
+        SetPower(JumpAtk, JumpAtk_Power);
+    }
+    public void AtkJumpDownHit()
+    {
+        SetPower(JumpDownAtk, JumpDownAtk_Power);
+    }
 }
