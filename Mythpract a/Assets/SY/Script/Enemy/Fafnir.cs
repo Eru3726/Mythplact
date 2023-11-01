@@ -1,7 +1,10 @@
 //ボス2：ファフニール
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using SY;
+using Live2D.Cubism.Rendering;
 
 public enum Fafnir_MoveType
 {
@@ -17,11 +20,13 @@ public class Fafnir : MonoBehaviour
 
     Rigidbody2D rb;
     AudioSource se;
+    CubismRenderController renderController;
     HitMng hm;      //当たり判定
     GroundCheck gc; //接地判定
 
     //
-    GameObject obj; //自身
+    GameObject obj; //自身自身
+    Color defColor;
     [SerializeField, Tooltip("プレーヤー")] GameObject pl;
 
     //
@@ -121,6 +126,14 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float earthquake_SEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool earthquake_SELoop;
 
+    [Header("被ダメージ")]
+    //[SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
+    [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
+    [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
+    [SerializeField, Tooltip("サウンド")] AudioSetting damage_SE;
+    float damage_Repeat = 0;
+
     [Header("死亡")]
     [SerializeField, Tooltip("変色前時間")] float dead_Time = 0.5f; 
     [SerializeField]
@@ -162,10 +175,12 @@ public class Fafnir : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         se = GetComponent<AudioSource>();
+        renderController = GetComponent<CubismRenderController>();
         anim = GetComponent<Anim>();
         hm = GetComponent<HitMng>();
         gc = GetComponent<GroundCheck>();
         obj = this.gameObject;
+        defColor = renderController.ModelScreenColor;
         pos = rb.position;
         plPos = pl.transform.position;
         defScale = transform.localScale;
@@ -185,6 +200,7 @@ public class Fafnir : MonoBehaviour
         fafmat = gameObject.GetComponent<Renderer>().material;
         CameraData();
 
+        renderController.OverwriteFlagForModelScreenColors = true;
     }
 
     // Update is called once per frame
@@ -528,6 +544,7 @@ public class Fafnir : MonoBehaviour
     void Damage()   //被ダメージ
     {
         Debug.Log(obj.name + "はダメージを受けた");
+        StartCoroutine("Flash");
     }
 
     void Die()      //死亡
@@ -614,6 +631,29 @@ public class Fafnir : MonoBehaviour
         }
         Debug.LogError(axisX + "に地面はない");
         return 0;
+    }
+
+    IEnumerator Flash()
+    {
+        while (damage_Repeat < damage_Number)
+        {
+            renderController.Opacity = 0;
+            //for (int i = 0; i < renderController.Renderers.Length; i++)
+            //{
+            //    renderController.Renderers[i].ScreenColor = damage_Color;
+            //}
+            //待つ
+            yield return new WaitForSeconds(damage_Time);
+            renderController.Opacity = 1;
+            //for (int i = 0; i < renderController.Renderers.Length; i++)
+            //{
+            //    renderController.Renderers[i].ScreenColor = defColor;
+            //}
+            //待つ
+            yield return new WaitForSeconds(damage_Time);
+            damage_Repeat++;
+        }
+        damage_Repeat = 0;
     }
 
     //上昇または落下時間

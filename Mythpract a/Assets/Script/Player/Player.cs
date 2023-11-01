@@ -49,6 +49,7 @@ public partial class Player : MonoBehaviour
     bool ltup;
     bool rtup;
 
+    bool deadStop;
     bool gameover;
     bool isAttack;
     bool isGuard;
@@ -128,6 +129,8 @@ public partial class Player : MonoBehaviour
         deadEffectEnd = transform.GetChild(7).GetComponent<DeadEffectEnd>();
         brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
 
+        deadStop = false;
+
         InitCol();
         InitAudio();
         InitAnim();
@@ -163,7 +166,7 @@ public partial class Player : MonoBehaviour
 
     void Update()
     {
-        if (!gameover)
+        if (!gameover || !deadStop)
         {
             HMng.HitUpdate();
 
@@ -1087,6 +1090,7 @@ public partial class Player : MonoBehaviour
         {
             PlayerRb.velocity = new Vector2(0, 0);
             PlayerRb.gravityScale = 0;
+            deadStop = true;
             if(deathDirection == false)
             {
                 EffectDeath.Play();
@@ -1104,7 +1108,7 @@ public partial class Player : MonoBehaviour
 
 
                     gameover = true;
-
+                    deadStop = false;
                 }
 
             }
@@ -1140,7 +1144,7 @@ public partial class Player : MonoBehaviour
             if (CheckRightHit() == true)
             {
                 PlayerRb.velocity = Vector2.zero;
-                PlayerRb.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
                 PlayerRb.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
             }
@@ -1148,7 +1152,7 @@ public partial class Player : MonoBehaviour
             {
                 PlayerRb.velocity = Vector2.zero;
 
-                PlayerRb.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
                 PlayerRb.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
 
@@ -1157,7 +1161,7 @@ public partial class Player : MonoBehaviour
             {
                 PlayerRb.velocity = Vector2.zero;
 
-                PlayerRb.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
                 PlayerRb.AddForce(Vector2.right * 15, ForceMode2D.Impulse);
 
@@ -1168,7 +1172,7 @@ public partial class Player : MonoBehaviour
         {
             knockbuckCount += Time.deltaTime;
         }
-        if(knockbuckCount >= knockbuckTime  || isGround)
+        if(knockbuckCount >= knockbuckTime/*  || isGround*/)
         {
             hitAnim = false;
             knockbuckCount = 0;
