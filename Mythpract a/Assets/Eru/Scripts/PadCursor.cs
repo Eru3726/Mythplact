@@ -15,7 +15,6 @@ public class PadCursor : MonoBehaviour
     Vector2 currentMousePosition;
 
     float timeMousePositionStatic = 0.0f;
-
     void Start()
     {
         Vector3 mp = Input.mousePosition;
@@ -56,7 +55,6 @@ public class PadCursor : MonoBehaviour
 
             previousMousePosition = currentMousePosition;
         }
-
         cursorCan.SetActive(currentFlg);
     }
 }

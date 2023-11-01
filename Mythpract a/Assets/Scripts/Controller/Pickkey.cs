@@ -107,7 +107,7 @@ public class Pickkey : MonoBehaviour
             //カーソルを見えなくする
             Cursor.visible = false;
             //カーソルを画面中央にロック
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
             //InputManagerで新たに設定したAxisの変数を取得
             float lsh = Input.GetAxis("L_stick_H");　　　　//左スティック横
             float lsv = Input.GetAxis("L_stick_V");        //左スティック縦

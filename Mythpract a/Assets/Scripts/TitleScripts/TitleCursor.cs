@@ -1,24 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class KeyManager : MonoBehaviour
+public class TitleCursor : MonoBehaviour
 {
     [SerializeField]
-    private GameObject keyPanel,padPanel;
+    private GameObject keyPanel, padPanel;
 
-    [SerializeField] 
+    [SerializeField]
     private RebindSaveManager rsm;
 
     [SerializeField]
     private AchvUI achv;
 
     private bool openFlg = false;
-
-    [SerializeField]
-    private GameObject player;
-
-    [SerializeField]
-    private GameObject cursor;
 
     private void Awake()
     {
@@ -31,11 +25,11 @@ public class KeyManager : MonoBehaviour
     void Update()
     {
         //pauseキーが押されたら
-        if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.JoystickButton7))
-        {
-            if (openFlg == false) KeyBoardPanel();
-            else ClosePanel();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (openFlg == false) KeyBoardPanel();
+        //    else ClosePanel();
+        //}
     }
 
     public void KeyBoardPanel()
@@ -43,8 +37,6 @@ public class KeyManager : MonoBehaviour
         keyPanel.SetActive(true);
         padPanel.SetActive(false);
         openFlg = true;
-        if(player) player.SetActive(false);
-        cursor.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -53,8 +45,6 @@ public class KeyManager : MonoBehaviour
         padPanel.SetActive(true);
         keyPanel.SetActive(false);
         openFlg = true;
-        if (player) player.SetActive(false);
-        cursor.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -63,19 +53,11 @@ public class KeyManager : MonoBehaviour
         padPanel.SetActive(false);
         keyPanel.SetActive(false);
         openFlg = false;
-        if (player) player.SetActive(true);
-        cursor.SetActive(false);
         Time.timeScale = 1;
     }
 
     public void AchvOpen()
     {
         achv.OpenUI();
-    }
-
-    public void SkillOpen()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("SkillPiece");
     }
 }

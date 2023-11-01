@@ -175,6 +175,7 @@ public class Fafnir : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fafgold.SetFloat("time", 0);
         rb = GetComponent<Rigidbody2D>();
         se = GetComponent<AudioSource>();
         renderController = GetComponent<CubismRenderController>();
