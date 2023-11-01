@@ -209,6 +209,8 @@ partial class Player
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
 
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
+
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
 
@@ -221,6 +223,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -234,6 +237,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -247,6 +251,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -574,7 +579,7 @@ partial class Player
     }
     public void SkillGreem()
     {
-        SkillSE();
+        audioSource.PlayOneShot(skillGreemSE);
 
         GameData.SkillCount++;
 
@@ -595,7 +600,7 @@ partial class Player
     }
     public void SkillDeathPrationStrike()
     {
-        SkillSE();
+        audioSource.PlayOneShot(skillDStrikeSE);
 
         GameData.SkillCount++;
 
