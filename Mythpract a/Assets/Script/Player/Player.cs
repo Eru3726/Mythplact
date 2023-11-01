@@ -26,6 +26,7 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
     [SerializeField, Tooltip("ジャンプ下攻撃のCT")]float atkJumpDownCT;
 
+    SpriteRenderer plsp;
     Image brinkSlider;
     float jumpPowPlus;
     float attackCount = 0;
@@ -34,6 +35,7 @@ public partial class Player : MonoBehaviour
     float guardCTCount = 0;             // ガードのクールタイムのカウント
     float guardCount = 0;
     float knockbuckCount = 0;        // ノックバックする時間のカウント
+    float damageBlinkCount = 0;
     float stamina = 0;              // 現在のスタミナの値
 
     bool jumping = false;       // ジャンプ落下時の判定
@@ -125,6 +127,7 @@ public partial class Player : MonoBehaviour
         conconect = GameObject.Find("keycon").GetComponent<Controllerconnect>();
         keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
         HMng = GetComponent<HitMng>();
+        plsp = gameObject.GetComponent<SpriteRenderer>();
         atkJumpDown = transform.GetChild(4).GetComponent<AtkJumpDown>();
         deadEffectEnd = transform.GetChild(7).GetComponent<DeadEffectEnd>();
         brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
@@ -981,7 +984,7 @@ public partial class Player : MonoBehaviour
 
 
 
-        if (guard && !attack && !isAttack && !isSkill && !isCharge && canGuard && !guardbreak)
+        if (guard && !attack && !isAttack && !isSkill && !isCharge && !hitAnim && canGuard && !guardbreak)
         {
             isGuard = true;
 
@@ -1170,9 +1173,23 @@ public partial class Player : MonoBehaviour
         {
 
             knockbuckCount += Time.deltaTime;
+
+            damageBlinkCount += Time.deltaTime;
+            if(damageBlinkCount > 0.1f)
+            {
+                plsp.color = new Color(1, 1, 1, 0);
+                damageBlinkCount = 0;
+
+            }
+            else if(damageBlinkCount > 0.05f)
+            {
+                plsp.color = new Color(1, 1, 1, 1);
+
+            }
             if (knockbuckCount >= knockbuckTime /*  || isGround*/)
             {
                 hitAnim = false;
+                plsp.color = new Color(1, 1, 1, 1);
 
             }
 
