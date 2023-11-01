@@ -24,7 +24,7 @@ public class Pillar : MonoBehaviour
     [SerializeField, Tooltip("攻撃判定")] GameObject attack;
     [SerializeField, Tooltip("速度")] float speed = 5.0f;
     [SerializeField, Tooltip("上昇時間")] float upTime = 1.0f;
-    [SerializeField, Tooltip("攻撃時間")] float time = 5.0f;
+    [SerializeField, Tooltip("攻撃時間")] float atkTime = 5.0f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting sound;
 
@@ -122,8 +122,8 @@ public class Pillar : MonoBehaviour
 
     bool Keep()
     {
+        if (timer < atkTime) { qilin.SetPower(attack, 0); return false; }
         if (effect.IsValid) { return false; }
-        if (timer < time) { return false; }
         return true;
     }
 

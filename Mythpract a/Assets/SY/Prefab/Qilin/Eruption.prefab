@@ -134,7 +134,7 @@ MonoBehaviour:
   attack: {fileID: 4776590688356478371}
   speed: 5
   upTime: 0.5
-  time: 3
+  atkTime: 5
   effect:
     particle: {fileID: 266845582673505909}
     time: 3
