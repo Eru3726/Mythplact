@@ -1015,35 +1015,33 @@ public partial class Player : MonoBehaviour
                 GuardSE();
             }
 
-            if(HMng.CheckDamage() == true)
-            {
-
-                canGuard = false;
-                guardCTCount = 0;
-
-
-
-            }
 
             if(stamina > 0)
             {
                 // 普通のガード 
                 if (HMng.CheckDamage() == true)
                 {
-                    guardCount = 0;
+                    stamina -= 50;
+                    //guardCount = 0;
+                    //canGuard = false;
+                    //guardCTCount = 0;
 
-                    guardbreak = true;  // ガードブレイクし、スタミナ最大までガード不可
-                    canGuard = false;
-                    guardCTCount = 0;
-
-                    isGuard = false;
+                    //isGuard = false;
                 }
 
             }
             
             else
             {
+                guardCTCount = 0;
                 canGuard = false;
+
+                guardbreak = true;  // ガードブレイクし、スタミナ最大までガード不可
+
+                EffectGuardBreak.Play();
+
+                isGuard = false;
+
 
             }
 
@@ -1055,12 +1053,12 @@ public partial class Player : MonoBehaviour
 
                     GameData.justGuardCount++;
                     EffectJustGuard.Play();
-                    guardCount = 0;
+                    //guardCount = 0;
                     HitStopManager.hitstop.StartHitStop(0.3f);
 
                     stamina += 30;
-                    canGuard = false;
-                    guardCTCount = 0;
+                    //canGuard = false;
+                    //guardCTCount = 0;
 
                     if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
                     {
@@ -1078,6 +1076,7 @@ public partial class Player : MonoBehaviour
             EffectGuard.Stop();
             EffectGuard.Clear();
             EffectJustGuard.Stop();
+            EffectGuardBreak.Stop();
 
             if (guardEnd)
             {
