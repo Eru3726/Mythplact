@@ -12,6 +12,7 @@ public class UIDirector : MonoBehaviour
         GameData.ClearTime = 0;
         GameData.SkillCount = 0;
         GameData.HitCount = 0;
+        GameData.justGuardCount = 0;
         Debug.Log("タイムリセット");
         time = 0;
         player = GameObject.Find("Player").GetComponent<Player>();

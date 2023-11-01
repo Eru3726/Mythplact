@@ -669,7 +669,7 @@ partial class Player
     }
     public void SkillWise()     // スキル16
     {
-        if (GameData.setSkill17 == true)
+        if (GameData.setSkill16 == true)
         {
             HMng.HP += 1;
             EffectHeal.Play();
