@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  power: 70
 --- !u!70 &6563898998767358616
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4950,7 +4951,7 @@ MonoBehaviour:
   layer: 0
   maxHp: 0
   hp: 0
-  atk: 70
+  atk: 1
   def: 0
   atkActive: 0
   defActive: 0

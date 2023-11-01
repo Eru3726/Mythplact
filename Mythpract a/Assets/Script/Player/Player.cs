@@ -24,9 +24,12 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTimeSec;    // ガードのクールタイム
     [SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
+    [SerializeField, Tooltip("ジャンプ下攻撃のCT")]float atkJumpDownCT;
+
     Image brinkSlider;
     float jumpPowPlus;
     float attackCount = 0;
+    float atkJumpDownCount = 0;
     float brinkCTCount = 0;            // ブリンクのクールダウンのカウント
     float guardCTCount = 0;             // ガードのクールタイムのカウント
     float guardCount = 0;
@@ -46,6 +49,7 @@ public partial class Player : MonoBehaviour
     bool ltup;
     bool rtup;
 
+    bool deadStop;
     bool gameover;
     bool isAttack;
     bool isGuard;
@@ -125,6 +129,8 @@ public partial class Player : MonoBehaviour
         deadEffectEnd = transform.GetChild(7).GetComponent<DeadEffectEnd>();
         brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
 
+        deadStop = false;
+
         InitCol();
         InitAudio();
         InitAnim();
@@ -160,7 +166,7 @@ public partial class Player : MonoBehaviour
 
     void Update()
     {
-        if (!gameover)
+        if (!gameover || !deadStop)
         {
             HMng.HitUpdate();
 
@@ -845,9 +851,14 @@ public partial class Player : MonoBehaviour
             PlayerRb.AddForce(Vector2.up * doubleJumpPow, ForceMode2D.Impulse);
 
             atkJumpDown.HitAtkJumpDown = false;
+            canHitDown = false;
         }
 
-
+        atkJumpDownCount += Time.deltaTime;
+        if(atkJumpDownCT <= atkJumpDownCount)
+        {
+            canHitDown = true;
+        }
 
         // 移動速度
         if (PlayerRb.velocity.magnitude <= maxSpeed)
@@ -1079,6 +1090,7 @@ public partial class Player : MonoBehaviour
         {
             PlayerRb.velocity = new Vector2(0, 0);
             PlayerRb.gravityScale = 0;
+            deadStop = true;
             if(deathDirection == false)
             {
                 EffectDeath.Play();
@@ -1096,7 +1108,7 @@ public partial class Player : MonoBehaviour
 
 
                     gameover = true;
-
+                    deadStop = false;
                 }
 
             }
