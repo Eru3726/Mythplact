@@ -171,6 +171,7 @@ public class Shoggoth : MonoBehaviour
         if (moveType == Shoggoth_MoveType.Dead)
         {
             //LastParticle.GetComponent<ParticleSetting>().StopCheck();
+            Debug.Log(LastParticle);
             Debug.Log(LastParticle.GetComponent<ParticleStopCheck>().IsStop);
             if (!LastParticle.GetComponent<ParticleStopCheck>().IsStop) { return; }
             GameData.ShoggothDead = true;
