@@ -2,14 +2,15 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: fafgold_mat
   m_Shader: {fileID: -6465566751694194690, guid: 20457084e02da5e42bad867e7191fe48, type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -109,7 +110,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - light: 1
-    - time: 1
+    - time: 1.0000001
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 167.66568, g: 102.41202, b: 0, a: 1}
