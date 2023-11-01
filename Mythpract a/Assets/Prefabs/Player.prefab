@@ -15132,13 +15132,15 @@ MonoBehaviour:
   jumpSE: {fileID: 8300000, guid: 9cd1d3bd52787644b8227986b92a0479, type: 3}
   landingSE: {fileID: 8300000, guid: 90cd170494e25eb43b36dba19d90e849, type: 3}
   attackSE: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
-  hitSE: {fileID: 8300000, guid: b15adfd2175735247a57dcff00f691c6, type: 3}
+  chargeSE: {fileID: 8300000, guid: f759ae3c25960994f83bb5a459adbef9, type: 3}
+  deadSE: {fileID: 8300000, guid: 3ce269a0edef0664ca6154834efd4711, type: 3}
+  hitSE: {fileID: 8300000, guid: d979ea83f3414ce46848faff3c1650de, type: 3}
   guardSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
-  skillSheriffSE: {fileID: 8300000, guid: 0027f14fbc08dd840b6bd816bb382ef4, type: 3}
-  skillFleetSE: {fileID: 8300000, guid: 0027f14fbc08dd840b6bd816bb382ef4, type: 3}
-  skillLoneWarriorSE: {fileID: 8300000, guid: 0027f14fbc08dd840b6bd816bb382ef4, type: 3}
-  skillGreemSE: {fileID: 8300000, guid: 0027f14fbc08dd840b6bd816bb382ef4, type: 3}
-  skillDStrikeSE: {fileID: 8300000, guid: 0027f14fbc08dd840b6bd816bb382ef4, type: 3}
+  skillSheriffSE: {fileID: 8300000, guid: 943b54aa37f3a5a4f8de054bfaafff91, type: 3}
+  skillFleetSE: {fileID: 8300000, guid: fb127ad0374f6b7439ad798a80b9daa5, type: 3}
+  skillLoneWarriorSE: {fileID: 0}
+  skillGreemSE: {fileID: 8300000, guid: 7c8df236fdc43674d8246dba15a6d0a4, type: 3}
+  skillDStrikeSE: {fileID: 8300000, guid: 7ff364293ad34c948841ee421dd79829, type: 3}
   NormalAtk: {fileID: 8922014011860414499}
   JumpAtk: {fileID: 8922014012754494223}
   JumpUpAtk: {fileID: 9211903540725876237}
