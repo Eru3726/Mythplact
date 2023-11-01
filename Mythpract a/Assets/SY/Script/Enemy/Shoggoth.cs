@@ -1,5 +1,6 @@
 //ボス1：ショゴス
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SY;
@@ -21,6 +22,7 @@ public class Shoggoth : MonoBehaviour
     Circle circle = new Circle();   //円
 
     //
+    Color defColor;
     [SerializeField, Tooltip("プレイヤー")] GameObject pl;
     [SerializeField, Tooltip("スライム")] GameObject slime;
 
@@ -119,6 +121,14 @@ public class Shoggoth : MonoBehaviour
     [SerializeField, Tooltip("サウンドループ化")] bool rush_SELoop;
     [SerializeField, Tooltip("移動範囲可視化")] bool rush_MoveRangeDisplay;
 
+    [Header("被ダメージ")]
+    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
+    [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
+    [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
+    [SerializeField, Tooltip("サウンド")] AudioSetting damage_SE;
+    float damage_Repeat = 0;
+
     [Header("スライム")]
     [SerializeField, Tooltip("生成間隔")] float slime_GenerateTime;
 
@@ -131,6 +141,7 @@ public class Shoggoth : MonoBehaviour
         se = GetComponent<AudioSource>();
         hm = GetComponent<HitMng>();
         obj = this.gameObject;
+        defColor = Color.white;
         headObj = transform.Find("Model/Head").gameObject;
         pos = rb.position;
         plPos = pl.transform.position;
@@ -470,6 +481,7 @@ public class Shoggoth : MonoBehaviour
     void Damage()
     {
         Debug.Log(gameObject.name + "はダメージ受けた");
+        StartCoroutine("Flash");
     }
 
     void Die()
@@ -501,6 +513,31 @@ public class Shoggoth : MonoBehaviour
         SetPower(head, head_Power);
         SetPower(body, body_Power);
         SetPower(tail, tail_Power);
+    }
+
+    IEnumerator Flash()
+    {
+        while (damage_Repeat < damage_Number)
+        {
+            head.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
+            for (int i = 0; i < body.Length; i++)
+            {
+                body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
+            }
+            tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
+            //待つ
+            yield return new WaitForSeconds(damage_Time);
+            head.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
+            for (int i = 0; i < body.Length; i++)
+            {
+                body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
+            }
+            tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
+            //待つ
+            yield return new WaitForSeconds(damage_Time);
+            damage_Repeat++;
+        }
+        damage_Repeat = 0;
     }
 
     float GroundPosition(float axisX)

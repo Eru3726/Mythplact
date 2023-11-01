@@ -2431,7 +2431,7 @@ MonoBehaviour:
     isActive: 0
     gizmo:
       mode: 2
-      center: {x: 0, y: -3.6, z: 0}
+      center: {x: -8.65, y: -3.6, z: 0}
       size: {x: 0, y: 0, z: 0}
       radius: 0.1
       color: {r: 1, g: 1, b: 1, a: 1}
