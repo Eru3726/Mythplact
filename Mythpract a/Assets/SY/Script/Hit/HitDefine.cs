@@ -46,7 +46,7 @@ namespace SY
         //RayFlag rayFlag;
 
         //----------ダメージ----------
-        public float Dmage_Enemy(float atk, float def) { return (atk / 2.0f) - (def / 4.0f); }
+        public float Dmage_Enemy(float atk, float power, float def) { return (atk  * power / 2.0f) - (def / 4.0f); }
         public float Dmage_Player(float atk, float power) { return atk * power; }
 
         //----------全フラグ----------

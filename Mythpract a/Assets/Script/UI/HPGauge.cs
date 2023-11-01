@@ -168,6 +168,26 @@ public class HPGauge : MonoBehaviour
                 gauge19.Clear();
                 gauge20.Clear();
 
+                gauge2.Stop();
+                gauge3.Stop();
+                gauge4.Stop();
+                gauge5.Stop();
+                gauge6.Stop();
+                gauge7.Stop();
+                gauge8.Stop();
+                gauge9.Stop();
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
 
                 break;
             case 1:
@@ -196,6 +216,27 @@ public class HPGauge : MonoBehaviour
                 gauge19.Clear();
                 gauge20.Clear();
 
+                gauge3.Stop();
+                gauge4.Stop();
+                gauge5.Stop();
+                gauge6.Stop();
+                gauge7.Stop();
+                gauge8.Stop();
+                gauge9.Stop();
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
+
+
                 break;
             case 2:
                 gauge1.Play();
@@ -222,6 +263,25 @@ public class HPGauge : MonoBehaviour
                 gauge18.Clear();
                 gauge19.Clear();
                 gauge20.Clear();
+
+                gauge4.Stop();
+                gauge5.Stop();
+                gauge6.Stop();
+                gauge7.Stop();
+                gauge8.Stop();
+                gauge9.Stop();
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
 
                 break;
             case 3:
@@ -250,6 +310,25 @@ public class HPGauge : MonoBehaviour
                 gauge19.Clear();
                 gauge20.Clear();
 
+                gauge5.Stop();
+                gauge6.Stop();
+                gauge7.Stop();
+                gauge8.Stop();
+                gauge9.Stop();
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
+
+
                 break;
             case 4:
                 gauge1.Play();
@@ -276,6 +355,24 @@ public class HPGauge : MonoBehaviour
                 gauge18.Clear();
                 gauge19.Clear();
                 gauge20.Clear();
+
+                gauge6.Stop();
+                gauge7.Stop();
+                gauge8.Stop();
+                gauge9.Stop();
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
+
 
                 break;
             case 5:
@@ -304,6 +401,23 @@ public class HPGauge : MonoBehaviour
                 gauge19.Clear();
                 gauge20.Clear();
 
+                gauge7.Stop();
+                gauge8.Stop();
+                gauge9.Stop();
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
+
+
                 break;
             case 6:
                 gauge1.Play();
@@ -330,6 +444,21 @@ public class HPGauge : MonoBehaviour
                 gauge18.Clear();
                 gauge19.Clear();
                 gauge20.Clear();
+                gauge8.Stop();
+                gauge9.Stop();
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
+
 
                 break;
             case 7:
@@ -358,6 +487,21 @@ public class HPGauge : MonoBehaviour
                 gauge19.Clear();
                 gauge20.Clear();
 
+                gauge9.Stop();
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
+
+
                 break;
             case 8:
                 gauge1.Play();
@@ -384,6 +528,20 @@ public class HPGauge : MonoBehaviour
                 gauge18.Clear();
                 gauge19.Clear();
                 gauge20.Clear();
+
+                gauge10.Stop();
+
+                gauge11.Stop();
+                gauge12.Stop();
+                gauge13.Stop();
+                gauge14.Stop();
+                gauge15.Stop();
+                gauge16.Stop();
+                gauge17.Stop();
+                gauge18.Stop();
+                gauge19.Stop();
+                gauge20.Stop();
+
 
                 break;
             case 9:
