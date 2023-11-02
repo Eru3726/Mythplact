@@ -228,7 +228,7 @@ MonoBehaviour:
       m_SingletonActionBindings:
       - m_Name: 
         m_Id: 3f1921a5-e80e-45ed-8a1e-63a300e39235
-        m_Path: <Gamepad>/buttonWest
+        m_Path: <Gamepad>/buttonSouth
         m_Interactions: 
         m_Processors: 
         m_Groups: 
@@ -260,7 +260,7 @@ MonoBehaviour:
       m_SingletonActionBindings:
       - m_Name: 
         m_Id: a45a7a2f-3d1c-436d-bcf8-34eb602cf647
-        m_Path: <Gamepad>/buttonSouth
+        m_Path: <Gamepad>/buttonEast
         m_Interactions: 
         m_Processors: 
         m_Groups: 

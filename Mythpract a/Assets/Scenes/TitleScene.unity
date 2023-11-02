@@ -3583,7 +3583,7 @@ PrefabInstance:
     - target: {fileID: 4052676956146746808, guid: 8940c9d57b6160d4ebb6439925eeb5a3, type: 3}
       propertyPath: cursorRect
       value: 
-      objectReference: {fileID: 6617127457494909666}
+      objectReference: {fileID: 0}
     - target: {fileID: 4052676956146746809, guid: 8940c9d57b6160d4ebb6439925eeb5a3, type: 3}
       propertyPath: m_Name
       value: KeyConfig
@@ -7217,11 +7217,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 292d4f1fb91ca8548a5ca31bdf5ca281, type: 3}
---- !u!224 &6617127457494909666 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 140677576843662298, guid: 292d4f1fb91ca8548a5ca31bdf5ca281, type: 3}
-  m_PrefabInstance: {fileID: 6617127457494909665}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6617802242959241466
 GameObject:
   m_ObjectHideFlags: 0

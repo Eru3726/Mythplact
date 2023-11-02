@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class KeyManager : MonoBehaviour
@@ -18,20 +19,23 @@ public class KeyManager : MonoBehaviour
     [SerializeField]
     private RectTransform cursorRect;
 
+    [SerializeField]
+    private InputActionReference pause;
+
     private bool openFlg = false;
 
     private void Awake()
     {
         //キーコン読み込み
         rsm.Load();
-
+        pause.action.Enable();
         ClosePanel();
     }
 
     void Update()
     {
         //pauseキーが押されたら
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (pause.action.triggered)
         {
             if (openFlg == false) KeyBoardPanel();
             else ClosePanel();

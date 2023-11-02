@@ -13876,6 +13876,7 @@ MonoBehaviour:
   achv: {fileID: 0}
   cursor: {fileID: 0}
   cursorRect: {fileID: 0}
+  pause: {fileID: 1218491079533585869, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
 --- !u!1 &4052676956252151485
 GameObject:
   m_ObjectHideFlags: 0
