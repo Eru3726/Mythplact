@@ -46,8 +46,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.05}
-  m_Size: {x: 0.7, y: 2.1}
+  m_Offset: {x: 0, y: 10}
+  m_Size: {x: 5, y: 20}
   m_Direction: 0
 --- !u!114 &2967005993686461544
 MonoBehaviour:
@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  power: 0
 --- !u!1 &8449096857308795825
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +74,7 @@ GameObject:
   - component: {fileID: 8449096857308795790}
   - component: {fileID: 8449096857308795791}
   - component: {fileID: 2522549576042251467}
+  - component: {fileID: -4124940790163241959}
   m_Layer: 7
   m_Name: Spin
   m_TagString: Untagged
@@ -134,7 +136,7 @@ MonoBehaviour:
   attack: {fileID: 8449096856969812654}
   speed: 2
   upTime: 1
-  time: 3
+  atkTime: 5
   effect:
     particle: {fileID: 2657639739816163701}
     time: 10
@@ -144,6 +146,25 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+--- !u!114 &-4124940790163241959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8449096857308795825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5080bb5eb6ca7c1408d55d8964f0c4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: 1
+  maxHp: 1
+  hp: 1
+  atk: 1
+  def: 0
+  atkActive: 0
+  defActive: 0
 --- !u!1001 &8449096858415252142
 PrefabInstance:
   m_ObjectHideFlags: 0

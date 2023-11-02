@@ -201,7 +201,9 @@ public class Qilin : MonoBehaviour
         SetPower(breath, breath_Power);
         SetPower(pushUp, pushUp_Power);
 
+        isHalfHP = false;
         hm.SetUp(Damage, Die);
+        hm.IsHalfHP = false;
         //CameraData();
         StageData();
 
@@ -333,7 +335,7 @@ public class Qilin : MonoBehaviour
             case 3:
                 if (anim.NormalizedTime < 0.3f) { break; }
                 breath_Effect.Particle.gameObject.SetActive(true);
-                breath.SetActive(true);
+                //breath.SetActive(true);
                 breath_Effect.PlayParticle();
                 phase++;
                 break;
