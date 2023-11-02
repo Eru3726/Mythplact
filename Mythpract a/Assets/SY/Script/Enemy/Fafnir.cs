@@ -206,6 +206,22 @@ public class Fafnir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (anim.Action == AnimSetting.Type.Die) 
+        {
+            timer += Time.deltaTime;
+            if (timer < dead_Time) { return; }
+            start = true;
+            if (start == true)
+            {
+                if (goldtime <= max)
+                {
+                    goldtime += dead_Speed;
+                    fafmat.SetFloat("time", goldtime);
+                }
+                //else { GameData.FafnirDead = true; }
+            }
+            return; 
+        }
         hm.HitUpdate();
 
         if (hm.HP <= 0) { return; }
@@ -557,19 +573,6 @@ public class Fafnir : MonoBehaviour
         }
         anim.AnimChage("Dead", isLock);
         soundcount++;
-        timer += Time.deltaTime;
-        if(timer < dead_Time) { return; }
-        Debug.Log(goldtime);
-        start = true;
-        if (start == true)
-        {
-            if (goldtime <= max)
-            {
-                goldtime += dead_Speed;
-                fafmat.SetFloat("time", goldtime);
-            }
-            else { GameData.FafnirDead = true; }
-        }
     }
 
     //----------アニメーション----------
