@@ -169,6 +169,9 @@ public class Fafnir : MonoBehaviour
     float anim_JumpFlag;
     [SerializeField] bool isLock;
 
+    [SerializeField]
+    private AchvMeasurement achv;
+
 
     // Start is called before the first frame update
     void Start()
@@ -566,6 +569,7 @@ public class Fafnir : MonoBehaviour
     void Die()      //死亡
     {
         Debug.Log(obj.name + "は死んだ");
+        achv.DefeatedBoss(1);
         if (soundcount == 0)
         {
             timer = 0;

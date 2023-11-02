@@ -166,6 +166,9 @@ public class Qilin : MonoBehaviour
     public Vector2 Meteor_AtkRange { get { return meteor_AtkRange; } }
     public float Meteor_Power { get { return meteor_Power; } }
 
+    [SerializeField]
+    private AchvMeasurement achv;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -725,6 +728,7 @@ public class Qilin : MonoBehaviour
     void Die()      //死亡
     {
         Debug.Log(obj.name + "は死んだ");
+        achv.DefeatedBoss(2);
         moveType = Qilin_MoveType.Die;
         anim.AnimChage("Dead", isLock);
         die_Effect.Particle.gameObject.SetActive(true);
