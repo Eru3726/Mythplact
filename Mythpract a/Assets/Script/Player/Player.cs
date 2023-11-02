@@ -960,7 +960,6 @@ public partial class Player : MonoBehaviour
         }
         if (HMng.CheckDamage())
         {
-            HitSE();
             HitStopManager.hitstop.StartHitStop(0.1f);
 
         }      
@@ -1148,6 +1147,8 @@ public partial class Player : MonoBehaviour
             knockbuckCount = 0;
             GameData.HitCount++;
             PlayerRb.gravityScale = 7f;
+
+            HitSE();
             EffectDamage.Play();
 
             PlayerRb.velocity = Vector2.zero;
