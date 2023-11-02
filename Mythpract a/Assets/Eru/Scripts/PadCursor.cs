@@ -11,6 +11,9 @@ public class PadCursor : MonoBehaviour
     [Range(0.0f, 15.0f)]
     public float TimeToHide = 5.0f;
 
+    [SerializeField]
+    private RectTransform rectTransform;
+
     Vector2 previousMousePosition;
     Vector2 currentMousePosition;
 
@@ -55,6 +58,9 @@ public class PadCursor : MonoBehaviour
             }
 
             previousMousePosition = currentMousePosition;
+
+            rectTransform.transform.position = new Vector2(Mathf.Clamp(rectTransform.transform.position.x, 50, 1920),
+                                                           Mathf.Clamp(rectTransform.transform.position.y, 50, 1080));
         }
 
         cursorCan.SetActive(currentFlg);

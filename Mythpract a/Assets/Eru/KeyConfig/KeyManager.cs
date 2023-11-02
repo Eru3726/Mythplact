@@ -12,6 +12,12 @@ public class KeyManager : MonoBehaviour
     [SerializeField]
     private AchvUI achv;
 
+    [SerializeField]
+    private GameObject cursor;
+
+    [SerializeField]
+    private RectTransform cursorRect;
+
     private bool openFlg = false;
 
     private void Awake()
@@ -30,6 +36,7 @@ public class KeyManager : MonoBehaviour
             if (openFlg == false) KeyBoardPanel();
             else ClosePanel();
         }
+        if(cursor != null) cursor.SetActive(openFlg);
     }
 
     public void KeyBoardPanel()
@@ -53,6 +60,7 @@ public class KeyManager : MonoBehaviour
         padPanel.SetActive(false);
         keyPanel.SetActive(false);
         openFlg = false;
+        if(cursorRect != null) cursorRect.transform.position = new Vector2(960, 540);
         Time.timeScale = 1;
     }
 
