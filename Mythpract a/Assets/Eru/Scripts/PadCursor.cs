@@ -18,7 +18,6 @@ public class PadCursor : MonoBehaviour
     Vector2 currentMousePosition;
 
     float timeMousePositionStatic = 0.0f;
-
     void Start()
     {
         Vector3 mp = Input.mousePosition;
@@ -62,7 +61,6 @@ public class PadCursor : MonoBehaviour
             rectTransform.transform.position = new Vector2(Mathf.Clamp(rectTransform.transform.position.x, 50, 1920),
                                                            Mathf.Clamp(rectTransform.transform.position.y, 50, 1080));
         }
-
         cursorCan.SetActive(currentFlg);
     }
 }

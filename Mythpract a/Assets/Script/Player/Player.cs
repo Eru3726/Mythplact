@@ -26,6 +26,7 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
     [SerializeField, Tooltip("ジャンプ下攻撃のCT")]float atkJumpDownCT;
 
+    SpriteRenderer plsp;
     Image brinkSlider;
     float jumpPowPlus;
     float attackCount = 0;
@@ -34,6 +35,7 @@ public partial class Player : MonoBehaviour
     float guardCTCount = 0;             // ガードのクールタイムのカウント
     float guardCount = 0;
     float knockbuckCount = 0;        // ノックバックする時間のカウント
+    float damageBlinkCount = 0;
     float stamina = 0;              // 現在のスタミナの値
 
     bool jumping = false;       // ジャンプ落下時の判定
@@ -125,6 +127,7 @@ public partial class Player : MonoBehaviour
         conconect = GameObject.Find("keycon").GetComponent<Controllerconnect>();
         keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
         HMng = GetComponent<HitMng>();
+        plsp = gameObject.GetComponent<SpriteRenderer>();
         atkJumpDown = transform.GetChild(4).GetComponent<AtkJumpDown>();
         deadEffectEnd = transform.GetChild(7).GetComponent<DeadEffectEnd>();
         brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
@@ -779,7 +782,7 @@ public partial class Player : MonoBehaviour
             isbrinkUp = false;     // 空中ブリンク判定]
 
             // ジャンプ
-            if (spaceDown && !isGuard && !isSkill && !hitAnim)
+            if (spaceDown && !isGuard && !isSkill && !isAttack &&!hitAnim)
             {
                 PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
                 PlayerRb.AddForce(Vector2.up * jumpPow, ForceMode2D.Impulse);
@@ -800,7 +803,7 @@ public partial class Player : MonoBehaviour
         }
 
         // 二段ジャンプ
-        if (spaceDown && doublejump && !isGuard && !isSkill && !hitAnim)
+        if (spaceDown && doublejump && !isGuard && !isSkill && !isAttack && !hitAnim)
         {
             doublejumpAnim = true;
             PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
@@ -885,7 +888,7 @@ public partial class Player : MonoBehaviour
 
         // プレイヤーの向き
         
-        if (dir.x != 0 && !isAttack && !isGuard && !hitAnim)
+        if (dir.x != 0 && !isAttack && !isGuard && !hitAnim && !isSkill)
         {
             transform.localScale = new Vector3(dir.x, 1, 1);
         }
@@ -953,7 +956,7 @@ public partial class Player : MonoBehaviour
 
         if (isAttack)
         {
-            PlayerRb.velocity = new Vector2(0, 0);
+            PlayerRb.velocity = new Vector2(0, PlayerRb.velocity.y);
         }
         if (HMng.CheckDamage())
         {
@@ -981,7 +984,7 @@ public partial class Player : MonoBehaviour
 
 
 
-        if (guard && !attack && !isAttack && !isSkill && !isCharge && canGuard && !guardbreak)
+        if (guard && !attack && !isAttack && !isSkill && !isCharge && !hitAnim && canGuard && !guardbreak)
         {
             isGuard = true;
 
@@ -1015,35 +1018,33 @@ public partial class Player : MonoBehaviour
                 GuardSE();
             }
 
-            if(HMng.CheckDamage() == true)
-            {
-
-                canGuard = false;
-                guardCTCount = 0;
-
-
-
-            }
 
             if(stamina > 0)
             {
                 // 普通のガード 
                 if (HMng.CheckDamage() == true)
                 {
-                    guardCount = 0;
+                    stamina -= 50;
+                    //guardCount = 0;
+                    //canGuard = false;
+                    //guardCTCount = 0;
 
-                    guardbreak = true;  // ガードブレイクし、スタミナ最大までガード不可
-                    canGuard = false;
-                    guardCTCount = 0;
-
-                    isGuard = false;
+                    //isGuard = false;
                 }
 
             }
             
             else
             {
+                guardCTCount = 0;
                 canGuard = false;
+
+                guardbreak = true;  // ガードブレイクし、スタミナ最大までガード不可
+
+                EffectGuardBreak.Play();
+
+                isGuard = false;
+
 
             }
 
@@ -1053,13 +1054,14 @@ public partial class Player : MonoBehaviour
                 {
                     Debug.Log("ジャストガード成功");
 
+                    GameData.justGuardCount++;
                     EffectJustGuard.Play();
-                    guardCount = 0;
+                    //guardCount = 0;
                     HitStopManager.hitstop.StartHitStop(0.3f);
 
                     stamina += 30;
-                    canGuard = false;
-                    guardCTCount = 0;
+                    //canGuard = false;
+                    //guardCTCount = 0;
 
                     if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
                     {
@@ -1077,6 +1079,7 @@ public partial class Player : MonoBehaviour
             EffectGuard.Stop();
             EffectGuard.Clear();
             EffectJustGuard.Stop();
+            EffectGuardBreak.Stop();
 
             if (guardEnd)
             {
@@ -1094,6 +1097,7 @@ public partial class Player : MonoBehaviour
             if(deathDirection == false)
             {
                 EffectDeath.Play();
+                audioSource.PlayOneShot(deadSE);
                 deathDirection = true;
                 SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
                 sprite.enabled = false;
@@ -1134,48 +1138,62 @@ public partial class Player : MonoBehaviour
         Animation anim;
 
         anim = gameObject.GetComponent<Animation>();
+        Debug.Log(hitAnim + "HitAnim");
+
 
         // ノックバック
         if (HMng.CheckDamage() == true && !isGuard)
         {
             hitAnim = true;
+            knockbuckCount = 0;
             GameData.HitCount++;
             PlayerRb.gravityScale = 7f;
+            EffectDamage.Play();
+
+            PlayerRb.velocity = Vector2.zero;
+            PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+
             if (CheckRightHit() == true)
             {
-                PlayerRb.velocity = Vector2.zero;
-                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
-
                 PlayerRb.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
             }
             else if (CheckLeftHit() == true)
             {
-                PlayerRb.velocity = Vector2.zero;
-
-                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
                 PlayerRb.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
 
             }
-            else
-            {
-                PlayerRb.velocity = Vector2.zero;
-
-                PlayerRb.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
-
-                PlayerRb.AddForce(Vector2.right * 15, ForceMode2D.Impulse);
-
-            }
             HitStopManager.hitstop.StartHitStop(0.2f);
         }
-        if(hitAnim == true)
+        else
         {
-            knockbuckCount += Time.deltaTime;
+            EffectDamage.Stop();
+
         }
-        if(knockbuckCount >= knockbuckTime/*  || isGround*/)
+        if (hitAnim == true)
         {
-            hitAnim = false;
-            knockbuckCount = 0;
+
+            knockbuckCount += Time.deltaTime;
+
+            damageBlinkCount += Time.deltaTime;
+            if(damageBlinkCount > 0.1f)
+            {
+                plsp.color = new Color(1, 1, 1, 0);
+                damageBlinkCount = 0;
+
+            }
+            else if(damageBlinkCount > 0.05f)
+            {
+                plsp.color = new Color(1, 1, 1, 1);
+
+            }
+            if (knockbuckCount >= knockbuckTime /*  || isGround*/)
+            {
+                hitAnim = false;
+                plsp.color = new Color(1, 1, 1, 1);
+
+            }
+
         }
 
 

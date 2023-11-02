@@ -26,7 +26,7 @@ partial class Player
     [SerializeField, Tooltip("スピードアップスキル")] int SkillMaxSpeed;
     [SerializeField, Tooltip("火事場攻撃力アップ")] float SkillKajibaAtk;
 
-    [SerializeField] GameObject FleetCol;
+    [SerializeField] BoxCollider2D FleetCol;
 
     float skillSlashCount = 100;
     float skillFleetCount = 100;
@@ -136,6 +136,8 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
+
 
                     isFleet = true;
 
@@ -151,6 +153,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -166,6 +169,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -182,6 +186,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -204,6 +209,8 @@ partial class Player
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
 
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
+
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
 
@@ -216,6 +223,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -229,6 +237,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -242,6 +251,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -393,7 +403,7 @@ partial class Player
     public void SkillSlash()
     {
 
-        SkillSE();
+        audioSource.PlayOneShot(skillSheriffSE);
 
         GameData.SkillCount++;
         
@@ -417,10 +427,11 @@ partial class Player
         if(isFleet == true)
         {
             isSkill = true;
-            //HMng.DEFActive = false;
+            HMng.DEFActive = false;
             skillFleetDuration += Time.deltaTime;
 
-            FleetCol.SetActive(true);
+            FleetCol.size = new Vector2(6f, 2f);
+            FleetCol.offset = new Vector2(0, -0.355f);
             EffectSkillFleet.Play();
 
             if (skillFleetDirX > 0)
@@ -454,12 +465,12 @@ partial class Player
                 //    }
 
             }
-            if (HMng.CheckDamage())
-            {
-                PlayerRb.gravityScale = 7f;
-                isFleet = false;
+            //if (HMng.CheckDamage())
+            //{
+            //    PlayerRb.gravityScale = 7f;
+            //    isFleet = false;
 
-            }
+            //}
 
             if (skillFleetDuration >= skillFleetTime)
             {
@@ -471,11 +482,11 @@ partial class Player
         }
         else
         {
-            // HMng.DEFActive = true;
+            HMng.DEFActive = true;
             EffectSkillFleet.Stop();
 
             isSkill = false;
-            FleetCol.SetActive(false);
+            FleetCol.size = new Vector2(0, 0);
         }
     }
     public void SkillLoneWarrior()
@@ -568,7 +579,7 @@ partial class Player
     }
     public void SkillGreem()
     {
-        SkillSE();
+        audioSource.PlayOneShot(skillGreemSE);
 
         GameData.SkillCount++;
 
@@ -589,7 +600,7 @@ partial class Player
     }
     public void SkillDeathPrationStrike()
     {
-        SkillSE();
+        audioSource.PlayOneShot(skillDStrikeSE);
 
         GameData.SkillCount++;
 
@@ -664,7 +675,7 @@ partial class Player
     }
     public void SkillWise()     // スキル16
     {
-        if (GameData.setSkill17 == true)
+        if (GameData.setSkill16 == true)
         {
             HMng.HP += 1;
             EffectHeal.Play();
@@ -700,6 +711,8 @@ partial class Player
             if(ChargeEffectPlayOnce == false)
             {
                 EffectCharge.Play();
+                audioSource.PlayOneShot(chargeSE);
+
                 ChargeEffectPlayOnce = true;
             }
 
