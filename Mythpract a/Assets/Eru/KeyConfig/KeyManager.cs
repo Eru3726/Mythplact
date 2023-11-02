@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class KeyManager : MonoBehaviour
@@ -12,30 +13,34 @@ public class KeyManager : MonoBehaviour
     [SerializeField]
     private AchvUI achv;
 
-    private bool openFlg = false;
-
-    [SerializeField]
-    private GameObject player;
-
     [SerializeField]
     private GameObject cursor;
+
+    [SerializeField]
+    private RectTransform cursorRect;
+
+    [SerializeField]
+    private InputActionReference pause;
+
+    private bool openFlg = false;
 
     private void Awake()
     {
         //キーコン読み込み
         rsm.Load();
-
+        pause.action.Enable();
         ClosePanel();
     }
 
     void Update()
     {
         //pauseキーが押されたら
-        if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.JoystickButton7))
+        if (pause.action.triggered)
         {
             if (openFlg == false) KeyBoardPanel();
             else ClosePanel();
         }
+        if(cursor != null) cursor.SetActive(openFlg);
     }
 
     public void KeyBoardPanel()
@@ -43,8 +48,6 @@ public class KeyManager : MonoBehaviour
         keyPanel.SetActive(true);
         padPanel.SetActive(false);
         openFlg = true;
-        if(player) player.SetActive(false);
-        cursor.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -53,8 +56,6 @@ public class KeyManager : MonoBehaviour
         padPanel.SetActive(true);
         keyPanel.SetActive(false);
         openFlg = true;
-        if (player) player.SetActive(false);
-        cursor.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -63,8 +64,7 @@ public class KeyManager : MonoBehaviour
         padPanel.SetActive(false);
         keyPanel.SetActive(false);
         openFlg = false;
-        if (player) player.SetActive(true);
-        cursor.SetActive(false);
+        if(cursorRect != null) cursorRect.transform.position = new Vector2(960, 540);
         Time.timeScale = 1;
     }
 

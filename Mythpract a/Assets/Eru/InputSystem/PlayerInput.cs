@@ -134,6 +134,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""0aad2128-728a-460b-99d3-1d5b193ed91f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -400,6 +409,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6075cb59-19af-4499-8ac4-fcfffe7e8e25"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46d65a60-94e4-49cc-bf43-5937596498ec"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -431,6 +462,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_actions_Skill4 = m_actions.FindAction("Skill4", throwIfNotFound: true);
         m_actions_Down = m_actions.FindAction("Down", throwIfNotFound: true);
         m_actions_Up = m_actions.FindAction("Up", throwIfNotFound: true);
+        m_actions_Esc = m_actions.FindAction("Esc", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -504,6 +536,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_actions_Skill4;
     private readonly InputAction m_actions_Down;
     private readonly InputAction m_actions_Up;
+    private readonly InputAction m_actions_Esc;
     public struct ActionsActions
     {
         private @PlayerInput m_Wrapper;
@@ -520,6 +553,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Skill4 => m_Wrapper.m_actions_Skill4;
         public InputAction @Down => m_Wrapper.m_actions_Down;
         public InputAction @Up => m_Wrapper.m_actions_Up;
+        public InputAction @Esc => m_Wrapper.m_actions_Esc;
         public InputActionMap Get() { return m_Wrapper.m_actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -565,6 +599,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Up.started += instance.OnUp;
             @Up.performed += instance.OnUp;
             @Up.canceled += instance.OnUp;
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -605,6 +642,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Up.started -= instance.OnUp;
             @Up.performed -= instance.OnUp;
             @Up.canceled -= instance.OnUp;
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -654,5 +694,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSkill4(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnUp(InputAction.CallbackContext context);
+        void OnEsc(InputAction.CallbackContext context);
     }
 }
