@@ -38,7 +38,7 @@ public class Fafnir : MonoBehaviour
     int tableNo = 0;    //テーブル指定
     int moveNo = 0;     //行動指定
 
-
+    
     [SerializeField, Tooltip("行動")] Fafnir_MoveType moveType = Fafnir_MoveType.Idle;
     [SerializeField, Tooltip("行動テーブル")] Fafnir_MoveTable[] moveTable;  //各テーブルの最初の行動はIdleにする必要がある
     [SerializeField] float speed;
@@ -135,13 +135,14 @@ public class Fafnir : MonoBehaviour
     float damage_Repeat = 0;
 
     [Header("死亡")]
-    [SerializeField, Tooltip("変色前時間")] float dead_Time = 0.5f;
+    [SerializeField, Tooltip("変色前時間")] float dead_Time = 0.5f; 
     [SerializeField]
     [Tooltip("固まるスピード")]
     float dead_Speed;
     [SerializeField]
     [Tooltip("固まる最大値")]
     private float max;
+    private Material fafmat;
     private float goldtime;
     private bool start = false;
 
@@ -167,15 +168,11 @@ public class Fafnir : MonoBehaviour
     Anim anim;
     float anim_JumpFlag;
     [SerializeField] bool isLock;
-    [SerializeField]
-    [Tooltip("死亡時マテリアル")]
-    private Material fafgold;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        fafgold.SetFloat("time", 0);
         rb = GetComponent<Rigidbody2D>();
         se = GetComponent<AudioSource>();
         renderController = GetComponent<CubismRenderController>();
@@ -200,6 +197,7 @@ public class Fafnir : MonoBehaviour
         earthquake.SetActive(false);
 
         hm.SetUp(Damage, Die);
+        fafmat = gameObject.GetComponent<Renderer>().material;
         CameraData();
 
         renderController.OverwriteFlagForModelScreenColors = true;
@@ -208,6 +206,22 @@ public class Fafnir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (anim.Action == AnimSetting.Type.Die) 
+        {
+            timer += Time.deltaTime;
+            if (timer < dead_Time) { return; }
+            start = true;
+            if (start == true)
+            {
+                if (goldtime <= max)
+                {
+                    goldtime += dead_Speed;
+                    fafmat.SetFloat("time", goldtime);
+                }
+                //else { GameData.FafnirDead = true; }
+            }
+            return; 
+        }
         hm.HitUpdate();
 
         if (hm.HP <= 0) { return; }
@@ -552,30 +566,6 @@ public class Fafnir : MonoBehaviour
     void Die()      //死亡
     {
         Debug.Log(obj.name + "は死んだ");
-        GameObject.Find("ArtMesh").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh2").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh3").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh4").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh5").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh6").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh7").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh8").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh9").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh10").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh11").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh12").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh13").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh14").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh15").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh16").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh17").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh18").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh19").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh20").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh21").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh22").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh23").GetComponent<CubismRenderer>().Material = fafgold;
-        GameObject.Find("ArtMesh24").GetComponent<CubismRenderer>().Material = fafgold;
         if (soundcount == 0)
         {
             timer = 0;
@@ -583,19 +573,6 @@ public class Fafnir : MonoBehaviour
         }
         anim.AnimChage("Dead", isLock);
         soundcount++;
-        timer += Time.deltaTime;
-        if(timer < dead_Time) { return; }
-        Debug.Log(goldtime);
-        start = true;
-        if (start == true)
-        {
-            if (goldtime <= max)
-            {
-                goldtime += dead_Speed;
-                fafgold.SetFloat("time", goldtime);
-            }
-            else { GameData.FafnirDead = true; }
-        }
     }
 
     //----------アニメーション----------
