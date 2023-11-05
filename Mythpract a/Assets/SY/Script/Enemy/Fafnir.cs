@@ -170,8 +170,10 @@ public class Fafnir : MonoBehaviour
 
     [SerializeField]
     private AchvMeasurement achv;
+
     [SerializeField]
     private Material fafgold;
+
 
     // Start is called before the first frame update
     void Start()
@@ -211,35 +213,34 @@ public class Fafnir : MonoBehaviour
         if (anim.Action == AnimSetting.Type.Die) 
         {
             timer += Time.deltaTime;
-            GameObject.Find("ArtMesh").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh2").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh3").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh4").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh5").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh6").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh7").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh8").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh9").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh10").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh11").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh12").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh13").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh14").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh15").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh16").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh17").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh18").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh19").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh20").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh21").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh22").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh23").GetComponent<CubismRenderer>().Material = fafgold;
-            GameObject.Find("ArtMesh24").GetComponent<CubismRenderer>().Material = fafgold;
             if (timer < dead_Time) { return; }
             start = true;
             if (start == true)
             {
-                
+                GameObject.Find("ArtMesh").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh2").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh3").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh4").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh5").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh6").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh7").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh8").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh9").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh10").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh11").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh12").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh13").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh14").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh15").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh16").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh17").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh18").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh19").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh20").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh21").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh22").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh23").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh24").GetComponent<CubismRenderer>().Material = fafgold;
                 if (goldtime <= max)
                 {
                     goldtime += dead_Speed;
@@ -593,7 +594,7 @@ public class Fafnir : MonoBehaviour
     void Die()      //死亡
     {
         Debug.Log(obj.name + "は死んだ");
-        //achv.DefeatedBoss(1);
+        achv.DefeatedBoss(1);
         if (soundcount == 0)
         {
             timer = 0;
