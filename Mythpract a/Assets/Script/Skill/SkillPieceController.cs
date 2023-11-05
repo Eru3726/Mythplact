@@ -120,6 +120,7 @@ public class SkillPieceController : MonoBehaviour
     {
         for (int i = 0; i < pieceCount; ++i)
         {
+            Debug.Log(Flag[i]);
             if (Flag[i] == true)
             {
                 OutBaseProp = false;

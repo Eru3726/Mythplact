@@ -206,7 +206,18 @@ public class CursorController : MonoBehaviour
 
     void MoveCursor()
     {
-
+        if (space)
+        {
+            if (touchTfm != null)
+            {
+                skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
+                if (!skillPieceController.OutBaseProp)
+                {
+                    // 持ち上げ判定にする
+                    PickUpProp = true;
+                }
+            }
+        }
         // 上下左右移動
         if (up)
         {
@@ -267,6 +278,7 @@ public class CursorController : MonoBehaviour
         // 持ち上げ判定
         if (PickUpProp)
         {
+            Debug.Log("持ち上げれるよ");
             pickupTfm = touchTfm;
             audioSource.PlayOneShot(SkillSetSE);
 
@@ -716,6 +728,10 @@ public class CursorController : MonoBehaviour
 
 
     }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        touchTfm = null;
+    }
     private void OnTriggerStay2D(Collider2D col)
     {
         // スキルピースに触れているか判定
@@ -729,19 +745,15 @@ public class CursorController : MonoBehaviour
 
             Debug.Log(skillPieceController.OutBaseProp);
 
-            if (space)
-            {
-                if (!skillPieceController.OutBaseProp)
-                {
-                    // 持ち上げ判定にする
-                    PickUpProp = true;
-
-                }
-            }
-
-
+            //if (space)
+            //{
+            //    skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
+            //    if (!skillPieceController.OutBaseProp)
+            //    {
+            //        // 持ち上げ判定にする
+            //        PickUpProp = true;
+            //    }
+            //}
         }
     }
-
-
 }
