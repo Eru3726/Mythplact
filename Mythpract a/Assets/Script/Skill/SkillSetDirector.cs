@@ -84,7 +84,7 @@ public class SkillSetDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("スキルスロット1に入っているもの" + GameData.skillSlot1);
+        //Debug.Log("スキルスロット1に入っているもの" + GameData.skillSlot1);
 
         if (useCursorProp == false)
         {
