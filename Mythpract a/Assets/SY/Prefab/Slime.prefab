@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1368275055}
   - component: {fileID: 1368275056}
-  - component: {fileID: 1368275057}
+  - component: {fileID: 3502269030062831780}
   m_Layer: 8
   m_Name: Def
   m_TagString: Untagged
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7451454215077689760}
   m_RootOrder: 0
@@ -58,7 +59,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1368275057
+--- !u!114 &3502269030062831780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,8 +87,8 @@ GameObject:
   - component: {fileID: 1153375929}
   - component: {fileID: -701383139064723982}
   - component: {fileID: 7909520859544833857}
-  - component: {fileID: 112658398745931742}
-  - component: {fileID: 1153375930}
+  - component: {fileID: 252021243242933289}
+  - component: {fileID: 3727243287618288696}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Untagged
@@ -105,6 +106,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1368275055}
   - {fileID: 2263381192722240660}
@@ -202,7 +204,7 @@ CircleCollider2D:
   m_Radius: 0.5
 --- !u!95 &1153375929
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -215,10 +217,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &-701383139064723982
 AudioSource:
   m_ObjectHideFlags: 0
@@ -344,7 +348,7 @@ MonoBehaviour:
   die_SEVolume: 1
   die_SEPitch: 1
   die_SELoop: 0
---- !u!114 &112658398745931742
+--- !u!114 &252021243242933289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,10 +357,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7017979418129015232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4042c73d58b2868488835a3af7a7c886, type: 3}
+  m_Script: {fileID: 11500000, guid: 722b6e748b9cb9b4fa86fb16a0dc1db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayDisplay: 1
+  isDisplay: 1
   ray:
   - name: Center
     offset: {x: -0.4, y: 0}
@@ -368,17 +372,14 @@ MonoBehaviour:
       m_Bits: 8
     tag: 3
     isActive: 0
+    gizmo:
+      mode: 2
+      center: {x: 0.4, y: 0, z: 0}
+      size: {x: 0, y: 0, z: 0}
+      radius: 0.1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 1
   - name: Slope_Left
-    offset: {x: -0.75, y: 0.2}
-    radius: 0.1
-    direction: {x: 0, y: 0}
-    distance: 0
-    layer:
-      serializedVersion: 2
-      m_Bits: 8
-    tag: 3
-    isActive: 0
-  - name: Slope_Right
     offset: {x: 0.75, y: 0.2}
     radius: 0.1
     direction: {x: 0, y: 0}
@@ -388,8 +389,15 @@ MonoBehaviour:
       m_Bits: 8
     tag: 3
     isActive: 0
-  - name: Wall_Left
-    offset: {x: -0.75, y: 1}
+    gizmo:
+      mode: 2
+      center: {x: 0.75, y: 0.2, z: 0}
+      size: {x: 0, y: 0, z: 0}
+      radius: 0.1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 1
+  - name: Slope_Right
+    offset: {x: -0.75, y: 0.2}
     radius: 0.1
     direction: {x: 0, y: 0}
     distance: 0
@@ -398,7 +406,14 @@ MonoBehaviour:
       m_Bits: 8
     tag: 3
     isActive: 0
-  - name: Wall_Right
+    gizmo:
+      mode: 2
+      center: {x: -0.75, y: 0.2, z: 0}
+      size: {x: 0, y: 0, z: 0}
+      radius: 0.1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 1
+  - name: Wall_Left
     offset: {x: 0.75, y: 1}
     radius: 0.1
     direction: {x: 0, y: 0}
@@ -408,7 +423,31 @@ MonoBehaviour:
       m_Bits: 8
     tag: 3
     isActive: 0
---- !u!114 &1153375930
+    gizmo:
+      mode: 2
+      center: {x: 0.75, y: 1, z: 0}
+      size: {x: 0, y: 0, z: 0}
+      radius: 0.1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 1
+  - name: Wall_Right
+    offset: {x: -0.75, y: 1}
+    radius: 0.1
+    direction: {x: 0, y: 0}
+    distance: 0
+    layer:
+      serializedVersion: 2
+      m_Bits: 8
+    tag: 3
+    isActive: 0
+    gizmo:
+      mode: 2
+      center: {x: -0.75, y: 1, z: 0}
+      size: {x: 0, y: 0, z: 0}
+      radius: 0.1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 1
+--- !u!114 &3727243287618288696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,10 +460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
-  maxHp: 10
+  maxHp: 100
   hp: 0
-  atk: 100
-  def: 100
+  atk: 10
+  def: 10
   atkActive: 0
   defActive: 0
 --- !u!1001 &6343115000302996626

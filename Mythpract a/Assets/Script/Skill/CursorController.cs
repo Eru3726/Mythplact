@@ -53,7 +53,7 @@ public class CursorController : MonoBehaviour
     bool Lspin;
     bool back;
     bool moveonce;
-    bool moving;
+    bool moveCursor;
     bool pieceBack;
     bool onBase;
     private bool pickup;
@@ -205,26 +205,66 @@ public class CursorController : MonoBehaviour
     {
 
         // 上下左右移動
-        if (up) gameObject.transform.Translate(0, moveVertical, 0, Space.World);
-        if (down) gameObject.transform.Translate(0, -moveVertical, 0, Space.World);
-        if (left) gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
-        if (right) gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
-
-        if (left1) gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
-        if (left2) gameObject.transform.Translate(-moveSide, moveVertical / 2, 0, Space.World);
-        if (right1) gameObject.transform.Translate(moveSide, -moveVertical / 2, 0, Space.World);
-        if (right2) gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+        if (up)
+        {
+            gameObject.transform.Translate(0, moveVertical, 0, Space.World);
+        }
+        if (down)
+        {
+            gameObject.transform.Translate(0, -moveVertical, 0, Space.World);
+        }
+        if (left)
+        {
+            gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
+        }
+        if (right)
+        {
+            gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+        }
+        if (left1)
+        {
+            gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
+        }
+        if (left2)
+        {
+            gameObject.transform.Translate(-moveSide, moveVertical / 2, 0, Space.World);
+        }
+        if (right1)
+        {
+            gameObject.transform.Translate(moveSide, -moveVertical / 2, 0, Space.World);
+        }
+        if (right2)
+        {
+            gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+        }
 
         // 回転
         if (Rspin) gameObject.transform.Rotate(0, 0, -60);
         if (Lspin) gameObject.transform.Rotate(0, 0, 60);
 
+        //if(up || down || left || right || left1 || left2 || right1 || right2 || Rspin || Lspin)
+        //{
+        //    moveCursor = true;
+        //}
+        //else
+        //{
+        //    moveCursor = false;
+        //}
+
+        //if (moveCursor)
+        //{
+        //    skillPieceController.OutOnceProp = false;
+        //}
+        //else
+        //{
+        //    skillPieceController.OutOnceProp = true;
+
+        //}
 
         // 持ち上げ判定
         if (PickUpProp)
         {
             pickupTfm = touchTfm;
-
 
             // 持ち上げたオブジェクトの子オブジェクト化の切り替え
             // ※parent.parentは、持ち上げたオブジェクト(SkillPieceの子のSplite)の
@@ -577,25 +617,25 @@ public class CursorController : MonoBehaviour
     }
     void SkillPieceInfo()
     {
-        if (touchTfm.parent.name == "SkillPiece1(Clone)")
+        if (pickupTfm.parent.name == "SkillPiece1(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill1Select();
             skillText.Skill1Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece2(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece2(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill2Select();
             skillText.Skill2Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece3(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece3(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill3Select();
             skillText.Skill3Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece4(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece4(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill4Select();
@@ -603,67 +643,67 @@ public class CursorController : MonoBehaviour
 
         }
 
-        else if (touchTfm.parent.name == "SkillPiece5(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece5(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill5Select();
             skillText.Skill5Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece10(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece10(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill10Select();
-            skillText.Skill5Text();
+            skillText.Skill10Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece11(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece11(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill11Select();
             skillText.Skill11Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece12(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece12(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill12Select();
             skillText.Skill12Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece13(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece13(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill13Select();
             skillText.Skill13Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece14(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece14(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill14Select();
             skillText.Skill14Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece15(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece15(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill15Select();
             skillText.Skill15Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece16(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece16(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill16Select();
             skillText.Skill16Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece17(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece17(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill17Select();
             skillText.Skill17Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece18(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece18(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill18Select();
             skillText.Skill18Text();
         }
-        else if (touchTfm.parent.name == "SkillPiece19(Clone)")
+        else if (pickupTfm.parent.name == "SkillPiece19(Clone)")
         {
             // スキルピースの情報を表示
             skillPieceDisplay.Skill19Select();
@@ -682,11 +722,11 @@ public class CursorController : MonoBehaviour
             touchTfm = col.transform;
             // 触れたスキルピースのスクリプトを取得
             skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
+
             Debug.Log(skillPieceController.OutBaseProp);
 
             if (space)
             {
-
                 if (!skillPieceController.OutBaseProp)
                 {
                     // 持ち上げ判定にする

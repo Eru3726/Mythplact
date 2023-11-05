@@ -412,7 +412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 814393538170147963}
   - component: {fileID: 814393538170147941}
-  - component: {fileID: 814393538170147940}
+  - component: {fileID: 3336508279259168174}
   m_Layer: 8
   m_Name: BreathAtk
   m_TagString: Untagged
@@ -451,7 +451,7 @@ CapsuleCollider2D:
   m_Offset: {x: -1, y: -0.4}
   m_Size: {x: 0.9, y: 0.2}
   m_Direction: 1
---- !u!114 &814393538170147940
+--- !u!114 &3336508279259168174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 814393538170147962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf29a3c07af38044ace34fb7ed26460, type: 3}
+  m_Script: {fileID: 11500000, guid: 41b8e95e882472d43b2c0f2afa473812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
@@ -474,7 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 814393538620546787}
   - component: {fileID: 814393538620546797}
-  - component: {fileID: 814393538620546796}
+  - component: {fileID: 9187105565776935947}
   m_Layer: 8
   m_Name: def
   m_TagString: Untagged
@@ -523,7 +523,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5779831, y: 0.49960142}
   m_EdgeRadius: 0
---- !u!114 &814393538620546796
+--- !u!114 &9187105565776935947
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 814393538620546786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf29a3c07af38044ace34fb7ed26460, type: 3}
+  m_Script: {fileID: 11500000, guid: 41b8e95e882472d43b2c0f2afa473812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
@@ -546,7 +546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 814393539243047380}
   - component: {fileID: 814393539243047382}
-  - component: {fileID: 814393539243047381}
+  - component: {fileID: 3576892760352610968}
   m_Layer: 8
   m_Name: PushUpAtk
   m_TagString: Untagged
@@ -595,7 +595,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22576368, y: 1.0159515}
   m_EdgeRadius: 0
---- !u!114 &814393539243047381
+--- !u!114 &3576892760352610968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 814393539243047403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf29a3c07af38044ace34fb7ed26460, type: 3}
+  m_Script: {fileID: 11500000, guid: 41b8e95e882472d43b2c0f2afa473812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 2699637841559350985}
   - component: {fileID: 4596332707285199972}
   - component: {fileID: 8155010785583817492}
-  - component: {fileID: 8155010785583817515}
+  - component: {fileID: 109140769447610397}
   - component: {fileID: 8155010785583817514}
   - component: {fileID: 8155010785583817513}
   m_Layer: 7
@@ -2181,9 +2181,6 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
-  jump_Speed: 1
-  jump_Effect: []
-  jump_SE: []
   breath: {fileID: 814393538170147962}
   breath_Power: 1
   breath_AtkDis: 7.5
@@ -2309,7 +2306,7 @@ MonoBehaviour:
     color: {r: 0, g: 0, b: 0, a: 1}
     display: 0
   isLock: 1
---- !u!114 &8155010785583817515
+--- !u!114 &109140769447610397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2318,14 +2315,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2084067578160326956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5768163c534fe494a933603985602418, type: 3}
+  m_Script: {fileID: 11500000, guid: 5080bb5eb6ca7c1408d55d8964f0c4d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
   maxHp: 1000
   hp: 0
-  atk: 10
-  def: 10
+  atk: 100
+  def: 100
   atkActive: 0
   defActive: 0
 --- !u!114 &8155010785583817514
