@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  power: 75
 --- !u!1 &8438359422445198577
 GameObject:
   m_ObjectHideFlags: 0
@@ -4963,7 +4964,7 @@ MonoBehaviour:
   layer: 0
   maxHp: 10
   hp: 0
-  atk: 100
+  atk: 1
   def: 10
   atkActive: 0
   defActive: 0

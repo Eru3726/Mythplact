@@ -7,9 +7,16 @@ partial class Player
     [SerializeField] AudioClip jumpSE;
     [SerializeField] AudioClip landingSE;
     [SerializeField] AudioClip attackSE;
+    [SerializeField] AudioClip chargeSE;
+    [SerializeField] AudioClip deadSE;
     [SerializeField] AudioClip hitSE;
     [SerializeField] AudioClip guardSE;
-    [SerializeField] AudioClip skillSE;
+    [SerializeField] AudioClip skillSheriffSE;
+    [SerializeField] AudioClip skillFleetSE;
+    [SerializeField] AudioClip skillLoneWarriorSE;
+    [SerializeField] AudioClip skillGreemSE;
+    [SerializeField] AudioClip skillDStrikeSE;
+
 
     public void InitAudio()
     {
@@ -46,6 +53,6 @@ partial class Player
 
     public void SkillSE()
     {
-        audioSource.PlayOneShot(skillSE);
+        audioSource.PlayOneShot(skillSheriffSE);
     }
 }

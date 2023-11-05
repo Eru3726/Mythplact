@@ -14,6 +14,11 @@ partial class Player
     [SerializeField, Tooltip("ローンウォーリアの初期攻撃力")] float SkillLoneAtk;
     [SerializeField, Tooltip("ローンウォーリアの一回の追加攻撃力")] float SkillLoneAtkPlus;
     [SerializeField, Tooltip("ローンウォーリアのコンボの許容時間")] float SkillLoneComboSpan;
+    [SerializeField, Tooltip("ローンウォーリア1段階目")] Color SkillLWFirstColor;
+    [SerializeField, Tooltip("ローンウォーリア2段階目")] Color SkillLWSecondColor;
+    [SerializeField, Tooltip("ローンウォーリア3段階目")] Color SkillLWThirdColor;
+    [SerializeField, Tooltip("ローンウォーリア4段階目")] Color SkillLWFoursColor;
+    [SerializeField, Tooltip("ローンウォーリア5段階目")] Color SkillLWLastColor;
 
 
     [SerializeField, Tooltip("ブリンク距離スキル")] float SkillBrinkMove;
@@ -21,7 +26,7 @@ partial class Player
     [SerializeField, Tooltip("スピードアップスキル")] int SkillMaxSpeed;
     [SerializeField, Tooltip("火事場攻撃力アップ")] float SkillKajibaAtk;
 
-    [SerializeField] GameObject FleetCol;
+    [SerializeField] BoxCollider2D FleetCol;
 
     float skillSlashCount = 100;
     float skillFleetCount = 100;
@@ -46,8 +51,12 @@ partial class Player
     bool isFleet = false;
     bool isLoneWarrior = false;
     bool LoneWarriorReset = false;
+    bool ChargeEffectPlayOnce = false;
+    bool kajibaAtkPlusOnce = false;
+    bool kajibaAtkMinusOnce = false;
 
     bool isSkill = false;
+    bool isCharge = false;
 
     public float SkillSlashCT { get { return skillSlashCT; } }
     public float SkillSlashCount { get { return skillSlashCount; } }
@@ -127,6 +136,8 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
+
 
                     isFleet = true;
 
@@ -142,6 +153,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -157,6 +169,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -173,6 +186,7 @@ partial class Player
                     skillFleetDirX = dir.x;
                     PlayerRb.velocity = new Vector2(0, 0);
                     skillFleetDuration = 0;
+                    audioSource.PlayOneShot(skillFleetSE);
 
                     isFleet = true;
 
@@ -195,6 +209,8 @@ partial class Player
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
 
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
+
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
 
@@ -207,6 +223,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -220,6 +237,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -233,6 +251,7 @@ partial class Player
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
                     HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
+                    audioSource.PlayOneShot(skillLoneWarriorSE);
 
                     isLoneWarrior = true;       // スキルローンウォーリアを有効化
 
@@ -384,7 +403,7 @@ partial class Player
     public void SkillSlash()
     {
 
-        SkillSE();
+        audioSource.PlayOneShot(skillSheriffSE);
 
         GameData.SkillCount++;
         
@@ -408,10 +427,11 @@ partial class Player
         if(isFleet == true)
         {
             isSkill = true;
-            //HMng.DEFActive = false;
+            HMng.DEFActive = false;
             skillFleetDuration += Time.deltaTime;
 
-            FleetCol.SetActive(true);
+            FleetCol.size = new Vector2(6f, 2f);
+            FleetCol.offset = new Vector2(0, -0.355f);
             EffectSkillFleet.Play();
 
             if (skillFleetDirX > 0)
@@ -445,12 +465,12 @@ partial class Player
                 //    }
 
             }
-            if (HMng.CheckDamage())
-            {
-                PlayerRb.gravityScale = 7f;
-                isFleet = false;
+            //if (HMng.CheckDamage())
+            //{
+            //    PlayerRb.gravityScale = 7f;
+            //    isFleet = false;
 
-            }
+            //}
 
             if (skillFleetDuration >= skillFleetTime)
             {
@@ -462,16 +482,16 @@ partial class Player
         }
         else
         {
-            // HMng.DEFActive = true;
+            HMng.DEFActive = true;
             EffectSkillFleet.Stop();
 
             isSkill = false;
-            FleetCol.SetActive(false);
+            FleetCol.size = new Vector2(0, 0);
         }
     }
     public void SkillLoneWarrior()
     {
-
+        var main = EffectSkillLoneWarrior.main;
         if (isLoneWarrior == true && skillLoneWarriorTime >= skillLoneWarriorDuration)   
         {
             Debug.Log("ローンウォーリア発動中");
@@ -492,6 +512,42 @@ partial class Player
                 LoneWarriorReset = true;
                 isLoneWarrior = false;
             }
+
+            if(HMng.ATK > 2.4f)
+            {
+                main.startColor = new ParticleSystem.MinMaxGradient(SkillLWLastColor);
+                EffectSkillLoneWarrior.Play();
+
+
+            }
+            else if (HMng.ATK > 2.1f)
+            {
+                main.startColor = new ParticleSystem.MinMaxGradient(SkillLWFoursColor);
+                EffectSkillLoneWarrior.Play();
+
+
+            }
+            else if (HMng.ATK > 1.8f)
+            {
+                main.startColor = new ParticleSystem.MinMaxGradient(SkillLWThirdColor);
+                EffectSkillLoneWarrior.Play();
+
+
+            }
+            else if (HMng.ATK > 1.5f)
+            {
+                main.startColor = new ParticleSystem.MinMaxGradient(SkillLWSecondColor);
+                EffectSkillLoneWarrior.Play();
+
+            }
+            else
+            {
+                main.startColor = new ParticleSystem.MinMaxGradient(SkillLWFirstColor);
+                EffectSkillLoneWarrior.Play();
+
+            }
+
+
         }
         else if(skillLoneWarriorTime < skillLoneWarriorDuration)
         {
@@ -508,12 +564,14 @@ partial class Player
 
         if(LoneWarriorReset == true)
         {
+            Color DeffColer = new Color(1, 1, 1, 0.5f);
             isLoneWarrior = false;
             HMng.ATK = exAtk;                   // 攻撃力を戻す
             EffectSkillLoneWarrior.Stop();
             skillLoneWarriorDuration = 0;       // 継続時間をリセット
             skillLoneWarriorComboCount = 0;     // コンボ継続カウントをリセット
             skillLoneWarriorCount = 0;          // クールタイムをリセット
+            main.startColor = new ParticleSystem.MinMaxGradient(DeffColer);
 
             LoneWarriorReset = false;
         }
@@ -521,7 +579,7 @@ partial class Player
     }
     public void SkillGreem()
     {
-        SkillSE();
+        audioSource.PlayOneShot(skillGreemSE);
 
         GameData.SkillCount++;
 
@@ -542,7 +600,7 @@ partial class Player
     }
     public void SkillDeathPrationStrike()
     {
-        SkillSE();
+        audioSource.PlayOneShot(skillDStrikeSE);
 
         GameData.SkillCount++;
 
@@ -593,11 +651,22 @@ partial class Player
         SkillKajibaAtk = HMng.ATK * 2;
         if(HMng.HP == 1)
         {
-            HMng.ATK = SkillKajibaAtk;
+            kajibaAtkMinusOnce = false;
+
+            if (kajibaAtkPlusOnce == false)
+            {
+                HMng.ATK += SkillKajibaAtk;
+                kajibaAtkPlusOnce = true;
+            }
         }
         else
         {
-            HMng.ATK = 100;     // めんどいので初期数値手入力
+            kajibaAtkPlusOnce = false;
+            if (kajibaAtkMinusOnce == false)
+            {
+                HMng.ATK -= SkillKajibaAtk;
+                kajibaAtkMinusOnce = true;
+            }
         }
     }
     public void SkillStrength() // スキル15
@@ -606,7 +675,7 @@ partial class Player
     }
     public void SkillWise()     // スキル16
     {
-        if (GameData.setSkill17 == true)
+        if (GameData.setSkill16 == true)
         {
             HMng.HP += 1;
             EffectHeal.Play();
@@ -628,24 +697,34 @@ partial class Player
     {
         if (attackInp.action.WasPressedThisFrame())
         {
+
             if (isGround)
             {
                 PlayerRb.velocity = new Vector2(0, 0);
-                EffectCharge.Play();
 
             }
 
         }
         // ため攻撃の判定
-        if (attack)
+        if (attack && isGround)
         {
+            if(ChargeEffectPlayOnce == false)
+            {
+                EffectCharge.Play();
+                audioSource.PlayOneShot(chargeSE);
+
+                ChargeEffectPlayOnce = true;
+            }
+
             attackCount += Time.deltaTime;
-            isSkill = true;
+            isCharge = true;
+
 
         }
         if (attackEnd)
         {
-            isSkill = false;
+            ChargeEffectPlayOnce = false;
+            isCharge = false;
             EffectCharge.Stop();
             EffectCharge.Clear();
 

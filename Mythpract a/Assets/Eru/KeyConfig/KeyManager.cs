@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class KeyManager : MonoBehaviour
 {
@@ -9,24 +10,37 @@ public class KeyManager : MonoBehaviour
     [SerializeField] 
     private RebindSaveManager rsm;
 
+    [SerializeField]
+    private AchvUI achv;
+
+    [SerializeField]
+    private GameObject cursor;
+
+    [SerializeField]
+    private RectTransform cursorRect;
+
+    [SerializeField]
+    private InputActionReference pause;
+
     private bool openFlg = false;
 
     private void Awake()
     {
         //キーコン読み込み
         rsm.Load();
-
+        pause.action.Enable();
         ClosePanel();
     }
 
     void Update()
     {
         //pauseキーが押されたら
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (pause.action.triggered)
         {
             if (openFlg == false) KeyBoardPanel();
             else ClosePanel();
         }
+        if(cursor != null) cursor.SetActive(openFlg);
     }
 
     public void KeyBoardPanel()
@@ -50,6 +64,18 @@ public class KeyManager : MonoBehaviour
         padPanel.SetActive(false);
         keyPanel.SetActive(false);
         openFlg = false;
+        if(cursorRect != null) cursorRect.transform.position = new Vector2(960, 540);
         Time.timeScale = 1;
+    }
+
+    public void AchvOpen()
+    {
+        achv.OpenUI();
+    }
+
+    public void SkillOpen()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SkillPiece");
     }
 }

@@ -211,6 +211,11 @@ public class Read : MonoBehaviour
         GameData.ClearTime = saveData.ClearTime;
         GameData.HitCount = saveData.HitCount;
         GameData.SkillCount = saveData.SkillCount;
+        GameData.justGuardCount = saveData.justGuardCount;
+
+        GameData.bestTimeShoggoth = saveData.bestTimeShoggoth;
+        GameData.bestTimeFafnir = saveData.bestTimeFafnir;
+        GameData.bestTimeQilin = saveData.bestTimeQilin;
 
         if (Conconnect != null)
         {

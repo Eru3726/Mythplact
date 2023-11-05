@@ -53,6 +53,7 @@ public class Qilin : MonoBehaviour
 
     [SerializeField, Tooltip("行動")] Qilin_MoveType moveType = Qilin_MoveType.Idle;
     [SerializeField, Tooltip("行動テーブル")] Qilin_MoveTable[] moveTable;  //各テーブルの最初の行動はIdleにする必要がある
+    bool isHalfHP = false; 
 
     [Header("本体")]
     [SerializeField, Tooltip("接触攻撃判定")] GameObject body;
@@ -131,7 +132,7 @@ public class Qilin : MonoBehaviour
     GameObject meteor_Last;
 
     [Header("被ダメージ")]
-    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    //[SerializeField, Tooltip("色")] Color damage_Color = Color.white;
     [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
     [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
@@ -156,6 +157,7 @@ public class Qilin : MonoBehaviour
     public GameObject Player { get { return pl; } }
     public int PlDir { get { return plDir; } }
     public Qilin_MoveType MoveType { get { return moveType; } }
+    public bool IsHalfHP { get { return isHalfHP; } set { isHalfHP = value; } }
     public Vector2 Spin_Center { get { return spin_Center; } }
     public Vector2 Spin_AtkRange { get { return spin_AtkRange; } }
     public float Spin_Power { get { return spin_Power; } }
@@ -164,6 +166,8 @@ public class Qilin : MonoBehaviour
     public Vector2 Meteor_AtkRange { get { return meteor_AtkRange; } }
     public float Meteor_Power { get { return meteor_Power; } }
 
+    [SerializeField]
+    private AchvMeasurement achv;
 
     // Start is called before the first frame update
     void Start()
@@ -200,7 +204,9 @@ public class Qilin : MonoBehaviour
         SetPower(breath, breath_Power);
         SetPower(pushUp, pushUp_Power);
 
+        isHalfHP = false;
         hm.SetUp(Damage, Die);
+        hm.IsHalfHP = false;
         //CameraData();
         StageData();
 
@@ -211,8 +217,16 @@ public class Qilin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moveType == Qilin_MoveType.Die) { return; }
-
+        if (moveType == Qilin_MoveType.Die) 
+        {
+            die_Effect.StopCheck();
+            if (0.5f <= anim.NormalizedTime) { renderController.Opacity = 0; }
+            if (!die_Effect.IsValid)
+            {
+                GameData.QilinDead = true;
+            }
+            return; 
+        }
         hm.HitUpdate();
 
         pos = rb.position;
@@ -324,7 +338,7 @@ public class Qilin : MonoBehaviour
             case 3:
                 if (anim.NormalizedTime < 0.3f) { break; }
                 breath_Effect.Particle.gameObject.SetActive(true);
-                breath.SetActive(true);
+                //breath.SetActive(true);
                 breath_Effect.PlayParticle();
                 phase++;
                 break;
@@ -551,22 +565,22 @@ public class Qilin : MonoBehaviour
                 if (anim.Action != AnimSetting.Type.Idle) { break; }
                 Vector2 spin1Pos = new Vector2(stage_LeftTop.x, gPos);
                 Vector2 spin2Pos = new Vector2(stage_RightDown.x, gPos);
-                Instantiate(spin, spin1Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                Instantiate(spin, spin1Pos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
                 spin_Last =
-                    Instantiate(spin, spin2Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                    Instantiate(spin, spin2Pos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
                 phase++;
                 break;
+            //case 5:
+            //    if (spin_Last != null) { break; }
+            //    phase++;
+            //    break;
             case 5:
-                if (spin_Last != null) { break; }
-                phase++;
-                break;
-            case 6:
                 timer += Time.deltaTime;
                 if (timer < spin_CoolTime) { break; }
                 timer = 0;
                 phase++;
                 break;
-            case 7:
+            case 6:
                 MoveEnd();
                 break;
             default:
@@ -669,13 +683,17 @@ public class Qilin : MonoBehaviour
     void MoveEnd()  //行動終了時処理
     {
         Debug.Log("行動終了");
-        moveNo++;
-        if (moveNo == moveTable[tableNo].Move.Length)
+        if (!isHalfHP)
         {
-            tableNo = Random.Range(0, moveTable.Length);
-            moveNo = 0;
+            moveNo++;
+            if (moveNo == moveTable[tableNo].Move.Length)
+            {
+                tableNo = Random.Range(0, moveTable.Length);
+                moveNo = 0;
+            }
+            moveType = moveTable[tableNo].Move[moveNo];
         }
-        moveType = moveTable[tableNo].Move[moveNo];
+        else { moveType = Qilin_MoveType.Spin; isHalfHP = false; }
         AllVariableClear();
     }
 
@@ -700,20 +718,22 @@ public class Qilin : MonoBehaviour
 
     void Damage()   //被ダメージ
     {
+        Debug.Log(obj.name + "はダメージを受けた");
         damage_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
         StartCoroutine("Flash");
-        Debug.Log(obj.name + "はダメージを受けた");
+        if ((hm.HP == hm.MaxHP * 0.5f) && !hm.IsHalfHP) { isHalfHP = true; }
     }
 
     void Die()      //死亡
     {
+        Debug.Log(obj.name + "は死んだ");
+        achv.DefeatedBoss(2);
         moveType = Qilin_MoveType.Die;
         anim.AnimChage("Dead", isLock);
+        die_Effect.Particle.gameObject.SetActive(true);
         die_Effect.PlayParticle();
         damage_SE.PlayAudio(se);
-        GameData.QilinDead = true;
-        Debug.Log(obj.name + "は死んだ");
     }
 
     //----------アニメーション----------
@@ -768,16 +788,18 @@ public class Qilin : MonoBehaviour
     {
         while (damage_Repeat < damage_Number)
         {
-            for (int i = 0; i < renderController.Renderers.Length; i++)
-            {
-                renderController.Renderers[i].ScreenColor = damage_Color;
-            }
+            renderController.Opacity = 0;
+            //for (int i = 0; i < renderController.Renderers.Length; i++)
+            //{
+            //    renderController.Renderers[i].ScreenColor = damage_Color;
+            //}
             //待つ
             yield return new WaitForSeconds(damage_Time);
-            for (int i = 0; i < renderController.Renderers.Length; i++)
-            {
-                renderController.Renderers[i].ScreenColor = defColor;
-            }
+            renderController.Opacity = 1;
+            //for (int i = 0; i < renderController.Renderers.Length; i++)
+            //{
+            //    renderController.Renderers[i].ScreenColor = defColor;
+            //}
             //待つ
             yield return new WaitForSeconds(damage_Time);
             damage_Repeat++;

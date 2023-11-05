@@ -4885,7 +4885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de2ab06ed51d6e49a2b2f3aeec61587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
+  speed: 30
 --- !u!114 &6201181826395570596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4901,7 +4901,7 @@ MonoBehaviour:
   layer: 0
   maxHp: 0
   hp: 0
-  atk: 300
+  atk: 1
   def: 0
   atkActive: 0
   defActive: 0
@@ -4951,6 +4951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  power: 200
 --- !u!61 &7194517139933627903
 BoxCollider2D:
   m_ObjectHideFlags: 0

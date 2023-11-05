@@ -9,12 +9,13 @@ namespace SY
         [SerializeField] HitLayer layer;
         //ステータス
         [SerializeField, Tooltip("最大体力")] float maxHp;
-        [SerializeField, Tooltip("現在体力"), ReadOnly] float hp;
+        [SerializeField, Tooltip("現在体力"), ReadOnly] float hp = 1.0f;
         [SerializeField, Tooltip("攻撃力")] float atk;
         [SerializeField, Tooltip("防御力")] float def;
         [SerializeField, Tooltip("攻撃トリガー")] bool atkActive;
         [SerializeField, Tooltip("防御トリガー")] bool defActive;
         float hitInterval;  //ヒット後無敵時間
+        bool isHalfHP = false;
 
         HitResult result = new HitResult();
 
@@ -33,6 +34,7 @@ namespace SY
         public bool ATKActive { get { return atkActive; } set { atkActive = value; } }
         public bool DEFActive { get { return defActive; } set { defActive = value; } }
         public float HitInterval { get { return hitInterval; } set { hitInterval = value; } }
+        public bool IsHalfHP { get { return isHalfHP; } set { isHalfHP = value; } }
         public HitResult Result { get { return result; } }
 
         //----------関数----------
@@ -59,7 +61,11 @@ namespace SY
             }
             else if (CheckDamage() == true)
             {
-                if (dmgFunc != null) { dmgFunc(); }
+                if (dmgFunc != null) 
+                {
+                    dmgFunc(); 
+                    if(hp == maxHp * 0.5f) { isHalfHP = true; }
+                }
             }
 
             //連続ヒット防止

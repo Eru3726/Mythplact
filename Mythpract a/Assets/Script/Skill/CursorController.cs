@@ -14,6 +14,9 @@ public class CursorController : MonoBehaviour
     Keyconfig keycon;
     Pickkey pickkey;
 
+    AudioSource audioSource;
+
+    [SerializeField] AudioClip SkillSetSE;
 
     [SerializeField] Button Skill1_Button;
     [SerializeField] Button Skill2_Button;
@@ -83,7 +86,7 @@ public class CursorController : MonoBehaviour
         conconect = GameObject.Find("keycon").GetComponent<Controllerconnect>();
         keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
 
-
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -265,6 +268,7 @@ public class CursorController : MonoBehaviour
         if (PickUpProp)
         {
             pickupTfm = touchTfm;
+            audioSource.PlayOneShot(SkillSetSE);
 
             // 持ち上げたオブジェクトの子オブジェクト化の切り替え
             // ※parent.parentは、持ち上げたオブジェクト(SkillPieceの子のSplite)の

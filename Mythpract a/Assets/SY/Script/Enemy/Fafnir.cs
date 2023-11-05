@@ -1,7 +1,10 @@
 //ボス2：ファフニール
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using SY;
+using Live2D.Cubism.Rendering;
 
 public enum Fafnir_MoveType
 {
@@ -17,11 +20,13 @@ public class Fafnir : MonoBehaviour
 
     Rigidbody2D rb;
     AudioSource se;
+    CubismRenderController renderController;
     HitMng hm;      //当たり判定
     GroundCheck gc; //接地判定
 
     //
-    GameObject obj; //自身
+    GameObject obj; //自身自身
+    Color defColor;
     [SerializeField, Tooltip("プレーヤー")] GameObject pl;
 
     //
@@ -121,6 +126,26 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float earthquake_SEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool earthquake_SELoop;
 
+    [Header("被ダメージ")]
+    //[SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
+    [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
+    [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
+    [SerializeField, Tooltip("サウンド")] AudioSetting damage_SE;
+    float damage_Repeat = 0;
+
+    [Header("死亡")]
+    [SerializeField, Tooltip("変色前時間")] float dead_Time = 0.5f; 
+    [SerializeField]
+    [Tooltip("固まるスピード")]
+    float dead_Speed;
+    [SerializeField]
+    [Tooltip("固まる最大値")]
+    private float max;
+    private float goldtime;
+    private bool start = false;
+
+
 
     [Header("カメラ")]
     [SerializeField, Tooltip("画面情報")] CameraData cameraData;
@@ -143,16 +168,24 @@ public class Fafnir : MonoBehaviour
     float anim_JumpFlag;
     [SerializeField] bool isLock;
 
+    [SerializeField]
+    private AchvMeasurement achv;
+
+    [SerializeField]
+    private Material fafgold;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         se = GetComponent<AudioSource>();
+        renderController = GetComponent<CubismRenderController>();
         anim = GetComponent<Anim>();
         hm = GetComponent<HitMng>();
         gc = GetComponent<GroundCheck>();
         obj = this.gameObject;
+        defColor = renderController.ModelScreenColor;
         pos = rb.position;
         plPos = pl.transform.position;
         defScale = transform.localScale;
@@ -171,11 +204,52 @@ public class Fafnir : MonoBehaviour
         hm.SetUp(Damage, Die);
         CameraData();
 
+        renderController.OverwriteFlagForModelScreenColors = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (anim.Action == AnimSetting.Type.Die) 
+        {
+            timer += Time.deltaTime;
+            if (timer < dead_Time) { return; }
+            start = true;
+            if (start == true)
+            {
+                GameObject.Find("ArtMesh").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh2").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh3").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh4").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh5").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh6").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh7").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh8").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh9").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh10").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh11").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh12").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh13").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh14").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh15").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh16").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh17").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh18").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh19").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh20").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh21").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh22").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh23").GetComponent<CubismRenderer>().Material = fafgold;
+                GameObject.Find("ArtMesh24").GetComponent<CubismRenderer>().Material = fafgold;
+                if (goldtime <= max)
+                {
+                    goldtime += dead_Speed;
+                    fafgold.SetFloat("time", goldtime);
+                }
+                else { GameData.FafnirDead = true; }
+            }
+            return; 
+        }
         hm.HitUpdate();
 
         if (hm.HP <= 0) { return; }
@@ -306,6 +380,8 @@ public class Fafnir : MonoBehaviour
                 Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
                 if (anim.NormalizedTime < 1.0f) { break; }
                 SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
+                tackle_Effect.gameObject.SetActive(true);
+                tackle_Effect.Play();
                 anim.AnimChage("Rush_Air", isLock);
                 repeat++;
                 phase++;
@@ -325,6 +401,7 @@ public class Fafnir : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 SetPower(body, body_Power);
                 anim.AnimChage("Rush_End", isLock);
+                tackle_Effect.gameObject.SetActive(false);
                 timer = 0;
                 phase++;
                 break;
@@ -359,6 +436,7 @@ public class Fafnir : MonoBehaviour
                 phase++;
                 break;
             case 1:     //プレーヤーの位置と地面位置から攻撃位置定義、ジャンプ行動
+                CameraData();
                 Vector2 target = (center.x - plPos.x <= 0) ? leftTop : rightTop;
                 target = new Vector2(target.x, GroundPosition(target.x));
                 //Debug.Log(target);
@@ -510,17 +588,20 @@ public class Fafnir : MonoBehaviour
     void Damage()   //被ダメージ
     {
         Debug.Log(obj.name + "はダメージを受けた");
+        StartCoroutine("Flash");
     }
 
     void Die()      //死亡
     {
+        Debug.Log(obj.name + "は死んだ");
+        achv.DefeatedBoss(1);
         if (soundcount == 0)
         {
+            timer = 0;
             SetAudio(die_SE, die_SEVolume, die_SEPitch, die_SELoop);
         }
+        anim.AnimChage("Dead", isLock);
         soundcount++;
-        GameData.FafnirDead = true;
-        Debug.Log(obj.name + "は死んだ");
     }
 
     //----------アニメーション----------
@@ -574,6 +655,7 @@ public class Fafnir : MonoBehaviour
         RaycastHit2D rayHit = 
             Physics2D.Raycast(new Vector2(axisX, leftTop.y), Vector2.down, screenHeight, gc.Ray[0].Layer);  //光線発射
         Debug.DrawRay(new Vector2(axisX, leftTop.y), Vector2.down * screenHeight, Color.green, 1.0f);
+        if (rayHit.collider == null) { Debug.LogError(axisX + "に地面はない"); return 0; }
         if (rayHit.collider.tag == gc.Ray[0].Tag.ToString())
         {
             Vector2 groundPos = rayHit.point;   //地面位置確認
@@ -581,6 +663,29 @@ public class Fafnir : MonoBehaviour
         }
         Debug.LogError(axisX + "に地面はない");
         return 0;
+    }
+
+    IEnumerator Flash()
+    {
+        while (damage_Repeat < damage_Number)
+        {
+            renderController.Opacity = 0;
+            //for (int i = 0; i < renderController.Renderers.Length; i++)
+            //{
+            //    renderController.Renderers[i].ScreenColor = damage_Color;
+            //}
+            //待つ
+            yield return new WaitForSeconds(damage_Time);
+            renderController.Opacity = 1;
+            //for (int i = 0; i < renderController.Renderers.Length; i++)
+            //{
+            //    renderController.Renderers[i].ScreenColor = defColor;
+            //}
+            //待つ
+            yield return new WaitForSeconds(damage_Time);
+            damage_Repeat++;
+        }
+        damage_Repeat = 0;
     }
 
     //上昇または落下時間
