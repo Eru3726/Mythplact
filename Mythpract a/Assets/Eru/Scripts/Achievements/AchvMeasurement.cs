@@ -1,8 +1,11 @@
 using System.Linq;
 using UnityEngine;
 
-public class AchvMeasurement : MonoBehaviour
+public class AchvMeasurement
 {
+    /// <summary>
+    /// 累計プレイヤー死亡
+    /// </summary>
     [ContextMenu("PlayerDie")]
     public void PlayerDie()
     {
@@ -15,6 +18,9 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 累計ブリンク回数
+    /// </summary>
     [ContextMenu("UseBlink")]
     public void UseBlink()
     {
@@ -27,6 +33,10 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ボス討伐
+    /// </summary>
+    /// <param name="i">0=ショゴス　1=フィファニール　2=キリン</param>
     public void DefeatedBoss(int i)
     {
         if (!AchvManager.instance.defeatedBoss[i])
@@ -42,6 +52,9 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 体力1でクリア
+    /// </summary>
     [ContextMenu("OneHpClear")]
     public void OneHpClear()
     {
@@ -51,6 +64,9 @@ public class AchvMeasurement : MonoBehaviour
         //アドレナリン解放
     }
 
+    /// <summary>
+    /// コンボ回数
+    /// </summary>
     [ContextMenu("AttackCombo")]
     public void AttackCombo()
     {
@@ -60,6 +76,9 @@ public class AchvMeasurement : MonoBehaviour
         //ローンウォリアー
     }
 
+    /// <summary>
+    /// 累計シェリフ使用回数
+    /// </summary>
     [ContextMenu("UseSheriff")]
     public void UseSheriff()
     {
@@ -72,6 +91,9 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 累計ガード回数
+    /// </summary>
     [ContextMenu("GuardNum")]
     public void GuardNum()
     {
@@ -84,6 +106,9 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ノーダメクリア
+    /// </summary>
     [ContextMenu("NoDamageClear")]
     public void NoDamageClear()
     {
@@ -93,6 +118,9 @@ public class AchvMeasurement : MonoBehaviour
         //カース
     }
 
+    /// <summary>
+    /// 累計ジャストガード回数
+    /// </summary>
     [ContextMenu("JustGuardNum")]
     public void JustGuardNum()
     {
@@ -105,6 +133,9 @@ public class AchvMeasurement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ノーガードクリア
+    /// </summary>
     [ContextMenu("NoGuardClear")]
     public void NoGuardClear()
     {
@@ -114,6 +145,9 @@ public class AchvMeasurement : MonoBehaviour
         //ストレングス
     }
 
+    /// <summary>
+    /// パッシブスキルを使用せずクリア
+    /// </summary>
     [ContextMenu("ActiveSkillOnlyClear")]
     public void ActiveSkillOnlyClear()
     {
@@ -123,6 +157,9 @@ public class AchvMeasurement : MonoBehaviour
         //デスピレイションストライク 
     }
 
+    /// <summary>
+    /// タイムアタック
+    /// </summary>
     [ContextMenu("TimeAttack")]
     public void TimeAttack()
     {
