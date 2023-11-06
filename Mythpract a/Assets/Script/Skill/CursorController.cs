@@ -51,6 +51,8 @@ public class CursorController : MonoBehaviour
     bool left2;
     bool right1;
     bool right2;
+
+
     bool space;
     bool Rspin;
     bool Lspin;
@@ -222,37 +224,94 @@ public class CursorController : MonoBehaviour
             }
         }
         // 上下左右移動
-        if (up)
+        if (gameObject.transform.position.y < 2.175f && gameObject.transform.position.x == -0.75f ||
+            gameObject.transform.position.y < 1.74f && gameObject.transform.position.x == 0 ||
+            gameObject.transform.position.y < 1.74f && gameObject.transform.position.x == -1.5f ||
+            gameObject.transform.position.y < 0.87f && gameObject.transform.position.x == 0.75f ||
+            gameObject.transform.position.y < 0.87f && gameObject.transform.position.x == -2.25f)
         {
-            gameObject.transform.Translate(0, moveVertical, 0, Space.World);
+            if (up)
+            {
+                gameObject.transform.Translate(0, moveVertical, 0, Space.World);
+            }
+
         }
-        if (down)
-        {
-            gameObject.transform.Translate(0, -moveVertical, 0, Space.World);
+
+
+        //if ((gameObject.transform.position.x != 0.75f && gameObject.transform.position.y <= 2.175f) &&
+        //    (((gameObject.transform.position.x != 0f) || (gameObject.transform.position.x != 1.5f)) && gameObject.transform.position.y <= 1.74f) ||
+        //    (((gameObject.transform.position.x != -0.75f) || (gameObject.transform.position.x != 2.25f)) && gameObject.transform.position.y <= 0.87f)
+        //    )
+        //{
+        if (gameObject.transform.position.y > -1.304f && gameObject.transform.position.x == -0.75f ||
+            gameObject.transform.position.y > -0.86f && gameObject.transform.position.x == 0 ||
+            gameObject.transform.position.y > -0.86f && gameObject.transform.position.x == -1.5f ||
+            gameObject.transform.position.y > -0.43f && gameObject.transform.position.x == 0.75f ||
+            gameObject.transform.position.y > -0.34f && gameObject.transform.position.x == -2.25f)
+        { 
+            if (down)
+            {
+                gameObject.transform.Translate(0, -moveVertical, 0, Space.World);
+            }
+
         }
-        if (left)
+
+
+
+        if (gameObject.transform.position.x < 0.75f)
         {
-            gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
+            if(!(gameObject.transform.position.x == -0.75f && gameObject.transform.position.y >= 2.1f ||
+                gameObject.transform.position.x == 0 && gameObject.transform.position.y >= 1.7f))
+            {
+                if (right)
+                {
+                    gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+                }
+                if (right2)
+                {
+                    gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+                }
+
+            }
+
+            if (!(gameObject.transform.position.x == -0.75f && gameObject.transform.position.y <= 1.304f ||
+                gameObject.transform.position.x == 0 && gameObject.transform.position.y <= 0.86f))
+            {
+                if (right1)
+                {
+                    gameObject.transform.Translate(moveSide, -moveVertical / 2, 0, Space.World);
+                }
+
+            }
+
+
         }
-        if (right)
+        if(gameObject.transform.position.x > -2.25f)
         {
-            gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
-        }
-        if (left1)
-        {
-            gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
-        }
-        if (left2)
-        {
-            gameObject.transform.Translate(-moveSide, moveVertical / 2, 0, Space.World);
-        }
-        if (right1)
-        {
-            gameObject.transform.Translate(moveSide, -moveVertical / 2, 0, Space.World);
-        }
-        if (right2)
-        {
-            gameObject.transform.Translate(moveSide, moveVertical / 2, 0, Space.World);
+            if (!(gameObject.transform.position.x == -0.75f && gameObject.transform.position.y < -1.3f ||
+                 gameObject.transform.position.x == -1.5f && gameObject.transform.position.y < -0.8f))
+            {
+                if (left)
+                {
+                    gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
+                }
+                if (left1)
+                {
+                    gameObject.transform.Translate(-moveSide, -moveVertical / 2, 0, Space.World);
+                }
+
+            }
+
+            if (!(gameObject.transform.position.x == -0.75f && gameObject.transform.position.y >= 2.1f ||
+                 gameObject.transform.position.x == -1.5f && gameObject.transform.position.y >= 1.7f))
+            {
+                if (left2)
+                {
+                    gameObject.transform.Translate(-moveSide, moveVertical / 2, 0, Space.World);
+                }
+
+            }
+
         }
 
         // 回転
