@@ -17,8 +17,8 @@ public class RestManager : MonoBehaviour
         Cmana.SetActive(false);
 
         heal = true;
-
         readclass.enabled = true;
+
     }
 
     // Update is called once per frame

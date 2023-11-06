@@ -9,6 +9,9 @@ public class GameSceneDirector3 : MonoBehaviour
     void Start()
     {
         dataManager.Read();
+        GameData.HitCount = 0;
+        GameData.justGuardCount = 0;
+        GameData.SkillCount = 0;
 
         player = GameObject.Find("Player").GetComponent<Player>();
     }
