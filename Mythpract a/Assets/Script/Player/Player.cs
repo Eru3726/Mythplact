@@ -71,11 +71,14 @@ public partial class Player : MonoBehaviour
 
     bool deathDirection;
 
+    private readonly AchvMeasurement achv = new AchvMeasurement();
+
     HitMng HMng;
     AtkJumpDown atkJumpDown;
     DeadEffectEnd deadEffectEnd;
     Controllerconnect conconect;
     Keyconfig keycon;
+
 
     [SerializeField, Header("攻撃")]
     private InputActionReference attackInp;
@@ -901,6 +904,7 @@ public partial class Player : MonoBehaviour
 
             BrinkEffect();
             BrinkSE();
+            achv.UseBlink();
 
             transform.position = new Vector3(transform.position.x + (brinkMove * dir.x), transform.position.y, 0);
             PlayerRb.velocity = new Vector2(0, 0);
@@ -918,7 +922,7 @@ public partial class Player : MonoBehaviour
         {
             BrinkEffect();
             BrinkSE();
-
+            achv.UseBlink();
 
             transform.position = new Vector3(transform.position.x + (brinkMove * dir.x), transform.position.y, 0);
             PlayerRb.velocity = new Vector2(0, 0);
@@ -1024,6 +1028,7 @@ public partial class Player : MonoBehaviour
                 if (HMng.CheckDamage() == true)
                 {
                     stamina -= 50;
+                    achv.GuardNum();
                     //guardCount = 0;
                     //canGuard = false;
                     //guardCTCount = 0;
@@ -1052,6 +1057,7 @@ public partial class Player : MonoBehaviour
                 if (HMng.CheckDamage() == true)
                 {
                     Debug.Log("ジャストガード成功");
+                    achv.JustGuardNum();
 
                     GameData.justGuardCount++;
                     EffectJustGuard.Play();
@@ -1097,6 +1103,7 @@ public partial class Player : MonoBehaviour
             {
                 EffectDeath.Play();
                 audioSource.PlayOneShot(deadSE);
+                achv.PlayerDie();
                 deathDirection = true;
                 SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
                 sprite.enabled = false;
