@@ -138,8 +138,8 @@ public class Shoggoth : MonoBehaviour
     [Header("スライム")]
     [SerializeField, Tooltip("生成間隔")] float slime_GenerateTime;
 
-    [SerializeField]
-    private AchvMeasurement achv;
+    private readonly AchvMeasurement achv = new AchvMeasurement();
+
 
     public GameObject Player { get { return pl; } }
     public Shoggoth_MoveType MoveType { get { return moveType; } }

@@ -166,8 +166,7 @@ public class Qilin : MonoBehaviour
     public Vector2 Meteor_AtkRange { get { return meteor_AtkRange; } }
     public float Meteor_Power { get { return meteor_Power; } }
 
-    [SerializeField]
-    private AchvMeasurement achv;
+    private readonly AchvMeasurement achv = new AchvMeasurement();
 
     // Start is called before the first frame update
     void Start()

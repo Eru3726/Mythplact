@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 901419858}
   - component: {fileID: 901419859}
   m_Layer: 0
-  m_Name: Debug
+  m_Name: Achv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

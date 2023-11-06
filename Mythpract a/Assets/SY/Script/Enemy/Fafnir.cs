@@ -168,8 +168,7 @@ public class Fafnir : MonoBehaviour
     float anim_JumpFlag;
     [SerializeField] bool isLock;
 
-    [SerializeField]
-    private AchvMeasurement achv;
+    private readonly AchvMeasurement achv = new AchvMeasurement();
 
     [SerializeField]
     private Material fafgold;

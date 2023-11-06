@@ -406,6 +406,7 @@ partial class Player
         audioSource.PlayOneShot(skillSheriffSE);
 
         GameData.SkillCount++;
+        achv.UseSheriff();
         
         if(dir.x == 1)
         {
