@@ -5115,7 +5115,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:100\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:5\u79D2\n\u30B5\u30A4\u30BA:4"
+  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:200\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:5\u79D2\n\u30B5\u30A4\u30BA:4"
 --- !u!222 &522073784
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6353,7 +6353,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:100\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:5\u79D2\n\u30B5\u30A4\u30BA:4"
+  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:200\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:5\u79D2\n\u30B5\u30A4\u30BA:4"
 --- !u!222 &628382914
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16121,7 +16121,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:100\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:5\u79D2\n\u30B5\u30A4\u30BA:2"
+  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:75\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:8\u79D2\n\u30B5\u30A4\u30BA:3"
 --- !u!222 &1020771203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16726,7 +16726,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:100\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:5\u79D2\n\u30B5\u30A4\u30BA:2"
+  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:50\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:2\u79D2\n\u30B5\u30A4\u30BA:2"
 --- !u!222 &1079670677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28989,7 +28989,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u5A01\u529B:100\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:5\u79D2\n\u30B5\u30A4\u30BA:5"
+  m_Text: "\u30B9\u30AD\u30EB\u30BF\u30A4\u30D7:\u30A2\u30AF\u30C6\u30A3\u30D6\n\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0:10\u79D2\n\u30B5\u30A4\u30BA:5"
 --- !u!222 &2062534971
 CanvasRenderer:
   m_ObjectHideFlags: 0
