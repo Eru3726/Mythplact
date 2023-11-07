@@ -79,6 +79,8 @@ public partial class Player : MonoBehaviour
     bool qilinDeadAchvOnce;
 
     bool achvNoGuard;
+    float achvComboTime = 0;
+    int achvComboCount;
 
     private readonly AchvMeasurement achv = new AchvMeasurement();
 
@@ -1277,6 +1279,18 @@ public partial class Player : MonoBehaviour
             qilinDeadAchvOnce = true;
         }
 
+        achvComboTime += Time.deltaTime;
+        if (HMng.CheckAttack())
+        {
+            achvComboCount++;
+            achvComboTime = 0;
+        }
+        if(achvComboTime >= SkillLoneComboSpan || HMng.CheckDamage())
+        {
+            achvComboCount = 0;
+        }
+
+        if (achvComboCount >= 10) achv.AttackCombo();
 
     }
     void EnemyLockon()
