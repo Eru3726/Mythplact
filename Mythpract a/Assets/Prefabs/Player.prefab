@@ -15116,6 +15116,7 @@ MonoBehaviour:
   justGuardTime: 0.1
   knockbuckTime: 0.5
   atkJumpDownCT: 0.4
+  atkJumpUpCT: 0.3
   attackInp: {fileID: -4327428838556983879, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   guardInp: {fileID: 4014162791499612685, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   rightInp: {fileID: 3173363362254018375, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}

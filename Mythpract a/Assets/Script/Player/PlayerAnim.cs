@@ -8,6 +8,7 @@ partial class Player
     bool hitAnim;
     bool hitJumpDown;
     bool canHitDown;
+    bool canHitUp;
 
     void InitAnim()
     {
@@ -30,6 +31,7 @@ partial class Player
         plAnim.SetBool("Hit",hitAnim);
         plAnim.SetBool("HitAtkJumpDown", hitJumpDown);
         plAnim.SetBool("CanHitDown", canHitDown);
+        plAnim.SetBool("CanHitUp", canHitUp);
         plAnim.SetBool("IsFleet", isFleet);
         plAnim.SetFloat("Walk", Mathf.Abs(inputDir.x));
         plAnim.SetFloat("VeloV", PlayerRb.velocity.y);
@@ -45,6 +47,12 @@ partial class Player
         atkJumpDownCount = 0;
         canHitDown = false;
     }
+    public void AtkJumpUpEnd()
+    {
+        atkJumpUpCount = 0;
+        canHitUp = false;
+    }
+
     void AttackStart()
     {
         isAttack = true;

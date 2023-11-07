@@ -166,8 +166,7 @@ public class Qilin : MonoBehaviour
     public Vector2 Meteor_AtkRange { get { return meteor_AtkRange; } }
     public float Meteor_Power { get { return meteor_Power; } }
 
-    [SerializeField]
-    private AchvMeasurement achv;
+    private readonly AchvMeasurement achv = new AchvMeasurement();
 
     // Start is called before the first frame update
     void Start()
@@ -197,9 +196,7 @@ public class Qilin : MonoBehaviour
         body_Range = bc.bounds.max - bc.bounds.min;
 
         //攻撃判定関連
-        body.SetActive(true);
-        breath.SetActive(false);
-        pushUp.SetActive(false);
+        AllHitActive(false);
         SetPower(body, body_Power);
         SetPower(breath, breath_Power);
         SetPower(pushUp, pushUp_Power);
@@ -486,6 +483,7 @@ public class Qilin : MonoBehaviour
             case 0:
                 rb.gravityScale = 0;
                 rb.velocity = Vector2.right * PlDir * pushUp_MoveSpd;
+                body.SetActive(true);
                 pushUp_Effect.Particle.gameObject.SetActive(true);
                 pushUp_Effect.PlayParticle();
                 //renderController.Opacity = 0;
@@ -494,6 +492,7 @@ public class Qilin : MonoBehaviour
             case 1:
                 if (pushUp_AtkDis < Mathf.Abs(Distance(plPos).x)) { break; }
                 rb.velocity = Vector2.zero;
+                body.SetActive(false);
                 var main = pushUp_Effect.Particle.main;
                 main.loop = false;
                 phase++;
@@ -515,12 +514,12 @@ public class Qilin : MonoBehaviour
                 break;
             case 4:
                 anim.AnimChage("PushUp", isLock);
-                pushUp.SetActive(true);
+                //pushUp.SetActive(true);
                 phase++;
                 break;
             case 5:
                 if(anim.Action != AnimSetting.Type.Idle) { break; }
-                pushUp.SetActive(false);
+                //pushUp.SetActive(false);
                 timer += Time.deltaTime;
                 if (timer < pushUp_CoolTime) { break; }
                 phase++;
@@ -541,6 +540,8 @@ public class Qilin : MonoBehaviour
             case 0:
                 rb.gravityScale = 0;
                 Vector2 vec = new Vector2(stage_Center.x, gPos) - pos;
+                scale.x = defScale.x * ((vec.x <= 0) ? -1 : 1);
+                transform.localScale = scale;
                 rb.velocity = vec.normalized * move_Speed;
                 phase++;
                 break;
@@ -728,6 +729,8 @@ public class Qilin : MonoBehaviour
     void Die()      //死亡
     {
         Debug.Log(obj.name + "は死んだ");
+        rb.velocity = Vector2.zero;
+        AllHitActive(false);
         achv.DefeatedBoss(2);
         moveType = Qilin_MoveType.Die;
         anim.AnimChage("Dead", isLock);
@@ -832,6 +835,13 @@ public class Qilin : MonoBehaviour
     bool CheckGroundFlag(GroundCheck.Flag flag)
     {
         return gc.CheckFlag(flag);
+    }
+
+    void AllHitActive(bool value)
+    {
+        body.SetActive(value);
+        breath.SetActive(value);
+        pushUp.SetActive(value);
     }
 
     public void SetPower(GameObject obj, float power)

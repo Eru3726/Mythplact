@@ -124,22 +124,22 @@ public class SkillPieceController : MonoBehaviour
     {
         for (int i = 0; i < pieceCount; ++i)
         {
-            Debug.Log(i+"cursorflag " + cursorflag);
-            Debug.Log("Flag"+ i + Flag[i]);
+            //Debug.Log(i+"cursorflag " + cursorflag);
+            //Debug.Log("Flag"+ 2 + Flag[2]);
             if (Flag[i] == true && cursorflag == true)
             {
                 OutBaseProp = false;
-                Debug.Log(i+"outbasefalse");
+                //Debug.Log(i+"outbasefalse");
             }
             else if (Flag[i] == false)
             {
                 OutBaseProp = true;
-                Debug.Log(i+"break");
+                //Debug.Log(i+"break");
                 break;
             }
             else
             {
-                Debug.Log(i+"何もなかった");
+                //Debug.Log(i+"何もなかった");
             }
         }
         //Debug.Log("outprop" + OutBaseProp);

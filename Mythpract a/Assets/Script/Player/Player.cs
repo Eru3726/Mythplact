@@ -25,12 +25,15 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
     [SerializeField, Tooltip("ジャンプ下攻撃のCT")]float atkJumpDownCT;
+    [SerializeField, Tooltip("ジャンプ上攻撃のCT")] float atkJumpUpCT;
+
 
     SpriteRenderer plsp;
     Image brinkSlider;
     float jumpPowPlus;
     float attackCount = 0;
     float atkJumpDownCount = 0;
+    float atkJumpUpCount = 0;
     float brinkCTCount = 0;            // ブリンクのクールダウンのカウント
     float guardCTCount = 0;             // ガードのクールタイムのカウント
     float guardCount = 0;
@@ -71,11 +74,14 @@ public partial class Player : MonoBehaviour
 
     bool deathDirection;
 
+    private readonly AchvMeasurement achv = new AchvMeasurement();
+
     HitMng HMng;
     AtkJumpDown atkJumpDown;
     DeadEffectEnd deadEffectEnd;
     Controllerconnect conconect;
     Keyconfig keycon;
+
 
     [SerializeField, Header("攻撃")]
     private InputActionReference attackInp;
@@ -862,6 +868,11 @@ public partial class Player : MonoBehaviour
         {
             canHitDown = true;
         }
+        atkJumpUpCount += Time.deltaTime;
+        if(atkJumpUpCT <= atkJumpUpCount)
+        {
+            canHitUp = true;
+        }
 
         // 移動速度
         if (PlayerRb.velocity.magnitude <= maxSpeed)
@@ -901,6 +912,7 @@ public partial class Player : MonoBehaviour
 
             BrinkEffect();
             BrinkSE();
+            achv.UseBlink();
 
             transform.position = new Vector3(transform.position.x + (brinkMove * dir.x), transform.position.y, 0);
             PlayerRb.velocity = new Vector2(0, 0);
@@ -918,7 +930,7 @@ public partial class Player : MonoBehaviour
         {
             BrinkEffect();
             BrinkSE();
-
+            achv.UseBlink();
 
             transform.position = new Vector3(transform.position.x + (brinkMove * dir.x), transform.position.y, 0);
             PlayerRb.velocity = new Vector2(0, 0);
@@ -1024,6 +1036,7 @@ public partial class Player : MonoBehaviour
                 if (HMng.CheckDamage() == true)
                 {
                     stamina -= 50;
+                    achv.GuardNum();
                     //guardCount = 0;
                     //canGuard = false;
                     //guardCTCount = 0;
@@ -1052,6 +1065,7 @@ public partial class Player : MonoBehaviour
                 if (HMng.CheckDamage() == true)
                 {
                     Debug.Log("ジャストガード成功");
+                    achv.JustGuardNum();
 
                     GameData.justGuardCount++;
                     EffectJustGuard.Play();
@@ -1097,6 +1111,7 @@ public partial class Player : MonoBehaviour
             {
                 EffectDeath.Play();
                 audioSource.PlayOneShot(deadSE);
+                achv.PlayerDie();
                 deathDirection = true;
                 SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
                 sprite.enabled = false;
