@@ -15117,7 +15117,6 @@ MonoBehaviour:
   knockbuckTime: 0.5
   atkJumpDownCT: 0.4
   atkJumpUpCT: 0.3
-  achvTimeAttackTime: 60
   attackInp: {fileID: -4327428838556983879, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   guardInp: {fileID: 4014162791499612685, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   rightInp: {fileID: 3173363362254018375, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
@@ -15138,6 +15137,9 @@ MonoBehaviour:
   deadSE: {fileID: 8300000, guid: 3ce269a0edef0664ca6154834efd4711, type: 3}
   hitSE: {fileID: 8300000, guid: d979ea83f3414ce46848faff3c1650de, type: 3}
   guardSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
+  guardHitSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
+  justguardSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
+  guardbreakSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
   skillSheriffSE: {fileID: 8300000, guid: 943b54aa37f3a5a4f8de054bfaafff91, type: 3}
   skillFleetSE: {fileID: 8300000, guid: fb127ad0374f6b7439ad798a80b9daa5, type: 3}
   skillLoneWarriorSE: {fileID: 0}
@@ -15169,6 +15171,7 @@ MonoBehaviour:
   EffectDamage: {fileID: 5832322841798683931}
   EffectGuard: {fileID: 8922014013550586388}
   EffectGuardBreak: {fileID: 2747998374615741233}
+  EffectGuardHit: {fileID: 0}
   EffectJustGuard: {fileID: 8922014011833620538}
   EffectDeath: {fileID: 6335417109466430234}
   EffectHeal: {fileID: 1222042325814170449}

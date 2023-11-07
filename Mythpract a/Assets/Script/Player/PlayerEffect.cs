@@ -10,6 +10,7 @@ partial class Player
     public ParticleSystem EffectDamage;
     public ParticleSystem EffectGuard;
     public ParticleSystem EffectGuardBreak;
+    public ParticleSystem EffectGuardHit;
     public ParticleSystem EffectJustGuard;
     public ParticleSystem EffectDeath;
     public ParticleSystem EffectHeal;
