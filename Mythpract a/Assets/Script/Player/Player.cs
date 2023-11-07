@@ -27,8 +27,6 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ジャンプ下攻撃のCT")]float atkJumpDownCT;
     [SerializeField, Tooltip("ジャンプ上攻撃のCT")] float atkJumpUpCT;
 
-    [Header("アチーブメント開放")]
-    [SerializeField, Tooltip("タイムアタック")] float achvTimeAttackTime;
 
 
     SpriteRenderer plsp;
@@ -1248,7 +1246,7 @@ public partial class Player : MonoBehaviour
 
             if (GameData.HitCount == 0) achv.NoDamageClear();
 
-            if (GameData.ClearTime < achvTimeAttackTime) achv.TimeAttack();
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
 
             if (HMng.HP == 1) achv.OneHpClear();
 
@@ -1262,7 +1260,7 @@ public partial class Player : MonoBehaviour
         {
             if (GameData.HitCount == 0) achv.NoDamageClear();
 
-            if (GameData.ClearTime < achvTimeAttackTime) achv.TimeAttack();
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
 
             if (HMng.HP == 1) achv.OneHpClear();
 
@@ -1277,7 +1275,7 @@ public partial class Player : MonoBehaviour
         {
             if (GameData.HitCount == 0) achv.NoDamageClear();
 
-            if (GameData.ClearTime < achvTimeAttackTime) achv.TimeAttack();
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
 
             if (HMng.HP == 1) achv.OneHpClear();
 
