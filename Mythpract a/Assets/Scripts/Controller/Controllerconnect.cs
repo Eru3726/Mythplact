@@ -35,14 +35,17 @@ public class Controllerconnect : MonoBehaviour
             }
         }
 
-        if (connect[0] == "" && conconnect == true)     //コントローラー非接続
+        if (conconnect == true)
         {
-            keyread();       //キーコンをキーボード用に変更
-            //if (keycon.right == false && keycon.left == false && keycon.down == false && keycon.jump == false && keycon.attack == false && keycon.dash == false && keycon.heal == false && keycon.interact == false)
+            if (connect[0] == "")     //コントローラー非接続
             {
-                conconnect = false;　　　　//こいつはプロパティ
+                keyread();       //キーコンをキーボード用に変更
+                                 //if (keycon.right == false && keycon.left == false && keycon.down == false && keycon.jump == false && keycon.attack == false && keycon.dash == false && keycon.heal == false && keycon.interact == false)
+                {
+                    conconnect = false;    //こいつはプロパティ
+                }
+                Debug.Log("コントローラー接続" + conconnect);
             }
-            Debug.Log("コントローラー接続" + conconnect);
         }
     }
 
