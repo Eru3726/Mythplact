@@ -135,11 +135,11 @@ MonoBehaviour:
   qilinName: Qilin
   attack: {fileID: 8449096856969812654}
   speed: 2
-  upTime: 1
-  atkTime: 5
+  upTime: 0.3
+  atkTime: 30
   effect:
     particle: {fileID: 2657639739816163701}
-    time: 10
+    time: 30
     loop: 0
   sound:
     clip: {fileID: 0}

@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 6804787042626513585}
-  speed: 10
+  speed: 15
   fall_Effect:
     particle: {fileID: 0}
     time: 1

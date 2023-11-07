@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  power: 0
 --- !u!1 &1803551309648937
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  power: 0
 --- !u!1 &814393538620546786
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  power: 0
 --- !u!1 &814393539243047403
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  power: 0
 --- !u!1 &1100145036252215475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,7 +2342,7 @@ MonoBehaviour:
   meteor_AtkRange: {x: 40, y: 10}
   meteor_AtkTime: 5
   meteor_Generate: 10
-  meteor_CoolTime: 0.5
+  meteor_CoolTime: 0.03
   meteor_Effect:
     particle: {fileID: 0}
     time: 1
