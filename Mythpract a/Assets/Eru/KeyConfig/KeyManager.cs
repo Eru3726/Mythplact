@@ -65,7 +65,6 @@ public class KeyManager : MonoBehaviour
         keyPanel.SetActive(true);
         padPanel.SetActive(false);
         openFlg = true;
-        Time.timeScale = 0;
     }
 
     public void GamePadPanel()
@@ -73,7 +72,6 @@ public class KeyManager : MonoBehaviour
         padPanel.SetActive(true);
         keyPanel.SetActive(false);
         openFlg = true;
-        Time.timeScale = 0;
     }
 
     public void ClosePanel()
