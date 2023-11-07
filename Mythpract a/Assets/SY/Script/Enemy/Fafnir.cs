@@ -99,12 +99,15 @@ public class Fafnir : MonoBehaviour
     [Header("突進")]
     [SerializeField, Tooltip("移動速度")] float rush_MoveSpd = 20.0f;
     [SerializeField, Tooltip("威力")] float rush_Power = 1.0f;
+    [SerializeField, Tooltip("中心座標")] Vector2 rush_Center = new Vector2(0.0f, 0.0f);
+    [SerializeField, Tooltip("攻撃範囲")] Vector2 rush_AtkRange = new Vector2(40.0f, 10.0f);
     [SerializeField, Tooltip("隙")] float rush_BreakTime = 0.5f;
     [SerializeField, Tooltip("実行回数")] int rush_AtkTime = 3;
     [SerializeField, Tooltip("サウンドエフェクト")] AudioClip rush_SE;
     [SerializeField, Range(0, 1), Tooltip("音量")] float rush_SEVolume;
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float rush_SEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool rush_SELoop;
+    [SerializeField, Tooltip("ギズモ")] GizmoSetting rush_Gizmo;
 
     [Header("ブレス")]
     [SerializeField, Tooltip("ブレス")] GameObject breath;
@@ -386,14 +389,15 @@ public class Fafnir : MonoBehaviour
             case 2:     //突進開始、画面端また画面中央付近に到達→停止、威力設定、終了アニメーション開始
                 timer += Time.deltaTime;
                 rb.velocity = (-dir * Vector2.right).normalized * rush_MoveSpd;
-                if (timer < 0.5f) { break; }
+                if (timer < 0.2f) { break; }
                 if (repeat == rush_AtkTime)
                 {
                     if (pos.x > center.x + 5.0f || center.x - 5.0f > pos.x) { break; }
                 }
                 else
                 {
-                    if (pos.x < rightTop.x + 3.0f && leftTop.x - 3.0f < pos.x) { break; }
+                    if (pos.x < (rush_Center.x + rush_AtkRange.x * 0.5f) + 3.0f &&
+                        (rush_Center.x - rush_AtkRange.x * 0.5f) - 3.0f < pos.x) { break; }
                 }
                 rb.velocity = Vector2.zero; 
                 body.SetActive(false);
@@ -849,6 +853,11 @@ public class Fafnir : MonoBehaviour
         se.pitch = Pitch;
         se.loop = isLoop;
         se.Play();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (rush_Gizmo.Display) { rush_Gizmo.Draw(rush_Center, rush_AtkRange); }
     }
 }
 
