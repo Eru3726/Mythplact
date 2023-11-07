@@ -15137,9 +15137,9 @@ MonoBehaviour:
   deadSE: {fileID: 8300000, guid: 3ce269a0edef0664ca6154834efd4711, type: 3}
   hitSE: {fileID: 8300000, guid: d979ea83f3414ce46848faff3c1650de, type: 3}
   guardSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
-  guardHitSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
-  justguardSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
-  guardbreakSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
+  guardHitSE: {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
+  justguardSE: {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
+  guardbreakSE: {fileID: 8300000, guid: d979ea83f3414ce46848faff3c1650de, type: 3}
   skillSheriffSE: {fileID: 8300000, guid: 943b54aa37f3a5a4f8de054bfaafff91, type: 3}
   skillFleetSE: {fileID: 8300000, guid: fb127ad0374f6b7439ad798a80b9daa5, type: 3}
   skillLoneWarriorSE: {fileID: 0}
