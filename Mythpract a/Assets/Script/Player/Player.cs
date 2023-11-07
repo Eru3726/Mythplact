@@ -25,12 +25,15 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
     [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
     [SerializeField, Tooltip("ジャンプ下攻撃のCT")]float atkJumpDownCT;
+    [SerializeField, Tooltip("ジャンプ上攻撃のCT")] float atkJumpUpCT;
+
 
     SpriteRenderer plsp;
     Image brinkSlider;
     float jumpPowPlus;
     float attackCount = 0;
     float atkJumpDownCount = 0;
+    float atkJumpUpCount = 0;
     float brinkCTCount = 0;            // ブリンクのクールダウンのカウント
     float guardCTCount = 0;             // ガードのクールタイムのカウント
     float guardCount = 0;
@@ -864,6 +867,11 @@ public partial class Player : MonoBehaviour
         if(atkJumpDownCT <= atkJumpDownCount)
         {
             canHitDown = true;
+        }
+        atkJumpUpCount += Time.deltaTime;
+        if(atkJumpUpCT <= atkJumpUpCount)
+        {
+            canHitUp = true;
         }
 
         // 移動速度
