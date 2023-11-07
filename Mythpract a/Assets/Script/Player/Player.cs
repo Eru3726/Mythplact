@@ -28,6 +28,7 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ジャンプ上攻撃のCT")] float atkJumpUpCT;
 
 
+
     SpriteRenderer plsp;
     Image brinkSlider;
     float jumpPowPlus;
@@ -79,6 +80,8 @@ public partial class Player : MonoBehaviour
     bool qilinDeadAchvOnce;
 
     bool achvNoGuard;
+    float achvComboTime = 0;
+    int achvComboCount;
 
     private readonly AchvMeasurement achv = new AchvMeasurement();
 
@@ -1051,8 +1054,11 @@ public partial class Player : MonoBehaviour
                 // 普通のガード 
                 if (HMng.CheckDamage() == true)
                 {
+                    
                     stamina -= 50;
+                    audioSource.PlayOneShot(guardHitSE);
                     achv.GuardNum();
+                    EffectGuardBreak.Play();
                     //guardCount = 0;
                     //canGuard = false;
                     //guardCTCount = 0;
@@ -1068,7 +1074,7 @@ public partial class Player : MonoBehaviour
                 canGuard = false;
 
                 guardbreak = true;  // ガードブレイクし、スタミナ最大までガード不可
-
+                audioSource.PlayOneShot(guardbreakSE);
                 EffectGuardBreak.Play();
 
                 isGuard = false;
@@ -1085,6 +1091,7 @@ public partial class Player : MonoBehaviour
 
                     GameData.justGuardCount++;
                     EffectJustGuard.Play();
+                    audioSource.PlayOneShot(justguardSE);
                     //guardCount = 0;
                     HitStopManager.hitstop.StartHitStop(0.3f);
 
@@ -1243,6 +1250,8 @@ public partial class Player : MonoBehaviour
 
             if (GameData.HitCount == 0) achv.NoDamageClear();
 
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
+
             if (HMng.HP == 1) achv.OneHpClear();
 
             if (settingPassive == false) achv.ActiveSkillOnlyClear();
@@ -1254,6 +1263,8 @@ public partial class Player : MonoBehaviour
         if(GameData.FafnirDead && !fafnirDeadAchvOnce)
         {
             if (GameData.HitCount == 0) achv.NoDamageClear();
+
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
 
             if (HMng.HP == 1) achv.OneHpClear();
 
@@ -1268,6 +1279,8 @@ public partial class Player : MonoBehaviour
         {
             if (GameData.HitCount == 0) achv.NoDamageClear();
 
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
+
             if (HMng.HP == 1) achv.OneHpClear();
 
             if (settingPassive == false) achv.ActiveSkillOnlyClear();
@@ -1277,6 +1290,18 @@ public partial class Player : MonoBehaviour
             qilinDeadAchvOnce = true;
         }
 
+        achvComboTime += Time.deltaTime;
+        if (HMng.CheckAttack())
+        {
+            achvComboCount++;
+            achvComboTime = 0;
+        }
+        if(achvComboTime >= SkillLoneComboSpan || HMng.CheckDamage())
+        {
+            achvComboCount = 0;
+        }
+
+        if (achvComboCount >= 10) achv.AttackCombo();
 
     }
     void EnemyLockon()

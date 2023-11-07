@@ -677,7 +677,7 @@ partial class Player
 
             if (kajibaAtkPlusOnce == false)
             {
-                HMng.ATK += SkillKajibaAtk;
+                HMng.ATK = SkillKajibaAtk;
                 kajibaAtkPlusOnce = true;
             }
         }
@@ -686,7 +686,7 @@ partial class Player
             kajibaAtkPlusOnce = false;
             if (kajibaAtkMinusOnce == false)
             {
-                HMng.ATK -= SkillKajibaAtk;
+                HMng.ATK = 1;
                 kajibaAtkMinusOnce = true;
             }
         }

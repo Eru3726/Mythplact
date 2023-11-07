@@ -11,6 +11,9 @@ partial class Player
     [SerializeField] AudioClip deadSE;
     [SerializeField] AudioClip hitSE;
     [SerializeField] AudioClip guardSE;
+    [SerializeField] AudioClip guardHitSE;
+    [SerializeField] AudioClip justguardSE;
+    [SerializeField] AudioClip guardbreakSE;
     [SerializeField] AudioClip skillSheriffSE;
     [SerializeField] AudioClip skillFleetSE;
     [SerializeField] AudioClip skillLoneWarriorSE;
