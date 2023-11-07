@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  power: 0
 --- !u!1 &9093655586302129717
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   attack: {fileID: 4776590688356478371}
   speed: 5
   upTime: 0.5
-  atkTime: 5
+  atkTime: 3
   effect:
     particle: {fileID: 266845582673505909}
     time: 3

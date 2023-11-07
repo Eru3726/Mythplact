@@ -194,11 +194,9 @@ public class Fafnir : MonoBehaviour
         tableNo = Random.Range(0, moveTable.Length);
         moveNo = 0;
 
+        AllHitActive(false);
         SetPower(body, body_Power);
-        pound.SetActive(false);
-        breath.SetActive(false);
         //breath_DefScale = breath.transform.localScale;
-        earthquake.SetActive(false);
 
         hm.SetUp(Damage, Die);
         CameraData();
@@ -372,12 +370,12 @@ public class Fafnir : MonoBehaviour
                 SetPower(body, rush_Power);
                 SetAudio(attackAnticipation_SE, attackAnticipation_SEVolume, attackAnticipation_SEPitch, attackAnticipation_SELoop);
                 anim.AnimChage("Rush_Start", isLock);   //アニメーション適用に1フレーム必要らしい
-                Debug.Log("あ");
                 phase++;
                 break;
             case 1:     //始動アニメーション終了→突進アニメーション開始
                 Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
                 if (anim.NormalizedTime < 1.0f) { break; }
+                body.SetActive(true);
                 SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
                 tackle_Effect.gameObject.SetActive(true);
                 tackle_Effect.Play();
@@ -397,7 +395,8 @@ public class Fafnir : MonoBehaviour
                 {
                     if (pos.x < rightTop.x + 3.0f && leftTop.x - 3.0f < pos.x) { break; }
                 }
-                rb.velocity = Vector2.zero;
+                rb.velocity = Vector2.zero; 
+                body.SetActive(false);
                 SetPower(body, body_Power);
                 anim.AnimChage("Rush_End", isLock);
                 tackle_Effect.gameObject.SetActive(false);
@@ -596,6 +595,8 @@ public class Fafnir : MonoBehaviour
         achv.DefeatedBoss(1);
         if (soundcount == 0)
         {
+            rb.velocity = Vector2.zero;
+            AllHitActive(false);
             timer = 0;
             SetAudio(die_SE, die_SEVolume, die_SEPitch, die_SELoop);
         }
@@ -690,7 +691,7 @@ public class Fafnir : MonoBehaviour
     //上昇または落下時間
     float RiseorFallTime(Vector2 pos, float height)
     {
-        float g = Physics.gravity.y;
+        float g = Physics.gravity.y * rb.gravityScale;
         float y = pos.y;
 
         float timeSquare = 2 * (y - height) / g;
@@ -762,7 +763,7 @@ public class Fafnir : MonoBehaviour
 
         float x = distance;
         // な、なぜ重力を反転せねばならないのだ...
-        float reGravity = -Physics.gravity.y;
+        float reGravity = -(Physics.gravity.y * rb.gravityScale);
         float sPosY = pos.y;
         float tPosY = targetPos.y;
         float t = time;
@@ -820,6 +821,15 @@ public class Fafnir : MonoBehaviour
         repeat = 0;
         no = 0;
     }
+
+    void AllHitActive(bool value)
+    {
+        body.SetActive(value);
+        pound.SetActive(value);
+        breath.SetActive(value);
+        earthquake.SetActive(value);
+    }
+
 
     void SetPower(GameObject obj, float power)
     {
