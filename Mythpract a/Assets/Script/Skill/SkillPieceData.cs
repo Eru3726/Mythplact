@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class SkillPieceData : MonoBehaviour
 {
+    //private readonly AchvManager achv = new AchvManager();
+
     [SerializeField] GameObject Skill1;
     [SerializeField] GameObject Skill2;
     [SerializeField] GameObject Skill3;
@@ -69,10 +71,56 @@ public class SkillPieceData : MonoBehaviour
     public static GameObject skillPiece19;
 
 
-    private void Update()
+    private void Start()
     {
+        AllButtonClear();
+
+        FirstSelectableSkill();
+
+        AchvSkill();
+    }
+
+    void AllButtonClear()
+    {
+        Skill1_Button.gameObject.SetActive(false);
+        Skill2_Button.gameObject.SetActive(false);
+        Skill3_Button.gameObject.SetActive(false);
+        Skill4_Button.gameObject.SetActive(false);
+        Skill5_Button.gameObject.SetActive(false);
+        Skill10_Button.gameObject.SetActive(false);
+        Skill11_Button.gameObject.SetActive(false);
+        Skill12_Button.gameObject.SetActive(false);
+        Skill13_Button.gameObject.SetActive(false);
+        Skill14_Button.gameObject.SetActive(false);
+        Skill15_Button.gameObject.SetActive(false);
+        Skill16_Button.gameObject.SetActive(false);
+        Skill17_Button.gameObject.SetActive(false);
+        Skill18_Button.gameObject.SetActive(false);
+        Skill19_Button.gameObject.SetActive(false);
 
 
+    }
+    void FirstSelectableSkill()
+    {
+        Skill1_Button.gameObject.SetActive(true);
+        Skill13_Button.gameObject.SetActive(true);
+        Skill17_Button.gameObject.SetActive(true);
+        Skill19_Button.gameObject.SetActive(true);
+
+    }
+    void AchvSkill()
+    {
+        if (AchvManager.instance.timeAttack) Skill2_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.attackComboFlg) Skill3_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.sheriffUseFlg) Skill4_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.activeSkillOnlyFlg) Skill5_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.dieXFlg) Skill10_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.blinkXFlg) Skill11_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.guardCountFlg) Skill12_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.oneHpFlg) Skill14_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.noGuard) Skill15_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.justGuardFlg) Skill16_Button.gameObject.SetActive(true);
+        if (AchvManager.instance.allBossFlg) Skill18_Button.gameObject.SetActive(true);
     }
     public void SaveSkillPiece()
     {
