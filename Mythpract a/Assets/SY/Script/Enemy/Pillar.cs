@@ -6,6 +6,7 @@ using SY;
 public class Pillar : MonoBehaviour
 {
     Rigidbody2D rb;
+    CapsuleCollider2D col;
     AudioSource se;
     //HitMng hm;
     Qilin qilin;
@@ -45,6 +46,7 @@ public class Pillar : MonoBehaviour
     {
         state = State.Generate;
         rb = GetComponent<Rigidbody2D>();
+        col = attack.GetComponent<CapsuleCollider2D>();
         se = GetComponent<AudioSource>();
         //hm = GetComponent<HitMng>();
         qilin = GameObject.Find(qilinName).gameObject.GetComponent<Qilin>();
@@ -68,6 +70,7 @@ public class Pillar : MonoBehaviour
                 rangeRight = center.x + (range.x * 0.5f);
                 break;
         }
+        col.enabled = true;
         state = State.Up;
     }
 
@@ -122,7 +125,8 @@ public class Pillar : MonoBehaviour
 
     bool Keep()
     {
-        if (timer < atkTime) { qilin.SetPower(attack, 0); return false; }
+        if (timer < atkTime) { return false; }
+        col.enabled = false;
         if (effect.IsValid) { return false; }
         return true;
     }
