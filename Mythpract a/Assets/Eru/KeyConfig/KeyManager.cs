@@ -24,6 +24,9 @@ public class KeyManager : MonoBehaviour
 
     private bool openFlg = false;
 
+    [SerializeField]
+    private GameObject player;
+
     private void Awake()
     {
         //キーコン読み込み
@@ -37,8 +40,16 @@ public class KeyManager : MonoBehaviour
         //pauseキーが押されたら
         if (pause.action.triggered)
         {
-            if (openFlg == false) KeyBoardPanel();
-            else ClosePanel();
+            if (openFlg == false)
+            {
+                KeyBoardPanel();
+                player.SetActive(false);
+            }
+            else
+            {
+                ClosePanel();
+                player.SetActive(true);
+            }
         }
         if(cursor != null) cursor.SetActive(openFlg);
     }
@@ -61,6 +72,7 @@ public class KeyManager : MonoBehaviour
 
     public void ClosePanel()
     {
+        player.SetActive(true);
         padPanel.SetActive(false);
         keyPanel.SetActive(false);
         openFlg = false;
@@ -76,6 +88,7 @@ public class KeyManager : MonoBehaviour
     public void SkillOpen()
     {
         Time.timeScale = 1;
+        player.SetActive(true);
         SceneManager.LoadScene("SkillPiece");
     }
 }

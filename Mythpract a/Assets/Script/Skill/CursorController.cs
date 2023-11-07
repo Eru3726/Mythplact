@@ -208,21 +208,22 @@ public class CursorController : MonoBehaviour
 
     void MoveCursor()
     {
-        if (space)
+        if (touchTfm != null)
         {
-            if (touchTfm != null)
+            skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
+            //Debug.Log("outprop" + skillPieceController.OutBaseProp);
+            skillPieceController.PieceOnBase();
+            if (!skillPieceController.OutBaseProp)
             {
-                skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
-                //Debug.Log("outprop" + skillPieceController.OutBaseProp);
-                skillPieceController.PieceOnBase();
-                if (!skillPieceController.OutBaseProp)
+                if (space)
                 {
-
+                    Debug.Log("space");
                     // 持ち上げ判定にする
                     PickUpProp = true;
                 }
             }
         }
+        
         // 上下左右移動
         if (gameObject.transform.position.y < 2.175f && gameObject.transform.position.x == -0.75f ||
             gameObject.transform.position.y < 1.74f && gameObject.transform.position.x == 0 ||
@@ -801,7 +802,7 @@ public class CursorController : MonoBehaviour
         // スキルピースに触れているか判定
         if(col.transform.tag == "SkillPiece")
         {
-            Debug.Log("カーソルがピースに触れた");
+            //Debug.Log("カーソルがピースに触れた");
             // 触れたスキルピースを取得
             touchTfm = col.transform;
             // 触れたスキルピースのスクリプトを取得
