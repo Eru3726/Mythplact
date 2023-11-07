@@ -43,12 +43,18 @@ public class KeyManager : MonoBehaviour
             if (openFlg == false)
             {
                 KeyBoardPanel();
-                player.SetActive(false);
+                if (player)
+                {
+                    player.SetActive(false);
+                }
             }
             else
             {
                 ClosePanel();
-                player.SetActive(true);
+                if (player)
+                {
+                    player.SetActive(true);
+                }
             }
         }
         if(cursor != null) cursor.SetActive(openFlg);
@@ -72,7 +78,10 @@ public class KeyManager : MonoBehaviour
 
     public void ClosePanel()
     {
-        player.SetActive(true);
+        if (player)
+        {
+            player.SetActive(true);
+        }
         padPanel.SetActive(false);
         keyPanel.SetActive(false);
         openFlg = false;
@@ -88,7 +97,10 @@ public class KeyManager : MonoBehaviour
     public void SkillOpen()
     {
         Time.timeScale = 1;
-        player.SetActive(true);
+        if (player)
+        {
+            player.SetActive(true);
+        }
         SceneManager.LoadScene("SkillPiece");
     }
 }
