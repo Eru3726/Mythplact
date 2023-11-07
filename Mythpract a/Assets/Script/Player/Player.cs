@@ -1056,9 +1056,7 @@ public partial class Player : MonoBehaviour
                 {
                     
                     stamina -= 50;
-                    audioSource.pitch = 1.1f;
                     audioSource.PlayOneShot(guardHitSE);
-                    audioSource.pitch = 1.0f;
                     achv.GuardNum();
                     EffectGuardBreak.Play();
                     //guardCount = 0;
@@ -1076,9 +1074,7 @@ public partial class Player : MonoBehaviour
                 canGuard = false;
 
                 guardbreak = true;  // ガードブレイクし、スタミナ最大までガード不可
-                audioSource.pitch = 0.8f;
                 audioSource.PlayOneShot(guardbreakSE);
-                audioSource.pitch = 1.0f;
                 EffectGuardBreak.Play();
 
                 isGuard = false;
@@ -1095,9 +1091,7 @@ public partial class Player : MonoBehaviour
 
                     GameData.justGuardCount++;
                     EffectJustGuard.Play();
-                    audioSource.pitch = 1.3f;
                     audioSource.PlayOneShot(justguardSE);
-                    audioSource.pitch = 1.0f;
                     //guardCount = 0;
                     HitStopManager.hitstop.StartHitStop(0.3f);
 
