@@ -63,6 +63,9 @@ namespace SY
                 anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex("Base Layer")).normalizedTime;
             //Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + play + " : " + normalizedTime);
 
+            //現在のアニメーションが死亡アニメなら停止
+            if (normalizedTime <= 0.95f) { return; }
+            if (action == AnimSetting.Type.Die) { anim.speed = 0; return; }
             //アニメーション終了まで待機
             if (normalizedTime <= 1) { return; }
             //再生中のアニメーションがループアニメーションでないとき

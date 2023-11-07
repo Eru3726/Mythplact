@@ -67,21 +67,21 @@ public class Controllerconnect : MonoBehaviour
         //Debug.Log(GameData.keyinteractkey);
         GameData.rightkey = KeyCode.None;　　　　　　　　//GameDataのキーを変える
         keycon.keyStr = GameData.rightkey.ToString();　　//変えたキーをストリング型で取得
-        Debug.Log(keycon.keyStr);
+        //Debug.Log(keycon.keyStr);
         keycon.right = true;                             //どのキーを変えるかを判別するbool文をtrueに
         keycon.codechange = GameData.rightkey;           //変更するキーコードをぶち込んでおく
         keycon.KeyChange();                              //キーを変更するメソッドを使用     //以下同じ
-        Debug.Log("right" + GameData.rightkey);
+        //Debug.Log("right" + GameData.rightkey);
         GameData.leftkey = KeyCode.None;
         keycon.keyStr = GameData.leftkey.ToString();
-        Debug.Log(keycon.keyStr);
+        //Debug.Log(keycon.keyStr);
         keycon.left = true;
         keycon.codechange = GameData.leftkey;
         keycon.KeyChange();
-        Debug.Log("left" + GameData.leftkey);
+        //Debug.Log("left" + GameData.leftkey);
         GameData.downkey = GameData.condownkey;
         keycon.keyStr = GameData.downkey.ToString();
-        Debug.Log(keycon.keyStr);
+        //Debug.Log(keycon.keyStr);
         keycon.down = true;
         keycon.codechange = GameData.downkey;
         keycon.KeyChange();
@@ -140,7 +140,7 @@ public class Controllerconnect : MonoBehaviour
         keycon.keyStr = GameData.rightkey.ToString();
         //Debug.Log("KeyStr" + keycon.keyStr);
         keycon.right = true;
-        Debug.Log("keyright" + GameData.keyrightkey);
+        //Debug.Log("keyright" + GameData.keyrightkey);
         keycon.codechange = GameData.rightkey;
         keycon.KeyChange();
         //Debug.Log("right" + GameData.rightkey);

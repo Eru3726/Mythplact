@@ -36,31 +36,50 @@ public class SkillPiece : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag == "SkillBase")
-        {
-            skillPieceController.Flag[pieceNo - 1] = true;
-        }
         if (collision.transform.tag == "SkillPiece")
         {
             skillPieceController.Flag[pieceNo - 1] = false;
-
+            //Debug.Log("a");
+        }
+        else if (collision.transform.tag != "Cursor")
+        {
+            skillPieceController.Flag[pieceNo - 1] = true;
+            //Debug.Log(gameObject.name+"c");
         }
 
+        if (collision.transform.tag == "SkillBase")
+        {
+            skillPieceController.Flag[pieceNo - 1] = true;
+            //Debug.Log(gameObject.name + "b");
+        }
+        else if (collision.transform.tag != "Cursor")
+        {
+            skillPieceController.Flag[pieceNo - 1] = false;
+            Debug.Log(gameObject.name + "d");
+        }
+
+        if (collision.transform.tag == "Cursor")
+        {
+            skillPieceController.CursorFlag = true;
+            Debug.Log(gameObject.name + "e");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.transform.tag == "SkillPiece")
+        {
+            skillPieceController.Flag[pieceNo - 1] = true;
+            //Debug.Log("f");
+        }
         if (collision.transform.tag == "SkillBase")
         {
             skillPieceController.Flag[pieceNo - 1] = false;
+            Debug.Log(gameObject.name + "g");
         }
-        if(collision.transform.tag == "SkillPiece")
+        if (collision.transform.tag == "Cursor")
         {
-            skillPieceController.Flag[pieceNo - 1] = true;
-
+            skillPieceController.CursorFlag = false;
         }
     }
-
-
-
 }

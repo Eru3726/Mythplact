@@ -166,6 +166,9 @@ public class Qilin : MonoBehaviour
     public Vector2 Meteor_AtkRange { get { return meteor_AtkRange; } }
     public float Meteor_Power { get { return meteor_Power; } }
 
+    [SerializeField]
+    private AchvMeasurement achv;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -201,7 +204,9 @@ public class Qilin : MonoBehaviour
         SetPower(breath, breath_Power);
         SetPower(pushUp, pushUp_Power);
 
+        isHalfHP = false;
         hm.SetUp(Damage, Die);
+        hm.IsHalfHP = false;
         //CameraData();
         StageData();
 
@@ -333,7 +338,7 @@ public class Qilin : MonoBehaviour
             case 3:
                 if (anim.NormalizedTime < 0.3f) { break; }
                 breath_Effect.Particle.gameObject.SetActive(true);
-                breath.SetActive(true);
+                //breath.SetActive(true);
                 breath_Effect.PlayParticle();
                 phase++;
                 break;
@@ -723,6 +728,7 @@ public class Qilin : MonoBehaviour
     void Die()      //死亡
     {
         Debug.Log(obj.name + "は死んだ");
+        achv.DefeatedBoss(2);
         moveType = Qilin_MoveType.Die;
         anim.AnimChage("Dead", isLock);
         die_Effect.Particle.gameObject.SetActive(true);

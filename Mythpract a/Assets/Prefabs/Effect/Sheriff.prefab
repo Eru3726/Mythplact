@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 120
+  power: 75
 --- !u!1 &8438359422445198577
 GameObject:
   m_ObjectHideFlags: 0

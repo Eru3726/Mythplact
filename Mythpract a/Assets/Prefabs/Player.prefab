@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 120
+  power: 100
 --- !u!114 &8167833268164800276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 150
+  power: 75
 --- !u!114 &7980314384394567725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15148,11 +15148,11 @@ MonoBehaviour:
   ChargeAtk: {fileID: 5660995179272322377}
   FleetAtk: {fileID: 6955964071985105023}
   NormalAtk_Power: 100
-  JumpAtk_Power: 150
-  JumpUpAtk_Power: 120
-  JumpDownAtk_Power: 120
-  ChargeAtk_Power: 250
-  FleetAtk_Power: 150
+  JumpAtk_Power: 100
+  JumpUpAtk_Power: 100
+  JumpDownAtk_Power: 100
+  ChargeAtk_Power: 300
+  FleetAtk_Power: 200
   layerMask_Ground:
     serializedVersion: 2
     m_Bits: 8
@@ -15174,25 +15174,25 @@ MonoBehaviour:
   EffectSkillFleet: {fileID: 1554730836146924147}
   EffectCharge: {fileID: 7565754181327435236}
   EffectChargeAttack: {fileID: 8283102843032860055}
-  skillSlashCT: 5
+  skillSlashCT: 8
   skillFleetCT: 5
   skillFleetTime: 0.3
-  skillLoneWarriorCT: 5
+  skillLoneWarriorCT: 10
   skillLoneWarriorTime: 10
-  skillGreemCT: 5
-  skillDStrikeCT: 10
+  skillGreemCT: 2
+  skillDStrikeCT: 5
   SkillLoneAtk: 1.5
   SkillLoneAtkPlus: 0.1
-  SkillLoneComboSpan: 1
+  SkillLoneComboSpan: 2
   SkillLWFirstColor: {r: 1, g: 1, b: 1, a: 0.5019608}
   SkillLWSecondColor: {r: 0.16666657, g: 0.35762754, b: 1, a: 0.6}
   SkillLWThirdColor: {r: 0.41106305, g: 1, b: 0.24213827, a: 0.69803923}
   SkillLWFoursColor: {r: 1, g: 0.24213827, b: 0.84464633, a: 0.8}
   SkillLWLastColor: {r: 1, g: 0, b: 0, a: 0.9019608}
   SkillBrinkMove: 10
-  SkillJustGuard: 0.3
-  SkillMaxSpeed: 20
-  SkillKajibaAtk: 2
+  SkillJustGuard: 0.2
+  SkillMaxSpeed: 10
+  SkillKajibaAtk: 1.5
   FleetCol: {fileID: 62246546407088735}
   slash: {fileID: 8438359422445198577, guid: a7264e29880c3e24997be8bf537b70c3, type: 3}
   greem: {fileID: 4028125354744199665, guid: 20215f1e58e9f2444b2164c655f0aed0, type: 3}
@@ -15385,7 +15385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 150
+  power: 100
 --- !u!114 &8922014012754494217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20362,7 +20362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 120
+  power: 100
 --- !u!114 &956756221054902486
 MonoBehaviour:
   m_ObjectHideFlags: 0

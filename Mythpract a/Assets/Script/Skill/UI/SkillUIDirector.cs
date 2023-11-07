@@ -20,6 +20,18 @@ public class SkillUIDirector : MonoBehaviour
     [SerializeField] Button SkillSlot2_Button;
     [SerializeField] Button SkillSlot3_Button;
     [SerializeField] Button SkillSlot4_Button;
+
+    [SerializeField] Image SkillSlot1_Image;
+    [SerializeField] Image SkillSlot2_Image;
+    [SerializeField] Image SkillSlot3_Image;
+    [SerializeField] Image SkillSlot4_Image;
+
+    [SerializeField] Sprite ACSkill1;
+    [SerializeField] Sprite ACSkill2;
+    [SerializeField] Sprite ACSkill3;
+    [SerializeField] Sprite ACSkill4;
+    [SerializeField] Sprite ACSkill5;
+
     Controllerconnect conconect;
     SkillSetDirector skillSetDirector;
 
@@ -147,6 +159,143 @@ public class SkillUIDirector : MonoBehaviour
             scrollreset = false;
         }
 
+
+
+        if(GameData.skillSlot1 == 1)
+        {
+            SkillSlot1_Image.sprite = ACSkill1;
+        }
+        else if(GameData.skillSlot1 == 2)
+        {
+            SkillSlot1_Image.sprite = ACSkill2;
+
+        }
+        else if (GameData.skillSlot1 == 3)
+        {
+            SkillSlot1_Image.sprite = ACSkill3;
+
+        }
+        else if (GameData.skillSlot1 == 4)
+        {
+            SkillSlot1_Image.sprite = ACSkill4;
+
+        }
+        else if (GameData.skillSlot1 == 5)
+        {
+            SkillSlot1_Image.sprite = ACSkill5;
+
+        }
+        if(GameData.skillSlot1 == 0)
+        {
+            SkillSlot1_Image.enabled = false;
+        }
+        else
+        {
+            SkillSlot1_Image.enabled = true;
+
+        }
+
+        if (GameData.skillSlot2 == 1)
+        {
+            SkillSlot2_Image.sprite = ACSkill1;
+        }
+        else if (GameData.skillSlot2 == 2)
+        {
+            SkillSlot2_Image.sprite = ACSkill2;
+
+        }
+        else if (GameData.skillSlot2 == 3)
+        {
+            SkillSlot2_Image.sprite = ACSkill3;
+
+        }
+        else if (GameData.skillSlot2 == 4)
+        {
+            SkillSlot2_Image.sprite = ACSkill4;
+
+        }
+        else if (GameData.skillSlot2 == 5)
+        {
+            SkillSlot2_Image.sprite = ACSkill5;
+
+        }
+        if (GameData.skillSlot2 == 0)
+        {
+            SkillSlot2_Image.enabled = false;
+        }
+        else
+        {
+            SkillSlot2_Image.enabled = true;
+
+        }
+
+        if (GameData.skillSlot3 == 1)
+        {
+            SkillSlot3_Image.sprite = ACSkill1;
+        }
+        else if (GameData.skillSlot3 == 2)
+        {
+            SkillSlot3_Image.sprite = ACSkill2;
+
+        }
+        else if (GameData.skillSlot3 == 3)
+        {
+            SkillSlot3_Image.sprite = ACSkill3;
+
+        }
+        else if (GameData.skillSlot3 == 4)
+        {
+            SkillSlot3_Image.sprite = ACSkill4;
+
+        }
+        else if (GameData.skillSlot3 == 5)
+        {
+            SkillSlot3_Image.sprite = ACSkill5;
+
+        }
+        if (GameData.skillSlot3 == 0)
+        {
+            SkillSlot3_Image.enabled = false;
+        }
+        else
+        {
+            SkillSlot3_Image.enabled = true;
+
+        }
+
+        if (GameData.skillSlot4 == 1)
+        {
+            SkillSlot4_Image.sprite = ACSkill1;
+        }
+        else if (GameData.skillSlot4 == 2)
+        {
+            SkillSlot4_Image.sprite = ACSkill2;
+
+        }
+        else if (GameData.skillSlot4 == 3)
+        {
+            SkillSlot4_Image.sprite = ACSkill3;
+
+        }
+        else if (GameData.skillSlot4 == 4)
+        {
+            SkillSlot4_Image.sprite = ACSkill4;
+
+        }
+        else if (GameData.skillSlot4 == 5)
+        {
+            SkillSlot4_Image.sprite = ACSkill5;
+
+        }
+        if (GameData.skillSlot4 == 0)
+        {
+            SkillSlot4_Image.enabled = false;
+        }
+        else
+        {
+            SkillSlot4_Image.enabled = true;
+
+        }
 
     }
 

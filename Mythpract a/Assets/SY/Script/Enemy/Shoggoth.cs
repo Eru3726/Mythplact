@@ -138,6 +138,9 @@ public class Shoggoth : MonoBehaviour
     [Header("スライム")]
     [SerializeField, Tooltip("生成間隔")] float slime_GenerateTime;
 
+    [SerializeField]
+    private AchvMeasurement achv;
+
     public GameObject Player { get { return pl; } }
     public Shoggoth_MoveType MoveType { get { return moveType; } }
 
@@ -502,6 +505,7 @@ public class Shoggoth : MonoBehaviour
     void Die()
     {
         Debug.Log(gameObject.name + "は死んだ");
+        achv.DefeatedBoss(0);
         moveType = Shoggoth_MoveType.Dead;
         head.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
         LastParticle = Instantiate(die_Effect[0].Particle.gameObject, 

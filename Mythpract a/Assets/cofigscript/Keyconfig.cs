@@ -390,7 +390,7 @@ public class Keyconfig : MonoBehaviour
                     rtx.righttextchange();     //テキストを変更する
                     rk.rightkeychange();       //キーを変更する
                     right = false;             //変更終わり
-                    Debug.Log("right");
+                    //Debug.Log("right");
                 }
                 //else if (keyStr == "None")
                 //{
@@ -1220,7 +1220,7 @@ public class Keyconfig : MonoBehaviour
         jumpbutton.GetComponent<Button>().enabled = true;
         healbutton.GetComponent<Button>().enabled = true;
         interactbutton.GetComponent<Button>().enabled = true;
-        Debug.Log("ボタン復活");
+        //Debug.Log("ボタン復活");
     }
 }
 

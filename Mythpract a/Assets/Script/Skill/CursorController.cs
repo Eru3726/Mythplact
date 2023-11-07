@@ -206,7 +206,21 @@ public class CursorController : MonoBehaviour
 
     void MoveCursor()
     {
+        if (space)
+        {
+            if (touchTfm != null)
+            {
+                skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
+                //Debug.Log("outprop" + skillPieceController.OutBaseProp);
+                skillPieceController.PieceOnBase();
+                if (!skillPieceController.OutBaseProp)
+                {
 
+                    // 持ち上げ判定にする
+                    PickUpProp = true;
+                }
+            }
+        }
         // 上下左右移動
         if (up)
         {
@@ -267,6 +281,7 @@ public class CursorController : MonoBehaviour
         // 持ち上げ判定
         if (PickUpProp)
         {
+            Debug.Log("持ち上げれるよ");
             pickupTfm = touchTfm;
             audioSource.PlayOneShot(SkillSetSE);
 
@@ -304,8 +319,8 @@ public class CursorController : MonoBehaviour
             backButton.Select();
             skillSetDirector.useCursorProp = false;
         }
-        Debug.Log("持ち上げたObj" + pickupTfm.parent.name);
-        Debug.Log("触れたObj" + touchTfm.parent.name);
+        //Debug.Log("持ち上げたObj" + pickupTfm.parent.name);
+        //Debug.Log("触れたObj" + touchTfm.parent.name);
 
         // ピースを持っている時にメニューに戻ったときの処理
         if (back && pickupTfm.root == transform)
@@ -621,100 +636,106 @@ public class CursorController : MonoBehaviour
     }
     void SkillPieceInfo()
     {
-        if (pickupTfm.parent.name == "SkillPiece1(Clone)")
+        if (pickupTfm != null)
         {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill1Select();
-            skillText.Skill1Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece2(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill2Select();
-            skillText.Skill2Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece3(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill3Select();
-            skillText.Skill3Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece4(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill4Select();
-            skillText.Skill4Text();
+            if (pickupTfm.parent.name == "SkillPiece1(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill1Select();
+                skillText.Skill1Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece2(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill2Select();
+                skillText.Skill2Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece3(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill3Select();
+                skillText.Skill3Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece4(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill4Select();
+                skillText.Skill4Text();
 
+            }
+
+            else if (pickupTfm.parent.name == "SkillPiece5(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill5Select();
+                skillText.Skill5Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece10(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill10Select();
+                skillText.Skill10Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece11(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill11Select();
+                skillText.Skill11Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece12(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill12Select();
+                skillText.Skill12Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece13(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill13Select();
+                skillText.Skill13Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece14(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill14Select();
+                skillText.Skill14Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece15(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill15Select();
+                skillText.Skill15Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece16(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill16Select();
+                skillText.Skill16Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece17(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill17Select();
+                skillText.Skill17Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece18(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill18Select();
+                skillText.Skill18Text();
+            }
+            else if (pickupTfm.parent.name == "SkillPiece19(Clone)")
+            {
+                // スキルピースの情報を表示
+                skillPieceDisplay.Skill19Select();
+                skillText.Skill19Text();
+            }
         }
 
-        else if (pickupTfm.parent.name == "SkillPiece5(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill5Select();
-            skillText.Skill5Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece10(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill10Select();
-            skillText.Skill10Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece11(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill11Select();
-            skillText.Skill11Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece12(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill12Select();
-            skillText.Skill12Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece13(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill13Select();
-            skillText.Skill13Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece14(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill14Select();
-            skillText.Skill14Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece15(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill15Select();
-            skillText.Skill15Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece16(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill16Select();
-            skillText.Skill16Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece17(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill17Select();
-            skillText.Skill17Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece18(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill18Select();
-            skillText.Skill18Text();
-        }
-        else if (pickupTfm.parent.name == "SkillPiece19(Clone)")
-        {
-            // スキルピースの情報を表示
-            skillPieceDisplay.Skill19Select();
-            skillText.Skill19Text();
-        }
-
-
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        touchTfm = null;
     }
     private void OnTriggerStay2D(Collider2D col)
     {
@@ -727,21 +748,17 @@ public class CursorController : MonoBehaviour
             // 触れたスキルピースのスクリプトを取得
             skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
 
-            Debug.Log(skillPieceController.OutBaseProp);
+            //Debug.Log(skillPieceController.OutBaseProp);
 
-            if (space)
-            {
-                if (!skillPieceController.OutBaseProp)
-                {
-                    // 持ち上げ判定にする
-                    PickUpProp = true;
-
-                }
-            }
-
-
+            //if (space)
+            //{
+            //    skillPieceController = touchTfm.parent.GetComponent<SkillPieceController>();
+            //    if (!skillPieceController.OutBaseProp)
+            //    {
+            //        // 持ち上げ判定にする
+            //        PickUpProp = true;
+            //    }
+            //}
         }
     }
-
-
 }

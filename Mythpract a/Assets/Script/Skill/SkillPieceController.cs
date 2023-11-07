@@ -13,12 +13,18 @@ public class SkillPieceController : MonoBehaviour
 
     bool[] flag;
 
-    public static bool loadPiece = false;
+    bool cursorflag = false;
 
     public bool[] Flag
     {
         get { return flag; }
         set { flag = value; }
+    }
+
+    public bool CursorFlag
+    {
+        get { return cursorflag; }
+        set { cursorflag = value; }
     }
 
     public bool OutBaseProp{
@@ -36,15 +42,13 @@ public class SkillPieceController : MonoBehaviour
         pieceCount = this.transform.childCount;
 
         Flag = new bool[pieceCount];
-        skillPiece = new GameObject[pieceCount];
-        skillPieceCol = new Collider2D[pieceCount];
 
     }
     private void Update()
     {
 
 
-        PieceOnBase();
+        //PieceOnBase();
         
         if(gameObject.name == "SkillPiece1(Clone)")
         {
@@ -120,16 +124,24 @@ public class SkillPieceController : MonoBehaviour
     {
         for (int i = 0; i < pieceCount; ++i)
         {
-            if (Flag[i] == true)
+            Debug.Log(i+"cursorflag " + cursorflag);
+            Debug.Log("Flag"+ i + Flag[i]);
+            if (Flag[i] == true && cursorflag == true)
             {
                 OutBaseProp = false;
+                Debug.Log(i+"outbasefalse");
+            }
+            else if (Flag[i] == false)
+            {
+                OutBaseProp = true;
+                Debug.Log(i+"break");
+                break;
             }
             else
             {
-                OutBaseProp = true;
-                break;
+                Debug.Log(i+"何もなかった");
             }
         }
-
+        //Debug.Log("outprop" + OutBaseProp);
     }
 }

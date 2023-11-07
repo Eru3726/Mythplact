@@ -223,27 +223,27 @@ public class Read : MonoBehaviour
             {
                 Conconnect.conread();
                 Debug.Log("コントローラーロード");
-                Debug.Log(GameData.rightkey);
-                Debug.Log(GameData.leftkey);
-                Debug.Log(GameData.downkey);
-                Debug.Log(GameData.jumpkey);
-                Debug.Log(GameData.attackkey);
-                Debug.Log(GameData.dashkey);
-                Debug.Log(GameData.healkey);
-                Debug.Log(GameData.interactkey);
+                //Debug.Log(GameData.rightkey);
+                //Debug.Log(GameData.leftkey);
+                //Debug.Log(GameData.downkey);
+                //Debug.Log(GameData.jumpkey);
+                //Debug.Log(GameData.attackkey);
+                //Debug.Log(GameData.dashkey);
+                //Debug.Log(GameData.healkey);
+                //Debug.Log(GameData.interactkey);
             }
             else
             {
                 Conconnect.keyread();
                 Debug.Log("キーボードロード");
-                Debug.Log(GameData.rightkey);
-                Debug.Log(GameData.leftkey);
-                Debug.Log(GameData.downkey);
-                Debug.Log(GameData.jumpkey);
-                Debug.Log(GameData.attackkey);
-                Debug.Log(GameData.dashkey);
-                Debug.Log(GameData.healkey);
-                Debug.Log(GameData.interactkey);
+                //Debug.Log(GameData.rightkey);
+                //Debug.Log(GameData.leftkey);
+                //Debug.Log(GameData.downkey);
+                //Debug.Log(GameData.jumpkey);
+                //Debug.Log(GameData.attackkey);
+                //Debug.Log(GameData.dashkey);
+                //Debug.Log(GameData.healkey);
+                //Debug.Log(GameData.interactkey);
             }
         }
     }
