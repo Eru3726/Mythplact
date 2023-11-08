@@ -660,6 +660,7 @@ MonoBehaviour:
   aScore: 70
   bScore: 40
   Fade: {fileID: 2687508456344944780}
+  waitTime: 3
 --- !u!1 &723130876
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ public class ResultDirector : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.anyKeyDown)
         {
             Fade.Fadeout();
         }
