@@ -48,6 +48,10 @@ partial class Player
     public GameObject greem;
     public GameObject dstrike;
 
+    bool settingActive;
+    bool settingPassive;
+    
+
     bool isFleet = false;
     bool isLoneWarrior = false;
     bool LoneWarriorReset = false;
@@ -355,32 +359,43 @@ partial class Player
     }
     public void PassiveSkillStart()
     {
+        settingPassive = false;
         if (GameData.setSkill10 == true)
         {
             SkillHPPlus();
+            settingPassive = true;
         }
         if(GameData.setSkill11 == true)
         {
             SkillBrinkMovePlus();
+            settingPassive = true;
+
         }
-        if(GameData.setSkill12 == true)
+        if (GameData.setSkill12 == true)
         {
             SkillJustGuardPlus();
+            settingPassive = true;
+
         }
-        if(GameData.setSkill15 == true)
+        if (GameData.setSkill15 == true)
         {
             SkillStrength();
+            settingPassive = true;
+
         }
         if (GameData.setSkill17)
         {
-            Debug.Log("スキルエレクト発動");
             SkillElect();
+            settingPassive = true;
+
         }
-        if(GameData.setSkill18 == true)
+        if (GameData.setSkill18 == true)
         {
             SkillCarse();
+            settingPassive = true;
+
         }
- 
+
 
     }
     public void PassiveSkillUpdate()
@@ -388,14 +403,20 @@ partial class Player
         if(GameData.saveSkill13 == true)
         {
             SkillSpeedUpHpMax();
+            settingPassive = true;
+
         }
-        if(GameData.saveSkill14 == true)
+        if (GameData.saveSkill14 == true)
         {
             SkillKajiba();
+            settingPassive = true;
+
         }
-        if(GameData.saveSkill19 == true)
+        if (GameData.saveSkill19 == true)
         {
             SkillHeep();
+            settingPassive = true;
+
         }
     }
 
@@ -656,7 +677,7 @@ partial class Player
 
             if (kajibaAtkPlusOnce == false)
             {
-                HMng.ATK += SkillKajibaAtk;
+                HMng.ATK = SkillKajibaAtk;
                 kajibaAtkPlusOnce = true;
             }
         }
@@ -665,7 +686,7 @@ partial class Player
             kajibaAtkPlusOnce = false;
             if (kajibaAtkMinusOnce == false)
             {
-                HMng.ATK -= SkillKajibaAtk;
+                HMng.ATK = 1;
                 kajibaAtkMinusOnce = true;
             }
         }

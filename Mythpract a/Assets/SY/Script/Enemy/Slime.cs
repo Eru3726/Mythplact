@@ -4,6 +4,7 @@ using SY;
 public class Slime : MonoBehaviour
 {
     HitMng HMng;
+    HitMng PlHMng;
     SpriteRenderer render;
     Rigidbody2D rb;
     Animator anim;
@@ -76,6 +77,7 @@ public class Slime : MonoBehaviour
     void Start()
     {
         HMng = GetComponent<HitMng>();
+        PlHMng = GameObject.Find("Player").GetComponent<HitMng>();
         render = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -237,7 +239,7 @@ public class Slime : MonoBehaviour
         Constraints(RigidbodyConstraints2D.FreezeAll);
         SetAudio(die_SE, die_SEVolume, die_SEPitch, die_SELoop);
         anim.Play("Slime01_Die");
-        shoggothObj.GetComponent<HitMng>().HP -= dieDamage;
+        shoggothObj.GetComponent<HitMng>().HP -= dieDamage * PlHMng.ATK;
         Destroy(gameObject, dieTime);
     }
 

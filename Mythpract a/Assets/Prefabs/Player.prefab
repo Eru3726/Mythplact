@@ -15137,6 +15137,9 @@ MonoBehaviour:
   deadSE: {fileID: 8300000, guid: 3ce269a0edef0664ca6154834efd4711, type: 3}
   hitSE: {fileID: 8300000, guid: d979ea83f3414ce46848faff3c1650de, type: 3}
   guardSE: {fileID: 8300000, guid: a06787480fd8d484a8e034a1fbca42c0, type: 3}
+  guardHitSE: {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
+  justguardSE: {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
+  guardbreakSE: {fileID: 8300000, guid: d979ea83f3414ce46848faff3c1650de, type: 3}
   skillSheriffSE: {fileID: 8300000, guid: 943b54aa37f3a5a4f8de054bfaafff91, type: 3}
   skillFleetSE: {fileID: 8300000, guid: fb127ad0374f6b7439ad798a80b9daa5, type: 3}
   skillLoneWarriorSE: {fileID: 0}
@@ -15168,6 +15171,7 @@ MonoBehaviour:
   EffectDamage: {fileID: 5832322841798683931}
   EffectGuard: {fileID: 8922014013550586388}
   EffectGuardBreak: {fileID: 2747998374615741233}
+  EffectGuardHit: {fileID: 0}
   EffectJustGuard: {fileID: 8922014011833620538}
   EffectDeath: {fileID: 6335417109466430234}
   EffectHeal: {fileID: 1222042325814170449}
@@ -21086,16 +21090,36 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 80908594679340428, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1121936439045042970, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121936439045042970, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2425622439010469856, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2425622439010469856, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425622439010469856, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
+      propertyPath: InitialModule.size3D
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2921460802072544322, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921460802072544322, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3754604403707682565, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
@@ -21146,6 +21170,10 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3853459108614842700, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4435197101341237830, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
       propertyPath: m_Name
       value: Pdamage
@@ -21154,8 +21182,16 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4553889826923705435, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8114220143965570869, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114220143965570869, guid: 3d58f860f88bfbd4286f9af32abc2167, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -99,6 +99,8 @@ public class AchvManager : MonoBehaviour
     [HideInInspector]
     public bool timeAttack;
 
+    [Header("実績解除タイム")]
+    public float timeAttackCount = 60;
 
 
     [HideInInspector]

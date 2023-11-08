@@ -209,6 +209,8 @@ public class Qilin : MonoBehaviour
 
         gPos = GroundPosition(stage_Center.x);
         renderController.OverwriteFlagForModelScreenColors = true;
+
+        //pl.GetComponent<Player>().IsFleet = true;
     }
 
     // Update is called once per frame
@@ -628,11 +630,11 @@ public class Qilin : MonoBehaviour
                 switch (plDir)
                 {
                     case -1:
-                        pos = new Vector2(stage_RightDown.x + 7.5f, stage_Center.y + Mathf.Abs(gc.Ray[0].Offset.y));
+                        pos = new Vector2(stage_RightDown.x + 10.0f, stage_Center.y + Mathf.Abs(gc.Ray[0].Offset.y));
                         break;
                     case 0:
                     case 1:
-                        pos = new Vector2(stage_LeftTop.x - 7.5f, stage_Center.y + Mathf.Abs(gc.Ray[0].Offset.y));
+                        pos = new Vector2(stage_LeftTop.x - 10.0f, stage_Center.y + Mathf.Abs(gc.Ray[0].Offset.y));
                         break;
                 }
                 timer = meteor_AtkTime / meteor_Generate;

@@ -28,6 +28,7 @@ public partial class Player : MonoBehaviour
     [SerializeField, Tooltip("ジャンプ上攻撃のCT")] float atkJumpUpCT;
 
 
+
     SpriteRenderer plsp;
     Image brinkSlider;
     float jumpPowPlus;
@@ -73,6 +74,14 @@ public partial class Player : MonoBehaviour
     bool skill4;
 
     bool deathDirection;
+
+    bool shoggothDeadAchvOnce;
+    bool fafnirDeadAchvOnce;
+    bool qilinDeadAchvOnce;
+
+    bool achvNoGuard;
+    float achvComboTime = 0;
+    int achvComboCount;
 
     private readonly AchvMeasurement achv = new AchvMeasurement();
 
@@ -139,6 +148,7 @@ public partial class Player : MonoBehaviour
         brinkSlider = GameObject.Find("UI/BrinkGauge/Gauge").GetComponent<Image>();
 
         deadStop = false;
+        AchvInit();
 
         InitCol();
         InitAudio();
@@ -170,7 +180,13 @@ public partial class Player : MonoBehaviour
         skill3Inp.action.Enable();
         skill4Inp.action.Enable();
 
-        
+        // 実績
+        if(!GameData.ShoggothDead && !GameData.FafnirDead && !GameData.QilinDead)
+        {
+            shoggothDeadAchvOnce = false;
+            fafnirDeadAchvOnce = false;
+            qilinDeadAchvOnce = false;
+        }
     }
 
     void Update()
@@ -193,6 +209,8 @@ public partial class Player : MonoBehaviour
             CheckLeftHit();
 
             DamageReaction();   // 攻撃ヒット時のリアクション
+
+            PlayerAchv();   // 実績の開放
 
 
             HMng.PostUpdate();
@@ -999,6 +1017,7 @@ public partial class Player : MonoBehaviour
         {
             isGuard = true;
 
+            achvNoGuard = false;
         }
         else        // ガードのクールタイム
         {
@@ -1035,8 +1054,11 @@ public partial class Player : MonoBehaviour
                 // 普通のガード 
                 if (HMng.CheckDamage() == true)
                 {
+                    
                     stamina -= 50;
+                    audioSource.PlayOneShot(guardHitSE);
                     achv.GuardNum();
+                    EffectGuardBreak.Play();
                     //guardCount = 0;
                     //canGuard = false;
                     //guardCTCount = 0;
@@ -1052,7 +1074,7 @@ public partial class Player : MonoBehaviour
                 canGuard = false;
 
                 guardbreak = true;  // ガードブレイクし、スタミナ最大までガード不可
-
+                audioSource.PlayOneShot(guardbreakSE);
                 EffectGuardBreak.Play();
 
                 isGuard = false;
@@ -1069,6 +1091,7 @@ public partial class Player : MonoBehaviour
 
                     GameData.justGuardCount++;
                     EffectJustGuard.Play();
+                    audioSource.PlayOneShot(justguardSE);
                     //guardCount = 0;
                     HitStopManager.hitstop.StartHitStop(0.3f);
 
@@ -1216,7 +1239,71 @@ public partial class Player : MonoBehaviour
 
     }
     
+    void AchvInit()
+    {
+        achvNoGuard = true;
+    }
+    void PlayerAchv()
+    {
+        if (GameData.ShoggothDead && !shoggothDeadAchvOnce)
+        {
 
+            if (GameData.HitCount == 0) achv.NoDamageClear();
+
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
+
+            if (HMng.HP == 1) achv.OneHpClear();
+
+            if (settingPassive == false) achv.ActiveSkillOnlyClear();
+
+            if (achvNoGuard == true) achv.NoGuardClear();
+
+            shoggothDeadAchvOnce = true;
+        }
+        if(GameData.FafnirDead && !fafnirDeadAchvOnce)
+        {
+            if (GameData.HitCount == 0) achv.NoDamageClear();
+
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
+
+            if (HMng.HP == 1) achv.OneHpClear();
+
+            if (settingPassive == false) achv.ActiveSkillOnlyClear();
+
+            if (achvNoGuard == true) achv.NoGuardClear();
+
+            fafnirDeadAchvOnce = true;
+        }
+
+        if (GameData.QilinDead && !qilinDeadAchvOnce)
+        {
+            if (GameData.HitCount == 0) achv.NoDamageClear();
+
+            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
+
+            if (HMng.HP == 1) achv.OneHpClear();
+
+            if (settingPassive == false) achv.ActiveSkillOnlyClear();
+
+            if (achvNoGuard == true) achv.NoGuardClear();
+
+            qilinDeadAchvOnce = true;
+        }
+
+        achvComboTime += Time.deltaTime;
+        if (HMng.CheckAttack())
+        {
+            achvComboCount++;
+            achvComboTime = 0;
+        }
+        if(achvComboTime >= SkillLoneComboSpan || HMng.CheckDamage())
+        {
+            achvComboCount = 0;
+        }
+
+        if (achvComboCount >= 10) achv.AttackCombo();
+
+    }
     void EnemyLockon()
     {
         // プレイヤーの向き
