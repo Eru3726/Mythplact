@@ -507,18 +507,22 @@ public class Shoggoth : MonoBehaviour
         Debug.Log(gameObject.name + "は死んだ");
         achv.DefeatedBoss(0);
         moveType = Shoggoth_MoveType.Dead;
-        head.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
+        //head.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
+        head.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        Debug.Log(head.transform.parent.gameObject.name);
         LastParticle = Instantiate(die_Effect[0].Particle.gameObject, 
             head.transform.parent.gameObject.transform.position, Quaternion.identity);
         LastParticle.GetComponent<ParticleSystem>().Play();
         for (int i = 0; i < body.Length; i++)
         {
-            body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
+            //body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
+            body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             LastParticle = Instantiate(die_Effect[1].Particle.gameObject,
                 body[i].transform.parent.gameObject.transform.position, Quaternion.identity);
             LastParticle.GetComponent<ParticleSystem>().Play();
         }
-        tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
+        //tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
+        tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         LastParticle = Instantiate(die_Effect[2].Particle.gameObject,
             tail.transform.parent.gameObject.transform.position, Quaternion.identity);
         LastParticle.GetComponent<ParticleSystem>().Play();
