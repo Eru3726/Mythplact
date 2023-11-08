@@ -498,7 +498,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u30D6\u30EA\u30F3\u30AF"
+  m_Text: "\u56DE\u907F"
 --- !u!1 &706430276733335023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,7 +1954,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u30D6\u30EA\u30F3\u30AF"
+  m_Text: "\u56DE\u907F"
 --- !u!1 &706430277010332617
 GameObject:
   m_ObjectHideFlags: 0
@@ -13877,6 +13877,7 @@ MonoBehaviour:
   cursor: {fileID: 0}
   cursorRect: {fileID: 0}
   pause: {fileID: 1218491079533585869, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  player: {fileID: 0}
 --- !u!1 &4052676956252151485
 GameObject:
   m_ObjectHideFlags: 0

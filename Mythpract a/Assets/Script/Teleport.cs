@@ -25,6 +25,7 @@ public class Teleport : MonoBehaviour
 
         if(collision.transform.tag == "Player")
         {
+            collision.gameObject.SetActive(false);
             fade.Fadeout();
         }
     }
