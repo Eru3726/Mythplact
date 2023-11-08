@@ -133,12 +133,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qilinName: Qilin
   attack: {fileID: 4776590688356478371}
-  speed: 5
+  speed: 1
   upTime: 0.5
-  atkTime: 3
+  atkTime: 1.5
   effect:
     particle: {fileID: 266845582673505909}
-    time: 3
+    time: 1.5
     loop: 0
   sound:
     clip: {fileID: 0}
