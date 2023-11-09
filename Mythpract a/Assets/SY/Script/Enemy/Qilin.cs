@@ -586,7 +586,9 @@ public class Qilin : MonoBehaviour
                 phase++;
                 break;
             case 6:
-                MoveEnd();
+                //MoveEnd();
+                moveType = Qilin_MoveType.Meteor;
+                AllVariableClear();
                 break;
             default:
                 AllVariableClear();
