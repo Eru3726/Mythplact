@@ -140,10 +140,82 @@ public class SkillSetDirector : MonoBehaviour
         GameData.setSkill18 = false;
         GameData.setSkill19 = false;
 
-        dataManager.Save();
-        dataManager.Read();
+        Skill1_Button.interactable = true;
+        Skill2_Button.interactable = true;
+        Skill3_Button.interactable = true;
+        Skill4_Button.interactable = true;
+        Skill5_Button.interactable = true;
+        Skill10_Button.interactable = true;
+        Skill11_Button.interactable = true;
+        Skill12_Button.interactable = true;
+        Skill13_Button.interactable = true;
+        Skill14_Button.interactable = true;
+        Skill15_Button.interactable = true;
+        Skill16_Button.interactable = true;
+        Skill17_Button.interactable = true;
+        Skill18_Button.interactable = true;
+        Skill19_Button.interactable = true;
 
-
+        if (SkillPieceData.skillPiece1)
+        {
+            Destroy(SkillPieceData.skillPiece1);
+        }
+        if (SkillPieceData.skillPiece2)
+        {
+            Destroy(SkillPieceData.skillPiece2);
+        }
+        if (SkillPieceData.skillPiece3)
+        {
+            Destroy(SkillPieceData.skillPiece3);
+        }
+        if (SkillPieceData.skillPiece4)
+        {
+            Destroy(SkillPieceData.skillPiece4);
+        }
+        if (SkillPieceData.skillPiece5)
+        {
+            Destroy(SkillPieceData.skillPiece5);
+        }
+        if (SkillPieceData.skillPiece10)
+        {
+            Destroy(SkillPieceData.skillPiece10);
+        }
+        if (SkillPieceData.skillPiece11)
+        {
+            Destroy(SkillPieceData.skillPiece11);
+        }
+        if (SkillPieceData.skillPiece12)
+        {
+            Destroy(SkillPieceData.skillPiece12);
+        }
+        if (SkillPieceData.skillPiece13)
+        {
+            Destroy(SkillPieceData.skillPiece13);
+        }
+        if (SkillPieceData.skillPiece14)
+        {
+            Destroy(SkillPieceData.skillPiece14);
+        }
+        if (SkillPieceData.skillPiece15)
+        {
+            Destroy(SkillPieceData.skillPiece15);
+        }
+        if (SkillPieceData.skillPiece16)
+        {
+            Destroy(SkillPieceData.skillPiece16);
+        }
+        if (SkillPieceData.skillPiece17)
+        {
+            Destroy(SkillPieceData.skillPiece17);
+        }
+        if (SkillPieceData.skillPiece18)
+        {
+            Destroy(SkillPieceData.skillPiece18);
+        }
+        if (SkillPieceData.skillPiece19)
+        {
+            Destroy(SkillPieceData.skillPiece19);
+        }
     }
     public void SkillSelect()
     {
@@ -226,7 +298,7 @@ public class SkillSetDirector : MonoBehaviour
     }
     public void SetSkill4()
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);
 
         Instantiate(Skill4, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill4_Button.interactable = false;
@@ -250,7 +322,7 @@ public class SkillSetDirector : MonoBehaviour
     }
     public void SetSkill5()
     {
-        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);   
+        cursor.transform.position = new Vector3(-0.75f, 0.435f, 0);
 
         Instantiate(Skill5, new Vector3(cursor.transform.position.x, cursor.transform.position.y, 0), Quaternion.identity);
         Skill5_Button.interactable = false;
