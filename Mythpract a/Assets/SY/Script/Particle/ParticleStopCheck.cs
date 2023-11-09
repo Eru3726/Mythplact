@@ -11,8 +11,9 @@ namespace SY
 
         private void OnParticleSystemStopped()
         {
-            Debug.Log("ƒp[ƒeƒBƒNƒ‹I‚í‚è");
+            Debug.Log("ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«çµ‚ã‚ã‚Š");
             isStop = true;
+            gameObject.SetActive(false);
         }
     }
 }

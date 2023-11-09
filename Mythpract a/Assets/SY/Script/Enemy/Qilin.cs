@@ -270,8 +270,8 @@ public class Qilin : MonoBehaviour
 
         rb.position = pos;
 
-        if (moveType == Qilin_MoveType.Idle || moveType == Qilin_MoveType.Breath ||
-            moveType == Qilin_MoveType.Eruption || moveType == Qilin_MoveType.PushUp)
+        if (moveType == Qilin_MoveType.Idle || /*moveType == Qilin_MoveType.Breath ||*/
+            moveType == Qilin_MoveType.Eruption /*|| moveType == Qilin_MoveType.PushUp*/)
         {
             Direction();
         }
@@ -304,18 +304,20 @@ public class Qilin : MonoBehaviour
     {
         switch(phase)
         {
-            case 0:
+            case 0: //重力0、速度代入
                 rb.gravityScale = 0;
                 rb.velocity = Vector2.right * plDir * move_Speed;
+                Direction();
                 phase++;
                 break;
-            case 1:
+            case 1: //移動→重力復元、停止
                 if (breath_AtkDis < Mathf.Abs(Distance(plPos).x)) { break; }
                 rb.gravityScale = gravity;
                 rb.velocity = Vector2.zero;
+                Direction();
                 phase++;
                 break;
-            case 2:
+            case 2: //攻撃前隙→ブレス調整、ブレスアニメ実行
                 timer += Time.deltaTime;
                 if (timer < attackAnticipation_Time) { break; }
                 Vector3 bScale = breath_Effect.Particle.gameObject.transform.localScale;
@@ -334,21 +336,21 @@ public class Qilin : MonoBehaviour
                 timer = 0;
                 phase++;
                 break;
-            case 3:
+            case 3: //アニメ3割→ブレスパーティクル実行
                 if (anim.NormalizedTime < 0.3f) { break; }
                 breath_Effect.Particle.gameObject.SetActive(true);
                 //breath.SetActive(true);
                 breath_Effect.PlayParticle();
                 phase++;
                 break;
-            case 4:
+            case 4: //パーティクル終了
                 breath_Effect.StopCheck();
                 if (breath_Effect.IsValid) { break; }
                 breath.SetActive(false);
                 breath_Effect.Particle.gameObject.SetActive(false);
                 phase++;
                 break;
-            case 5:
+            case 5: //クールタイム
                 timer += Time.deltaTime;
                 if (timer < breath_CoolTime) { break; }
                 phase++;
@@ -482,44 +484,44 @@ public class Qilin : MonoBehaviour
     {
         switch (phase)
         {
-            case 0:
+            case 0: //重力0、速度代入、体当たり判定付、突進パーティクル実行
                 rb.gravityScale = 0;
                 rb.velocity = Vector2.right * PlDir * pushUp_MoveSpd;
                 body.SetActive(true);
                 pushUp_Effect.Particle.gameObject.SetActive(true);
                 pushUp_Effect.PlayParticle();
-                //renderController.Opacity = 0;
+                Direction();
                 phase++;
                 break;
-            case 1:
+            case 1: //移動→停止、体当たり判定外、突進パーティクル設定変更
                 if (pushUp_AtkDis < Mathf.Abs(Distance(plPos).x)) { break; }
                 rb.velocity = Vector2.zero;
                 body.SetActive(false);
                 var main = pushUp_Effect.Particle.main;
                 main.loop = false;
-                phase++;
-                break;
-            case 2:
-                Debug.Log(pushUp_Effect.IsValid);
-                pushUp_Effect.StopCheck();
-                if (pushUp_Effect.IsValid) { break; }
-                pushUp_Effect.Particle.gameObject.SetActive(false);
-                //renderController.Opacity = 1;
                 rb.gravityScale = gravity;
-                phase++;
+                Direction();
+                phase = 3;
                 break;
-            case 3:
+            //case 2: //パーティクル終了
+            //    pushUp_Effect.StopCheck();
+            //    if (pushUp_Effect.IsValid) { break; }
+            //    pushUp_Effect.Particle.gameObject.SetActive(false);
+            //    timer = 0;
+            //    phase++;
+            //    break;
+            case 3: //攻撃前隙
                 timer += Time.deltaTime;
                 if (timer < attackAnticipation_Time) { break; }
                 timer = 0;
                 phase++;
                 break;
-            case 4:
+            case 4: //突き上げアニメ実行
                 anim.AnimChage("PushUp", isLock);
                 //pushUp.SetActive(true);
                 phase++;
                 break;
-            case 5:
+            case 5: //クールタイム
                 if(anim.Action != AnimSetting.Type.Idle) { break; }
                 //pushUp.SetActive(false);
                 timer += Time.deltaTime;
@@ -584,7 +586,9 @@ public class Qilin : MonoBehaviour
                 phase++;
                 break;
             case 6:
-                MoveEnd();
+                //MoveEnd();
+                moveType = Qilin_MoveType.Meteor;
+                AllVariableClear();
                 break;
             default:
                 AllVariableClear();
