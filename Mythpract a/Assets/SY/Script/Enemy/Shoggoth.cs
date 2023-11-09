@@ -496,7 +496,7 @@ public class Shoggoth : MonoBehaviour
         headObj.transform.localScale = scale;
     }
 
-    void Damage()
+    public void Damage()
     {
         Debug.Log(gameObject.name + "はダメージ受けた");
         StartCoroutine("Flash");

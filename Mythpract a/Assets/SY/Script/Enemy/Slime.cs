@@ -18,6 +18,7 @@ public class Slime : MonoBehaviour
     {
         First,  //初期行動
         Walk,   //基本
+        Die,    //死亡
     }
     MoveType moveType;
 
@@ -98,9 +99,9 @@ public class Slime : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        HMng.HitUpdate();
+        if (moveType == MoveType.Die) { Destroy(gameObject, dieTime); return; }
 
-        if (HMng.HP <= 0) { return; }
+        HMng.HitUpdate();
 
         pos = rb.position;
         plPos = shoggoth.Player.transform.position;
@@ -240,7 +241,10 @@ public class Slime : MonoBehaviour
         SetAudio(die_SE, die_SEVolume, die_SEPitch, die_SELoop);
         anim.Play("Slime01_Die");
         shoggothObj.GetComponent<HitMng>().HP -= dieDamage * PlHMng.ATK;
-        Destroy(gameObject, dieTime);
+        shoggoth.Damage();
+        moveType = MoveType.Die;
+
+        Debug.Log("スライム死んだ");
     }
 
     //----------初期行動----------
