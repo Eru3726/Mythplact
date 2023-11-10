@@ -171,7 +171,7 @@ public partial class Player : MonoBehaviour
         if (Boss == null) Boss = GameObject.Find("Fafnir m 1");
         if (Boss == null) Boss = GameObject.Find("Qilin");
 
-        BossAnim = Boss.GetComponent<Anim>();
+        if (Boss != null) BossAnim = Boss.GetComponent<Anim>();
         //有効化
         attackInp.action.Enable();
         guardInp.action.Enable();
