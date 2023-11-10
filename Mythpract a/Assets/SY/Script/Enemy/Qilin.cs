@@ -12,6 +12,7 @@ public enum Qilin_MoveType
     Breath,     //ブレス
     Eruption,   //炎柱
     PushUp,     //突き上げ
+    Rush,       //突進
     Spin,       //炎渦
     Meteor,     //隕石
     Die,        //死
@@ -106,6 +107,18 @@ public class Qilin : MonoBehaviour
     [SerializeField, Tooltip("クールタイム")] float pushUp_CoolTime = 0.5f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting pushUp_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting pushUp_SE;
+
+    [Header("突進")]
+    [SerializeField, Tooltip("突き上げ")] GameObject rush;
+    [SerializeField, Tooltip("威力")] float rush_Power = 1.0f;
+    [SerializeField, Tooltip("中心座標")] Vector2 rush_Center;
+    [SerializeField, Tooltip("攻撃範囲")] Vector2 rush_AtkRange = new Vector2(10.0f, 10.0f);
+    [SerializeField, Tooltip("移動速度")] float rush_MoveSpd = 10.0f;
+    [SerializeField, Tooltip("回数")] int rush_AtkTime = 4;
+    [SerializeField, Tooltip("攻撃間隙")] float rush_AtkBreakTime = 1.0f;
+    [SerializeField, Tooltip("クールタイム")] float rush_CoolTime = 0.5f;
+    [SerializeField, Tooltip("エフェクト")] ParticleSetting rush_Effect;
+    [SerializeField, Tooltip("サウンド")] AudioSetting rush_SE;
 
     [Header("炎渦")]
     [SerializeField, Tooltip("炎渦")] GameObject spin;
@@ -305,9 +318,9 @@ public class Qilin : MonoBehaviour
         switch(phase)
         {
             case 0: //重力0、速度代入
+                Direction();
                 rb.gravityScale = 0;
                 rb.velocity = Vector2.right * plDir * move_Speed;
-                Direction();
                 phase++;
                 break;
             case 1: //移動→重力復元、停止
@@ -485,6 +498,7 @@ public class Qilin : MonoBehaviour
         switch (phase)
         {
             case 0: //重力0、速度代入、体当たり判定付、突進パーティクル実行
+                Direction();
                 rb.gravityScale = 0;
                 rb.velocity = Vector2.right * PlDir * pushUp_MoveSpd;
                 body.SetActive(true);
@@ -536,6 +550,21 @@ public class Qilin : MonoBehaviour
                 break;
         }
     }
+
+    //void Rush()
+    //{
+    //    switch (phase)
+    //    {
+    //        case 0:
+
+    //        case :
+    //            moveType = Qilin_MoveType.PushUp;
+    //            break;
+    //        default:    //行動遷移時汎用変数初期化
+    //            AllVariableClear();
+    //            break;
+    //    }
+    //}
 
     void Spin()
     {
