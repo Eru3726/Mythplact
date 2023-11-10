@@ -90,6 +90,8 @@ public partial class Player : MonoBehaviour
     DeadEffectEnd deadEffectEnd;
     Controllerconnect conconect;
     Keyconfig keycon;
+    GameObject Boss;
+    Anim BossAnim;
 
 
     [SerializeField, Header("攻撃")]
@@ -161,11 +163,15 @@ public partial class Player : MonoBehaviour
         PlayerRb.gravityScale = 7;
         dir.x = 1;
         stamina = maxStamina;
-
+       
         InitHP();
         PassiveSkillStart();
 
+        Boss = GameObject.Find("Shoggoth");
+        if (Boss == null) Boss = GameObject.Find("Fafnir m 1");
+        if (Boss == null) Boss = GameObject.Find("Qilin");
 
+        BossAnim = Boss.GetComponent<Anim>();
         //有効化
         attackInp.action.Enable();
         guardInp.action.Enable();
@@ -180,6 +186,7 @@ public partial class Player : MonoBehaviour
         skill3Inp.action.Enable();
         skill4Inp.action.Enable();
 
+
         // 実績
         if(!GameData.ShoggothDead && !GameData.FafnirDead && !GameData.QilinDead)
         {
@@ -191,7 +198,7 @@ public partial class Player : MonoBehaviour
 
     void Update()
     {
-        if (!gameover || !deadStop)
+        if (!gameover || !deadStop || BossAnim.Action != AnimSetting.Type.Entry)
         {
             HMng.HitUpdate();
 
