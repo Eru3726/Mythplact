@@ -60,6 +60,10 @@ public class GameData
     public static bool saveSkill18 = false;
     public static bool saveSkill19 = false;
 
+    public static bool[] saveSkillPreset1 = new bool[20];
+    public static bool[] saveSkillPreset2 = new bool[20];
+    public static bool[] saveSkillPreset3 = new bool[20];
+
 
 
 
@@ -83,7 +87,9 @@ public class GameData
     public static bool setSkill18 = false;
     public static bool setSkill19 = false;
 
-
+    public static bool[] setSkillPreset1 = new bool[20];
+    public static bool[] setSkillPreset2 = new bool[20];
+    public static bool[] setSkillPreset3 = new bool[20];
 
 
     public static Vector3 skillPiece1Pos = new Vector3(0, 0, 0);
@@ -125,11 +131,22 @@ public class GameData
     public static Vector3 skillPiece19Pos = new Vector3(0, 0, 0);
     public static Quaternion skillPiece19Deg = new Quaternion(0, 0, 0, 0);
 
+    public static Vector3[] skillPiecePosPreset1 = new Vector3[20];
+    public static Vector3[] skillPiecePosPreset2 = new Vector3[20];
+    public static Vector3[] skillPiecePosPreset3 = new Vector3[20];
+    public static Quaternion[] skillPieceDegPreset1 = new Quaternion[20];
+    public static Quaternion[] skillPieceDegPreset2 = new Quaternion[20];
+    public static Quaternion[] skillPieceDegPreset3 = new Quaternion[20];
+
 
     public static int skillSlot1 = 0;
     public static int skillSlot2 = 0;
     public static int skillSlot3 = 0;
     public static int skillSlot4 = 0;
+
+    public static int[] skillSlotPreset1 = new int[4];
+    public static int[] skillSlotPreset2 = new int[4];
+    public static int[] skillSlotPreset3 = new int[4];
 
     // プレイヤーステータス
     public static int playerNowHp = 0;

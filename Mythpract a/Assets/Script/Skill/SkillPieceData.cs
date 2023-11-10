@@ -273,14 +273,13 @@ public class SkillPieceData : MonoBehaviour
                 skillPiece1.transform.rotation = GameData.skillPiece1Deg;
                 Debug.Log("スキルピース1のPos" + GameData.skillPiece1Pos);
                 Debug.Log("スキルピース1のDeg" + GameData.skillPiece1Deg);
-
             }
             else
             {
                 Destroy(skillPiece1);
                 GameData.setSkill1 = false;
                 Skill1_Button.interactable = true;
-
+                Debug.Log("Destroy1");
             }
         }
         else if(GameData.saveSkill1)

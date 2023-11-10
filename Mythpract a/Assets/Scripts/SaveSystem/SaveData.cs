@@ -64,6 +64,11 @@ public class SaveData
     public bool saveSkill17;
     public bool saveSkill18;
     public bool saveSkill19;
+
+    public bool[] saveSkillPreset1 = new bool[20];
+    public bool[] saveSkillPreset2 = new bool[20];
+    public bool[] saveSkillPreset3 = new bool[20];
+
     public bool setSkill1;
     public bool setSkill2;
     public bool setSkill3;
@@ -83,6 +88,11 @@ public class SaveData
     public bool setSkill17;
     public bool setSkill18;
     public bool setSkill19;
+
+    public bool[] setSkillPreset1 = new bool[20];
+    public bool[] setSkillPreset2 = new bool[20];
+    public bool[] setSkillPreset3 = new bool[20];
+
     public Vector3 skillPiece1Pos;
     public Quaternion skillPiece1Deg;
     public Vector3 skillPiece2Pos;
@@ -122,10 +132,21 @@ public class SaveData
     public Vector3 skillPiece19Pos;
     public Quaternion skillPiece19Deg;
 
+    public Vector3[] skillPiecePosPreset1 = new Vector3[20];
+    public Vector3[] skillPiecePosPreset2 = new Vector3[20];
+    public Vector3[] skillPiecePosPreset3 = new Vector3[20];
+    public Quaternion[] skillPieceDegPreset1 = new Quaternion[20];
+    public Quaternion[] skillPieceDegPreset2 = new Quaternion[20];
+    public Quaternion[] skillPieceDegPreset3 = new Quaternion[20];
+
     public int skillSlot1;
     public int skillSlot2;
     public int skillSlot3;
     public int skillSlot4;
+
+    public int[] skillSlotPreset1 = new int[4];
+    public int[] skillSlotPreset2 = new int[4];
+    public int[] skillSlotPreset3 = new int[4];
 
     // プレイヤーステータス
     public int playerNowHp;
