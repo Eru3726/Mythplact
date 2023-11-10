@@ -323,8 +323,11 @@ public class Shoggoth : MonoBehaviour
                     SetPower(upDown, upDown_Power);                             //威力設定
                 }
                 float width = upDown_Radius.x * 2.0f;                           //幅
-                pos = new Vector2(                                              //突進開始位置定義
-                    (upDown_Center.x - upDown_Radius.x) + ((width / (upDown_AtkTime + 1)) * (repeat + 1)),
+                //pos = new Vector2(                                              //突進開始位置定義
+                //    (upDown_Center.x - upDown_Radius.x) + ((width / (upDown_AtkTime + 1)) * (repeat + 1)),
+                //    (pos.y > upDown_Center.y + upDown_Radius.y) ? upDown_Center.y + upDown_Radius.y : upDown_Center.y - upDown_Radius.y);
+                pos = new Vector2(
+                    plPos.x,
                     (pos.y > upDown_Center.y + upDown_Radius.y) ? upDown_Center.y + upDown_Radius.y : upDown_Center.y - upDown_Radius.y);
                 dir = (pos.y == upDown_Center.y + upDown_Radius.y) ? Vector2.down : Vector2.up; //突進方向定義
                 Quaternion q = (dir == Vector2.down) ?

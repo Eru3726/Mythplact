@@ -119,6 +119,7 @@ public class Qilin : MonoBehaviour
     [SerializeField, Tooltip("クールタイム")] float rush_CoolTime = 0.5f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting rush_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting rush_SE;
+    [SerializeField, Tooltip("ギズモ")] GizmoSetting rush_Gizmo;
 
     [Header("炎渦")]
     [SerializeField, Tooltip("炎渦")] GameObject spin;
@@ -213,6 +214,7 @@ public class Qilin : MonoBehaviour
         SetPower(body, body_Power);
         SetPower(breath, breath_Power);
         SetPower(pushUp, pushUp_Power);
+        SetPower(rush, rush_Power);
 
         isHalfHP = false;
         hm.SetUp(Damage, Die);
@@ -259,6 +261,10 @@ public class Qilin : MonoBehaviour
 
             case Qilin_MoveType.Eruption:
                 Eruption();
+                break;
+
+            case Qilin_MoveType.Rush:
+                Rush();
                 break;
 
             case Qilin_MoveType.PushUp:
@@ -551,20 +557,63 @@ public class Qilin : MonoBehaviour
         }
     }
 
-    //void Rush()
-    //{
-    //    switch (phase)
-    //    {
-    //        case 0:
-
-    //        case :
-    //            moveType = Qilin_MoveType.PushUp;
-    //            break;
-    //        default:    //行動遷移時汎用変数初期化
-    //            AllVariableClear();
-    //            break;
-    //    }
-    //}
+    void Rush()
+    {
+        switch (phase)
+        {
+            case 0:
+                timer += Time.deltaTime;
+                if (timer < attackAnticipation_Time) { break; }
+                Direction();
+                rb.gravityScale = 0;
+                rb.velocity = Vector2.right * PlDir * rush_MoveSpd;
+                rush.SetActive(true);
+                rush_Effect.Particle.gameObject.SetActive(true);
+                rush_Effect.PlayParticle();
+                repeat++;
+                timer = 0;
+                phase++;
+                break;
+            case 1:
+                if (pos.x < (rush_Center.x + rush_AtkRange.x * 0.5f) + 3.0f &&
+                        (rush_Center.x - rush_AtkRange.x * 0.5f) - 3.0f < pos.x) { break; }
+                rush.SetActive(false);
+                var main = rush_Effect.Particle.main;
+                main.loop = false;
+                rb.velocity = Vector2.zero;
+                rb.gravityScale = gravity;
+                phase++;
+                break;
+            case 2:
+                timer += Time.deltaTime;
+                if (timer < rush_AtkBreakTime) { break; }
+                Direction();
+                timer = 0;
+                if (repeat == rush_AtkTime) { phase++; }
+                else 
+                {
+                    rb.velocity = Vector2.right * PlDir * rush_MoveSpd;
+                    repeat++;
+                    rush.SetActive(true);
+                    rush_Effect.Particle.gameObject.SetActive(true);
+                    rush_Effect.PlayParticle();
+                    phase--; 
+                }
+                break;
+            case 3:
+                timer += Time.deltaTime;
+                if (timer < rush_CoolTime) { break; }
+                phase++;
+                break;
+            case 4:
+                moveType = Qilin_MoveType.PushUp;
+                AllVariableClear();
+                break;
+            default:    //行動遷移時汎用変数初期化
+                AllVariableClear();
+                break;
+        }
+    }
 
     void Spin()
     {
@@ -891,6 +940,7 @@ public class Qilin : MonoBehaviour
             bc = GetComponent<BoxCollider2D>();
             body_Gizmo.Draw(bc.bounds.center, bc.bounds.max - bc.bounds.min);
         }
+        if (rush_Gizmo.Display) { rush_Gizmo.Draw(rush_Center, rush_AtkRange); }
         if (eruption_Gizmo.Display) { eruption_Gizmo.Draw(eruption_Center, eruption_AtkRange); }
         if (spin_Gizmo.Display) { spin_Gizmo.Draw(spin_Center, spin_AtkRange); }
         if (meteor_Gizmo.Display) { meteor_Gizmo.Draw(meteor_Center, meteor_AtkRange); }

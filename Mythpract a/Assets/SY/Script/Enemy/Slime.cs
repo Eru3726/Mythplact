@@ -189,6 +189,8 @@ public class Slime : MonoBehaviour
 
     void GroundFlagMng()
     {
+        if (moveType != MoveType.Die) { return; }
+
         MoveDir();
         if (!GC.CheckFlag(GroundCheck.Flag.Ground))
         {
