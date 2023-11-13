@@ -334,9 +334,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkType: 0
   speed: 5
-  knockBackSpd: 5
+  knockBackSpd: 2.5
   dieTime: 0.5
-  dieDamage: 2
+  dieDamage: 50
   Move_SE: {fileID: 0}
   Move_SEVolume: 1
   Move_SEPitch: 1
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
-  maxHp: 10
+  maxHp: 100
   hp: 0
   atk: 10
   def: 10

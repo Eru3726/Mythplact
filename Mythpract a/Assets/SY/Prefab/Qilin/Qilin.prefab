@@ -2315,6 +2315,23 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  rush: {fileID: 0}
+  rush_Power: 1
+  rush_Center: {x: 0, y: 0}
+  rush_AtkRange: {x: 10, y: 10}
+  rush_MoveSpd: 10
+  rush_AtkTime: 4
+  rush_AtkBreakTime: 1
+  rush_CoolTime: 0.5
+  rush_Effect:
+    particle: {fileID: 0}
+    time: 1
+    loop: 0
+  rush_SE:
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
   spin: {fileID: 8449096857308795825, guid: b0b8bf3b90b95bd4fa8d4ad497439836, type: 3}
   spin_Power: 1
   spin_Center: {x: 0, y: 0}
