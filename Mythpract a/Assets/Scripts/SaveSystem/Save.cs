@@ -187,11 +187,34 @@ public class Save : MonoBehaviour
         saveData.skillPiece19Pos = GameData.skillPiece19Pos;
         saveData.skillPiece19Deg = GameData.skillPiece19Deg;
 
+        for(int i = 0;i<20;i++)
+        {
+            saveData.saveSkillPreset1[i] = GameData.saveSkillPreset1[i];
+            saveData.saveSkillPreset2[i] = GameData.saveSkillPreset2[i];
+            saveData.saveSkillPreset3[i] = GameData.saveSkillPreset3[i];
+            saveData.setSkillPreset1[i] = GameData.setSkillPreset1[i];
+            saveData.setSkillPreset2[i] = GameData.setSkillPreset2[i];
+            saveData.setSkillPreset3[i] = GameData.setSkillPreset3[i];
+            saveData.skillPieceDegPreset1[i] = GameData.skillPieceDegPreset1[i];
+            saveData.skillPieceDegPreset2[i] = GameData.skillPieceDegPreset2[i];
+            saveData.skillPieceDegPreset3[i] = GameData.skillPieceDegPreset3[i];
+            saveData.skillPiecePosPreset1[i] = GameData.skillPiecePosPreset1[i];
+            saveData.skillPiecePosPreset2[i] = GameData.skillPiecePosPreset2[i];
+            saveData.skillPiecePosPreset3[i] = GameData.skillPiecePosPreset3[i];
+        }
+
 
         saveData.skillSlot1 = GameData.skillSlot1;
         saveData.skillSlot2 = GameData.skillSlot2;
         saveData.skillSlot3 = GameData.skillSlot3;
         saveData.skillSlot4 = GameData.skillSlot4;
+
+        for(int i = 0;i<4;i++)
+        {
+            saveData.skillSlotPreset1[i] = GameData.skillSlotPreset1[i];
+            saveData.skillSlotPreset2[i] = GameData.skillSlotPreset2[i];
+            saveData.skillSlotPreset3[i] = GameData.skillSlotPreset3[i];
+        }
 
         saveData.playerNowHp = GameData.playerNowHp;
 

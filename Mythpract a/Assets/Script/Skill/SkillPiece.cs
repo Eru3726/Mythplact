@@ -70,12 +70,12 @@ public class SkillPiece : MonoBehaviour
             if (collision.transform.tag == "SkillBase")
             {
                 skillPieceController.Flag[pieceNo - 1] = true;
-                Debug.Log(collision.transform.tag + " " + gameObject.name + " b");
+                //Debug.Log(collision.transform.tag + " " + gameObject.name + " b");
             }
             else if (collision.transform.tag != "Cursor" && collision.transform.tag != "SkillPiece")
             {
                 skillPieceController.Flag[pieceNo - 1] = false;
-                Debug.Log(collision.transform.tag + " " + gameObject.name + " d");
+                //Debug.Log(collision.transform.tag + " " + gameObject.name + " d");
             }
         }
         else
@@ -85,13 +85,13 @@ public class SkillPiece : MonoBehaviour
         if (collision.transform.tag == "SkillPiece")
         {
             skillPieceController.Flag[pieceNo - 1] = false;
-            Debug.Log(collision.transform.tag + " " + gameObject.name + " a");
+            //Debug.Log(collision.transform.tag + " " + gameObject.name + " a");
             OnPiece = true;
         }
         else if (collision.transform.tag != "Cursor" && collision.transform.tag != "SkillBase")
         {
             skillPieceController.Flag[pieceNo - 1] = true;
-            Debug.Log(collision.transform.tag + " " + gameObject.name + " c");
+            //Debug.Log(collision.transform.tag + " " + gameObject.name + " c");
         }
         if (collision.transform.tag == "Cursor")
         {
