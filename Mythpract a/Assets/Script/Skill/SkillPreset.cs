@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillPreset : MonoBehaviour
 {
     public SkillPieceData spdata;
+    public SkillSetDirector ssd;
     void Start()
     {
         
@@ -15,32 +16,49 @@ public class SkillPreset : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             spdata.SaveSkillPiece();
+            Debug.Log("プリセット1保存");
             Preset1save();
         }
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F2))
         {
             spdata.SaveSkillPiece();
+            Debug.Log("プリセット2保存");
             Preset2save();
         }
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F3))
         {
             spdata.SaveSkillPiece();
+            Debug.Log("プリセット3保存");
             Preset3save();
         }
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F4))
         {
+            //ssd.AllReset();
             Preset1read();
+            Debug.Log("セーブスキル１" + GameData.saveSkill1);
+            Debug.Log("プリセット1読込");
             spdata.ReadSkillPiece();
+            //spdata.SaveSkillPiece();
         }
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F5))
         {
+            //ssd.AllReset();
+
             Preset2read();
+            Debug.Log("セーブスキル１" + GameData.saveSkill1);
+
+            Debug.Log("プリセット2読込");
             spdata.ReadSkillPiece();
+            //spdata.SaveSkillPiece();
         }
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F6))
         {
+            //ssd.AllReset();
+
             Preset3read();
+            Debug.Log("プリセット3読込");
             spdata.ReadSkillPiece();
+            //spdata.SaveSkillPiece();
         }
     }
     public void Preset1save()
