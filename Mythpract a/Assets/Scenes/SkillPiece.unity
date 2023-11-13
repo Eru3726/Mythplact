@@ -13825,12 +13825,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 808550713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a8bcb315cbd74a9ed94386b7917bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 042822485f8952c4b95ac89a8c80d5d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mane: {fileID: 581032194}
   spdata: {fileID: 1826257169}
-  ssd: {fileID: 29853998}
 --- !u!4 &808550715
 Transform:
   m_ObjectHideFlags: 0
