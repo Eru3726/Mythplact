@@ -126,14 +126,18 @@ public class SkillPieceData : MonoBehaviour
     {
         if(skillPiece1 != null)
         {
+            Debug.Log("skill1True");
             GameData.skillPiece1Pos = skillPiece1.transform.position;
             GameData.skillPiece1Deg = skillPiece1.transform.rotation;
             GameData.saveSkill1 = true;
 
-
             //Debug.Log("スキルピース1のPos" + GameData.skillPiece1Pos);
             //Debug.Log("スキルピース1のDeg" + GameData.skillPiece1Deg);
 
+        }
+        else
+        {
+            GameData.saveSkill1 = false;
         }
         if (skillPiece2 != null)
         {
@@ -146,6 +150,10 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        else
+        {
+            GameData.saveSkill2 = false;
+        }
         if (skillPiece3 != null)
         {
             GameData.skillPiece3Pos = skillPiece3.transform.position;
@@ -157,6 +165,10 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        else
+        {
+            GameData.saveSkill3 = false;
+        }
         if (skillPiece4 != null)
         {
             GameData.skillPiece4Pos = skillPiece4.transform.position;
@@ -164,6 +176,10 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill4 = true;
 
 
+        }
+        else
+        {
+            GameData.saveSkill4 = false;
         }
         if (skillPiece5 != null)
         {
@@ -173,7 +189,10 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
-
+        else
+        {
+            GameData.saveSkill5 = false;
+        }
 
         if (skillPiece10 != null)
         {
@@ -183,6 +202,10 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        else
+        {
+            GameData.saveSkill10 = false;
+        }
         if (skillPiece11 != null)
         {
             GameData.skillPiece11Pos = skillPiece11.transform.position;
@@ -190,6 +213,10 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill11 = true;
 
 
+        }
+        else
+        {
+            GameData.saveSkill11 = false;
         }
         if (skillPiece12 != null)
         {
@@ -199,6 +226,10 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        else
+        {
+            GameData.saveSkill12 = false;
+        }
         if (skillPiece13 != null)
         {
             GameData.skillPiece13Pos = skillPiece13.transform.position;
@@ -206,6 +237,10 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill13 = true;
 
 
+        }
+        else
+        {
+            GameData.saveSkill13 = false;
         }
         if (skillPiece14 != null)
         {
@@ -215,6 +250,10 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        else
+        {
+            GameData.saveSkill14 = false;
+        }
         if (skillPiece15 != null)
         {
             GameData.skillPiece15Pos = skillPiece15.transform.position;
@@ -222,6 +261,10 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill15 = true;
 
 
+        }
+        else
+        {
+            GameData.saveSkill15 = false;
         }
         if (skillPiece16 != null)
         {
@@ -231,6 +274,10 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        else
+        {
+            GameData.saveSkill16 = false;
+        }
         if (skillPiece17 != null)
         {
             GameData.skillPiece17Pos = skillPiece17.transform.position;
@@ -238,6 +285,10 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill17 = true;
 
 
+        }
+        else
+        {
+            GameData.saveSkill17 = false;
         }
         if (skillPiece18 != null)
         {
@@ -247,6 +298,10 @@ public class SkillPieceData : MonoBehaviour
 
 
         }
+        else
+        {
+            GameData.saveSkill18 = false;
+        }
         if (skillPiece19 != null)
         {
             GameData.skillPiece19Pos = skillPiece19.transform.position;
@@ -254,6 +309,10 @@ public class SkillPieceData : MonoBehaviour
             GameData.saveSkill19 = true;
 
 
+        }
+        else
+        {
+            GameData.saveSkill19 = false;
         }
 
 
@@ -267,6 +326,7 @@ public class SkillPieceData : MonoBehaviour
     {
         if (skillPiece1 != null)
         {
+            Debug.Log("active"+GameData.saveSkill1);
             if (GameData.saveSkill1)
             {
                 skillPiece1.transform.position = GameData.skillPiece1Pos;
@@ -284,6 +344,7 @@ public class SkillPieceData : MonoBehaviour
         }
         else
         {
+            Debug.Log("null"+GameData.saveSkill1);
             if (GameData.saveSkill1)
             {
                 Instantiate(Skill1);

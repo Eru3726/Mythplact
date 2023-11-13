@@ -16,12 +16,14 @@ public class SkillPreset : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             spdata.SaveSkillPiece();
+            Debug.Log("saveskill1"+GameData.saveSkill1);
             Debug.Log("プリセット1保存");
             Preset1save();
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
             spdata.SaveSkillPiece();
+            Debug.Log("saveskill1" + GameData.saveSkill1);
             Debug.Log("プリセット2保存");
             Preset2save();
         }

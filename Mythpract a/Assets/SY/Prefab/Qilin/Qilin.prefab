@@ -2220,13 +2220,17 @@ MonoBehaviour:
   pl: {fileID: 0}
   moveType: 1
   moveTable:
-  - name: Rush > PushUp
-    move: 010000000500000004000000
+  - name: Breath,Eruption
+    move: 010000000200000003000000
+  - name: PushUp,Spin
+    move: 010000000400000005000000
+  - name: Meteor
+    move: 0100000006000000
   body: {fileID: 864824354}
   body_Power: 1
   body_Gizmo:
     mode: 1
-    center: {x: -0.053670883, y: 0.012787342, z: 0}
+    center: {x: -8.7036705, y: 0.012787342, z: 0}
     size: {x: 11.122097, y: 7.0991793, z: 0}
     radius: 0
     color: {r: 0, g: 0, b: 0, a: 1}
@@ -2241,7 +2245,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
-  attackAnticipation_Time: 0.2
+  attackAnticipation_Time: 1
   attackAnticipation_Effect:
     particle: {fileID: 0}
     time: 1
@@ -2251,7 +2255,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
-  move_Speed: 20
+  move_Speed: 10
   move_Effect:
     particle: {fileID: 0}
     time: 1
@@ -2263,7 +2267,7 @@ MonoBehaviour:
     loop: 0
   breath: {fileID: 814393538170147962}
   breath_Power: 1
-  breath_AtkDis: 8
+  breath_AtkDis: 7.5
   breath_CoolTime: 0.5
   breath_Effect:
     particle: {fileID: 5569375693275953491}
@@ -2277,10 +2281,10 @@ MonoBehaviour:
   eruption: {fileID: 9093655586302129717, guid: 36fff5299b190d048a225f80413d605e, type: 3}
   eruption_Power: 1
   eruption_Center: {x: 0, y: 0}
-  eruption_AtkRange: {x: 60, y: 10}
-  eruption_AtkBreakTime: 0.1
+  eruption_AtkRange: {x: 40, y: 10}
+  eruption_AtkBreakTime: 1
   eruption_Generate: 10
-  eruption_CoolTime: 0.1
+  eruption_CoolTime: 0.5
   eruption_Effect:
     particle: {fileID: 0}
     time: 1
@@ -2311,34 +2315,27 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
-  rush: {fileID: 864824354}
+  rush: {fileID: 0}
   rush_Power: 1
-  rush_Center: {x: 1, y: 0}
-  rush_AtkRange: {x: 47, y: 10}
-  rush_MoveSpd: 20
+  rush_Center: {x: 0, y: 0}
+  rush_AtkRange: {x: 10, y: 10}
+  rush_MoveSpd: 10
   rush_AtkTime: 4
   rush_AtkBreakTime: 1
-  rush_CoolTime: 0
+  rush_CoolTime: 0.5
   rush_Effect:
-    particle: {fileID: 842824040913451066}
-    time: 0.01
-    loop: 1
+    particle: {fileID: 0}
+    time: 1
+    loop: 0
   rush_SE:
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
-  rush_Gizmo:
-    mode: 1
-    center: {x: 1, y: 0, z: 0}
-    size: {x: 47, y: 10, z: 0}
-    radius: 0
-    color: {r: 0, g: 0, b: 0, a: 1}
-    display: 1
   spin: {fileID: 8449096857308795825, guid: b0b8bf3b90b95bd4fa8d4ad497439836, type: 3}
-  spin_Power: 2
+  spin_Power: 1
   spin_Center: {x: 0, y: 0}
-  spin_AtkRange: {x: 30, y: 10}
+  spin_AtkRange: {x: 20, y: 10}
   spin_CoolTime: 0.5
   spin_Effect:
     particle: {fileID: 0}
@@ -2352,17 +2349,17 @@ MonoBehaviour:
   spin_Gizmo:
     mode: 1
     center: {x: 0, y: 0, z: 0}
-    size: {x: 10, y: 10, z: 0}
+    size: {x: 20, y: 10, z: 0}
     radius: 0
     color: {r: 0, g: 1, b: 0, a: 1}
     display: 0
   meteor: {fileID: 8282665973735145537, guid: cef55bb05d8a27549b6eabe95e1e8e56, type: 3}
   meteor_Power: 1
   meteor_Center: {x: 0, y: 0}
-  meteor_AtkRange: {x: 70, y: 30}
-  meteor_AtkTime: 10
-  meteor_Generate: 80
-  meteor_CoolTime: 0.5
+  meteor_AtkRange: {x: 40, y: 10}
+  meteor_AtkTime: 5
+  meteor_Generate: 10
+  meteor_CoolTime: 0.03
   meteor_Effect:
     particle: {fileID: 0}
     time: 1
@@ -2375,12 +2372,12 @@ MonoBehaviour:
   meteor_Gizmo:
     mode: 1
     center: {x: 0, y: 0, z: 0}
-    size: {x: 70, y: 30, z: 0}
+    size: {x: 40, y: 10, z: 0}
     radius: 0
     color: {r: 0, g: 0, b: 1, a: 1}
-    display: 1
+    display: 0
   damage_Number: 5
-  damage_Time: 0.01
+  damage_Time: 0.05
   damage_Effect:
     particle: {fileID: 0}
     time: 1
@@ -2422,7 +2419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
-  maxHp: 3500
+  maxHp: 1000
   hp: 1
   atk: 1
   def: 100
@@ -10004,18 +10001,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 71777648143422218, guid: 9439bda95405b17498475fb0dc45d5d8, type: 3}
       propertyPath: lengthInSec
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 71777648143422218, guid: 9439bda95405b17498475fb0dc45d5d8, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 71777648143422218, guid: 9439bda95405b17498475fb0dc45d5d8, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 71777648143422218, guid: 9439bda95405b17498475fb0dc45d5d8, type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 71777648143422229, guid: 9439bda95405b17498475fb0dc45d5d8, type: 3}
