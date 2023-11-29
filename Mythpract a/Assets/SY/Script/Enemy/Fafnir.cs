@@ -396,8 +396,8 @@ public class Fafnir : MonoBehaviour
                 }
                 else
                 {
-                    if (pos.x < (rush_Center.x + rush_AtkRange.x * 0.5f) + 3.0f &&
-                        (rush_Center.x - rush_AtkRange.x * 0.5f) - 3.0f < pos.x) { break; }
+                    if (pos.x < (rush_Center.x + rush_AtkRange.x * 0.5f) &&
+                        (rush_Center.x - rush_AtkRange.x * 0.5f) < pos.x) { break; }
                 }
                 rb.velocity = Vector2.zero; 
                 body.SetActive(false);
