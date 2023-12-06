@@ -98,6 +98,8 @@ public class CursorController : MonoBehaviour
 
         MoveCursor();
 
+
+
         SkillPieceInfo();
     }
     public void PickupUpdate(Transform piece)
@@ -341,7 +343,6 @@ public class CursorController : MonoBehaviour
         // 持ち上げ判定
         if (PickUpProp)
         {
-            Debug.Log("持ち上げれるよ");
             pickupTfm = touchTfm;
             audioSource.PlayOneShot(SkillSetSE);
 
@@ -694,6 +695,8 @@ public class CursorController : MonoBehaviour
 
 
     }
+
+
     void SkillPieceInfo()
     {
         if (touchTfm != null)
