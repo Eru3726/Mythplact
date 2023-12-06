@@ -159,9 +159,10 @@ public class Slime : MonoBehaviour
             case 0:
                 if (!GC.CheckFlag(GroundCheck.Flag.Ground)) { return; }
                 timer += Time.deltaTime;
-                if (2.0f < timer) { phase++; }
+                if (2.0f < timer) { rb.velocity = Vector2.zero; phase++; }
                 break;
             case 1:
+                Debug.Log(moveFlag + "：" + WallFlag);
                 rb.AddForce(speed * new Vector2(moveFlag, SlopeFlag) * ((WallFlag) == 1 ? 0 : 1), ForceMode2D.Impulse);
                 SetAudio(Move_SE, Move_SEVolume, Move_SEPitch, Move_SELoop);
                 GeneralClear();
@@ -189,7 +190,7 @@ public class Slime : MonoBehaviour
 
     void GroundFlagMng()
     {
-        if (moveType != MoveType.Die) { return; }
+        if (moveType == MoveType.Die) { return; }
 
         MoveDir();
         if (!GC.CheckFlag(GroundCheck.Flag.Ground))
@@ -277,7 +278,10 @@ public class Slime : MonoBehaviour
                 break;
             case 2:
                 GeneralClear();
-                Destroy(gameObject);
+                anim.enabled = true;   //アニメーター有効化
+                rb.gravityScale = 1;
+                moveType = MoveType.Walk;
+                //Destroy(gameObject);
                 break;
         }
     }

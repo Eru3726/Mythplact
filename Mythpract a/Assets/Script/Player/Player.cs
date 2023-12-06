@@ -1134,8 +1134,7 @@ public partial class Player : MonoBehaviour
 
         if (HMng.HP <= 0)
         {
-            PlayerRb.velocity = new Vector2(0, 0);
-            PlayerRb.gravityScale = 0;
+            PlayerRb.freezeRotation = true;
             deadStop = true;
             if(deathDirection == false)
             {

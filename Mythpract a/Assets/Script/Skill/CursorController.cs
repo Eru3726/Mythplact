@@ -696,27 +696,27 @@ public class CursorController : MonoBehaviour
     }
     void SkillPieceInfo()
     {
-        if (pickupTfm != null)
+        if (touchTfm != null)
         {
-            if (pickupTfm.parent.name == "SkillPiece1(Clone)")
+            if (touchTfm.parent.name == "SkillPiece1(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill1Select();
                 skillText.Skill1Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece2(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece2(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill2Select();
                 skillText.Skill2Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece3(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece3(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill3Select();
                 skillText.Skill3Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece4(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece4(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill4Select();
@@ -724,67 +724,67 @@ public class CursorController : MonoBehaviour
 
             }
 
-            else if (pickupTfm.parent.name == "SkillPiece5(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece5(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill5Select();
                 skillText.Skill5Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece10(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece10(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill10Select();
                 skillText.Skill10Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece11(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece11(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill11Select();
                 skillText.Skill11Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece12(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece12(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill12Select();
                 skillText.Skill12Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece13(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece13(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill13Select();
                 skillText.Skill13Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece14(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece14(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill14Select();
                 skillText.Skill14Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece15(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece15(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill15Select();
                 skillText.Skill15Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece16(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece16(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill16Select();
                 skillText.Skill16Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece17(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece17(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill17Select();
                 skillText.Skill17Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece18(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece18(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill18Select();
                 skillText.Skill18Text();
             }
-            else if (pickupTfm.parent.name == "SkillPiece19(Clone)")
+            else if (touchTfm.parent.name == "SkillPiece19(Clone)")
             {
                 // スキルピースの情報を表示
                 skillPieceDisplay.Skill19Select();
