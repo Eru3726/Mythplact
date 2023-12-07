@@ -44,6 +44,7 @@ namespace SY
         // Update is called once per frame
         void Update()
         {
+            //Debug.Log(anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex("Base Layer")).normalizedTime);
             Default();
         }
 
@@ -67,7 +68,7 @@ namespace SY
             if (normalizedTime <= 0.95f) { return; }
             if (action == AnimSetting.Type.Die) { anim.speed = 0; return; }
             //アニメーション終了まで待機
-            if (normalizedTime <= 1) { return; }
+            if (normalizedTime < 1) { return; }
             //再生中のアニメーションがループアニメーションでないとき
             if (!isLoop)
             {
@@ -85,6 +86,8 @@ namespace SY
         //アニメーション遷移(次のアニメーション名,優先度設定の有無)
         public void AnimChage(string nextAnim, bool isPriority)
         {
+            Debug.Log(nextAnim);
+
             int breakFlg = 0;
             int playProductsNo = 0; //要素保存(現在のアニメーション)
             int nextProductsNo = 0; //要素保存(リクエスト中のアニメーション)
