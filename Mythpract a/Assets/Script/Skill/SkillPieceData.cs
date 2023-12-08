@@ -73,11 +73,13 @@ public class SkillPieceData : MonoBehaviour
 
     private void Start()
     {
+        /*
         AllButtonClear();
 
         FirstSelectableSkill();
 
         AchvSkill();
+        */
     }
 
     void AllButtonClear()

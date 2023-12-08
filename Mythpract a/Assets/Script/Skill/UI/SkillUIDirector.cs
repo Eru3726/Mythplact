@@ -109,7 +109,7 @@ public class SkillUIDirector : MonoBehaviour
             else
             {
                 float mousewheel = Input.GetAxis("Mouse ScrollWheel");
-                if (Input.GetKeyDown(KeyCode.Escape) && skillSetDirector.useCursorProp == false)
+                if (Input.GetKeyDown(KeyCode.Escape) && !(PassiveSkill.activeSelf == true && skillSetDirector.useCursorProp == true))
                 {
                     SkillSlots.SetActive(true);
                     ActiveSkill.SetActive(false);

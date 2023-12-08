@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+
 
 public class CursorController : MonoBehaviour
 {
@@ -37,6 +39,24 @@ public class CursorController : MonoBehaviour
     [SerializeField] Button Skill17_Button;
     [SerializeField] Button Skill18_Button;
     [SerializeField] Button Skill19_Button;
+
+    [SerializeField, Header("移動")]
+    private InputActionProperty Move;
+
+    [SerializeField, Header("右回転")]
+    private InputActionReference RSpin;
+
+    [SerializeField, Header("左回転")]
+    private InputActionReference LSpin;
+
+    [SerializeField, Header("持ち上げ")]
+    private InputActionReference Pick;
+
+    [SerializeField, Header("戻る")]
+    private InputActionReference Back;
+
+
+
 
 
 
@@ -89,6 +109,13 @@ public class CursorController : MonoBehaviour
         keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
 
         audioSource = gameObject.GetComponent<AudioSource>();
+
+        Move.action.Enable();
+        Pick.action.Enable();
+        RSpin.action.Enable();
+        LSpin.action.Enable();
+        Back.action.Enable();
+
     }
 
     // Update is called once per frame
@@ -111,6 +138,7 @@ public class CursorController : MonoBehaviour
 
     void InputKey()
     {
+#if false
         if(conconect.ConConnect == true)
         {
 
@@ -205,7 +233,89 @@ public class CursorController : MonoBehaviour
 
         }
 
+#endif
 
+
+
+        Vector2 MoveInp = Move.action.ReadValue<Vector2>();
+        Vector2 beforeVec = Vector2.zero;
+        Debug.Log(MoveInp);
+
+
+
+        if (MoveInp.x == 0 && MoveInp.y > 0 && moveonce)
+        {
+            up = true;
+            moveonce = false;
+            beforeVec = MoveInp;
+        }
+        else up = false;
+
+        if (MoveInp.x == 0 && MoveInp.y < 0 && moveonce)
+        {
+            down = true;
+            moveonce = false;
+            beforeVec = MoveInp;
+
+        }
+        else down = false;
+
+            
+        if (MoveInp.x > 0 && MoveInp.y >= 0 && moveonce)
+        {
+               
+            right2 = true;
+            moveonce = false;
+            beforeVec = MoveInp;
+
+        }
+        else right2 = false;
+
+        if (MoveInp.x > 0 && MoveInp.y < 0 && moveonce)
+        {
+            right1 = true;
+            moveonce = false;
+            beforeVec = MoveInp;
+
+        }
+        else right1 = false;
+
+        if (MoveInp.x < 0 && MoveInp.y > 0 && moveonce)
+        {
+            left2 = true;
+            moveonce = false;
+            beforeVec = MoveInp;
+
+        }
+        else left2 = false;
+
+        if (MoveInp.x < 0 && MoveInp.y <= 0 && moveonce)
+        {
+            left1 = true;
+            moveonce = false;
+            beforeVec = MoveInp;
+
+        }
+        else left1 = false;
+            
+
+        if(Move.action.WasPerformedThisFrame())
+        {
+            moveonce = true;
+            beforeVec = MoveInp;
+        }
+
+        if (Pick.action.WasPressedThisFrame()) space = true;
+        else space = false;
+
+        if (RSpin.action.WasPressedThisFrame()) Rspin = true;
+        else Rspin = false;
+
+        if (LSpin.action.WasPressedThisFrame()) Lspin = true;
+        else Lspin = false;
+
+        if (Back.action.WasPressedThisFrame()) back = true;
+        else back = false;
     }
 
     void MoveCursor()
@@ -379,6 +489,7 @@ public class CursorController : MonoBehaviour
             backButton.interactable = true;
             backButton.Select();
             skillSetDirector.useCursorProp = false;
+
         }
         //Debug.Log("持ち上げたObj" + pickupTfm.parent.name);
         //Debug.Log("触れたObj" + touchTfm.parent.name);
