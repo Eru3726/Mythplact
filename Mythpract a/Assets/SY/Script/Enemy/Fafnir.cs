@@ -370,7 +370,6 @@ public class Fafnir : MonoBehaviour
                 anim.AnimChage("Entry_RoarEnd", isLock);
                 setVibration(0);
                 entry_Effect.Particle.gameObject.SetActive(false);
-                ui.SetActive(true);
                 phase++;
                 break;
             case 5:
@@ -378,6 +377,7 @@ public class Fafnir : MonoBehaviour
                 moveType = Fafnir_MoveType.Idle;
                 tableNo = Random.Range(0, moveTable.Length);
                 moveNo = 0;
+                //ui.SetActive(true);
                 AllVariableClear();
                 break;
         }

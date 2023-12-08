@@ -8,6 +8,7 @@ using Live2D.Cubism.Rendering;
 
 public enum Qilin_MoveType
 {
+    Entry,      //登場
     Idle = 1,   //仮
     Breath,     //ブレス
     Eruption,   //炎柱
@@ -54,7 +55,14 @@ public class Qilin : MonoBehaviour
 
     [SerializeField, Tooltip("行動")] Qilin_MoveType moveType = Qilin_MoveType.Idle;
     [SerializeField, Tooltip("行動テーブル")] Qilin_MoveTable[] moveTable;  //各テーブルの最初の行動はIdleにする必要がある
-    bool isHalfHP = false; 
+    bool isHalfHP = false;
+
+    [Header("登場")]
+    [SerializeField, Tooltip("初期位置")] Vector2 entry_StartPos = Vector2.zero;
+    [SerializeField, Tooltip("寝時間")] float entry_SleepTime = 1.0f;
+    [SerializeField, Tooltip("待機時間")] float entry_BreakTime = 1.0f;
+    [SerializeField, Tooltip("エフェクト")] ParticleSetting entry_Effect;
+    [SerializeField, Tooltip("サウンド")] AudioSetting entry_SE;
 
     [Header("本体")]
     [SerializeField, Tooltip("接触攻撃判定")] GameObject body;
@@ -194,7 +202,7 @@ public class Qilin : MonoBehaviour
         hm = GetComponent<HitMng>();
         gc = GetComponent<GroundCheck>();
         obj = this.gameObject;
-        pos = rb.position;
+        pos = entry_StartPos;
         plPos = pl.transform.position;
         defScale = transform.localScale;
         scale = defScale;
@@ -202,8 +210,8 @@ public class Qilin : MonoBehaviour
         gravity = rb.gravityScale;
 
         //行動
-        tableNo = Random.Range(0, moveTable.Length);
-        moveNo = 0;
+        moveType = Qilin_MoveType.Entry;
+        AllVariableClear();
 
         //体範囲
         body_Center = bc.bounds.center;
@@ -251,6 +259,10 @@ public class Qilin : MonoBehaviour
 
         switch (moveType)
         {
+            case Qilin_MoveType.Entry:
+                Entry();
+                break;
+
             case Qilin_MoveType.Idle:
                 Idle();
                 break;
@@ -301,6 +313,47 @@ public class Qilin : MonoBehaviour
     }
 
     //----------アクション----------
+    void Entry()
+    {
+        switch(phase)
+        {
+            case 0:
+                anim.AnimChage("Entry_SleepAir", isLock);
+                phase++;
+                break;
+            case 1:
+                timer += Time.deltaTime;
+                if (timer < entry_SleepTime) { break; }
+                anim.AnimChage("Entry_SleepEnd", isLock);
+                timer = 0;
+                phase++;
+                break;
+            case 2:
+                if (!AnimEndChange("Entry_FireLessIdle")) { break; }
+                phase++;
+                break;
+            case 3:
+                timer += Time.deltaTime;
+                if (timer < entry_BreakTime) { break; }
+                anim.AnimChage("Entry_End", isLock);
+                phase++;
+                break;
+            case 4:
+                if (anim.NormalizedTime < 1.0f) { break; }
+                moveType = Qilin_MoveType.Idle;
+                tableNo = Random.Range(0, moveTable.Length);
+                moveNo = 0;
+                AllVariableClear();
+                break;
+        }
+    }
+    bool AnimEndChange(string nextAnim) //アニメーション終了時遷移
+    {
+        if (anim.NormalizedTime < 1.0f) { return false; }
+        anim.AnimChage(nextAnim, isLock);
+        return true;
+    }
+
     void Idle()
     {
         switch (phase)
