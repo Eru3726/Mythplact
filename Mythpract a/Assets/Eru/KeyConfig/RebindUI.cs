@@ -96,7 +96,7 @@ public class RebindUI : MonoBehaviour
     public void ResetOverrides()
     {
         // Bindingの上書きを全て解除する
-        _action?.RemoveAllBindingOverrides();
+        _action?.RemoveBindingOverride(bindingIndex);
         RefreshDisplay();
     }
 
