@@ -38,7 +38,7 @@ public class RebindSaveManager : MonoBehaviour
 #endif
 
         //セーブファイルのパスを設定
-        string SaveFilePath = path + "/InputActionOverrides.bytes";
+        string SaveFilePath = path + "/InputActionOverrides" + DataManager.saveFile + ".bytes";
 
         // InputActionAssetの上書き情報の保存
         var json = _actionAsset.SaveBindingOverridesAsJson();
@@ -89,7 +89,7 @@ public class RebindSaveManager : MonoBehaviour
 
 #endif
         //セーブファイルのパスを設定
-        string SaveFilePath = path + "/InputActionOverrides.bytes";
+        string SaveFilePath = path + "/InputActionOverrides" + DataManager.saveFile + ".bytes";
 
         //セーブファイルがあるか
         if (File.Exists(SaveFilePath))
@@ -194,7 +194,7 @@ public class RebindSaveManager : MonoBehaviour
 #endif
 
         //ファイル削除
-        File.Delete(path + "/InputActionOverrides.bytes");
+        File.Delete(path + "/InputActionOverrides" + DataManager.saveFile + ".bytes");
 
         //リロード
         Load();

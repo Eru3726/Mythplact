@@ -150,7 +150,7 @@ public class AchvManager : MonoBehaviour
 #endif
 
         //セーブファイルのパスを設定
-        string SaveFilePath = path + "/achievements.bytes";
+        string SaveFilePath = path + "/achievements" + DataManager.saveFile + ".bytes";
 
         // セーブデータの作成
         AchvSaveData saveData = CreateSaveData();
@@ -200,7 +200,7 @@ public class AchvManager : MonoBehaviour
 #endif
 
         //セーブファイルのパスを設定
-        string SaveFilePath = path + "/achievements.bytes";
+        string SaveFilePath = path + "/achievements" + DataManager.saveFile + ".bytes";
 
         //セーブファイルがあるか
         if (File.Exists(SaveFilePath))
@@ -422,7 +422,7 @@ public class AchvManager : MonoBehaviour
 #endif
 
         //ファイル削除
-        File.Delete(path + "/achievements.bytes");
+        File.Delete(path + "/achievements" + DataManager.saveFile + ".bytes");
 
         //リロード
         Load();
