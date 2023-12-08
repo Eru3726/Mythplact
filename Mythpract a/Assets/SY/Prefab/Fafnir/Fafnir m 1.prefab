@@ -875,7 +875,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 18
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4556420900539807863
 MonoBehaviour:
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 18
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -1180,7 +1180,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 12
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6199544920840321164
 MonoBehaviour:
@@ -1194,12 +1194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 12
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
   _multiplyColor: {r: 1, g: 1, b: 1, a: 1}
-  _screenColor: {r: 0, g: 0, b: 0, a: 1}
+  _screenColor: {r: 1, g: 0, b: 0, a: 1}
   _mainTexture: {fileID: 2800000, guid: c04b8aed8e57ed845be00999c112c0d2, type: 3}
   _sortingMode: 0
   _sortingOrder: 0
@@ -1302,7 +1302,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 4
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6918661223281968733
 MonoBehaviour:
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 4
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -1424,7 +1424,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 7
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8930789072715681170
 MonoBehaviour:
@@ -1438,7 +1438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 7
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -1607,7 +1607,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 20
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3768703227526809374
 MonoBehaviour:
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 20
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -1729,7 +1729,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 11
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4170913764924730240
 MonoBehaviour:
@@ -1743,7 +1743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 11
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -2011,7 +2011,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8041342960535547435
 MonoBehaviour:
@@ -2025,7 +2025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 1
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -2102,10 +2102,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -2395,18 +2395,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pl: {fileID: 0}
+  mainCamera: {fileID: 0}
   moveType: 1
   moveTable:
-  - name: Earthquake ~ Pound(4)
-    move: 0100000005000000040000000300000002000000
-  - name: Pound ~ Earthquake(4)
-    move: 0100000002000000030000000400000005000000
-  - name: Rush , Earthquake(2)
-    move: 010000000400000005000000
-  - name: Pound , Breath(2)
-    move: 010000000200000004000000
-  - name: Pound , Breath(2)
-    move: 010000000200000004000000
+  - name: 
+    move: 01000000020000000500000002000000050000000300000004000000
   speed: 10
   body: {fileID: 8633869762904387994}
   body_Power: 1
@@ -2433,14 +2426,28 @@ MonoBehaviour:
   die_SEVolume: 1
   die_SEPitch: 1
   die_SELoop: 0
+  entry_StartPos: {x: 12, y: 15}
+  entry_Spd: 25
+  entry_Vector: {x: -1, y: -2}
+  entry_RoarTime: 1
+  entry_Vibration: 2
+  entry_Effect:
+    particle: {fileID: 0}
+    time: 1
+    loop: 1
+  entry_SE:
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
   idle_BreakTime: 1
   idle_SE: {fileID: 8300000, guid: cb0437d4a9665e849ace03ee3e274cc3, type: 3}
   idle_SEVolume: 1
   idle_SEPitch: 1
   idle_SELoop: 1
   pound: {fileID: 8633869764325867539}
-  pound_Power: 1
-  pound_MoveSpd: 5
+  pound_Power: 2
+  pound_MoveSpd: 10
   pound_BreakTime:
   - 0.5
   - 0.5
@@ -2449,31 +2456,70 @@ MonoBehaviour:
   pound_SEVolume: 1
   pound_SEPitch: 1
   pound_SELoop: 0
-  rush_MoveSpd: 20
-  rush_Power: 1
+  rock: {fileID: 1352192281125062315, guid: ec63fe0fe207e76428e7f45ca58f5b1f, type: 3}
+  rock_Power: 1
+  rock_FallSpd: 2
+  rock_Center: {x: 0, y: 0}
+  rock_AtkRange: {x: 40, y: 20}
+  rock_AtkTime: 10
+  rock_Generate: 100
+  rock_DieTime: 2
+  rock_Gizmo:
+    mode: 1
+    center: {x: 0, y: 0, z: 0}
+    size: {x: 40, y: 20, z: 0}
+    radius: 0
+    color: {r: 1, g: 0, b: 0, a: 1}
+    display: 1
+  rush_MoveSpd: 30
+  rush_Power: 2
+  rush_Center: {x: 0.84, y: 0}
+  rush_AtkRange: {x: 46, y: 10}
   rush_BreakTime: 0.5
   rush_AtkTime: 3
   rush_SE: {fileID: 8300000, guid: b851c178277879043a6a6dbb8d4b947a, type: 3}
   rush_SEVolume: 1
   rush_SEPitch: 1.17
   rush_SELoop: 1
+  rush_Gizmo:
+    mode: 1
+    center: {x: 0.84, y: 0, z: 0}
+    size: {x: 46, y: 10, z: 0}
+    radius: 0
+    color: {r: 0, g: 0, b: 0, a: 1}
+    display: 1
   breath: {fileID: 8633869763637358381}
-  breath_Power: 1
-  breath_JumpHeight: 5
+  breath_Power: 2
+  breath_JumpHeight: 4
   breath_SE: {fileID: 8300000, guid: 03599f19de38a0d4aab6243bdaf87511, type: 3}
   breath_SEVolume: 1
   breath_SEPitch: -0
   breath_SELoop: 0
   earthquake: {fileID: 8633869762583126844}
-  earthquake_Power: 1
-  earthquake_JumpHeight: 10
-  earthquake_Time: 3
+  earthquake_Power: 2
+  earthquake_JumpHeight: 5
+  earthquake_Time: 1
   earthquake_SE: {fileID: 8300000, guid: fad1b9831b1b8b544a27cf3f2b1d8c83, type: 3}
   earthquake_SEVolume: 1
   earthquake_SEPitch: 1
   earthquake_SELoop: 0
+  damage_Number: 4
+  damage_Time: 0.01
+  damage_Effect:
+    particle: {fileID: 0}
+    time: 1
+    loop: 0
+  damage_SE:
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+  dead_Time: 3
+  dead_Speed: 0.05
+  max: 1
   cameraData: {fileID: 0}
   isLock: 1
+  fafgold: {fileID: 2100000, guid: 28c2de378e8989945964b9c4c3a53817, type: 2}
 --- !u!114 &7922254271274962515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2487,7 +2533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 1
-  maxHp: 1000
+  maxHp: 3000
   hp: 0
   atk: 1
   def: 100
@@ -2515,6 +2561,31 @@ MonoBehaviour:
     actionType: 1
     isLoop: 1
     priority: 
+  - name: Entry_FallAir
+    clips: {fileID: 7400000, guid: a7d83519288f6ec489b4ced13ca40319, type: 2}
+    actionType: 0
+    isLoop: 1
+    priority: 01000000020000000400000005000000
+  - name: Entry_FallEnd
+    clips: {fileID: 7400000, guid: 4f54ab885c1602043b364c8ba1e05436, type: 2}
+    actionType: 0
+    isLoop: 0
+    priority: 01000000020000000400000005000000
+  - name: Entry_RoarStart
+    clips: {fileID: 7400000, guid: 7eedb5e26b053304890c0621429a155f, type: 2}
+    actionType: 0
+    isLoop: 0
+    priority: 01000000020000000400000005000000
+  - name: Entry_RoarAir
+    clips: {fileID: 7400000, guid: d4b3668c99eb4f84f977fa15aa7b911a, type: 2}
+    actionType: 0
+    isLoop: 1
+    priority: 01000000020000000400000005000000
+  - name: Entry_RoarEnd
+    clips: {fileID: 7400000, guid: 4c4a7118c4777464f82742b407f5ec66, type: 2}
+    actionType: 0
+    isLoop: 0
+    priority: 01000000020000000400000005000000
   - name: Move
     clips: {fileID: 7400000, guid: c1981691b5af86d4e8079c4553e64184, type: 2}
     actionType: 1
@@ -2560,6 +2631,11 @@ MonoBehaviour:
     actionType: 5
     isLoop: 0
     priority: 010000000200000004000000
+  - name: Dead
+    clips: {fileID: 7400000, guid: d4aa9701d851bb04898c8cf300321696, type: 2}
+    actionType: 11
+    isLoop: 0
+    priority: 01000000020000000400000005000000
 --- !u!114 &6560825493382947785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2586,7 +2662,7 @@ MonoBehaviour:
     isActive: 1
     gizmo:
       mode: 2
-      center: {x: 0, y: -4.3, z: 0}
+      center: {x: 11.8, y: 10.599999, z: 0}
       size: {x: 0, y: 0, z: 0}
       radius: 0.2
       color: {r: 0, g: 0, b: 0, a: 1}
@@ -2828,7 +2904,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 3
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4061783493811364574
 MonoBehaviour:
@@ -2842,7 +2918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 3
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -2950,7 +3026,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 13
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6178568183581221892
 MonoBehaviour:
@@ -2964,7 +3040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 13
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -3567,7 +3643,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 14
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6745085447451402078
 MonoBehaviour:
@@ -3581,7 +3657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 14
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -4510,7 +4586,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 21
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7274751260820420636
 MonoBehaviour:
@@ -4524,7 +4600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 21
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -4773,7 +4849,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 22
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4579735486356624083
 MonoBehaviour:
@@ -4787,7 +4863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 22
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -4956,7 +5032,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 23
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6456763524632174861
 MonoBehaviour:
@@ -4970,7 +5046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 23
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -5139,7 +5215,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 17
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5342093399575773318
 MonoBehaviour:
@@ -5153,7 +5229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 17
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -5261,7 +5337,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 5
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3088204256433430353
 MonoBehaviour:
@@ -5275,7 +5351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 5
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -5383,7 +5459,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 8
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6459706738795940378
 MonoBehaviour:
@@ -5397,7 +5473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 8
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -5505,7 +5581,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6377393602226494769
 MonoBehaviour:
@@ -5519,7 +5595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 0
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -5707,7 +5783,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6437449485015470509
 MonoBehaviour:
@@ -5721,7 +5797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 10
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -5829,7 +5905,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 16
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2221711361619939645
 MonoBehaviour:
@@ -5843,7 +5919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 16
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -5951,7 +6027,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 6
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5453428090892037256
 MonoBehaviour:
@@ -5965,7 +6041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 6
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -6153,7 +6229,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1908368660077634078
 MonoBehaviour:
@@ -6167,7 +6243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 2
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -6355,7 +6431,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 9
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6865474463147253562
 MonoBehaviour:
@@ -6369,7 +6445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 9
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -6538,7 +6614,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 19
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7230727166757347991
 MonoBehaviour:
@@ -6552,7 +6628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 19
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -6708,6 +6784,7 @@ GameObject:
   - component: {fileID: 8633869762904387995}
   - component: {fileID: 8633869762904387993}
   - component: {fileID: 2242461789566415462}
+  - component: {fileID: 2047860883}
   m_Layer: 8
   m_Name: BodyAtk
   m_TagString: Untagged
@@ -6743,7 +6820,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08540329, y: -0.08303102}
+  m_Offset: {x: 0.026204698, y: -0.11721182}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6754,7 +6831,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6394083, y: 0.4543677}
+  m_Size: {x: 0.41619235, y: 0.56545544}
   m_EdgeRadius: 0
 --- !u!114 &2242461789566415462
 MonoBehaviour:
@@ -6769,6 +6846,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+--- !u!61 &2047860883
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633869762904387994}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.36099303, y: 0.013884373}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3428079, y: 0.3335517}
+  m_EdgeRadius: 0
 --- !u!1 &8633869763019662354
 GameObject:
   m_ObjectHideFlags: 0
@@ -6914,7 +7017,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08540329, y: -0.08303102}
+  m_Offset: {x: -0.05086729, y: -0.07518202}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6925,7 +7028,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6394083, y: 0.4543677}
+  m_Size: {x: 0.95965093, y: 0.77147055}
   m_EdgeRadius: 0
 --- !u!114 &3777415388720864064
 MonoBehaviour:
@@ -6971,6 +7074,7 @@ Transform:
   - {fileID: 2560298090165715039}
   - {fileID: 1456638065657309810}
   - {fileID: 8980298514494521739}
+  - {fileID: 4154166036162217911}
   m_Father: {fileID: 9191522439642483786}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7222,7 +7326,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 15
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4188047133815523009
 MonoBehaviour:
@@ -7236,7 +7340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308e904e3f33207489a2c15b9b0b297b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localSortingOrder: -1
+  _localSortingOrder: 15
   _color: {r: 1, g: 1, b: 1, a: 1}
   _isOverwrittenDrawableMultiplyColors: 0
   _isOverwrittenDrawableScreenColors: 0
@@ -7328,6 +7432,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u77B3\u5B54"
   DisplayName: 
+--- !u!1001 &2207637952524866627
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8633869764208121980}
+    m_Modifications:
+    - target: {fileID: 2667582797380708648, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_Name
+      value: Roar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1800001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 888167433331f1443869857bc7ef034e, type: 3}
+--- !u!4 &4154166036162217911 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+  m_PrefabInstance: {fileID: 2207637952524866627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3366599326345198017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7520,7 +7698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1303219472531172668, guid: 2651e0bb383ac504c97db3eaf94d7f9f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4915139100415733519, guid: 2651e0bb383ac504c97db3eaf94d7f9f, type: 3}
       propertyPath: looping
