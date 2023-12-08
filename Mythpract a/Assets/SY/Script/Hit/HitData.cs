@@ -6,7 +6,7 @@ namespace SY
     public class HitData : MonoBehaviour
     {
         [SerializeField] HitType type;
-        [SerializeField] float power;        //技威力
+        float power;        //技威力
 
         Player player;
 
@@ -106,7 +106,7 @@ namespace SY
         {
             //nullチェック
             if (data == null)
-            { Debug.LogError(data.gameObject.name + "にHitDataがアタッチされていない"); return false; }
+            { Debug.LogError(/*data.*/gameObject.transform.parent.name + "にHitDataがアタッチされていない"); return false; }
 
             //タイプチェック
             if (this.Type != HitType.Defense) { return false; }

@@ -28,9 +28,16 @@ namespace SY
             main.duration = time;
             main.loop = loop;
             stopCheck = particle.GetComponent<ParticleStopCheck>();
-            isValid = true;
             if (stopCheck != null) { stopCheck.IsStop = false; }
+            particle.gameObject.SetActive(true);
             particle.Play();
+            isValid = true;
+        }
+
+        public void StopParticle()
+        {
+            if (isValid == false) { return; }
+            particle.gameObject.SetActive(false);
         }
 
         public void StopCheck() { isValid = (stopCheck.IsStop == true) ? false : true; }

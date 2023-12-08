@@ -174,7 +174,8 @@ public class Shoggoth : MonoBehaviour
         if (moveType == Shoggoth_MoveType.Dead)
         {
             //LastParticle.GetComponent<ParticleSetting>().StopCheck();
-            Debug.Log(LastParticle);
+            rush_Effect.gameObject.SetActive(false);
+            upDown_Effect.gameObject.SetActive(false);
             Debug.Log(LastParticle.GetComponent<ParticleStopCheck>().IsStop);
             if (!LastParticle.GetComponent<ParticleStopCheck>().IsStop) { return; }
             GameData.ShoggothDead = true;
