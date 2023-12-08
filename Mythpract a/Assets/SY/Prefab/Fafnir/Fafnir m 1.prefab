@@ -2432,7 +2432,7 @@ MonoBehaviour:
   entry_RoarTime: 1
   entry_Vibration: 2
   entry_Effect:
-    particle: {fileID: 0}
+    particle: {fileID: 7598260424321663396}
     time: 1
     loop: 1
   entry_SE:
@@ -2662,7 +2662,7 @@ MonoBehaviour:
     isActive: 1
     gizmo:
       mode: 2
-      center: {x: 11.8, y: 10.599999, z: 0}
+      center: {x: 0, y: -4.3, z: 0}
       size: {x: 0, y: 0, z: 0}
       radius: 0.2
       color: {r: 0, g: 0, b: 0, a: 1}
@@ -7443,17 +7443,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Roar
       objectReference: {fileID: 0}
+    - target: {fileID: 2667582797380708648, guid: 888167433331f1443869857bc7ef034e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
       propertyPath: m_LocalScale.z
@@ -7461,11 +7465,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1800001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.49
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7504,6 +7508,11 @@ PrefabInstance:
 --- !u!4 &4154166036162217911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2811806398027617268, guid: 888167433331f1443869857bc7ef034e, type: 3}
+  m_PrefabInstance: {fileID: 2207637952524866627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7598260424321663396 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8633799180209378791, guid: 888167433331f1443869857bc7ef034e, type: 3}
   m_PrefabInstance: {fileID: 2207637952524866627}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3366599326345198017
