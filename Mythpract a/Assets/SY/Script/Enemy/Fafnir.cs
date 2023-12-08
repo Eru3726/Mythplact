@@ -358,7 +358,7 @@ public class Fafnir : MonoBehaviour
                 phase++;
                 break;
             case 2:
-                VibrationSubtraction(0.0084f / entry_JumpVibrationTime);
+                VibrationSubtraction(((entry_Vibration * 0.25f) / 60.0f) / entry_JumpVibrationTime);
                 timer += Time.deltaTime;
                 if (timer < entry_JumpVibrationTime) { return; }
                 setVibration(0);
