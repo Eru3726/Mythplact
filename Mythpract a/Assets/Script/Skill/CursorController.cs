@@ -489,6 +489,7 @@ public class CursorController : MonoBehaviour
             backButton.interactable = true;
             backButton.Select();
             skillSetDirector.useCursorProp = false;
+
         }
         //Debug.Log("持ち上げたObj" + pickupTfm.parent.name);
         //Debug.Log("触れたObj" + touchTfm.parent.name);
