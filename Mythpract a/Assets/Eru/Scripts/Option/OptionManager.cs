@@ -8,16 +8,17 @@ public class OptionManager : MonoBehaviour
     private InputActionReference pause;
 
     [SerializeField]
-    private InputActionReference move;
+    private InputActionReference moveRight;
+
+    [SerializeField]
+    private InputActionReference moveLeft;
 
     [SerializeField]
     private GameObject settingCan,optionCan, disCan, souCan, keyCan, padCan, quitMenu;
 
-    [SerializeField]
-    private Fade fade;
-
     private bool settingOpenFlg = false;
     private bool optionOpenFlg = false;
+    private bool achvOpenFlg = false;
 
     private int nowOpution = 1;
 
@@ -25,6 +26,8 @@ public class OptionManager : MonoBehaviour
 
     private const int optionLeftBorder = 1;
     private const int optionRightBorder = 4;
+
+    private AchvUI achvUI;
 
     //public static OptionManager instance;
 
@@ -39,16 +42,20 @@ public class OptionManager : MonoBehaviour
 
         //キーの有効化
         pause.action.Enable();
-        move.action.Enable();
+        moveRight.action.Enable();
+        moveLeft.action.Enable();
 
         PanelUpdata();
 
         settingOpenFlg = false;
         optionOpenFlg = false;
+        achvOpenFlg = false;
         settingCan.SetActive(settingOpenFlg);
         optionCan.SetActive(optionOpenFlg);
 
         quitMenu.SetActive(false);
+
+        achvUI = GetComponent<AchvUI>();
     }
 
     void Update()
@@ -56,34 +63,38 @@ public class OptionManager : MonoBehaviour
         //pauseキーが押されたら
         if (pause.action.triggered)
         {
-            if (!optionOpenFlg)
+            if (!optionOpenFlg && !achvOpenFlg)
             {
                 settingOpenFlg = !settingOpenFlg;
                 settingCan.SetActive(settingOpenFlg);
             }
-            else
+            else if(optionOpenFlg && !achvOpenFlg)
             {
                 optionOpenFlg = false;
                 optionCan.SetActive(optionOpenFlg);
             }
+            else
+            {
+                Debug.Log("a");
+                if (achvOpenFlg) AchvUIClause();
+                else AchvUIClause();
+            }
         }
 
-        Vector2 moveInput = move.action.ReadValue<Vector2>();
-
-        if (moveInput.x >= 0.5f && nowOpution < optionRightBorder && optionOpenFlg && !rebindFlg)
+        if (moveRight.action.triggered && nowOpution < optionRightBorder && optionOpenFlg && !rebindFlg)
         {
             rebindFlg = true;
             nowOpution++;
             PanelUpdata();
         }
-        else if (moveInput.x <= -0.5f && nowOpution > optionLeftBorder && optionOpenFlg && !rebindFlg)
+        else if (moveLeft.action.triggered && nowOpution > optionLeftBorder && optionOpenFlg && !rebindFlg)
         {
             rebindFlg = true;
             nowOpution--;
             PanelUpdata();
         }
 
-        if (moveInput.x <= 0.5f && moveInput.x >= -0.5f && rebindFlg) rebindFlg = false;
+        if (!moveLeft.action.triggered && !moveRight.action.triggered && rebindFlg) rebindFlg = false;
     }
 
     private void PanelUpdata()
@@ -139,8 +150,19 @@ public class OptionManager : MonoBehaviour
 
     public void TitleBackButton()
     {
-        Load.SL = 0;
-        fade.FadeIn(1f, () => SceneManager.LoadScene("LoadScene"));
+        SceneManager.LoadScene("TitleScene");
+    }
+
+    public void AchvUIOpen()
+    {
+        achvOpenFlg = true;
+        achvUI.OpenUI();
+    }
+
+    public void AchvUIClause()
+    {
+        achvOpenFlg = false;
+        achvUI.ClauseUI();
     }
 
     public void QuitMenuOpenButton()
