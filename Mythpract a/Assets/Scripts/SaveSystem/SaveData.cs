@@ -166,4 +166,11 @@ public class SaveData
     public float bestTimeFafnir = 0;
     public float bestTimeQilin = 0;
 
+    //プレイ時間とセーブ日時
+    public int playTime = 0;
+    public int lastYear = 2023;
+    public int lastMonth = 1;
+    public int lastDay = 1;
+    public int lastHour = 0;
+    public int lastMinute = 0;
 }

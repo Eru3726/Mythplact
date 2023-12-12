@@ -238,6 +238,13 @@ public class Read : MonoBehaviour
         GameData.bestTimeFafnir = saveData.bestTimeFafnir;
         GameData.bestTimeQilin = saveData.bestTimeQilin;
 
+        GameData.playTime = saveData.playTime;
+        GameData.lastYear = saveData.lastYear;
+        GameData.lastMonth = saveData.lastMonth;
+        GameData.lastDay = saveData.lastDay;
+        GameData.lastHour = saveData.lastHour;
+        GameData.lastMinute = saveData.lastMinute;
+
         if (Conconnect != null)
         {
             if (Conconnect == false)

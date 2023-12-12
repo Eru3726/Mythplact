@@ -123,8 +123,6 @@ public class AchvManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         else Destroy(this.gameObject);
-
-        Load();
     }
 
     private void OnDestroy()

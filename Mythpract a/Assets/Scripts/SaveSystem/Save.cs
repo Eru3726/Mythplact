@@ -231,6 +231,14 @@ public class Save : MonoBehaviour
         saveData.bestTimeFafnir = GameData.bestTimeFafnir;
         saveData.bestTimeQilin = GameData.bestTimeQilin;
 
+        saveData.playTime = GameData.playTime;
+        saveData.lastYear = GameData.lastYear;
+        saveData.lastMonth = GameData.lastMonth;
+        saveData.lastDay = GameData.lastDay;
+        saveData.lastHour = GameData.lastHour;
+        saveData.lastMinute = GameData.lastMinute;
+
+
         return saveData;
     }
 

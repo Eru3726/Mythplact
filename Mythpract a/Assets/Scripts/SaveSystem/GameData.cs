@@ -165,4 +165,12 @@ public class GameData
     public static float bestTimeShoggoth = 0;
     public static float bestTimeFafnir = 0;
     public static float bestTimeQilin = 0;
+
+    //プレイ時間とセーブ日時
+    public static int playTime = 0;
+    public static int lastYear = 2023;
+    public static int lastMonth = 1;
+    public static int lastDay = 1;
+    public static int lastHour = 0;
+    public static int lastMinute = 0;
 }
