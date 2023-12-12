@@ -4,10 +4,6 @@ using UnityEngine;
 public class GameData
 {
     // キーコンフィグ
-    public static int testInt = 1;
-    public static float testFloat = 1.0f;
-    public static string testString = "Text0";
-    public static bool testBool = true;
     public static KeyCode rightkey = KeyCode.D;
     public static string righttx = "D";
     public static KeyCode leftkey = KeyCode.A;

@@ -69,6 +69,10 @@ public class Read : MonoBehaviour
         {
             Debug.Log("セーブファイルがありません");
             DataManager.saveData = false;
+
+            GameData.ShoggothDead = false;
+            GameData.FafnirDead = false;
+            GameData.QilinDead = false;
         }
 
         this.enabled = false;
@@ -78,10 +82,6 @@ public class Read : MonoBehaviour
     //データの読み込み（反映）
     private void ReadData(SaveData saveData)
     {
-        GameData.testInt = saveData.testInt;
-        GameData.testFloat = saveData.testFloat;
-        GameData.testString = saveData.testString;
-        GameData.testBool = saveData.testBool;
         GameData.rightkey = saveData.rightkey;
         GameData.righttx = saveData.righttx;
         GameData.leftkey = saveData.leftkey;

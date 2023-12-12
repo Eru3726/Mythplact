@@ -98,6 +98,8 @@ public class TitleManager : MonoBehaviour
 
     public void GameStart()
     {
+        Save.startTime = (int)Time.time;
+        Debug.Log(Time.time);
         SceneManager.LoadScene("RestScene");
     }
 

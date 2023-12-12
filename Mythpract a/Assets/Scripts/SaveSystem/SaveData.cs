@@ -5,10 +5,6 @@ using UnityEngine;
 public class SaveData
 {
     // キーコンフィグ
-    public int testInt;
-    public float testFloat;
-    public string testString;
-    public bool testBool;
     public KeyCode rightkey;
     public string righttx;
     public KeyCode leftkey;

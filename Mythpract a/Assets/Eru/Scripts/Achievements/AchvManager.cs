@@ -125,11 +125,6 @@ public class AchvManager : MonoBehaviour
         else Destroy(this.gameObject);
     }
 
-    private void OnDestroy()
-    {
-        Save();
-    }
-
 
     // 上書き情報の保存
     public void Save()
@@ -163,7 +158,7 @@ public class AchvManager : MonoBehaviour
         byte[] arrEncrypted = AesEncrypt(bytes);
 
         // 指定したパスにファイルを作成
-        FileStream file = new FileStream(SaveFilePath, FileMode.Create, FileAccess.Write);
+        FileStream file = new(SaveFilePath, FileMode.Create, FileAccess.Write);
 
         //ファイルに保存する
         try
@@ -277,7 +272,7 @@ public class AchvManager : MonoBehaviour
     private AchvSaveData CreateSaveData()
     {
         //セーブデータのインスタンス化
-        AchvSaveData saveData = new AchvSaveData();
+        AchvSaveData saveData = new();
 
         saveData.dieXFlg = dieXFlg;
         saveData.dieXCount = dieXCount;

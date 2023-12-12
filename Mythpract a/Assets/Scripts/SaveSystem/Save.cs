@@ -1,5 +1,5 @@
 //データをファイルに保存します
-
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -7,13 +7,31 @@ using UnityEngine;
 
 public class Save : MonoBehaviour
 {
+    public static int startTime = 0;
+
     void OnEnable()
     {
+        Debug.Log("セーブ開始");
         DoSave();
+    }
+
+    private void GetDateTime()
+    {
+        DateTime dt = DateTime.Now;
+        GameData.lastYear = dt.Year;
+        GameData.lastMonth = dt.Month;
+        GameData.lastDay = dt.Day;
+        GameData.lastHour = dt.Hour;
+        GameData.lastMinute = dt.Minute;
+
+        Debug.Log(Time.time);
+        GameData.playTime += (int)Time.time - startTime;
     }
 
     private void DoSave()
     {
+        GetDateTime();
+
 #if UNITY_EDITOR
         //UnityEditor上なら
         //Assetファイルの中のSaveファイルのパスを入れる
@@ -70,10 +88,6 @@ public class Save : MonoBehaviour
         SaveData saveData = new SaveData();
 
         //ゲームデータの値をセーブデータに代入
-        saveData.testInt = GameData.testInt;
-        saveData.testFloat = GameData.testFloat;
-        saveData.testString = GameData.testString;
-        saveData.testBool = GameData.testBool;
         saveData.rightkey = GameData.rightkey;
         saveData.righttx = GameData.righttx;
         saveData.leftkey = GameData.leftkey;

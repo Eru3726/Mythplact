@@ -99,9 +99,9 @@ public class SaveSlotManager : MonoBehaviour
                 gaugeImage[i].fillAmount = ((float)AchvManager.instance.clearAchv / (float)allAchv);
                 percentText[i].text = ((float)AchvManager.instance.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
 
-                playTimeText[i].text = (GameData.playTime / 3600).ToString() + "：" + ((GameData.playTime % 3600) / 60).ToString();
-                lastTimeText[i].text = GameData.lastYear.ToString() + "/" + GameData.lastMonth.ToString() + "/" + GameData.lastDay.ToString()
-                                       + "　" + GameData.lastHour.ToString() + "：" + GameData.lastMinute.ToString();
+                playTimeText[i].text = (GameData.playTime / 3600).ToString("D2") + "：" + ((GameData.playTime % 3600) / 60).ToString("D2");
+                lastTimeText[i].text = GameData.lastYear.ToString("D4") + "/" + GameData.lastMonth.ToString("D2") + "/" + GameData.lastDay.ToString("D2")
+                                       + "　" + GameData.lastHour.ToString("D2") + "：" + GameData.lastMinute.ToString("D2");
             }
             else
             {
@@ -181,9 +181,9 @@ public class SaveSlotManager : MonoBehaviour
                 gaugeImage[i].fillAmount = ((float)AchvManager.instance.clearAchv / (float)allAchv);
                 percentText[i].text = ((float)AchvManager.instance.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
 
-                playTimeText[i].text = (GameData.playTime / 3600).ToString() + "：" + ((GameData.playTime % 3600) / 60).ToString();
-                lastTimeText[i].text = GameData.lastYear.ToString() + "/" + GameData.lastMonth.ToString() + "/" + GameData.lastDay.ToString()
-                                       + "　" + GameData.lastHour.ToString() + "：" + GameData.lastMinute.ToString();
+                playTimeText[i].text = (GameData.playTime / 3600).ToString("D2") + "：" + ((GameData.playTime % 3600) / 60).ToString("D2");
+                lastTimeText[i].text = GameData.lastYear.ToString("D4") + "/" + GameData.lastMonth.ToString("D2") + "/" + GameData.lastDay.ToString("D2")
+                                       + "　" + GameData.lastHour.ToString("D2") + "：" + GameData.lastMinute.ToString("D2");
             }
             else
             {
