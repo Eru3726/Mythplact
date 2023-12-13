@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
   m_Name: kylin2.fadeMotionList
   m_EditorClassIdentifier: 
-  MotionInstanceIds: 80e4ffff72e4ffff68e4ffff5ee4ffff54e4ffffbedbffffb4dbffffaadbffffa0dbffff
+  MotionInstanceIds: 80e4ffff72e4ffff68e4ffff5ee4ffff54e4ffffbedbffffb4dbffffaadbffffa0dbffffd44effffca4effff38adffff2eadffff
   CubismFadeMotionObjects:
   - {fileID: 11400000, guid: 1ac64497c85a87448a06cc80363f6d52, type: 2}
   - {fileID: 11400000, guid: 4bc5921d734999849a004b4a9aa8cff6, type: 2}
@@ -23,3 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4a897452b0f6c245a867fc460e78090, type: 2}
   - {fileID: 11400000, guid: 088f5a32bd4cacd49ab6455375b5d14d, type: 2}
   - {fileID: 11400000, guid: a01081302e7703e498cfa035c9a2fb44, type: 2}
+  - {fileID: 11400000, guid: b7ce4050d4cbf714a8ec162f2f035e64, type: 2}
+  - {fileID: 11400000, guid: 7ad53191f8c97fa458888e591304b1d8, type: 2}
+  - {fileID: 11400000, guid: c6692dfc8732b504da55b45daab559fc, type: 2}
+  - {fileID: 11400000, guid: 59ee20c59de707c409f20135cf61cb11, type: 2}

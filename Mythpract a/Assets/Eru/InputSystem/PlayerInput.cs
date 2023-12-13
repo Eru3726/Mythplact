@@ -143,6 +143,51 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""f9c681b9-d6fe-4394-92cf-6a76d86e6669"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SkillPick"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4249c9a-c8f2-4e8f-a8ae-c268758785de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillBack"",
+                    ""type"": ""Button"",
+                    ""id"": ""be2bfac2-c4d3-46e0-8529-72e72a3a24e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillRollR"",
+                    ""type"": ""Button"",
+                    ""id"": ""312fe2ab-9c55-4256-a329-741385b3c8e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillRollL"",
+                    ""type"": ""Button"",
+                    ""id"": ""a4d48287-e568-4dea-b885-d77cc86a4be1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -431,6 +476,204 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""ff37cd60-7fdd-467c-9979-eb6bf717e1bc"",
+                    ""path"": ""2DVector(mode=1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""86d08d84-23c4-403b-9304-a95aab8c69c7"",
+                    ""path"": ""<Joystick>/stick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0672be0c-c0a1-4137-bbf2-e87f979a859c"",
+                    ""path"": ""<Joystick>/stick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""18dab4c4-7a95-4f0c-93eb-fcf2491be235"",
+                    ""path"": ""<Joystick>/stick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""da50fa5f-9fd1-42e5-8faa-c6ac45a4b2bc"",
+                    ""path"": ""<Joystick>/stick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""cec0048c-b839-4abb-81ce-3ea384088fa4"",
+                    ""path"": ""2DVector(mode=1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""23639139-72a7-4916-af10-dd538530f6bf"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""7f1980bb-020e-49f0-a6e0-a8a4eaad207d"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""68ca9c02-2acc-4f3b-aa73-517e63e9d6b7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1171095e-fbff-41ae-9404-1470d64b6531"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SkillMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5951b855-9f3f-4b9b-9794-39d1eea8603b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7022ff6-1d47-4e69-8a0b-344ab2361088"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05d3c8f9-a0f1-4370-b321-da969a5ed8e1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ecbb7bf-36d0-4d9b-8088-97300891472a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9ea49b0-ddd5-43dc-b2ae-d1628b650830"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillRollR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fc48f0a-4857-4a4e-a428-569c3e65a14c"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillRollR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b99a1ddc-da7e-4a19-92eb-c2622ee5d190"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillRollL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51ffc166-5aaf-41b6-8abc-e39d6e312e56"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillRollL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -463,6 +706,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_actions_Down = m_actions.FindAction("Down", throwIfNotFound: true);
         m_actions_Up = m_actions.FindAction("Up", throwIfNotFound: true);
         m_actions_Esc = m_actions.FindAction("Esc", throwIfNotFound: true);
+        m_actions_SkillMove = m_actions.FindAction("SkillMove", throwIfNotFound: true);
+        m_actions_SkillPick = m_actions.FindAction("SkillPick", throwIfNotFound: true);
+        m_actions_SkillBack = m_actions.FindAction("SkillBack", throwIfNotFound: true);
+        m_actions_SkillRollR = m_actions.FindAction("SkillRollR", throwIfNotFound: true);
+        m_actions_SkillRollL = m_actions.FindAction("SkillRollL", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -537,6 +785,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_actions_Down;
     private readonly InputAction m_actions_Up;
     private readonly InputAction m_actions_Esc;
+    private readonly InputAction m_actions_SkillMove;
+    private readonly InputAction m_actions_SkillPick;
+    private readonly InputAction m_actions_SkillBack;
+    private readonly InputAction m_actions_SkillRollR;
+    private readonly InputAction m_actions_SkillRollL;
     public struct ActionsActions
     {
         private @PlayerInput m_Wrapper;
@@ -554,6 +807,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Down => m_Wrapper.m_actions_Down;
         public InputAction @Up => m_Wrapper.m_actions_Up;
         public InputAction @Esc => m_Wrapper.m_actions_Esc;
+        public InputAction @SkillMove => m_Wrapper.m_actions_SkillMove;
+        public InputAction @SkillPick => m_Wrapper.m_actions_SkillPick;
+        public InputAction @SkillBack => m_Wrapper.m_actions_SkillBack;
+        public InputAction @SkillRollR => m_Wrapper.m_actions_SkillRollR;
+        public InputAction @SkillRollL => m_Wrapper.m_actions_SkillRollL;
         public InputActionMap Get() { return m_Wrapper.m_actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -602,6 +860,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Esc.started += instance.OnEsc;
             @Esc.performed += instance.OnEsc;
             @Esc.canceled += instance.OnEsc;
+            @SkillMove.started += instance.OnSkillMove;
+            @SkillMove.performed += instance.OnSkillMove;
+            @SkillMove.canceled += instance.OnSkillMove;
+            @SkillPick.started += instance.OnSkillPick;
+            @SkillPick.performed += instance.OnSkillPick;
+            @SkillPick.canceled += instance.OnSkillPick;
+            @SkillBack.started += instance.OnSkillBack;
+            @SkillBack.performed += instance.OnSkillBack;
+            @SkillBack.canceled += instance.OnSkillBack;
+            @SkillRollR.started += instance.OnSkillRollR;
+            @SkillRollR.performed += instance.OnSkillRollR;
+            @SkillRollR.canceled += instance.OnSkillRollR;
+            @SkillRollL.started += instance.OnSkillRollL;
+            @SkillRollL.performed += instance.OnSkillRollL;
+            @SkillRollL.canceled += instance.OnSkillRollL;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -645,6 +918,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Esc.started -= instance.OnEsc;
             @Esc.performed -= instance.OnEsc;
             @Esc.canceled -= instance.OnEsc;
+            @SkillMove.started -= instance.OnSkillMove;
+            @SkillMove.performed -= instance.OnSkillMove;
+            @SkillMove.canceled -= instance.OnSkillMove;
+            @SkillPick.started -= instance.OnSkillPick;
+            @SkillPick.performed -= instance.OnSkillPick;
+            @SkillPick.canceled -= instance.OnSkillPick;
+            @SkillBack.started -= instance.OnSkillBack;
+            @SkillBack.performed -= instance.OnSkillBack;
+            @SkillBack.canceled -= instance.OnSkillBack;
+            @SkillRollR.started -= instance.OnSkillRollR;
+            @SkillRollR.performed -= instance.OnSkillRollR;
+            @SkillRollR.canceled -= instance.OnSkillRollR;
+            @SkillRollL.started -= instance.OnSkillRollL;
+            @SkillRollL.performed -= instance.OnSkillRollL;
+            @SkillRollL.canceled -= instance.OnSkillRollL;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -695,5 +983,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnDown(InputAction.CallbackContext context);
         void OnUp(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
+        void OnSkillMove(InputAction.CallbackContext context);
+        void OnSkillPick(InputAction.CallbackContext context);
+        void OnSkillBack(InputAction.CallbackContext context);
+        void OnSkillRollR(InputAction.CallbackContext context);
+        void OnSkillRollL(InputAction.CallbackContext context);
     }
 }

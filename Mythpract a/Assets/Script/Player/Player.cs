@@ -198,14 +198,15 @@ public partial class Player : MonoBehaviour
 
     void Update()
     {
-        if (!gameover || !deadStop || BossAnim.Action != AnimSetting.Type.Entry)
+        if (true/*!GameOver && !deadStop/* && BossAnim.Action != AnimSetting.Type.Entry*/)
         {
             HMng.HitUpdate();
 
             CheckGround();  // 地面にいるかの判定
 
-            MoveInput();        // 入力
+            if (!gameover && !deadStop) MoveInput();        // 入力
             MoveController();   // プレイヤー操作
+            DeadController();
             ActiveSkillController();    // スキル管理
             ActiveSkillUpdate();
             PassiveSkillUpdate();       // 動的に発動条件が変わるパッシブスキルの管理
@@ -1132,11 +1133,20 @@ public partial class Player : MonoBehaviour
 
         }
 
+        if (RestManager.heal)
+        {
+            EffectHeal.Play();
+            HMng.HP = HMng.MaxHP;
+            RestManager.heal = false;
+        }
+    }
+    void DeadController()
+    {
+
         if (HMng.HP <= 0)
         {
-            PlayerRb.freezeRotation = true;
             deadStop = true;
-            if(deathDirection == false)
+            if (deathDirection == false)
             {
                 EffectDeath.Play();
                 audioSource.PlayOneShot(deadSE);
@@ -1163,14 +1173,7 @@ public partial class Player : MonoBehaviour
         }
 
 
-        if (RestManager.heal)
-        {
-            EffectHeal.Play();
-            HMng.HP = HMng.MaxHP;
-            RestManager.heal = false;
-        }
     }
-
     void AttackReset()
     {
         normalAttack = false;

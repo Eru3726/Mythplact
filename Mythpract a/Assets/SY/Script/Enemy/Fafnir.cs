@@ -4,10 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SY;
+using Cinemachine;
 using Live2D.Cubism.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public enum Fafnir_MoveType
 {
+    Entry,      //登場
     Idle = 1,   //仮
     Pound,      //はたく
     Rush,       //突進
@@ -28,19 +32,25 @@ public class Fafnir : MonoBehaviour
     GameObject obj; //自身自身
     Color defColor;
     [SerializeField, Tooltip("プレーヤー")] GameObject pl;
+    [SerializeField, Tooltip("カメラ")] GameObject mainCamera;
 
     //
     int phase = 0;      //汎用行動番号
     float timer = 0;    //汎用タイマー
     int repeat = 0;     //汎用繰り返し回数
     int no = 0;         //汎用ナンバ
+    //
+    int phaseSub = 0;   //汎用行動番号
+    float timerSub = 0; //汎用タイマー
+    int repeatSub = 0;  //汎用繰り返し回数
+    int noSub = 0;      //汎用ナンバ
 
     int tableNo = 0;    //テーブル指定
     int moveNo = 0;     //行動指定
 
-    
+
     [SerializeField, Tooltip("行動")] Fafnir_MoveType moveType = Fafnir_MoveType.Idle;
-    [SerializeField, Tooltip("行動テーブル")] Fafnir_MoveTable[] moveTable;  //各テーブルの最初の行動はIdleにする必要がある
+    [SerializeField, Tooltip("行動テーブル")] Fafnir_MoveTable[] moveTable;
     [SerializeField] float speed;
 
     [Header("本体")]
@@ -78,6 +88,16 @@ public class Fafnir : MonoBehaviour
     float gravity;      //重力強度保存
     int soundcount = 0;
 
+    [Header("登場")]
+    [SerializeField, Tooltip("初期位置")] Vector2 entry_StartPos = Vector2.zero;
+    [SerializeField, Tooltip("速度")] float entry_Spd = 1.0f;
+    [SerializeField, Tooltip("ベクトル")] Vector2 entry_Vector = Vector2.zero;
+    [SerializeField, Tooltip("着地振動時間")] float entry_JumpVibrationTime = 1.0f;
+    [SerializeField, Tooltip("咆哮時間")] float entry_RoarTime = 1.0f;
+    [SerializeField, Tooltip("画面振動強さ")] float entry_Vibration = 1.0f;
+    [SerializeField, Tooltip("エフェクト")] ParticleSetting entry_Effect;
+    [SerializeField, Tooltip("サウンド")] AudioSetting entry_SE;
+
     [Header("待機")]
     [SerializeField, Tooltip("待機時間")] float idle_BreakTime = 1.0f;
     [SerializeField, Tooltip("サウンドエフェクト")] AudioClip idle_SE;
@@ -95,6 +115,17 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Range(0, 1), Tooltip("音量")] float pound_SEVolume;
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float pound_SEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool pound_SELoop;
+
+    [Header("落石(未実装)")]
+    [SerializeField, Tooltip("はたく")] GameObject rock;
+    [SerializeField, Tooltip("威力")] float rock_Power = 1.0f;
+    [SerializeField, Tooltip("落下速度")] float rock_FallSpd = 5.0f;
+    [SerializeField, Tooltip("中心座標")] Vector2 rock_Center = new Vector2(0.0f, 0.0f);
+    [SerializeField, Tooltip("攻撃範囲")] Vector2 rock_AtkRange = new Vector2(10.0f, 10.0f);
+    [SerializeField, Tooltip("攻撃時間")] float rock_AtkTime = 5.0f;
+    [SerializeField, Tooltip("生成数")] float rock_Generate = 10.0f;
+    [SerializeField, Tooltip("生成数")] float rock_DieTime = 1.0f;
+    [SerializeField, Tooltip("ギズモ")] GizmoSetting rock_Gizmo;
 
     [Header("突進")]
     [SerializeField, Tooltip("移動速度")] float rush_MoveSpd = 20.0f;
@@ -151,7 +182,7 @@ public class Fafnir : MonoBehaviour
 
 
     [Header("カメラ")]
-    [SerializeField, Tooltip("画面情報")] CameraData cameraData;
+    [SerializeField, Tooltip("画面情報")] SY.CameraData cameraData;
     Camera useCamera;       //使用カメラ
     Vector2 leftBottom;     //左下
     Vector2 leftTop;        //左上
@@ -165,6 +196,8 @@ public class Fafnir : MonoBehaviour
     float qScreenWidth;     //1/4幅
     float hScreenHeight;    //1/2高さ
     float qScreenHeight;    //1/4高さ
+
+    GameObject ui;
 
     //アニメーション
     Anim anim;
@@ -188,14 +221,13 @@ public class Fafnir : MonoBehaviour
         gc = GetComponent<GroundCheck>();
         obj = this.gameObject;
         defColor = renderController.ModelScreenColor;
-        pos = rb.position;
+        pos = entry_StartPos;
         plPos = pl.transform.position;
         defScale = transform.localScale;
         scale = defScale;
         gravity = rb.gravityScale;
-
-        tableNo = Random.Range(0, moveTable.Length);
-        moveNo = 0;
+        ui = GameObject.Find("UI").gameObject;
+        ui.SetActive(false);
 
         AllHitActive(false);
         SetPower(body, body_Power);
@@ -205,6 +237,11 @@ public class Fafnir : MonoBehaviour
         CameraData();
 
         renderController.OverwriteFlagForModelScreenColors = true;
+
+        moveType = Fafnir_MoveType.Entry;
+        AllVariableClear();
+        rb.gravityScale = 0;
+        rb.position = pos;
     }
 
     // Update is called once per frame
@@ -259,6 +296,10 @@ public class Fafnir : MonoBehaviour
 
         switch (moveType)
         {
+            case Fafnir_MoveType.Entry:
+                Entry();
+                break;
+
             case Fafnir_MoveType.Idle:
                 Idle();
                 break;
@@ -298,6 +339,86 @@ public class Fafnir : MonoBehaviour
     }
 
     //----------アクション----------
+    void Entry()
+    {
+        switch(phase)
+        {
+            case 0:
+                anim.AnimChage("Entry_FallAir", isLock);
+                rb.velocity = entry_Vector.normalized * entry_Spd;
+                phase++;
+                break;
+            case 1:
+                if (!CheckGroundFlag(GroundCheck.Flag.Ground)) { break; }
+                rb.gravityScale = gravity;
+                rb.velocity = Vector2.zero;
+                anim.AnimChage("Entry_FallEnd", isLock);
+                jumpEnd_Effect.Play();
+                setVibration(entry_Vibration * 0.25f);
+                phase++;
+                break;
+            case 2:
+                VibrationSubtraction(((entry_Vibration * 0.25f) / 60.0f) / entry_JumpVibrationTime);
+                timer += Time.deltaTime;
+                if (timer < entry_JumpVibrationTime) { return; }
+                setVibration(0);
+                timer = 0;
+                phase++;
+                break;
+            case 3:
+                if (!AnimEndChange("Entry_RoarStart")) { break; }
+                phase++;
+                break;
+            case 4:
+                if (!AnimEndChange("Entry_RoarAir")) { break; }
+                setVibration(entry_Vibration);
+                entry_Effect.Particle.gameObject.SetActive(true);
+                entry_Effect.PlayParticle();
+                phase++;
+                break;
+            case 5:
+                timer += Time.deltaTime;
+                if (timer < entry_RoarTime) { break; }
+                anim.AnimChage("Entry_RoarEnd", isLock);
+                setVibration(0);
+                entry_Effect.Particle.gameObject.SetActive(false);
+                phase++;
+                break;
+            case 6:
+                if (anim.NormalizedTime < 1.0f) { break; }
+                moveType = Fafnir_MoveType.Idle;
+                tableNo = Random.Range(0, moveTable.Length);
+                moveNo = 0;
+                //ui.SetActive(true);
+                AllVariableClear();
+                break;
+        }
+    }
+    bool AnimEndChange(string nextAnim) //アニメーション終了時遷移
+    {
+        if (anim.NormalizedTime < 1.0f) { return false; }
+        anim.AnimChage(nextAnim, isLock);
+        return true;
+    }
+    CinemachineBasicMultiChannelPerlin vCamera2;
+    Volume v;
+    MotionBlur b;
+    void setVibration(float vibration)  //画面振動
+    {
+        CinemachineVirtualCamera vCamera = mainCamera.GetComponent<CinemachineVirtualCamera>();
+        vCamera2 = vCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        vCamera2.m_AmplitudeGain = vibration;
+
+        v = GameObject.Find("Global Volume").GetComponent<Volume>();
+        v.profile.TryGet(out b);
+        b.intensity.value = vibration;
+    }
+    void VibrationSubtraction(float value)
+    {
+        vCamera2.m_AmplitudeGain -= value;
+        b.intensity.value -= value;
+    }
+
     void Idle()
     {
         switch(phase)
@@ -352,6 +473,7 @@ public class Fafnir : MonoBehaviour
                 phase++;
                 break;
             case 3:
+                //FallRock();
                 if (anim.Action != AnimSetting.Type.Idle) { /*Debug.Log(anim.Action);*/ break; }
                 //Debug.Log(anim.Action);
                 timer += Time.deltaTime;
@@ -516,8 +638,9 @@ public class Fafnir : MonoBehaviour
                 phase++;
                 break;
             case 4:
-                rb.velocity = Vector2.zero;
+                //rb.velocity = Vector2.zero;
                 timer += Time.deltaTime;
+                //FallRock();
                 if (timer < earthquake_Time) { break; }
                 earthquake.SetActive(false);
                 timer = 0;
@@ -531,6 +654,45 @@ public class Fafnir : MonoBehaviour
                 AllVariableClear();
                 break;
         }
+    }
+
+    void FallRock()
+    {
+        if (phaseSub != 0) { return; }
+        timerSub += Time.deltaTime;
+        if (timerSub < rock_AtkTime / rock_Generate) { return; }
+        GameObject obj = RandomInstantiate(rock, rock_Center, rock_AtkRange);   //オブジェクト生成
+        GameObject atk = obj.transform.Find("Atk").gameObject;  //生成物攻撃判定
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();       //生成物物理演算
+        SetPower(atk, rock_Power);          //威力設定
+        rb.gravityScale *= rock_FallSpd;    //落下速度設定
+        Destroy(obj, rock_DieTime);         //消去処理
+        repeatSub++;    //生成回数
+        timerSub = 0;   //タイマーリセット
+        if (repeatSub != rock_Generate) { return; }
+        phaseSub++;
+    }
+
+    GameObject RandomInstantiate(GameObject obj, Vector2 center, Vector2 range)
+    {
+        Vector2 instantiatePos;
+        Vector2[] edge = EdgePossition(center, range);
+
+        instantiatePos.x = Random.Range(edge[0].x, edge[1].x);
+        instantiatePos.y = edge[1].y;
+
+        return Instantiate(obj, instantiatePos, Quaternion.identity);
+    }
+
+    Vector2[] EdgePossition(Vector2 center, Vector2 range)
+    {
+        Vector2[] edge = new Vector2[2];
+
+        Vector2 r = range * 0.5f;   //範囲半径
+        edge[0] = center - r;       //左下
+        edge[1] = center + r;       //右上
+
+        return edge;
     }
 
     void MoveEnd()  //行動終了時処理
@@ -627,7 +789,7 @@ public class Fafnir : MonoBehaviour
 
     void Anim_Jump()
     {
-        if (!CheckGroundFlag(GroundCheck.Flag.Ground))
+        if (!CheckGroundFlag(GroundCheck.Flag.Ground) && anim.Action != AnimSetting.Type.Entry)
         {
             anim.AnimChage("Jump_Air", isLock);
             anim_JumpFlag = 1;
@@ -813,6 +975,7 @@ public class Fafnir : MonoBehaviour
     void AllVariableClear()     //変数初期化
     {
         GeneralVariableClear();
+        SubGeneralVariableClear();
 
         //円
         //circle.DataClear();
@@ -824,6 +987,14 @@ public class Fafnir : MonoBehaviour
         timer = 0;
         repeat = 0;
         no = 0;
+    }
+
+    void SubGeneralVariableClear()  //汎用変数初期化
+    {
+        phaseSub = 0;
+        timerSub = 0;
+        repeatSub = 0;
+        noSub = 0;
     }
 
     void AllHitActive(bool value)
@@ -855,8 +1026,17 @@ public class Fafnir : MonoBehaviour
         se.Play();
     }
 
+    void ArraySetActive(GameObject[] obj, bool value)
+    {
+        for (int i = 0; i < obj.Length; i++)
+        {
+            obj[i].SetActive(value);
+        }
+    }
+
     private void OnDrawGizmos()
     {
+        if (rock_Gizmo.Display) { rock_Gizmo.Draw(rock_Center, rock_AtkRange); }
         if (rush_Gizmo.Display) { rush_Gizmo.Draw(rush_Center, rush_AtkRange); }
     }
 }

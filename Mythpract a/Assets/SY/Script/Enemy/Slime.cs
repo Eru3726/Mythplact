@@ -234,6 +234,7 @@ public class Slime : MonoBehaviour
     {
         Debug.Log("dm");
         SetAudio(damage_SE, damage_SEVolume, damage_SEPitch, damage_SELoop);
+        rb.velocity = Vector2.zero;
         rb.AddForce(knockBackSpd * (moveFlag * -1) * Vector2.right, ForceMode2D.Impulse);
     }
 
