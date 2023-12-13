@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -121,10 +122,21 @@ public class AchvManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneUnloaded += SceneUnloaded;
         }
         else Destroy(this.gameObject);
     }
 
+    private void SceneUnloaded(Scene thisScene)
+    {
+        Save();
+        Debug.Log(thisScene.name + "：Achvセーブ完了");
+    }
+
+    void OnDestroy()
+    {
+        Save();
+    }
 
     // 上書き情報の保存
     public void Save()

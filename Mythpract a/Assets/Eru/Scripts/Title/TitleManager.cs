@@ -25,6 +25,8 @@ public class TitleManager : MonoBehaviour
     private const int optionLeftBorder = 1;
     private const int optionRightBorder = 4;
 
+    public static int startTime = 0;
+
     void Start()
     {
         pause.action.Enable();
@@ -98,7 +100,7 @@ public class TitleManager : MonoBehaviour
 
     public void GameStart()
     {
-        Save.startTime = (int)Time.time;
+        startTime = (int)Time.time;
         Debug.Log(Time.time);
         SceneManager.LoadScene("RestScene");
     }

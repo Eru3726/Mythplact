@@ -20,7 +20,6 @@ public class DataManager : MonoBehaviour
     void OnDestroy()
     {
         Save();
-        AchvManager.instance.Save();
     }
 
     public void Read()

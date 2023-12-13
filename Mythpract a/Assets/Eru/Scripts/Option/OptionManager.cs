@@ -14,6 +14,9 @@ public class OptionManager : MonoBehaviour
     private InputActionReference moveLeft;
 
     [SerializeField]
+    private DataManager dm;
+
+    [SerializeField]
     private GameObject settingCan,optionCan, disCan, souCan, keyCan, padCan, quitMenu;
 
     private bool settingOpenFlg = false;
@@ -75,7 +78,6 @@ public class OptionManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("a");
                 if (achvOpenFlg) AchvUIClause();
                 else AchvUIClause();
             }
@@ -150,6 +152,7 @@ public class OptionManager : MonoBehaviour
 
     public void TitleBackButton()
     {
+        dm.Save();
         AchvManager.instance.Save();
         SceneManager.LoadScene("TitleScene");
     }

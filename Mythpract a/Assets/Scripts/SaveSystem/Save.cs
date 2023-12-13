@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class Save : MonoBehaviour
 {
-    public static int startTime = 0;
 
     void OnEnable()
     {
@@ -24,8 +23,8 @@ public class Save : MonoBehaviour
         GameData.lastHour = dt.Hour;
         GameData.lastMinute = dt.Minute;
 
-        Debug.Log(Time.time);
-        GameData.playTime += (int)Time.time - startTime;
+        Debug.Log("今回のプレイ時間：" + ((int)Time.time - TitleManager.startTime));
+        GameData.playTime += ((int)Time.time - TitleManager.startTime);
     }
 
     private void DoSave()
