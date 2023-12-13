@@ -2101,10 +2101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameTime: {fileID: 4814729893531648800}
   save:
-    testInt: 0
-    testFloat: 0
-    testString: 
-    testBool: 0
     rightkey: 0
     righttx: 
     leftkey: 0
@@ -2158,6 +2154,9 @@ MonoBehaviour:
     saveSkill17: 0
     saveSkill18: 0
     saveSkill19: 0
+    saveSkillPreset1: 0000000000000000000000000000000000000000
+    saveSkillPreset2: 0000000000000000000000000000000000000000
+    saveSkillPreset3: 0000000000000000000000000000000000000000
     setSkill1: 0
     setSkill2: 0
     setSkill3: 0
@@ -2177,6 +2176,9 @@ MonoBehaviour:
     setSkill17: 0
     setSkill18: 0
     setSkill19: 0
+    setSkillPreset1: 0000000000000000000000000000000000000000
+    setSkillPreset2: 0000000000000000000000000000000000000000
+    setSkillPreset3: 0000000000000000000000000000000000000000
     skillPiece1Pos: {x: 0, y: 0, z: 0}
     skillPiece1Deg: {x: 0, y: 0, z: 0, w: 0}
     skillPiece2Pos: {x: 0, y: 0, z: 0}
@@ -2215,10 +2217,139 @@ MonoBehaviour:
     skillPiece18Deg: {x: 0, y: 0, z: 0, w: 0}
     skillPiece19Pos: {x: 0, y: 0, z: 0}
     skillPiece19Deg: {x: 0, y: 0, z: 0, w: 0}
+    skillPiecePosPreset1:
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    skillPiecePosPreset2:
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    skillPiecePosPreset3:
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    skillPieceDegPreset1:
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    skillPieceDegPreset2:
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    skillPieceDegPreset3:
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
     skillSlot1: 0
     skillSlot2: 0
     skillSlot3: 0
     skillSlot4: 0
+    skillSlotPreset1: 00000000000000000000000000000000
+    skillSlotPreset2: 00000000000000000000000000000000
+    skillSlotPreset3: 00000000000000000000000000000000
     playerNowHp: 0
     ShoggothDead: 0
     FafnirDead: 0
@@ -2230,6 +2361,33 @@ MonoBehaviour:
     bestTimeShoggoth: 0
     bestTimeFafnir: 0
     bestTimeQilin: 0
+    playTime: 0
+    lastYear: 2023
+    lastMonth: 1
+    lastDay: 1
+    lastHour: 0
+    lastMinute: 0
+    dieXFlg: 0
+    dieXCount: 0
+    blinkX: 0
+    blinkXCount: 0
+    allBoss: 0
+    defeatedBoss: 000000
+    oneHp: 0
+    attackCombo: 0
+    attackComboCount: 0
+    SheriffUseFlg: 0
+    SheriffUseCount: 0
+    guardCountFlg: 0
+    guardCount: 0
+    noDamage: 0
+    justGuardFlg: 0
+    achvJustGuardCount: 0
+    noGuard: 0
+    activeSkillOnly: 0
+    timeAttack: 0
+    clearAchv: 0
+    clearBoss: 0
 --- !u!1 &520873377
 GameObject:
   m_ObjectHideFlags: 0
@@ -7757,7 +7915,7 @@ AudioSource:
   m_GameObject: {fileID: 1495627809}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6919220806627760970, guid: f9c21b88e2722144dbc9db7ee5d1c04d, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8dba2ef0a1b8d0046a32d1d781d6b4db, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.35
