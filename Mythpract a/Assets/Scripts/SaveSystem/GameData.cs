@@ -169,4 +169,40 @@ public class GameData
     public static int lastDay = 1;
     public static int lastHour = 0;
     public static int lastMinute = 0;
+
+    //実績
+    public static bool dieXFlg;
+    public static int dieXCount;
+
+    public static bool blinkXFlg;
+    public static int blinkXCount;
+
+    public static bool allBossFlg;
+    public static bool[] defeatedBoss = new bool[3];
+
+    public static bool oneHpFlg;
+
+    public static bool attackComboFlg;
+    public static int attackComboCount;
+
+    public static bool sheriffUseFlg;
+    public static int sheriffUseCount;
+
+    public static bool guardCountFlg;
+    public static int guardCount;
+
+    public static bool noDamage;
+
+    public static bool justGuardFlg;
+    public static int achvJustGuardCount;
+
+    public static bool noGuard;
+
+    public static bool activeSkillOnlyFlg;
+
+    public static bool timeAttack;
+
+    public static int clearAchv;
+
+    public static int clearBoss;
 }

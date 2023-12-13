@@ -73,6 +73,40 @@ public class Read : MonoBehaviour
             GameData.ShoggothDead = false;
             GameData.FafnirDead = false;
             GameData.QilinDead = false;
+
+            GameData.dieXFlg = false;
+            GameData.dieXCount = 0;
+
+            GameData.blinkXFlg = false;
+            GameData.blinkXCount = 0;
+
+            GameData.allBossFlg = false;
+            for (int i = 0; i < 3; i++) GameData.defeatedBoss[i] = false;
+
+            GameData.oneHpFlg = false;
+
+            GameData.attackComboFlg = false;
+
+            GameData.sheriffUseFlg = false;
+            GameData.sheriffUseCount = 0;
+
+            GameData.guardCountFlg = false;
+            GameData.guardCount = 0;
+
+            GameData.noDamage = false;
+
+            GameData.justGuardFlg = false;
+            GameData.justGuardCount = 0;
+
+            GameData.noGuard = false;
+
+            GameData.activeSkillOnlyFlg = false;
+
+            GameData.timeAttack = false;
+
+            GameData.clearAchv = 0;
+
+            GameData.clearBoss = 0;
         }
 
         this.enabled = false;
@@ -244,6 +278,40 @@ public class Read : MonoBehaviour
         GameData.lastDay = saveData.lastDay;
         GameData.lastHour = saveData.lastHour;
         GameData.lastMinute = saveData.lastMinute;
+
+
+        GameData.dieXFlg = saveData.dieXFlg;
+        GameData.dieXCount = saveData.dieXCount;
+
+        GameData.blinkXFlg = saveData.blinkX;
+        for (int i = 0; i < 3; i++) GameData.defeatedBoss[i] = saveData.defeatedBoss[i];
+
+        GameData.allBossFlg = saveData.allBoss;
+
+        GameData.oneHpFlg = saveData.oneHp;
+
+        GameData.attackComboFlg = saveData.attackCombo;
+
+        GameData.sheriffUseCount = saveData.SheriffUseCount;
+        GameData.sheriffUseFlg = saveData.SheriffUseFlg;
+
+        GameData.guardCountFlg = saveData.guardCountFlg;
+        GameData.guardCount = saveData.guardCount;
+
+        GameData.noDamage = saveData.noDamage;
+
+        GameData.justGuardFlg = saveData.justGuardFlg;
+        GameData.justGuardCount = saveData.justGuardCount;
+
+        GameData.noGuard = saveData.noGuard;
+
+        GameData.activeSkillOnlyFlg = saveData.activeSkillOnly;
+
+        GameData.timeAttack = saveData.timeAttack;
+
+        GameData.clearAchv = saveData.clearAchv;
+
+        GameData.clearBoss = saveData.clearBoss;
 
         if (Conconnect != null)
         {

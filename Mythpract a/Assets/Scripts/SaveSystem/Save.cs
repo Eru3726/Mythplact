@@ -252,6 +252,40 @@ public class Save : MonoBehaviour
         saveData.lastMinute = GameData.lastMinute;
 
 
+        saveData.dieXFlg = GameData.dieXFlg;
+        saveData.dieXCount = GameData.dieXCount;
+
+        saveData.blinkX = GameData.blinkXFlg;
+        for (int i = 0; i < 3; i++) saveData.defeatedBoss[i] = GameData.defeatedBoss[i];
+
+        saveData.allBoss = GameData.allBossFlg;
+
+        saveData.oneHp = GameData.oneHpFlg;
+
+        saveData.attackCombo = GameData.attackComboFlg;
+
+        saveData.SheriffUseCount = GameData.sheriffUseCount;
+        saveData.SheriffUseFlg = GameData.sheriffUseFlg;
+
+        saveData.guardCountFlg = GameData.guardCountFlg;
+        saveData.guardCount = GameData.guardCount;
+
+        saveData.noDamage = GameData.noDamage;
+
+        saveData.justGuardFlg = GameData.justGuardFlg;
+        saveData.justGuardCount = GameData.justGuardCount;
+
+        saveData.noGuard = GameData.noGuard;
+
+        saveData.activeSkillOnly = GameData.activeSkillOnlyFlg;
+
+        saveData.timeAttack = GameData.timeAttack;
+
+        saveData.clearAchv = GameData.clearAchv;
+
+        saveData.clearBoss = GameData.clearBoss;
+
+
         return saveData;
     }
 

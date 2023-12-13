@@ -1259,7 +1259,7 @@ public partial class Player : MonoBehaviour
 
             if (GameData.HitCount == 0) achv.NoDamageClear();
 
-            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
+            if (GameData.ClearTime < AchvMeasurement.instance.timeAttackCount) achv.TimeAttack();
 
             if (HMng.HP == 1) achv.OneHpClear();
 
@@ -1273,7 +1273,7 @@ public partial class Player : MonoBehaviour
         {
             if (GameData.HitCount == 0) achv.NoDamageClear();
 
-            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
+            if (GameData.ClearTime < AchvMeasurement.instance.timeAttackCount) achv.TimeAttack();
 
             if (HMng.HP == 1) achv.OneHpClear();
 
@@ -1288,7 +1288,7 @@ public partial class Player : MonoBehaviour
         {
             if (GameData.HitCount == 0) achv.NoDamageClear();
 
-            if (GameData.ClearTime < AchvManager.instance.timeAttackCount) achv.TimeAttack();
+            if (GameData.ClearTime < AchvMeasurement.instance.timeAttackCount) achv.TimeAttack();
 
             if (HMng.HP == 1) achv.OneHpClear();
 

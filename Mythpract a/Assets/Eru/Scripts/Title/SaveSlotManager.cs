@@ -94,10 +94,9 @@ public class SaveSlotManager : MonoBehaviour
                 //データの反映
                 DataManager.saveFile = i + 1;
                 dm.Read();
-                AchvManager.instance.Load();
 
-                gaugeImage[i].fillAmount = ((float)AchvManager.instance.clearAchv / (float)allAchv);
-                percentText[i].text = ((float)AchvManager.instance.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
+                gaugeImage[i].fillAmount = ((float)GameData.clearAchv / (float)allAchv);
+                percentText[i].text = ((float)GameData.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
 
                 playTimeText[i].text = (GameData.playTime / 3600).ToString("D2") + "：" + ((GameData.playTime % 3600) / 60).ToString("D2");
                 lastTimeText[i].text = GameData.lastYear.ToString("D4") + "/" + GameData.lastMonth.ToString("D2") + "/" + GameData.lastDay.ToString("D2")
@@ -176,10 +175,9 @@ public class SaveSlotManager : MonoBehaviour
                 //データの反映
                 DataManager.saveFile = i + 1;
                 dm.Read();
-                AchvManager.instance.Load();
 
-                gaugeImage[i].fillAmount = ((float)AchvManager.instance.clearAchv / (float)allAchv);
-                percentText[i].text = ((float)AchvManager.instance.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
+                gaugeImage[i].fillAmount = ((float)GameData.clearAchv / (float)allAchv);
+                percentText[i].text = ((float)GameData.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
 
                 playTimeText[i].text = (GameData.playTime / 3600).ToString("D2") + "：" + ((GameData.playTime % 3600) / 60).ToString("D2");
                 lastTimeText[i].text = GameData.lastYear.ToString("D4") + "/" + GameData.lastMonth.ToString("D2") + "/" + GameData.lastDay.ToString("D2")

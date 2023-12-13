@@ -153,7 +153,6 @@ public class OptionManager : MonoBehaviour
     public void TitleBackButton()
     {
         dm.Save();
-        AchvManager.instance.Save();
         SceneManager.LoadScene("TitleScene");
     }
 

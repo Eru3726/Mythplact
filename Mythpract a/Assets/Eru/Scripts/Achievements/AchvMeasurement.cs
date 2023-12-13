@@ -1,19 +1,39 @@
 using System.Linq;
 using UnityEngine;
 
-public class AchvMeasurement
+public class AchvMeasurement : MonoBehaviour
 {
+    [Header("実績解除死亡回数")]
+    public int dieClearCount = 3;
+
+    [Header("実績解除ブリンク回数")]
+    public int blinkClearCount = 3;
+
+    [Header("実績解除シェリフ回数")]
+    public int sheriffClearCount = 3;
+
+    [Header("実績解除ガード回数")]
+    public int guardClearCount = 3;
+
+    [Header("実績解除ジャストガード回数")]
+    public int justGuardClearCount = 3;
+
+    [Header("実績解除タイム")]
+    public float timeAttackCount = 60;
+
+    public static AchvMeasurement instance = new();
+
     /// <summary>
     /// 累計プレイヤー死亡
     /// </summary>
     [ContextMenu("PlayerDie")]
     public void PlayerDie()
     {
-        AchvManager.instance.dieXCount++;
-        if (AchvManager.instance.dieXCount >= AchvManager.instance.dieClearCount && !AchvManager.instance.dieXFlg)
+        GameData.dieXCount++;
+        if (GameData.dieXCount >= dieClearCount && !GameData.dieXFlg)
         {
-            AchvManager.instance.dieXFlg = true;
-            AchvManager.instance.clearAchv++;
+            GameData.dieXFlg = true;
+            GameData.clearAchv++;
             //サルタリー解放
         }
     }
@@ -24,11 +44,11 @@ public class AchvMeasurement
     [ContextMenu("UseBlink")]
     public void UseBlink()
     {
-        AchvManager.instance.blinkXCount++;
-        if (AchvManager.instance.blinkXCount >= AchvManager.instance.blinkClearCount && !AchvManager.instance.blinkXFlg)
+        GameData.blinkXCount++;
+        if (GameData.blinkXCount >= blinkClearCount && !GameData.blinkXFlg)
         {
-            AchvManager.instance.blinkXFlg = true;
-            AchvManager.instance.clearAchv++;
+            GameData.blinkXFlg = true;
+            GameData.clearAchv++;
             //ストライド解放
         }
     }
@@ -39,15 +59,15 @@ public class AchvMeasurement
     /// <param name="i">0=ショゴス　1=フィファニール　2=キリン</param>
     public void DefeatedBoss(int i)
     {
-        if (!AchvManager.instance.defeatedBoss[i])
+        if (!GameData.defeatedBoss[i])
         {
-            AchvManager.instance.defeatedBoss[i] = true;
-            AchvManager.instance.clearBoss++;
+            GameData.defeatedBoss[i] = true;
+            GameData.clearBoss++;
         }
-        if (AchvManager.instance.defeatedBoss.All(b => b) && !AchvManager.instance.allBossFlg)
+        if (GameData.defeatedBoss.All(b => b) && !GameData.allBossFlg)
         {
-            AchvManager.instance.allBossFlg = true;
-            AchvManager.instance.clearAchv++;
+            GameData.allBossFlg = true;
+            GameData.clearAchv++;
             //カース解放
         }
     }
@@ -58,9 +78,9 @@ public class AchvMeasurement
     [ContextMenu("OneHpClear")]
     public void OneHpClear()
     {
-        if (AchvManager.instance.oneHpFlg) return;
-        AchvManager.instance.oneHpFlg = true;
-        AchvManager.instance.clearAchv++;
+        if (GameData.oneHpFlg) return;
+        GameData.oneHpFlg = true;
+        GameData.clearAchv++;
         //アドレナリン解放
     }
 
@@ -70,9 +90,9 @@ public class AchvMeasurement
     [ContextMenu("AttackCombo")]
     public void AttackCombo()
     {
-        if (AchvManager.instance.attackComboFlg) return;
-        AchvManager.instance.attackComboFlg = true;
-        AchvManager.instance.clearAchv++;
+        if (GameData.attackComboFlg) return;
+        GameData.attackComboFlg = true;
+        GameData.clearAchv++;
         //ローンウォリアー
     }
 
@@ -82,11 +102,11 @@ public class AchvMeasurement
     [ContextMenu("UseSheriff")]
     public void UseSheriff()
     {
-        AchvManager.instance.sheriffUseCount++;
-        if (AchvManager.instance.sheriffUseCount >= AchvManager.instance.sheriffClearCount && !AchvManager.instance.sheriffUseFlg)
+        GameData.sheriffUseCount++;
+        if (GameData.sheriffUseCount >= sheriffClearCount && !GameData.sheriffUseFlg)
         {
-            AchvManager.instance.sheriffUseFlg = true;
-            AchvManager.instance.clearAchv++;
+            GameData.sheriffUseFlg = true;
+            GameData.clearAchv++;
             //グーリム
         }
     }
@@ -97,11 +117,11 @@ public class AchvMeasurement
     [ContextMenu("GuardNum")]
     public void GuardNum()
     {
-        AchvManager.instance.guardCount++;
-        if(AchvManager.instance.guardClearCount <= AchvManager.instance.guardCount && !AchvManager.instance.guardCountFlg)
+        GameData.guardCount++;
+        if(guardClearCount <= GameData.guardCount && !GameData.guardCountFlg)
         {
-            AchvManager.instance.guardCountFlg = true;
-            AchvManager.instance.clearAchv++;
+            GameData.guardCountFlg = true;
+            GameData.clearAchv++;
             //デックス
         }
     }
@@ -112,9 +132,9 @@ public class AchvMeasurement
     [ContextMenu("NoDamageClear")]
     public void NoDamageClear()
     {
-        if (AchvManager.instance.noDamage) return;
-        AchvManager.instance.noDamage = true;
-        AchvManager.instance.clearAchv++;
+        if (GameData.noDamage) return;
+        GameData.noDamage = true;
+        GameData.clearAchv++;
         //カース
     }
 
@@ -124,11 +144,11 @@ public class AchvMeasurement
     [ContextMenu("JustGuardNum")]
     public void JustGuardNum()
     {
-        AchvManager.instance.justGuardCount++;
-        if (AchvManager.instance.justGuardCount >= AchvManager.instance.justGuardClearCount && !AchvManager.instance.justGuardFlg)
+        GameData.justGuardCount++;
+        if (GameData.justGuardCount >= justGuardClearCount && !GameData.justGuardFlg)
         {
-            AchvManager.instance.justGuardFlg = true;
-            AchvManager.instance.clearAchv++;
+            GameData.justGuardFlg = true;
+            GameData.clearAchv++;
             //ワイズ
         }
     }
@@ -139,9 +159,9 @@ public class AchvMeasurement
     [ContextMenu("NoGuardClear")]
     public void NoGuardClear()
     {
-        if (AchvManager.instance.noGuard) return;
-        AchvManager.instance.noGuard = true;
-        AchvManager.instance.clearAchv++;
+        if (GameData.noGuard) return;
+        GameData.noGuard = true;
+        GameData.clearAchv++;
         //ストレングス
     }
 
@@ -151,9 +171,9 @@ public class AchvMeasurement
     [ContextMenu("ActiveSkillOnlyClear")]
     public void ActiveSkillOnlyClear()
     {
-        if (AchvManager.instance.activeSkillOnlyFlg) return;
-        AchvManager.instance.activeSkillOnlyFlg = true;
-        AchvManager.instance.clearAchv++;
+        if (GameData.activeSkillOnlyFlg) return;
+        GameData.activeSkillOnlyFlg = true;
+        GameData.clearAchv++;
         //デスピレイションストライク 
     }
 
@@ -163,8 +183,8 @@ public class AchvMeasurement
     [ContextMenu("TimeAttack")]
     public void TimeAttack()
     {
-        if (AchvManager.instance.timeAttack) return;
-        AchvManager.instance.timeAttack = true;
-        AchvManager.instance.clearAchv++;
+        if (GameData.timeAttack) return;
+        GameData.timeAttack = true;
+        GameData.clearAchv++;
     }
 }

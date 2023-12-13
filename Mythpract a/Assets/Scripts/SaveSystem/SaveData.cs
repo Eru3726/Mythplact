@@ -169,4 +169,40 @@ public class SaveData
     public int lastDay = 1;
     public int lastHour = 0;
     public int lastMinute = 0;
+
+    //実績
+    public bool dieXFlg;
+    public int dieXCount;
+
+    public bool blinkX;
+    public int blinkXCount;
+
+    public bool allBoss;
+    public bool[] defeatedBoss = new bool[3];
+
+    public bool oneHp;
+
+    public bool attackCombo;
+    public int attackComboCount;
+
+    public bool SheriffUseFlg;
+    public int SheriffUseCount;
+
+    public bool guardCountFlg;
+    public int guardCount;
+
+    public bool noDamage;
+
+    public bool justGuardFlg;
+    public int achvJustGuardCount;
+
+    public bool noGuard;
+
+    public bool activeSkillOnly;
+
+    public bool timeAttack;
+
+    public int clearAchv;
+
+    public int clearBoss;
 }
