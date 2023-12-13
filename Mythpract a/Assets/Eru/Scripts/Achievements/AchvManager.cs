@@ -130,7 +130,6 @@ public class AchvManager : MonoBehaviour
     private void SceneUnloaded(Scene thisScene)
     {
         Save();
-        Debug.Log(thisScene.name + "：Achvセーブ完了");
     }
 
     void OnDestroy()
@@ -286,38 +285,39 @@ public class AchvManager : MonoBehaviour
         //セーブデータのインスタンス化
         AchvSaveData saveData = new();
 
-        saveData.dieXFlg = dieXFlg;
-        saveData.dieXCount = dieXCount;
+        saveData.dieXFlg = this.dieXFlg;
+        saveData.dieXCount = this.dieXCount;
 
-        saveData.blinkX = blinkXFlg;
-        for (int i = 0; i < boss; i++) saveData.defeatedBoss[i] = defeatedBoss[i];
+        saveData.blinkX = this.blinkXFlg;
+        for (int i = 0; i < boss; i++) saveData.defeatedBoss[i] = this.defeatedBoss[i];
 
-        saveData.allBoss = allBossFlg;
+        saveData.allBoss = this.allBossFlg;
 
-        saveData.oneHp = oneHpFlg;
+        saveData.oneHp = this.oneHpFlg;
 
-        saveData.attackCombo = attackComboFlg;
+        saveData.attackCombo = this.attackComboFlg;
 
-        saveData.SheriffUseCount = sheriffUseCount;
-        saveData.SheriffUseFlg = sheriffUseFlg;
+        saveData.SheriffUseCount = this.sheriffUseCount;
+        saveData.SheriffUseFlg = this.sheriffUseFlg;
 
-        saveData.guardCountFlg = guardCountFlg;
-        saveData.guardCount = guardCount;
+        saveData.guardCountFlg = this.guardCountFlg;
+        saveData.guardCount = this.guardCount;
 
-        saveData.noDamage = noDamage;
+        saveData.noDamage = this.noDamage;
 
-        saveData.justGuardFlg = justGuardFlg;
-        saveData.justGuardCount = justGuardCount;
+        saveData.justGuardFlg = this.justGuardFlg;
+        saveData.justGuardCount = this.justGuardCount;
 
-        saveData.noGuard = noGuard;
+        saveData.noGuard = this.noGuard;
 
-        saveData.activeSkillOnly = activeSkillOnlyFlg;
+        saveData.activeSkillOnly = this.activeSkillOnlyFlg;
 
-        saveData.timeAttack = timeAttack;
+        saveData.timeAttack = this.timeAttack;
 
-        saveData.clearAchv = clearAchv;
+        saveData.clearAchv = this.clearAchv;
 
-        saveData.clearBoss = clearBoss;
+        saveData.clearBoss = this.clearBoss;
+        Debug.Log("Achvデータ保存完了");
 
         return saveData;
     }
@@ -357,6 +357,7 @@ public class AchvManager : MonoBehaviour
         clearAchv = saveData.clearAchv;
 
         clearBoss = saveData.clearBoss;
+        Debug.Log("Achvデータ反映完了");
     }
 
 
