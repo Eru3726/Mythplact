@@ -124,6 +124,11 @@ public class DisplayManager : MonoBehaviour
         Screen.SetResolution(width, height, screenModeFlg);
         resolutionDropDown.enabled = !screenModeFlg;
         resolutionText.enabled = !screenModeFlg;
+        if (!screenModeFlg && resolutionDropDown.value != 0)
+        {
+            resolutionDropDown.value = 0;
+            ChangeResolution();
+        }
     }
 
 

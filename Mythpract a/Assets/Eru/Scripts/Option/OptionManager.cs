@@ -156,6 +156,12 @@ public class OptionManager : MonoBehaviour
         SceneManager.LoadScene("TitleScene");
     }
 
+    public void SkillSceneButton()
+    {
+        dm.Save();
+        SceneManager.LoadScene("SkillPiece");
+    }
+
     public void AchvUIOpen()
     {
         achvOpenFlg = true;
