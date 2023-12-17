@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -31,6 +32,71 @@ public class ChangeSoundVolume : MonoBehaviour
     private void Start()
     {
         Load();
+        StartCoroutine(StartTpggle());
+    }
+
+    private IEnumerator StartTpggle()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+#if UNITY_EDITOR
+        //UnityEditor上なら
+        //Assetファイルの中のSaveファイルのパスを入れる
+        string path = Application.dataPath + "/Save";
+
+#else
+        //そうでなければ
+        //.exeがあるところにSaveファイルを作成しそこのパスを入れる
+        Directory.CreateDirectory("Save");
+        string path = Directory.GetCurrentDirectory() + "/Save";
+
+#endif
+
+        //セーブファイルのパスを設定
+        string SaveFilePath = path + "/SoundVolume.bytes";
+
+        //セーブファイルがあるか
+        if (File.Exists(SaveFilePath))
+        {
+            //ファイルモードをオープンにする
+            FileStream file = new FileStream(SaveFilePath, FileMode.Open, FileAccess.Read);
+            try
+            {
+                // ファイル読み込み
+                byte[] arrRead = File.ReadAllBytes(SaveFilePath);
+
+                // 復号化
+                byte[] arrDecrypt = AesDecrypt(arrRead);
+
+                // byte配列を文字列に変換
+                string decryptStr = Encoding.UTF8.GetString(arrDecrypt);
+
+                // JSON形式の文字列をセーブデータのクラスに変換
+                AudioSaveData saveData = JsonUtility.FromJson<AudioSaveData>(decryptStr);
+
+                //データの反映
+                masterToggle.isOn = saveData.masFlg;
+                bgmToggle.isOn = saveData.bgmFlg;
+                seToggle.isOn = saveData.seFlg;
+
+            }
+            finally
+            {
+                // ファイルを閉じる
+                if (file != null)
+                {
+                    file.Close();
+                }
+            }
+        }
+        else
+        {
+            //セーブファイルがない場合
+            //初期化
+            masterToggle.isOn = true;
+            bgmToggle.isOn = true;
+            seToggle.isOn = true;
+        }
     }
 
     private void OnDestroy()
@@ -228,7 +294,6 @@ public class ChangeSoundVolume : MonoBehaviour
         //セーブデータのインスタンス化
         AudioSaveData saveData = new()
         {
-
             //ゲームデータの値をセーブデータに代入
             //Master
             masVol = masterSlider.value,
@@ -252,49 +317,20 @@ public class ChangeSoundVolume : MonoBehaviour
     /// <param name="saveData"></param>
     private void ReadData(AudioSaveData saveData)
     {
-        float vol;
-
         //Master
-        if (!saveData.masFlg)
-        {
-            masterToggle.isOn = false;
-            vol = -80f;
-        }
-        else
-        {
-            masterToggle.isOn = true;
-            vol = saveData.masVol;
-        }
+        masterToggle.isOn = saveData.masFlg;
         masterSlider.value = saveData.masVol;
-        audioMixer.SetFloat("MasterVolume", vol);
+        audioMixer.SetFloat("MasterVolume", saveData.masVol);
 
         //Bgm
-        if (!saveData.bgmFlg)
-        {
-            bgmToggle.isOn = false;
-            vol = -80f;
-        }
-        else
-        {
-            bgmToggle.isOn = true;
-            vol = saveData.bgmVol;
-        }
+        bgmToggle.isOn = saveData.bgmFlg;
         bgmSlider.value = saveData.bgmVol;
-        audioMixer.SetFloat("BgmVolume", vol);
+        audioMixer.SetFloat("BgmVolume", saveData.bgmVol);
 
         //Se
-        if (!saveData.seFlg)
-        {
-            seToggle.isOn = false;
-            vol = -80f;
-        }
-        else
-        {
-            seToggle.isOn = true;
-            vol = saveData.seVol;
-        }
+        seToggle.isOn = saveData.seFlg;
         seSlider.value = saveData.seVol;
-        audioMixer.SetFloat("SeVolume", vol);
+        audioMixer.SetFloat("SeVolume", saveData.seVol);
     }
 
 
@@ -306,8 +342,8 @@ public class ChangeSoundVolume : MonoBehaviour
     private AesManaged GetAesManager()
     {
         //任意の半角英数16文字(Read.csと同じやつに)
-        string aesIv = "5467979454867416";
-        string aesKey = "7875321532474526";
+        string aesIv = "ndfiu89f329ifgh7";
+        string aesKey = "otg3mene43ui238o";
 
         AesManaged aes = new()
         {
