@@ -45,6 +45,7 @@ public class ChangeSoundVolume : MonoBehaviour
             volume = -80f;
             bgmToggle.isOn = false;
         }
+        else bgmToggle.isOn = true;
         audioMixer.SetFloat("BgmVolume", volume);
     }
 
@@ -55,6 +56,7 @@ public class ChangeSoundVolume : MonoBehaviour
             volume = -80f;
             seToggle.isOn = false;
         }
+        else seToggle.isOn = true;
         audioMixer.SetFloat("SeVolume", volume);
     }
 
@@ -65,6 +67,7 @@ public class ChangeSoundVolume : MonoBehaviour
             volume = -80f;
             masterToggle.isOn = false;
         }
+        else masterToggle.isOn = true;
         audioMixer.SetFloat("MasterVolume", volume);
     }
 
