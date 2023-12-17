@@ -70,6 +70,8 @@ public class Read : MonoBehaviour
             Debug.Log("セーブファイルがありません");
             DataManager.saveData = false;
 
+            GameData.playTime = 0;
+
             GameData.ShoggothDead = false;
             GameData.FafnirDead = false;
             GameData.QilinDead = false;
