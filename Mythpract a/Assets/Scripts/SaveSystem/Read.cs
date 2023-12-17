@@ -107,6 +107,43 @@ public class Read : MonoBehaviour
             GameData.clearAchv = 0;
 
             GameData.clearBoss = 0;
+
+            GameData.skillSlot1 = 0;
+            GameData.skillSlot2 = 0;
+            GameData.skillSlot3 = 0;
+            GameData.skillSlot4 = 0;
+
+            GameData.saveSkill1 = false;
+            GameData.saveSkill2 = false;
+            GameData.saveSkill3 = false;
+            GameData.saveSkill4 = false;
+            GameData.saveSkill5 = false;
+            GameData.saveSkill10 = false;
+            GameData.saveSkill11 = false;
+            GameData.saveSkill12 = false;
+            GameData.saveSkill13 = false;
+            GameData.saveSkill14 = false;
+            GameData.saveSkill15 = false;
+            GameData.saveSkill16 = false;
+            GameData.saveSkill17 = false;
+            GameData.saveSkill18 = false;
+            GameData.saveSkill19 = false;
+
+            GameData.setSkill1 = false;
+            GameData.setSkill2 = false;
+            GameData.setSkill3 = false;
+            GameData.setSkill4 = false;
+            GameData.setSkill5 = false;
+            GameData.setSkill10 = false;
+            GameData.setSkill11 = false;
+            GameData.setSkill12 = false;
+            GameData.setSkill13 = false;
+            GameData.setSkill14 = false;
+            GameData.setSkill15 = false;
+            GameData.setSkill16 = false;
+            GameData.setSkill17 = false;
+            GameData.setSkill18 = false;
+            GameData.setSkill19 = false;
         }
 
         this.enabled = false;
