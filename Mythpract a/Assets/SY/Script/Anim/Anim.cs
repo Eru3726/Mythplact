@@ -17,7 +17,8 @@ namespace SY
         [Header("アニメーションの設定")]
         [SerializeField] AnimSetting[] products;
 
-        float normalizedTime;       //アニメーションの再生時間(0～1)
+        float normalizedTime;   //アニメーションの再生時間(0～1)
+        int idleNo = -1;        //一番上のIdleアニメーションの要素保存
 
         //プロパティ
         public string Play { get { return play; } }
@@ -31,14 +32,26 @@ namespace SY
             anim = GetComponent<Animator>();
             anim.runtimeAnimatorController = animatorController;
 
-            //1番上のIdleアクションのアニメーションを再生
+            
             for (int i = 0; i < products.Length; i++)
             {
-                if (products[i].ActionType == AnimSetting.Type.Idle)
+                //1番上のIdleアニメーションの要素代入
+                if (products[i].ActionType == AnimSetting.Type.Idle && idleNo == -1)
                 {
-                    SetPlayAnim(i); break;
+                    idleNo = i; break;
                 }
+                //if (products[i].ActionType == AnimSetting.Type.Idle)
+                //{
+                //    SetPlayAnim(i); break;
+                //}
+
+                //アニメーションクリップのLoopTimeを更新
+                //if (products[i].IsLoop == true) { }
             }
+
+            Debug.Log(idleNo);
+            //Idleアクションのアニメーションを再生
+            SetPlayAnim(idleNo);
         }
 
         // Update is called once per frame
@@ -73,11 +86,12 @@ namespace SY
             if (!isLoop)
             {
                 //1番上のIdleアクションのアニメーションを再生
-                for (int i = 0; i < products.Length; i++)
-                {
-                    if (products[i].ActionType == AnimSetting.Type.Idle)
-                    { AnimChage(products[i].Name, false); break; }
-                }
+                AnimChage(products[idleNo].Name, false);
+                //for (int i = 0; i < products.Length; i++)
+                //{
+                //    if (products[i].ActionType == AnimSetting.Type.Idle)
+                //    { AnimChage(products[i].Name, false); break; }
+                //}
             }
             //現在のアニメーションを再生し直す
             else { Playing(); }
@@ -86,8 +100,6 @@ namespace SY
         //アニメーション遷移(次のアニメーション名,優先度設定の有無)
         public void AnimChage(string nextAnim, bool isPriority)
         {
-            Debug.Log(nextAnim);
-
             int breakFlg = 0;
             int playProductsNo = 0; //要素保存(現在のアニメーション)
             int nextProductsNo = 0; //要素保存(リクエスト中のアニメーション)

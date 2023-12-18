@@ -389,7 +389,7 @@ public class Fafnir : MonoBehaviour
                 moveType = Fafnir_MoveType.Idle;
                 tableNo = Random.Range(0, moveTable.Length);
                 moveNo = 0;
-                //ui.SetActive(true);
+                ui.SetActive(true);
                 AllVariableClear();
                 break;
         }

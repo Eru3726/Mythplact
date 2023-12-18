@@ -68,6 +68,7 @@ public class Qilin : MonoBehaviour
     [SerializeField, Tooltip("接触攻撃判定")] GameObject body;
     [SerializeField, Tooltip("接触威力")] float body_Power = 1.0f;
     [SerializeField, Tooltip("ギズモ")] GizmoSetting body_Gizmo;
+    GameObject def;
     Vector2 body_Center;
     Vector2 body_Range;
 
@@ -203,6 +204,7 @@ public class Qilin : MonoBehaviour
         hm = GetComponent<HitMng>();
         gc = GetComponent<GroundCheck>();
         obj = this.gameObject;
+        //def = GameObject.Find("def").gameObject;
         pos = entry_StartPos;
         plPos = pl.transform.position;
         defScale = transform.localScale;
@@ -325,6 +327,7 @@ public class Qilin : MonoBehaviour
         {
             case 0:
                 anim.AnimChage("Entry_SleepAir", isLock);
+                //def.SetActive(false);
                 phase++;
                 break;
             case 1:
@@ -349,6 +352,8 @@ public class Qilin : MonoBehaviour
                 moveType = Qilin_MoveType.Idle;
                 tableNo = Random.Range(0, moveTable.Length);
                 moveNo = 0;
+                //def.SetActive(true);
+                ui.SetActive(true);
                 AllVariableClear();
                 break;
         }

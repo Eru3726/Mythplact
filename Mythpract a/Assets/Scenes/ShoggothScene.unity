@@ -6253,6 +6253,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7017979418129015232, guid: 9efc740c21b644c44ae2eb3d457203bc, type: 3}
     - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
       propertyPath: upDown_SE
       value: 
       objectReference: {fileID: 8300000, guid: 4253ea676060e49dd9488f73d692ea2a, type: 3}
@@ -6532,6 +6536,34 @@ PrefabInstance:
       propertyPath: moveTable.Array.data[2].move.Array.data[2]
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852501, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Effectors.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852501, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Effectors.Array.data[0].m_Visible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852501, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Effectors.Array.data[0].m_Transform
+      value: 
+      objectReference: {fileID: 1155927385}
+    - target: {fileID: 5971913799980852501, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Effectors.Array.data[0].m_Style.size
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852501, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Effectors.Array.data[0].m_Style.shape
+      value: 
+      objectReference: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+    - target: {fileID: 5971913799980852501, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Effectors.Array.data[0].m_Style.color.a
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852501, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+      propertyPath: m_Effectors.Array.data[0].m_Style.color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852503, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6740,6 +6772,11 @@ ParticleSystem:
 --- !u!1 &1155927374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5971913800324275591, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
+  m_PrefabInstance: {fileID: 1155927370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1155927385 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5971913799980852503, guid: 60f22e92bc7b26546a95b5a47904e349, type: 3}
   m_PrefabInstance: {fileID: 1155927370}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1171058653 stripped
