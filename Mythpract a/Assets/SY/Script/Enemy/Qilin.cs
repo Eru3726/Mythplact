@@ -68,6 +68,7 @@ public class Qilin : MonoBehaviour
     [SerializeField, Tooltip("接触攻撃判定")] GameObject body;
     [SerializeField, Tooltip("接触威力")] float body_Power = 1.0f;
     [SerializeField, Tooltip("ギズモ")] GizmoSetting body_Gizmo;
+    GameObject def;
     Vector2 body_Center;
     Vector2 body_Range;
 
@@ -154,12 +155,12 @@ public class Qilin : MonoBehaviour
     GameObject meteor_Last;
 
     [Header("被ダメージ")]
-    //[SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
     [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
     [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting damage_SE;
-    float damage_Repeat = 0;
+    //float damage_Repeat = 0;
 
     [Header("死")]
     [SerializeField, Tooltip("エフェクト")] ParticleSetting die_Effect;
@@ -203,6 +204,7 @@ public class Qilin : MonoBehaviour
         hm = GetComponent<HitMng>();
         gc = GetComponent<GroundCheck>();
         obj = this.gameObject;
+        //def = GameObject.Find("def").gameObject;
         pos = entry_StartPos;
         plPos = pl.transform.position;
         defScale = transform.localScale;
@@ -325,6 +327,7 @@ public class Qilin : MonoBehaviour
         {
             case 0:
                 anim.AnimChage("Entry_SleepAir", isLock);
+                //def.SetActive(false);
                 phase++;
                 break;
             case 1:
@@ -349,6 +352,8 @@ public class Qilin : MonoBehaviour
                 moveType = Qilin_MoveType.Idle;
                 tableNo = Random.Range(0, moveTable.Length);
                 moveNo = 0;
+                //def.SetActive(true);
+                ui.SetActive(true);
                 AllVariableClear();
                 break;
         }
@@ -932,25 +937,28 @@ public class Qilin : MonoBehaviour
 
     IEnumerator Flash()
     {
+        int damage_Repeat = 0;
+
         while (damage_Repeat < damage_Number)
         {
-            renderController.Opacity = 0;
-            //for (int i = 0; i < renderController.Renderers.Length; i++)
-            //{
-            //    renderController.Renderers[i].ScreenColor = damage_Color;
-            //}
+            //色変更
+            for (int i = 0; i < renderController.Renderers.Length; i++)
+            {
+                renderController.Renderers[i].ScreenColor = damage_Color;
+            }
+            renderController.Opacity = damage_Color.a;
             //待つ
             yield return new WaitForSeconds(damage_Time);
+            //色戻す
+            for (int i = 0; i < renderController.Renderers.Length; i++)
+            {
+                renderController.Renderers[i].ScreenColor = defColor;
+            }
             renderController.Opacity = 1;
-            //for (int i = 0; i < renderController.Renderers.Length; i++)
-            //{
-            //    renderController.Renderers[i].ScreenColor = defColor;
-            //}
             //待つ
             yield return new WaitForSeconds(damage_Time);
             damage_Repeat++;
         }
-        damage_Repeat = 0;
     }
 
     void StageData()    //ステージ
@@ -1023,394 +1031,3 @@ public class Qilin_MoveTable
     public string Name { get { return name; } }
     public Qilin_MoveType[] Move { get { return move; } }
 }
-
-/*
-public class Qilin : QilinBase
-{
-    public override void Start()
-    {
-        base.Start();
-
-        //行動
-        tableNo = Random.Range(0, moveTable.Length);
-        moveNo = 0;
-
-        //体範囲
-        body_Center = bc.bounds.center;
-        body_Range = bc.bounds.max - bc.bounds.min;
-
-        //攻撃判定関連
-        body.SetActive(true);
-        breath.SetActive(false);
-        pushUp.SetActive(false);
-        SetPower(body, body_Power);
-        SetPower(breath, breath_Power);
-        SetPower(pushUp, pushUp_Power);
-
-        hm.SetUp(Damage, Dead);
-        StageData();
-
-        gPos = Altitude(stage_Center.x);
-        renderController.OverwriteFlagForModelScreenColors = true;
-
-    }
-
-    public override void Update()
-    {
-        if (moveType == Qilin_MoveType.Die) { return; }
-
-        hm.HitUpdate();
-
-        pos = rb.position;
-        plPos = pl.transform.position;
-
-        body_Center = bc.bounds.center;
-        body_Range = bc.bounds.max - bc.bounds.min;
-
-        switch (moveType)
-        {
-            case Qilin_MoveType.Idle:
-                Idle();
-                break;
-
-            case Qilin_MoveType.Breath:
-                Breath();
-                break;
-
-            case Qilin_MoveType.Eruption:
-                Eruption();
-                break;
-
-            case Qilin_MoveType.PushUp:
-                PushUp();
-                break;
-
-            case Qilin_MoveType.Spin:
-                Spin();
-                break;
-
-            case Qilin_MoveType.Meteor:
-                Meteor();
-                break;
-        }
-
-        rb.position = pos;
-
-        if (moveType == Qilin_MoveType.Idle || moveType == Qilin_MoveType.Breath ||
-            moveType == Qilin_MoveType.Eruption || moveType == Qilin_MoveType.PushUp)
-        {
-            Direction();
-        }
-
-        Anim_Basis();
-        hm.PostUpdate();
-
-
-        //Debug.Log(plDir);
-        //Debug.Log(phase);
-        //Debug.Log(no);
-        //Debug.Log(repeat);
-        //Debug.Log(moveTable[tableNo].Name + " : " + moveNo);
-        //Debug.Log("no " + no + " phase " + phase);
-        //Debug.Log(CheckGroundFlag(GroundCheck.Flag.Ground));
-        //Debug.Log(gc.GroundFlag());
-    }
-}
-
-/*
-public class QilinAction : QilinBase
-{
-    public override void Idle()
-    {
-
-    }
-
-    public override void Breath()
-    {
-        switch (phase)
-        {
-            case 0:
-                rb.gravityScale = 0;
-                rb.velocity = Vector2.right * plDir * move_Speed;
-                phase++;
-                break;
-            case 1:
-                if (breath_AtkDis < Mathf.Abs(Distance(plPos).x)) { break; }
-                rb.gravityScale = gravity;
-                rb.velocity = Vector2.zero;
-                phase++;
-                break;
-            case 2:
-                timer += Time.deltaTime;
-                if (timer < attackAnticipation_Time) { break; }
-                Vector3 bScale = breath_Effect.Particle.gameObject.transform.localScale;
-                switch (plDir)
-                {
-                    case -1:
-                        bScale.x = 1.0f;
-                        break;
-                    case 0:
-                    case 1:
-                        bScale.x = -1.0f;
-                        break;
-                }
-                anim.AnimChage("Breath", isLock);
-                breath_Effect.Particle.gameObject.transform.localScale = bScale;
-                timer = 0;
-                phase++;
-                break;
-            case 3:
-                if (anim.NormalizedTime < 0.3f) { break; }
-                breath_Effect.Particle.gameObject.SetActive(true);
-                breath.SetActive(true);
-                breath_Effect.PlayParticle();
-                phase++;
-                break;
-            case 4:
-                breath_Effect.StopCheck();
-                if (breath_Effect.IsValid) { break; }
-                breath.SetActive(false);
-                breath_Effect.Particle.gameObject.SetActive(false);
-                phase++;
-                break;
-            case 5:
-                timer += Time.deltaTime;
-                if (timer < breath_CoolTime) { break; }
-                phase++;
-                break;
-            case 6:
-                moveType = Qilin_MoveType.Idle;
-                AllVariableClear();
-                break;
-            default:
-                AllVariableClear();
-                break;
-        }
-    }
-
-    public override void Eruption()
-    {
-        switch (phase)
-        {
-            case 0: //前隙
-                timer += Time.deltaTime;
-                if (timer < attackAnticipation_Time) { break; }
-                timer = 0;
-                phase++;
-                break;
-            case 1:
-                float Range = eruption_AtkRange.x - body_Range.x;   //炎柱生成可能幅
-
-                Vector2 eruption_Range = Vector2.zero;
-                eruption_Range.x =  //左距離
-                    ((body_Center.x) - (body_Range.x * 0.5f)) -
-                    (eruption_Center.x - (eruption_AtkRange.x * 0.5f));
-                eruption_Range.y =  //右距離
-                    (eruption_Center.x + (eruption_AtkRange.x * 0.5f)) -
-                    ((body_Center.x) + (body_Range.x * 0.5f));
-
-                //比　炎柱生成可能幅：左距離：右距離 = 1：x：y
-                Vector2 eruption_Ratio = Vector2.zero;
-                eruption_Ratio.x = eruption_Range.x / Range;
-                eruption_Ratio.y = eruption_Range.y / Range;
-                if (eruption_Ratio.x < 0) { eruption_Ratio = Vector2.up; }
-                else if (eruption_Ratio.y < 0) { eruption_Ratio = Vector2.right; }
-
-                Vector2 empty = new Vector2 //比から左右の炎柱生成数定義(小数点あり)
-                    (eruption_Generate * eruption_Ratio.x, eruption_Generate * eruption_Ratio.y);
-                //炎柱生成数を整数に
-                eruption_Generatev2.x = Mathf.Round(empty.x);
-                eruption_Generatev2.y = Mathf.Round(empty.y);
-
-                //炎柱間距離定義
-                eruption_Space = Range / (eruption_Generate + 1);
-
-                //アニメーション再生
-                anim.AnimChage("Pillar", isLock);
-                phase++;
-                break;
-            case 2: //炎柱生成
-                if (anim.Action != AnimSetting.Type.Idle) { break; }
-                Vector2 genPos = Vector2.zero;
-                if (repeat < eruption_Generatev2.x)
-                {
-                    genPos = new Vector2(
-                        (body_Center.x - (body_Range.x * 0.5f)) -
-                        (eruption_Space * (repeat + 1)),
-                        gPos);
-                    Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                    no++;
-                }
-                if (repeat < eruption_Generatev2.y)
-                {
-                    genPos = new Vector2(
-                        (body_Center.x + (body_Range.x * 0.5f)) +
-                        (eruption_Space * (repeat + 1)),
-                        gPos);
-                    Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                    no++;
-                }
-                repeat++;
-                phase++;
-                break;
-            case 3: //攻撃間隙
-                timer += Time.deltaTime;
-                if (timer < eruption_AtkBreakTime) { break; }
-                timer = 0;
-                if (eruption_Generate - 1 != no) { phase--; }   //戻る
-                else { phase++; }   //進む
-                break;
-            case 4:
-                if (repeat < eruption_Generatev2.x)
-                {
-                    genPos = new Vector2(
-                        (body_Center.x - (body_Range.x * 0.5f)) -
-                        (eruption_Space * (repeat + 1)),
-                        gPos);
-                    eruption_Last =
-                        Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                }
-                if (repeat < eruption_Generatev2.y)
-                {
-                    genPos = new Vector2(
-                        (body_Center.x + (body_Range.x * 0.5f)) +
-                        (eruption_Space * (repeat + 1)),
-                        gPos);
-                    eruption_Last =
-                        Instantiate(eruption, genPos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                }
-                phase++;
-                break;
-            case 5:
-                if (eruption_Last != null) { break; }
-                phase++;
-                break;
-            case 6:
-                timer += Time.deltaTime;
-                if (timer < eruption_CoolTime) { break; }
-                timer = 0;
-                phase++;
-                break;
-            case 7:
-                AllVariableClear();
-                moveType = Qilin_MoveType.Idle;
-                break;
-            default:
-                AllVariableClear();
-                break;
-        }
-    }
-
-    public override void PushUp()
-    {
-        switch (phase)
-        {
-            case 0:
-                rb.gravityScale = 0;
-                rb.velocity = Vector2.right * plDir * pushUp_MoveSpd;
-                pushUp_Effect.Particle.gameObject.SetActive(true);
-                pushUp_Effect.PlayParticle();
-                //renderController.Opacity = 0;
-                phase++;
-                break;
-            case 1:
-                if (pushUp_AtkDis < Mathf.Abs(Distance(plPos).x)) { break; }
-                rb.velocity = Vector2.zero;
-                var main = pushUp_Effect.Particle.main;
-                main.loop = false;
-                phase++;
-                break;
-            case 2:
-                Debug.Log(pushUp_Effect.IsValid);
-                pushUp_Effect.StopCheck();
-                if (pushUp_Effect.IsValid) { break; }
-                pushUp_Effect.Particle.gameObject.SetActive(false);
-                //renderController.Opacity = 1;
-                rb.gravityScale = gravity;
-                phase++;
-                break;
-            case 3:
-                timer += Time.deltaTime;
-                if (timer < attackAnticipation_Time) { break; }
-                timer = 0;
-                phase++;
-                break;
-            case 4:
-                anim.AnimChage("PushUp", isLock);
-                pushUp.SetActive(true);
-                phase++;
-                break;
-            case 5:
-                if (anim.Action != AnimSetting.Type.Idle) { break; }
-                pushUp.SetActive(false);
-                timer += Time.deltaTime;
-                if (timer < pushUp_CoolTime) { break; }
-                phase++;
-                break;
-            case 6:
-                moveType = Qilin_MoveType.Idle;
-                AllVariableClear();
-                break;
-            default:
-                AllVariableClear();
-                break;
-        }
-    }
-
-    public override void Spin()
-    {
-        switch (phase)
-        {
-            case 0:
-                rb.gravityScale = 0;
-                Vector2 vec = new Vector2(stage_Center.x, gPos) - pos;
-                rb.velocity = vec.normalized * move_Speed;
-                phase++;
-                break;
-            case 1:
-                if (pos.x < stage_Center.x - 2.5f || stage_Center.x + 2.5f < pos.x) { return; }
-                rb.velocity = Vector2.zero;
-                rb.gravityScale = gravity;
-                phase++;
-                break;
-            case 2://前隙
-                timer += Time.deltaTime;
-                if (timer < attackAnticipation_Time) { break; }
-                Direction();
-                timer = 0;
-                phase++;
-                break;
-            case 3:
-                anim.AnimChage("Pillar", isLock);
-                phase++;
-                break;
-            case 4:
-                if (anim.Action != AnimSetting.Type.Idle) { break; }
-                Vector2 spin1Pos = new Vector2(stage_LeftTop.x, gPos);
-                Vector2 spin2Pos = new Vector2(stage_RightBottom.x, gPos);
-                Instantiate(spin, spin1Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                spin_Last =
-                    Instantiate(spin, spin2Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
-                phase++;
-                break;
-            case 5:
-                if (spin_Last != null) { break; }
-                phase++;
-                break;
-            case 6:
-                timer += Time.deltaTime;
-                if (timer < spin_CoolTime) { break; }
-                timer = 0;
-                phase++;
-                break;
-            case 7:
-                AllVariableClear();
-                moveType = Qilin_MoveType.Idle;
-                break;
-            default:
-                AllVariableClear();
-                break;
-        }
-    }
-}
-*/
