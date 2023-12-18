@@ -161,7 +161,7 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Tooltip("サウンドループ化")] bool earthquake_SELoop;
 
     [Header("被ダメージ")]
-    //[SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
     [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
     [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
@@ -833,25 +833,28 @@ public class Fafnir : MonoBehaviour
 
     IEnumerator Flash()
     {
+        int damage_Repeat = 0;
+
         while (damage_Repeat < damage_Number)
         {
-            renderController.Opacity = 0;
-            //for (int i = 0; i < renderController.Renderers.Length; i++)
-            //{
-            //    renderController.Renderers[i].ScreenColor = damage_Color;
-            //}
+            //色変更
+            for (int i = 0; i < renderController.Renderers.Length; i++)
+            {
+                renderController.Renderers[i].ScreenColor = damage_Color;
+            }
+            renderController.Opacity = damage_Color.a;
             //待つ
             yield return new WaitForSeconds(damage_Time);
+            //色戻す
+            for (int i = 0; i < renderController.Renderers.Length; i++)
+            {
+                renderController.Renderers[i].ScreenColor = defColor;
+            }
             renderController.Opacity = 1;
-            //for (int i = 0; i < renderController.Renderers.Length; i++)
-            //{
-            //    renderController.Renderers[i].ScreenColor = defColor;
-            //}
             //待つ
             yield return new WaitForSeconds(damage_Time);
             damage_Repeat++;
         }
-        damage_Repeat = 0;
     }
 
     //上昇または落下時間

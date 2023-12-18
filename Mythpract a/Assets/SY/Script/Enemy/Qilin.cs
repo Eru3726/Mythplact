@@ -155,12 +155,12 @@ public class Qilin : MonoBehaviour
     GameObject meteor_Last;
 
     [Header("被ダメージ")]
-    //[SerializeField, Tooltip("色")] Color damage_Color = Color.white;
+    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
     [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
     [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting damage_SE;
-    float damage_Repeat = 0;
+    //float damage_Repeat = 0;
 
     [Header("死")]
     [SerializeField, Tooltip("エフェクト")] ParticleSetting die_Effect;
@@ -937,25 +937,28 @@ public class Qilin : MonoBehaviour
 
     IEnumerator Flash()
     {
+        int damage_Repeat = 0;
+
         while (damage_Repeat < damage_Number)
         {
-            renderController.Opacity = 0;
-            //for (int i = 0; i < renderController.Renderers.Length; i++)
-            //{
-            //    renderController.Renderers[i].ScreenColor = damage_Color;
-            //}
+            //色変更
+            for (int i = 0; i < renderController.Renderers.Length; i++)
+            {
+                renderController.Renderers[i].ScreenColor = damage_Color;
+            }
+            renderController.Opacity = damage_Color.a;
             //待つ
             yield return new WaitForSeconds(damage_Time);
+            //色戻す
+            for (int i = 0; i < renderController.Renderers.Length; i++)
+            {
+                renderController.Renderers[i].ScreenColor = defColor;
+            }
             renderController.Opacity = 1;
-            //for (int i = 0; i < renderController.Renderers.Length; i++)
-            //{
-            //    renderController.Renderers[i].ScreenColor = defColor;
-            //}
             //待つ
             yield return new WaitForSeconds(damage_Time);
             damage_Repeat++;
         }
-        damage_Repeat = 0;
     }
 
     void StageData()    //ステージ
