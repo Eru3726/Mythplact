@@ -69,6 +69,83 @@ public class Read : MonoBehaviour
         {
             Debug.Log("セーブファイルがありません");
             DataManager.saveData = false;
+
+            GameData.playTime = 0;
+
+            GameData.ShoggothDead = false;
+            GameData.FafnirDead = false;
+            GameData.QilinDead = false;
+
+            GameData.dieXFlg = false;
+            GameData.dieXCount = 0;
+
+            GameData.blinkXFlg = false;
+            GameData.blinkXCount = 0;
+
+            GameData.allBossFlg = false;
+            for (int i = 0; i < 3; i++) GameData.defeatedBoss[i] = false;
+
+            GameData.oneHpFlg = false;
+
+            GameData.attackComboFlg = false;
+
+            GameData.sheriffUseFlg = false;
+            GameData.sheriffUseCount = 0;
+
+            GameData.guardCountFlg = false;
+            GameData.guardCount = 0;
+
+            GameData.noDamage = false;
+
+            GameData.justGuardFlg = false;
+            GameData.justGuardCount = 0;
+
+            GameData.noGuard = false;
+
+            GameData.activeSkillOnlyFlg = false;
+
+            GameData.timeAttack = false;
+
+            GameData.clearAchv = 0;
+
+            GameData.clearBoss = 0;
+
+            GameData.skillSlot1 = 0;
+            GameData.skillSlot2 = 0;
+            GameData.skillSlot3 = 0;
+            GameData.skillSlot4 = 0;
+
+            GameData.saveSkill1 = false;
+            GameData.saveSkill2 = false;
+            GameData.saveSkill3 = false;
+            GameData.saveSkill4 = false;
+            GameData.saveSkill5 = false;
+            GameData.saveSkill10 = false;
+            GameData.saveSkill11 = false;
+            GameData.saveSkill12 = false;
+            GameData.saveSkill13 = false;
+            GameData.saveSkill14 = false;
+            GameData.saveSkill15 = false;
+            GameData.saveSkill16 = false;
+            GameData.saveSkill17 = false;
+            GameData.saveSkill18 = false;
+            GameData.saveSkill19 = false;
+
+            GameData.setSkill1 = false;
+            GameData.setSkill2 = false;
+            GameData.setSkill3 = false;
+            GameData.setSkill4 = false;
+            GameData.setSkill5 = false;
+            GameData.setSkill10 = false;
+            GameData.setSkill11 = false;
+            GameData.setSkill12 = false;
+            GameData.setSkill13 = false;
+            GameData.setSkill14 = false;
+            GameData.setSkill15 = false;
+            GameData.setSkill16 = false;
+            GameData.setSkill17 = false;
+            GameData.setSkill18 = false;
+            GameData.setSkill19 = false;
         }
 
         this.enabled = false;
@@ -78,10 +155,6 @@ public class Read : MonoBehaviour
     //データの読み込み（反映）
     private void ReadData(SaveData saveData)
     {
-        GameData.testInt = saveData.testInt;
-        GameData.testFloat = saveData.testFloat;
-        GameData.testString = saveData.testString;
-        GameData.testBool = saveData.testBool;
         GameData.rightkey = saveData.rightkey;
         GameData.righttx = saveData.righttx;
         GameData.leftkey = saveData.leftkey;
@@ -237,6 +310,47 @@ public class Read : MonoBehaviour
         GameData.bestTimeShoggoth = saveData.bestTimeShoggoth;
         GameData.bestTimeFafnir = saveData.bestTimeFafnir;
         GameData.bestTimeQilin = saveData.bestTimeQilin;
+
+        GameData.playTime = saveData.playTime;
+        GameData.lastYear = saveData.lastYear;
+        GameData.lastMonth = saveData.lastMonth;
+        GameData.lastDay = saveData.lastDay;
+        GameData.lastHour = saveData.lastHour;
+        GameData.lastMinute = saveData.lastMinute;
+
+
+        GameData.dieXFlg = saveData.dieXFlg;
+        GameData.dieXCount = saveData.dieXCount;
+
+        GameData.blinkXFlg = saveData.blinkX;
+        for (int i = 0; i < 3; i++) GameData.defeatedBoss[i] = saveData.defeatedBoss[i];
+
+        GameData.allBossFlg = saveData.allBoss;
+
+        GameData.oneHpFlg = saveData.oneHp;
+
+        GameData.attackComboFlg = saveData.attackCombo;
+
+        GameData.sheriffUseCount = saveData.SheriffUseCount;
+        GameData.sheriffUseFlg = saveData.SheriffUseFlg;
+
+        GameData.guardCountFlg = saveData.guardCountFlg;
+        GameData.guardCount = saveData.guardCount;
+
+        GameData.noDamage = saveData.noDamage;
+
+        GameData.justGuardFlg = saveData.justGuardFlg;
+        GameData.justGuardCount = saveData.justGuardCount;
+
+        GameData.noGuard = saveData.noGuard;
+
+        GameData.activeSkillOnlyFlg = saveData.activeSkillOnly;
+
+        GameData.timeAttack = saveData.timeAttack;
+
+        GameData.clearAchv = saveData.clearAchv;
+
+        GameData.clearBoss = saveData.clearBoss;
 
         if (Conconnect != null)
         {

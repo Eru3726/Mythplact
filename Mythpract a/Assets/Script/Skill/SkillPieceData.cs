@@ -73,11 +73,13 @@ public class SkillPieceData : MonoBehaviour
 
     private void Start()
     {
+        /*
         AllButtonClear();
 
         FirstSelectableSkill();
 
         AchvSkill();
+        */
     }
 
     void AllButtonClear()
@@ -110,17 +112,17 @@ public class SkillPieceData : MonoBehaviour
     }
     void AchvSkill()
     {
-        if (AchvManager.instance.timeAttack) Skill2_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.attackComboFlg) Skill3_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.sheriffUseFlg) Skill4_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.activeSkillOnlyFlg) Skill5_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.dieXFlg) Skill10_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.blinkXFlg) Skill11_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.guardCountFlg) Skill12_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.oneHpFlg) Skill14_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.noGuard) Skill15_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.justGuardFlg) Skill16_Button.gameObject.SetActive(true);
-        if (AchvManager.instance.allBossFlg) Skill18_Button.gameObject.SetActive(true);
+        if (GameData.timeAttack) Skill2_Button.gameObject.SetActive(true);
+        if (GameData.attackComboFlg) Skill3_Button.gameObject.SetActive(true);
+        if (GameData.sheriffUseFlg) Skill4_Button.gameObject.SetActive(true);
+        if (GameData.activeSkillOnlyFlg) Skill5_Button.gameObject.SetActive(true);
+        if (GameData.dieXFlg) Skill10_Button.gameObject.SetActive(true);
+        if (GameData.blinkXFlg) Skill11_Button.gameObject.SetActive(true);
+        if (GameData.guardCountFlg) Skill12_Button.gameObject.SetActive(true);
+        if (GameData.oneHpFlg) Skill14_Button.gameObject.SetActive(true);
+        if (GameData.noGuard) Skill15_Button.gameObject.SetActive(true);
+        if (GameData.justGuardFlg) Skill16_Button.gameObject.SetActive(true);
+        if (GameData.allBossFlg) Skill18_Button.gameObject.SetActive(true);
     }
     public void SaveSkillPiece()
     {

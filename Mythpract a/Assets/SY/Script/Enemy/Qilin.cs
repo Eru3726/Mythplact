@@ -171,6 +171,7 @@ public class Qilin : MonoBehaviour
     [SerializeField, Tooltip("ギズモ")] GizmoSetting stage_Gizmo;
     Vector2 stage_LeftTop;      //ステージ左上
     Vector2 stage_RightDown;    //ステージ右下
+    GameObject ui;
 
     [Header("アニメーション")]
     [SerializeField] bool isLock;
@@ -208,6 +209,8 @@ public class Qilin : MonoBehaviour
         scale = defScale;
         defColor = renderController.ModelScreenColor;
         gravity = rb.gravityScale;
+        ui = GameObject.Find("UI").gameObject;
+        ui.SetActive(false);
 
         //行動
         moveType = Qilin_MoveType.Entry;
@@ -232,6 +235,9 @@ public class Qilin : MonoBehaviour
 
         gPos = GroundPosition(stage_Center.x);
         renderController.OverwriteFlagForModelScreenColors = true;
+
+        rb.position = pos;
+        Direction();
 
         //pl.GetComponent<Player>().IsFleet = true;
     }

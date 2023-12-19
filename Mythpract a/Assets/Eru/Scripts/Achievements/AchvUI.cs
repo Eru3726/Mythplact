@@ -52,40 +52,40 @@ public class AchvUI : MonoBehaviour
     private void UpdateUI()
     {
         //左上
-        gaugeText.text = ((float)AchvManager.instance.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
-        gaugeImage.fillAmount = ((float)AchvManager.instance.clearAchv / (float)allAchv);
+        gaugeText.text = ((float)GameData.clearAchv / (float)allAchv * 100.0f).ToString("F0") + "%";
+        gaugeImage.fillAmount = ((float)GameData.clearAchv / (float)allAchv);
 
         //左下
-        detail1Text.text = AchvManager.instance.clearAchv.ToString() + "/" + allAchv.ToString();
+        detail1Text.text = GameData.clearAchv.ToString() + "/" + allAchv.ToString();
         detail2Text.text = "5/" + allPassive.ToString();
         detail3Text.text = "8/" + allActive.ToString();
-        detail4Text.text = AchvManager.instance.clearBoss.ToString() + "/" + allBoss.ToString();
+        detail4Text.text = GameData.clearBoss.ToString() + "/" + allBoss.ToString();
 
         //右
-        progressComplete[0].enabled = AchvManager.instance.dieXFlg;
-        progressComplete[1].enabled = AchvManager.instance.blinkXFlg;
-        progressComplete[2].enabled = AchvManager.instance.allBossFlg;
-        progressComplete[3].enabled = AchvManager.instance.oneHpFlg;
-        progressComplete[4].enabled = AchvManager.instance.attackComboFlg;
-        progressComplete[5].enabled = AchvManager.instance.sheriffUseFlg;
-        progressComplete[6].enabled = AchvManager.instance.guardCountFlg;
-        progressComplete[7].enabled = AchvManager.instance.noDamage;
-        progressComplete[8].enabled = AchvManager.instance.justGuardFlg;
-        progressComplete[9].enabled = AchvManager.instance.noGuard;
-        progressComplete[10].enabled = AchvManager.instance.activeSkillOnlyFlg;
-        progressComplete[11].enabled = AchvManager.instance.timeAttack;
+        progressComplete[0].enabled = GameData.dieXFlg;
+        progressComplete[1].enabled = GameData.blinkXFlg;
+        progressComplete[2].enabled = GameData.allBossFlg;
+        progressComplete[3].enabled = GameData.oneHpFlg;
+        progressComplete[4].enabled = GameData.attackComboFlg;
+        progressComplete[5].enabled = GameData.sheriffUseFlg;
+        progressComplete[6].enabled = GameData.guardCountFlg;
+        progressComplete[7].enabled = GameData.noDamage;
+        progressComplete[8].enabled = GameData.justGuardFlg;
+        progressComplete[9].enabled = GameData.noGuard;
+        progressComplete[10].enabled = GameData.activeSkillOnlyFlg;
+        progressComplete[11].enabled = GameData.timeAttack;
 
-        progressGauge[0].fillAmount = (float)AchvManager.instance.dieXCount / (float)AchvManager.instance.dieClearCount;
-        progressGauge[1].fillAmount = (float)AchvManager.instance.blinkXCount / (float)AchvManager.instance.blinkClearCount;
-        progressGauge[2].fillAmount = (float)AchvManager.instance.clearBoss / (float)allBoss;
-        progressGauge[3].fillAmount = AchvManager.instance.oneHpFlg == false ? 0 : 1;
-        progressGauge[4].fillAmount = AchvManager.instance.attackComboFlg == false ? 0 : 1;
-        progressGauge[5].fillAmount = (float)AchvManager.instance.sheriffUseCount / (float)AchvManager.instance.sheriffClearCount;
-        progressGauge[6].fillAmount = (float)AchvManager.instance.guardCount / (float)AchvManager.instance.guardClearCount;
-        progressGauge[7].fillAmount = AchvManager.instance.noDamage == false ? 0 : 1;
-        progressGauge[8].fillAmount = (float)AchvManager.instance.justGuardCount / (float)AchvManager.instance.justGuardClearCount;
-        progressGauge[9].fillAmount = AchvManager.instance.noGuard == false ? 0 : 1;
-        progressGauge[10].fillAmount = AchvManager.instance.activeSkillOnlyFlg == false ? 0 : 1;
-        progressGauge[11].fillAmount = AchvManager.instance.timeAttack == false ? 0 : 1;
+        progressGauge[0].fillAmount = (float)GameData.dieXCount / (float)AchvMeasurement.instance.dieClearCount;
+        progressGauge[1].fillAmount = (float)GameData.blinkXCount / (float)AchvMeasurement.instance.blinkClearCount;
+        progressGauge[2].fillAmount = (float)GameData.clearBoss / (float)allBoss;
+        progressGauge[3].fillAmount = GameData.oneHpFlg == false ? 0 : 1;
+        progressGauge[4].fillAmount = GameData.attackComboFlg == false ? 0 : 1;
+        progressGauge[5].fillAmount = (float)GameData.sheriffUseCount / (float)AchvMeasurement.instance.sheriffClearCount;
+        progressGauge[6].fillAmount = (float)GameData.guardCount / (float)AchvMeasurement.instance.guardClearCount;
+        progressGauge[7].fillAmount = GameData.noDamage == false ? 0 : 1;
+        progressGauge[8].fillAmount = (float)GameData.justGuardCount / (float)AchvMeasurement.instance.justGuardClearCount;
+        progressGauge[9].fillAmount = GameData.noGuard == false ? 0 : 1;
+        progressGauge[10].fillAmount = GameData.activeSkillOnlyFlg == false ? 0 : 1;
+        progressGauge[11].fillAmount = GameData.timeAttack == false ? 0 : 1;
     }
 }

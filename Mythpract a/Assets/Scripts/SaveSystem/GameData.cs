@@ -4,10 +4,6 @@ using UnityEngine;
 public class GameData
 {
     // キーコンフィグ
-    public static int testInt = 1;
-    public static float testFloat = 1.0f;
-    public static string testString = "Text0";
-    public static bool testBool = true;
     public static KeyCode rightkey = KeyCode.D;
     public static string righttx = "D";
     public static KeyCode leftkey = KeyCode.A;
@@ -165,4 +161,48 @@ public class GameData
     public static float bestTimeShoggoth = 0;
     public static float bestTimeFafnir = 0;
     public static float bestTimeQilin = 0;
+
+    //プレイ時間とセーブ日時
+    public static int playTime = 0;
+    public static int lastYear = 2023;
+    public static int lastMonth = 1;
+    public static int lastDay = 1;
+    public static int lastHour = 0;
+    public static int lastMinute = 0;
+
+    //実績
+    public static bool dieXFlg;
+    public static int dieXCount;
+
+    public static bool blinkXFlg;
+    public static int blinkXCount;
+
+    public static bool allBossFlg;
+    public static bool[] defeatedBoss = new bool[3];
+
+    public static bool oneHpFlg;
+
+    public static bool attackComboFlg;
+    public static int attackComboCount;
+
+    public static bool sheriffUseFlg;
+    public static int sheriffUseCount;
+
+    public static bool guardCountFlg;
+    public static int guardCount;
+
+    public static bool noDamage;
+
+    public static bool justGuardFlg;
+    public static int achvJustGuardCount;
+
+    public static bool noGuard;
+
+    public static bool activeSkillOnlyFlg;
+
+    public static bool timeAttack;
+
+    public static int clearAchv;
+
+    public static int clearBoss;
 }

@@ -5,10 +5,6 @@ using UnityEngine;
 public class SaveData
 {
     // キーコンフィグ
-    public int testInt;
-    public float testFloat;
-    public string testString;
-    public bool testBool;
     public KeyCode rightkey;
     public string righttx;
     public KeyCode leftkey;
@@ -166,4 +162,47 @@ public class SaveData
     public float bestTimeFafnir = 0;
     public float bestTimeQilin = 0;
 
+    //プレイ時間とセーブ日時
+    public int playTime = 0;
+    public int lastYear = 2023;
+    public int lastMonth = 1;
+    public int lastDay = 1;
+    public int lastHour = 0;
+    public int lastMinute = 0;
+
+    //実績
+    public bool dieXFlg;
+    public int dieXCount;
+
+    public bool blinkX;
+    public int blinkXCount;
+
+    public bool allBoss;
+    public bool[] defeatedBoss = new bool[3];
+
+    public bool oneHp;
+
+    public bool attackCombo;
+    public int attackComboCount;
+
+    public bool SheriffUseFlg;
+    public int SheriffUseCount;
+
+    public bool guardCountFlg;
+    public int guardCount;
+
+    public bool noDamage;
+
+    public bool justGuardFlg;
+    public int achvJustGuardCount;
+
+    public bool noGuard;
+
+    public bool activeSkillOnly;
+
+    public bool timeAttack;
+
+    public int clearAchv;
+
+    public int clearBoss;
 }

@@ -1,5 +1,5 @@
 //データをファイルに保存します
-
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -7,13 +7,31 @@ using UnityEngine;
 
 public class Save : MonoBehaviour
 {
+
     void OnEnable()
     {
+        Debug.Log("セーブ開始");
+        AutoSaveUI.instance.AutoSaveUIOpen();
         DoSave();
+    }
+
+    private void GetDateTime()
+    {
+        DateTime dt = DateTime.Now;
+        GameData.lastYear = dt.Year;
+        GameData.lastMonth = dt.Month;
+        GameData.lastDay = dt.Day;
+        GameData.lastHour = dt.Hour;
+        GameData.lastMinute = dt.Minute;
+
+        Debug.Log("今回のプレイ時間：" + ((int)Time.time - TitleManager.startTime));
+        GameData.playTime += ((int)Time.time - TitleManager.startTime);
     }
 
     private void DoSave()
     {
+        GetDateTime();
+
 #if UNITY_EDITOR
         //UnityEditor上なら
         //Assetファイルの中のSaveファイルのパスを入れる
@@ -70,10 +88,6 @@ public class Save : MonoBehaviour
         SaveData saveData = new SaveData();
 
         //ゲームデータの値をセーブデータに代入
-        saveData.testInt = GameData.testInt;
-        saveData.testFloat = GameData.testFloat;
-        saveData.testString = GameData.testString;
-        saveData.testBool = GameData.testBool;
         saveData.rightkey = GameData.rightkey;
         saveData.righttx = GameData.righttx;
         saveData.leftkey = GameData.leftkey;
@@ -230,6 +244,48 @@ public class Save : MonoBehaviour
         saveData.bestTimeShoggoth = GameData.bestTimeShoggoth;
         saveData.bestTimeFafnir = GameData.bestTimeFafnir;
         saveData.bestTimeQilin = GameData.bestTimeQilin;
+
+        saveData.playTime = GameData.playTime;
+        saveData.lastYear = GameData.lastYear;
+        saveData.lastMonth = GameData.lastMonth;
+        saveData.lastDay = GameData.lastDay;
+        saveData.lastHour = GameData.lastHour;
+        saveData.lastMinute = GameData.lastMinute;
+
+
+        saveData.dieXFlg = GameData.dieXFlg;
+        saveData.dieXCount = GameData.dieXCount;
+
+        saveData.blinkX = GameData.blinkXFlg;
+        for (int i = 0; i < 3; i++) saveData.defeatedBoss[i] = GameData.defeatedBoss[i];
+
+        saveData.allBoss = GameData.allBossFlg;
+
+        saveData.oneHp = GameData.oneHpFlg;
+
+        saveData.attackCombo = GameData.attackComboFlg;
+
+        saveData.SheriffUseCount = GameData.sheriffUseCount;
+        saveData.SheriffUseFlg = GameData.sheriffUseFlg;
+
+        saveData.guardCountFlg = GameData.guardCountFlg;
+        saveData.guardCount = GameData.guardCount;
+
+        saveData.noDamage = GameData.noDamage;
+
+        saveData.justGuardFlg = GameData.justGuardFlg;
+        saveData.justGuardCount = GameData.justGuardCount;
+
+        saveData.noGuard = GameData.noGuard;
+
+        saveData.activeSkillOnly = GameData.activeSkillOnlyFlg;
+
+        saveData.timeAttack = GameData.timeAttack;
+
+        saveData.clearAchv = GameData.clearAchv;
+
+        saveData.clearBoss = GameData.clearBoss;
+
 
         return saveData;
     }

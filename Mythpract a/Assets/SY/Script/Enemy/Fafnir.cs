@@ -6,6 +6,8 @@ using UnityEngine;
 using SY;
 using Cinemachine;
 using Live2D.Cubism.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public enum Fafnir_MoveType
 {
@@ -90,6 +92,7 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Tooltip("初期位置")] Vector2 entry_StartPos = Vector2.zero;
     [SerializeField, Tooltip("速度")] float entry_Spd = 1.0f;
     [SerializeField, Tooltip("ベクトル")] Vector2 entry_Vector = Vector2.zero;
+    [SerializeField, Tooltip("着地振動時間")] float entry_JumpVibrationTime = 1.0f;
     [SerializeField, Tooltip("咆哮時間")] float entry_RoarTime = 1.0f;
     [SerializeField, Tooltip("画面振動強さ")] float entry_Vibration = 1.0f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting entry_Effect;
@@ -179,7 +182,7 @@ public class Fafnir : MonoBehaviour
 
 
     [Header("カメラ")]
-    [SerializeField, Tooltip("画面情報")] CameraData cameraData;
+    [SerializeField, Tooltip("画面情報")] SY.CameraData cameraData;
     Camera useCamera;       //使用カメラ
     Vector2 leftBottom;     //左下
     Vector2 leftTop;        //左上
@@ -351,20 +354,29 @@ public class Fafnir : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 anim.AnimChage("Entry_FallEnd", isLock);
                 jumpEnd_Effect.Play();
+                setVibration(entry_Vibration * 0.25f);
                 phase++;
                 break;
             case 2:
-                if (!AnimEndChange("Entry_RoarStart")) { break; }
+                VibrationSubtraction(((entry_Vibration * 0.25f) / 60.0f) / entry_JumpVibrationTime);
+                timer += Time.deltaTime;
+                if (timer < entry_JumpVibrationTime) { return; }
+                setVibration(0);
+                timer = 0;
                 phase++;
                 break;
             case 3:
+                if (!AnimEndChange("Entry_RoarStart")) { break; }
+                phase++;
+                break;
+            case 4:
                 if (!AnimEndChange("Entry_RoarAir")) { break; }
                 setVibration(entry_Vibration);
                 entry_Effect.Particle.gameObject.SetActive(true);
                 entry_Effect.PlayParticle();
                 phase++;
                 break;
-            case 4:
+            case 5:
                 timer += Time.deltaTime;
                 if (timer < entry_RoarTime) { break; }
                 anim.AnimChage("Entry_RoarEnd", isLock);
@@ -372,7 +384,7 @@ public class Fafnir : MonoBehaviour
                 entry_Effect.Particle.gameObject.SetActive(false);
                 phase++;
                 break;
-            case 5:
+            case 6:
                 if (anim.NormalizedTime < 1.0f) { break; }
                 moveType = Fafnir_MoveType.Idle;
                 tableNo = Random.Range(0, moveTable.Length);
@@ -388,11 +400,23 @@ public class Fafnir : MonoBehaviour
         anim.AnimChage(nextAnim, isLock);
         return true;
     }
+    CinemachineBasicMultiChannelPerlin vCamera2;
+    Volume v;
+    MotionBlur b;
     void setVibration(float vibration)  //画面振動
     {
         CinemachineVirtualCamera vCamera = mainCamera.GetComponent<CinemachineVirtualCamera>();
-        CinemachineBasicMultiChannelPerlin vCamera2 = vCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        vCamera2 = vCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         vCamera2.m_AmplitudeGain = vibration;
+
+        v = GameObject.Find("Global Volume").GetComponent<Volume>();
+        v.profile.TryGet(out b);
+        b.intensity.value = vibration;
+    }
+    void VibrationSubtraction(float value)
+    {
+        vCamera2.m_AmplitudeGain -= value;
+        b.intensity.value -= value;
     }
 
     void Idle()

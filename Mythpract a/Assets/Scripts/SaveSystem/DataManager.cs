@@ -17,9 +17,9 @@ public class DataManager : MonoBehaviour
     //セーブデータがあるかの判定変数
     public static bool saveData = false;
 
-    void Start()
+    void OnDestroy()
     {
-
+        Save();
     }
 
     public void Read()
