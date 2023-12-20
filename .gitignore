@@ -11,7 +11,7 @@
 [Uu]ser[Ss]ettings/
 
 # Exclude contents of the Save folder inside Assets directory
-[Aa]ssets/Save/*
+Assets/Save/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
