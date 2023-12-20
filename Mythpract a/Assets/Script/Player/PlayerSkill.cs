@@ -3,17 +3,17 @@ using UnityEngine;
 partial class Player
 {
 
-    [SerializeField, Tooltip("スラッシュのクールタイム")] float skillSlashCT;
-    [SerializeField, Tooltip("フリートのクールタイム")] float skillFleetCT;
-    [SerializeField, Tooltip("フリートの持続時間")] float skillFleetTime;
-    [SerializeField, Tooltip("ローンウォーリアのクールタイム")] float skillLoneWarriorCT;
-    [SerializeField, Tooltip("ローンウォーリアの持続時間")] float skillLoneWarriorTime;
-    [SerializeField, Tooltip("グリームのクールタイム")] float skillGreemCT;
-    [SerializeField, Tooltip("ディスピレイションストライクのクールタイム")] float skillDStrikeCT;
+    //[SerializeField, Tooltip("スラッシュのクールタイム")] float skillSlashCT;
+    //[SerializeField, Tooltip("フリートのクールタイム")] float skillFleetCT;
+    //[SerializeField, Tooltip("フリートの持続時間")] float skillFleetTime;
+    //[SerializeField, Tooltip("ローンウォーリアのクールタイム")] float skillLoneWarriorCT;
+    //[SerializeField, Tooltip("ローンウォーリアの持続時間")] float skillLoneWarriorTime;
+    //[SerializeField, Tooltip("グリームのクールタイム")] float skillGreemCT;
+    //[SerializeField, Tooltip("ディスピレイションストライクのクールタイム")] float skillDStrikeCT;
 
-    [SerializeField, Tooltip("ローンウォーリアの初期攻撃力")] float SkillLoneAtk;
-    [SerializeField, Tooltip("ローンウォーリアの一回の追加攻撃力")] float SkillLoneAtkPlus;
-    [SerializeField, Tooltip("ローンウォーリアのコンボの許容時間")] float SkillLoneComboSpan;
+    //[SerializeField, Tooltip("ローンウォーリアの初期攻撃力")] float skillLoneAtk;
+    //[SerializeField, Tooltip("ローンウォーリアの一回の追加攻撃力")] float skillLoneAtkPlus;
+    //[SerializeField, Tooltip("ローンウォーリアのコンボの許容時間")] float skillLoneComboSpan;
     [SerializeField, Tooltip("ローンウォーリア1段階目")] Color SkillLWFirstColor;
     [SerializeField, Tooltip("ローンウォーリア2段階目")] Color SkillLWSecondColor;
     [SerializeField, Tooltip("ローンウォーリア3段階目")] Color SkillLWThirdColor;
@@ -21,10 +21,10 @@ partial class Player
     [SerializeField, Tooltip("ローンウォーリア5段階目")] Color SkillLWLastColor;
 
 
-    [SerializeField, Tooltip("ブリンク距離スキル")] float SkillBrinkMove;
-    [SerializeField, Tooltip("ジャストガードスキル")] float SkillJustGuard;
-    [SerializeField, Tooltip("スピードアップスキル")] int SkillMaxSpeed;
-    [SerializeField, Tooltip("火事場攻撃力アップ")] float SkillKajibaAtk;
+    //[SerializeField, Tooltip("ブリンク距離スキル")] float skillBrinkMove;
+    //[SerializeField, Tooltip("ジャストガードスキル")] float skillJustGuard;
+    //[SerializeField, Tooltip("スピードアップスキル")] int skillMaxSpeed;
+    //[SerializeField, Tooltip("火事場攻撃力アップ")] float skillKajibaAtk;
 
     [SerializeField] BoxCollider2D FleetCol;
 
@@ -62,21 +62,21 @@ partial class Player
     bool isSkill = false;
     bool isCharge = false;
 
-    public float SkillSlashCT { get { return skillSlashCT; } }
+    public float SkillSlashCT { get { return playerData.Player[0].skillSlashCT; } }
     public float SkillSlashCount { get { return skillSlashCount; } }
 
-    public float SkillFleetCT { get { return skillFleetCT; } }
+    public float SkillFleetCT { get { return playerData.Player[0].skillFleetCT; } }
     public float SkillFleetCount { get { return skillFleetCount; } }
 
     public bool IsFleet { get { return isFleet; } set { isFleet = value; } }
 
-    public float SkillLoneWarrirorCT { get { return skillLoneWarriorCT; } }
+    public float SkillLoneWarrirorCT { get { return playerData.Player[0].skillLoneWarriorCT; } }
     public float SkillLoneWarrirorCount { get { return skillLoneWarriorCount; } }
 
-    public float SkillGreemCT { get { return skillGreemCT; } }
+    public float SkillGreemCT { get { return playerData.Player[0].skillGreemCT; } }
     public float SkillGreemCount { get { return skillGreemCount; } }
 
-    public float SkillDStrikeCT { get { return skillDStrikeCT; } }
+    public float SkillDStrikeCT { get { return playerData.Player[0].skillDStrikeCT; } }
     public float SkillDStrikeCount { get { return skillDStrikeCount; } }
 
     void ActiveSkillController()
@@ -87,7 +87,7 @@ partial class Player
         skillGreemCount += Time.deltaTime;
         skillDStrikeCount += Time.deltaTime;
 
-        if (GameData.setSkill1 && skillSlashCT < skillSlashCount)
+        if (GameData.setSkill1 && playerData.Player[0].skillSlashCT < skillSlashCount)
         {
             if (GameData.skillSlot1 == 1)
             {
@@ -130,7 +130,7 @@ partial class Player
             }
 
         }
-        if (GameData.setSkill2 && skillFleetCT < skillFleetCount && !hitAnim)
+        if (GameData.setSkill2 && playerData.Player[0].skillFleetCT < skillFleetCount && !hitAnim)
         {
             if (GameData.skillSlot1 == 2)
             {
@@ -201,7 +201,7 @@ partial class Player
             }
 
         }
-        if (GameData.setSkill3 && skillLoneWarriorCT < skillLoneWarriorCount )
+        if (GameData.setSkill3 && playerData.Player[0].skillLoneWarriorCT < skillLoneWarriorCount )
         {
 
             if (GameData.skillSlot1 == 3)
@@ -210,7 +210,7 @@ partial class Player
                 {
 
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
-                    HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+                    HMng.ATK = playerData.Player[0].skillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
 
                     audioSource.PlayOneShot(skillLoneWarriorSE);
@@ -225,7 +225,7 @@ partial class Player
                 if (skill2)
                 {
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
-                    HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+                    HMng.ATK = playerData.Player[0].skillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
                     audioSource.PlayOneShot(skillLoneWarriorSE);
 
@@ -239,7 +239,7 @@ partial class Player
                 if (skill3)
                 {
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
-                    HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+                    HMng.ATK = playerData.Player[0].skillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
                     audioSource.PlayOneShot(skillLoneWarriorSE);
 
@@ -253,7 +253,7 @@ partial class Player
                 if (skill4)
                 {
                     exAtk = HMng.ATK;     // 元の攻撃力を保存
-                    HMng.ATK = SkillLoneAtk;                        // 攻撃力を上昇
+                    HMng.ATK = playerData.Player[0].skillLoneAtk;                        // 攻撃力を上昇
                     GameData.SkillCount += 1;
                     audioSource.PlayOneShot(skillLoneWarriorSE);
 
@@ -266,7 +266,7 @@ partial class Player
             }
 
         }
-        if (GameData.setSkill4 && skillGreemCT < skillGreemCount)
+        if (GameData.setSkill4 && playerData.Player[0].skillGreemCT < skillGreemCount)
         {
             if (GameData.skillSlot1 == 4)
             {
@@ -306,7 +306,7 @@ partial class Player
             }
 
         }
-        if (GameData.setSkill5 && skillDStrikeCT < skillDStrikeCount)
+        if (GameData.setSkill5 && playerData.Player[0].skillDStrikeCT < skillDStrikeCount)
         {
             if (GameData.skillSlot1 == 5)
             {
@@ -494,7 +494,7 @@ partial class Player
 
             //}
 
-            if (skillFleetDuration >= skillFleetTime)
+            if (skillFleetDuration >= playerData.Player[0].skillFleetTime)
             {
                 PlayerRb.gravityScale = 7f;
                 isFleet = false;
@@ -514,7 +514,7 @@ partial class Player
     public void SkillLoneWarrior()
     {
         var main = EffectSkillLoneWarrior.main;
-        if (isLoneWarrior == true && skillLoneWarriorTime >= skillLoneWarriorDuration)   
+        if (isLoneWarrior == true && playerData.Player[0].skillLoneWarriorTime >= skillLoneWarriorDuration)   
         {
             Debug.Log("ローンウォーリア発動中");
             Debug.Log(skillLoneWarriorComboCount.ToString("F3") + "秒");
@@ -525,11 +525,11 @@ partial class Player
             {
                 Debug.Log("攻撃ヒット");
 
-                HMng.ATK += SkillLoneAtkPlus;
+                HMng.ATK += playerData.Player[0].skillLoneAtkPlus;
                 skillLoneWarriorComboCount = 0;
             }
 
-            if(skillLoneWarriorComboCount >= SkillLoneComboSpan || HMng.CheckDamage())
+            if(skillLoneWarriorComboCount >= playerData.Player[0].skillLoneComboSpan || HMng.CheckDamage())
             {
                 LoneWarriorReset = true;
                 isLoneWarrior = false;
@@ -571,7 +571,7 @@ partial class Player
 
 
         }
-        else if(skillLoneWarriorTime < skillLoneWarriorDuration)
+        else if(playerData.Player[0].skillLoneWarriorTime < skillLoneWarriorDuration)
         {
             LoneWarriorReset = true;
         }
@@ -651,33 +651,33 @@ partial class Player
     }
     public void SkillBrinkMovePlus()    // スキル11
     {
-        brinkMove = SkillBrinkMove;
+        playerData.Player[0].brinkMove = playerData.Player[0].skillBrinkMove;
     }
     public void SkillJustGuardPlus()    // スキル12
     {
-        justGuardTime = SkillJustGuard;
+        playerData.Player[0].justGuardTime = playerData.Player[0].skillJustGuard;
     }
     public void SkillSpeedUpHpMax()     // スキル13
     {
         if(HMng.HP == HMng.MaxHP)
         {
-            maxSpeed = SkillMaxSpeed;
+            playerData.Player[0].maxSpeed = playerData.Player[0].skillMaxSpeed;
         }
         else
         {
-            maxSpeed = 12;  // めんどいので初期数値手入力
+            playerData.Player[0].maxSpeed = 12;  // めんどいので初期数値手入力
         }
     }
     public void SkillKajiba()
     {
-        SkillKajibaAtk = HMng.ATK * 2;
+        playerData.Player[0].skillKajibaAtk = HMng.ATK * 2;
         if(HMng.HP == 1)
         {
             kajibaAtkMinusOnce = false;
 
             if (kajibaAtkPlusOnce == false)
             {
-                HMng.ATK = SkillKajibaAtk;
+                HMng.ATK = playerData.Player[0].skillKajibaAtk;
                 kajibaAtkPlusOnce = true;
             }
         }
@@ -693,7 +693,7 @@ partial class Player
     }
     public void SkillStrength() // スキル15
     {
-        maxStamina *= 2;
+        playerData.Player[0].maxStamina *= 2;
     }
     public void SkillWise()     // スキル16
     {
@@ -707,7 +707,7 @@ partial class Player
     }
     public void SkillElect()    // スキル17
     {
-        healStamina *= 1.5f;
+        playerData.Player[0].healStamina *= 1.5f;
     }
     public void SkillCarse()    // スキル18
     {
@@ -750,7 +750,7 @@ partial class Player
             EffectCharge.Stop();
             EffectCharge.Clear();
 
-            if (attackCount >= chargeAttackTime)
+            if (attackCount >= playerData.Player[0].chargeAttackTime)
             {
                 EffectChargeAttack.Play();
 
