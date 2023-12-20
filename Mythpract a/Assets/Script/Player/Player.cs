@@ -11,21 +11,24 @@ public partial class Player : MonoBehaviour
     Vector3 dir;
     Rigidbody2D PlayerRb;
 
-    [SerializeField,Tooltip("最高速度")] int maxSpeed;              // プレイヤーの最高速度
-    [SerializeField, Tooltip("ジャンプ力")] float jumpPow;             // ジャンプ時に加える力
-    [SerializeField, Tooltip("ダブルジャンプ力")] float doubleJumpPow;       // ダブルジャンプ時に加える力
-    [SerializeField, Tooltip("ため攻撃の溜め時間")] float chargeAttackTime;
-    [SerializeField, Tooltip("スタミナの最大値")] float maxStamina;            // スタミナの最大値
-    [SerializeField, Tooltip("スタミナの回復速度")] float healStamina;         // スタミナの回復速度
-    [SerializeField, Tooltip("ブリンクの消費スタミナ")] float brinkStamina;    // ブリンクの消費スタミナ(瞬時)
-    [SerializeField, Tooltip("ガードの消費スタミナ(毎時)")] float guardStamina;     // ガード時の消費スタミナ(毎秒)
-    [SerializeField, Tooltip("ブリンクの距離")] float brinkMove;    // ブリンクの距離
-    [SerializeField, Tooltip("ブリンクのクールタイム")] float brinkCoolTimeSec;    // ブリンクのクールタイム
-    [SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTimeSec;    // ガードのクールタイム
-    [SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
-    [SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
-    [SerializeField, Tooltip("ジャンプ下攻撃のCT")]float atkJumpDownCT;
-    [SerializeField, Tooltip("ジャンプ上攻撃のCT")] float atkJumpUpCT;
+    [SerializeField]
+    private ExcelPlayerData playerData;
+
+    //[SerializeField,Tooltip("最高速度")] int maxSpeed;              // プレイヤーの最高速度
+    //[SerializeField, Tooltip("ジャンプ力")] float jumpPow;             // ジャンプ時に加える力
+    //[SerializeField, Tooltip("ダブルジャンプ力")] float doubleJumpPow;       // ダブルジャンプ時に加える力
+    //[SerializeField, Tooltip("ため攻撃の溜め時間")] float chargeAttackTime;
+    //[SerializeField, Tooltip("スタミナの最大値")] float maxStamina;            // スタミナの最大値
+    //[SerializeField, Tooltip("スタミナの回復速度")] float healStamina;         // スタミナの回復速度
+    //[SerializeField, Tooltip("ブリンクの消費スタミナ")] float brinkStamina;    // ブリンクの消費スタミナ(瞬時)
+    //[SerializeField, Tooltip("ガードの消費スタミナ(毎時)")] float guardStamina;     // ガード時の消費スタミナ(毎秒)
+    //[SerializeField, Tooltip("ブリンクの距離")] float brinkMove;    // ブリンクの距離
+    //[SerializeField, Tooltip("ブリンクのクールタイム")] float brinkCoolTimeSec;    // ブリンクのクールタイム
+    //[SerializeField, Tooltip("ガードのクールタイム")] float guardCoolTimeSec;    // ガードのクールタイム
+    //[SerializeField, Tooltip("ジャストガードの許容時間")] float justGuardTime;
+    //[SerializeField, Tooltip("ノックバック時間")] float knockbuckTime;  // ノックバックする時間
+    //[SerializeField, Tooltip("ジャンプ下攻撃のCT")]float atkJumpDownCT;
+    //[SerializeField, Tooltip("ジャンプ上攻撃のCT")] float atkJumpUpCT;
 
 
 
@@ -162,7 +165,7 @@ public partial class Player : MonoBehaviour
     {
         PlayerRb.gravityScale = 7;
         dir.x = 1;
-        stamina = maxStamina;
+        stamina = playerData.Player[0].maxStamina;
        
         InitHP();
         PassiveSkillStart();
@@ -817,7 +820,7 @@ public partial class Player : MonoBehaviour
             if (spaceDown && !isGuard && !isSkill && !isAttack &&!hitAnim)
             {
                 PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
-                PlayerRb.AddForce(Vector2.up * jumpPow, ForceMode2D.Impulse);
+                PlayerRb.AddForce(Vector2.up * playerData.Player[0].jumpPow, ForceMode2D.Impulse);
 
                 JumpSE();
             }
@@ -839,7 +842,7 @@ public partial class Player : MonoBehaviour
         {
             doublejumpAnim = true;
             PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
-            PlayerRb.AddForce(Vector2.up * doubleJumpPow, ForceMode2D.Impulse);
+            PlayerRb.AddForce(Vector2.up * playerData.Player[0].doubleJumpPow, ForceMode2D.Impulse);
             doublejump = false;
 
             JumpEffect();
@@ -883,37 +886,37 @@ public partial class Player : MonoBehaviour
             isbrinkUp = false;     // 空中ブリンク判定
 
             PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
-            PlayerRb.AddForce(Vector2.up * doubleJumpPow, ForceMode2D.Impulse);
+            PlayerRb.AddForce(Vector2.up * playerData.Player[0].doubleJumpPow, ForceMode2D.Impulse);
 
             atkJumpDown.HitAtkJumpDown = false;
             canHitDown = false;
         }
 
         atkJumpDownCount += Time.deltaTime;
-        if(atkJumpDownCT <= atkJumpDownCount)
+        if(playerData.Player[0].atkJumpDownCT <= atkJumpDownCount)
         {
             canHitDown = true;
         }
         atkJumpUpCount += Time.deltaTime;
-        if(atkJumpUpCT <= atkJumpUpCount)
+        if(playerData.Player[0].atkJumpUpCT <= atkJumpUpCount)
         {
             canHitUp = true;
         }
 
         // 移動速度
-        if (PlayerRb.velocity.magnitude <= maxSpeed)
+        if (PlayerRb.velocity.magnitude <= playerData.Player[0].maxSpeed)
         {
             PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, PlayerRb.velocity.y);
         }
         else
         {
-            if (PlayerRb.velocity.x >= maxSpeed)
+            if (PlayerRb.velocity.x >= playerData.Player[0].maxSpeed)
             {
-                PlayerRb.velocity = new Vector2(maxSpeed, PlayerRb.velocity.y);
+                PlayerRb.velocity = new Vector2(playerData.Player[0].maxSpeed, PlayerRb.velocity.y);
             }
-            else if (PlayerRb.velocity.x <= -maxSpeed)
+            else if (PlayerRb.velocity.x <= -playerData.Player[0].maxSpeed)
             {
-                PlayerRb.velocity = new Vector2(-maxSpeed, PlayerRb.velocity.y);
+                PlayerRb.velocity = new Vector2(-playerData.Player[0].maxSpeed, PlayerRb.velocity.y);
             }
         }
 
@@ -933,36 +936,36 @@ public partial class Player : MonoBehaviour
 
 
         // 空中ブリンク
-        if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim && !isSkill && !isCharge && stamina >= brinkStamina)
+        if (brink && !isGround && !isbrink && !isbrinkUp && !isAttack && !isGuard && !hitAnim && !isSkill && !isCharge && stamina >= playerData.Player[0].brinkStamina)
         {
 
             BrinkEffect();
             BrinkSE();
             achv.UseBlink();
 
-            transform.position = new Vector3(transform.position.x + (brinkMove * dir.x), transform.position.y, 0);
+            transform.position = new Vector3(transform.position.x + (playerData.Player[0].brinkMove * dir.x), transform.position.y, 0);
             PlayerRb.velocity = new Vector2(0, 0);
 
             BrinkEffect();
 
-            stamina -= brinkStamina;
+            stamina -= playerData.Player[0].brinkStamina;
 
             isbrink = true;
             isbrinkUp = true;
             brinkCTCount = 0;
         }
         // 地上ブリンク
-        if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim && !isSkill && !isCharge && stamina >= brinkStamina)
+        if(brink && isGround && !isbrink && !isAttack && !isGuard && !hitAnim && !isSkill && !isCharge && stamina >= playerData.Player[0].brinkStamina)
         {
             BrinkEffect();
             BrinkSE();
             achv.UseBlink();
 
-            transform.position = new Vector3(transform.position.x + (brinkMove * dir.x), transform.position.y, 0);
+            transform.position = new Vector3(transform.position.x + (playerData.Player[0].brinkMove * dir.x), transform.position.y, 0);
             PlayerRb.velocity = new Vector2(0, 0);
             BrinkEffect();
 
-            stamina -= brinkStamina;
+            stamina -= playerData.Player[0].brinkStamina;
 
 
             isbrink = true;
@@ -973,7 +976,7 @@ public partial class Player : MonoBehaviour
         if (isbrink && !isGuard)
         {
             brinkCTCount += Time.deltaTime;
-            if(brinkCTCount >= brinkCoolTimeSec)
+            if(brinkCTCount >= playerData.Player[0].brinkCoolTimeSec)
             {
                 isbrink = false;
                 brinkCTCount = 0;
@@ -1002,18 +1005,18 @@ public partial class Player : MonoBehaviour
 
         }      
         // スタミナの処理 
-        if (maxStamina > stamina)
+        if (playerData.Player[0].maxStamina > stamina)
         {
             if (!IsGuard)
             {
-                stamina += Time.deltaTime * healStamina;
+                stamina += Time.deltaTime * playerData.Player[0].healStamina;
 
             }
-            brinkSlider.fillAmount = stamina / maxStamina;
+            brinkSlider.fillAmount = stamina / playerData.Player[0].maxStamina;
         }
         else
         {
-            stamina = maxStamina;
+            stamina = playerData.Player[0].maxStamina;
             brinkSlider.fillAmount = 1;
 
             guardbreak = false;
@@ -1032,7 +1035,7 @@ public partial class Player : MonoBehaviour
             isGuard = false;
             guardCount = 0;
             guardCTCount += Time.deltaTime;
-            if (guardCTCount >= guardCoolTimeSec)
+            if (guardCTCount >= playerData.Player[0].guardCoolTimeSec)
             {
                 canGuard = true;
                 guardCTCount = 0;
@@ -1048,7 +1051,7 @@ public partial class Player : MonoBehaviour
 
             HMng.DEF = 10000;
 
-            stamina -= guardStamina * Time.deltaTime;
+            stamina -= playerData.Player[0].guardStamina * Time.deltaTime;
             guardCount += Time.deltaTime;
             if (!EffectGuard.isPlaying)
             {
@@ -1090,7 +1093,7 @@ public partial class Player : MonoBehaviour
 
             }
 
-            if (justGuardTime > guardCount)
+            if (playerData.Player[0].justGuardTime > guardCount)
             {
                 if (HMng.CheckDamage() == true)
                 {
@@ -1235,7 +1238,7 @@ public partial class Player : MonoBehaviour
                 plsp.color = new Color(1, 1, 1, 1);
 
             }
-            if (knockbuckCount >= knockbuckTime /*  || isGround*/)
+            if (knockbuckCount >= playerData.Player[0].knockbuckTime /*  || isGround*/)
             {
                 hitAnim = false;
                 plsp.color = new Color(1, 1, 1, 1);
@@ -1305,7 +1308,7 @@ public partial class Player : MonoBehaviour
             achvComboCount++;
             achvComboTime = 0;
         }
-        if(achvComboTime >= SkillLoneComboSpan || HMng.CheckDamage())
+        if(achvComboTime >= playerData.Player[0].skillLoneComboSpan || HMng.CheckDamage())
         {
             achvComboCount = 0;
         }

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94be22275f4b45841af6b4124728da01, type: 3}
+  m_Name: ExcelPlayerData
+  m_EditorClassIdentifier: 
+  Player:
+  - maxSpeed: 12
+    jumpPow: 20
+    doubleJumpPow: 25
+    chargeAttackTime: 2
+    maxStamina: 100
+    healStamina: 50
+    brinkStamina: 50
+    guardStamina: 100
+    brinkMove: 5
+    brinkCoolTimeSec: 0.5
+    guardCoolTimeSec: 1
+    justGuardTime: 0.1
+    knockbuckTime: 0.5
+    atkJumpDownCT: 0.4
+    atkJumpUpCT: 0.3
+    normalAtk_Power: 100
+    jumpAtk_Power: 100
+    jumpUpAtk_Power: 100
+    jumpDownAtk_Power: 100
+    chargeAtk_Power: 300
+    fleetAtk_Power: 200
+    skillSlashCT: 8
+    skillFleetCT: 5
+    skillFleetTime: 0.3
+    skillLoneWarriorCT: 10
+    skillLoneWarriorTime: 10
+    skillGreemCT: 2
+    skillDStrikeCT: 5
+    skillLoneAtk: 1.5
+    skillLoneAtkPlus: 0.1
+    skillLoneComboSpan: 2
+    skillBrinkMove: 10
+    skillJustGuard: 0.2
+    skillMaxSpeed: 10
+    skillKajibaAtk: 1.5
