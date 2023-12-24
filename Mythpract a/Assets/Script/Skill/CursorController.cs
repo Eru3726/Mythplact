@@ -63,6 +63,9 @@ public class CursorController : MonoBehaviour
     Transform touchTfm;
     Transform pickupTfm;
 
+    RaycastHit2D hit;
+
+
     bool up;
     bool down;
     bool left;
@@ -905,6 +908,11 @@ public class CursorController : MonoBehaviour
                 skillText.Skill19Text();
             }
         }
+
+    }
+    void MouseCursorCtrl()
+    {
+        hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
     }
     private void OnTriggerExit2D(Collider2D col)
