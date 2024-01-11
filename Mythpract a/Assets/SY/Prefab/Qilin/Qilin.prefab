@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864824354}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 814393537686038635}
-  m_RootOrder: 5
+  m_Father: {fileID: 1022343448732639246}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &864824357
 BoxCollider2D:
@@ -72,7 +72,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 0
 --- !u!1 &1803551309648937
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 814393537686038635}
   m_Layer: 7
-  m_Name: HitandEffect
+  m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,10 +468,6 @@ Transform:
   m_Children:
   - {fileID: 842824040913451045}
   - {fileID: 8432545656444983155}
-  - {fileID: 814393538620546787}
-  - {fileID: 814393538170147963}
-  - {fileID: 814393539243047380}
-  - {fileID: 864824355}
   - {fileID: 1736373518604730453}
   m_Father: {fileID: 6617422322898696463}
   m_RootOrder: 3
@@ -502,13 +497,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814393538170147962}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 814393537686038635}
-  m_RootOrder: 3
+  m_Father: {fileID: 1022343448732639246}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &814393538170147941
 CapsuleCollider2D:
@@ -539,7 +534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 0
 --- !u!1 &814393538620546786
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,13 +559,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814393538620546786}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 814393537686038635}
-  m_RootOrder: 2
+  m_Father: {fileID: 1022343448732639246}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &814393538620546797
 BoxCollider2D:
@@ -612,7 +606,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  power: 0
 --- !u!1 &814393539243047403
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,13 +631,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814393539243047403}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 814393537686038635}
-  m_RootOrder: 4
+  m_Father: {fileID: 1022343448732639246}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &814393539243047382
 BoxCollider2D:
@@ -685,7 +678,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 0
 --- !u!1 &1100145036252215475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,6 +1889,7 @@ Transform:
   - {fileID: 2096733173033502627}
   - {fileID: 4632941782812249767}
   - {fileID: 814393537686038635}
+  - {fileID: 1022343448732639246}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2217,195 +2210,209 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc8a2bfa746a7a4784220ce811d0228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pl: {fileID: 0}
-  moveType: 1
-  moveTable:
-  - name: Breath,Eruption
-    move: 010000000200000003000000
-  - name: PushUp,Spin
-    move: 010000000400000005000000
-  - name: Meteor
-    move: 0100000006000000
-  body: {fileID: 864824354}
-  body_Power: 1
-  body_Gizmo:
-    mode: 1
-    center: {x: -8.7036705, y: 0.012787342, z: 0}
-    size: {x: 11.122097, y: 7.0991793, z: 0}
-    radius: 0
-    color: {r: 0, g: 0, b: 0, a: 1}
-    display: 0
-  idle_BreakTime: 1
-  idle_Effect:
-    particle: {fileID: 0}
-    time: 1
-    loop: 0
-  idle_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  attackAnticipation_Time: 1
-  attackAnticipation_Effect:
-    particle: {fileID: 0}
-    time: 1
-    loop: 0
-  attackAnticipation_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  move_Speed: 10
-  move_Effect:
-    particle: {fileID: 0}
-    time: 1
-    loop: 0
-  move_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  breath: {fileID: 814393538170147962}
-  breath_Power: 1
-  breath_AtkDis: 7.5
-  breath_CoolTime: 0.5
-  breath_Effect:
-    particle: {fileID: 5569375693275953491}
-    time: 0.5
-    loop: 0
-  breath_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  eruption: {fileID: 9093655586302129717, guid: 36fff5299b190d048a225f80413d605e, type: 3}
-  eruption_Power: 1
-  eruption_Center: {x: 0, y: 0}
-  eruption_AtkRange: {x: 40, y: 10}
-  eruption_AtkBreakTime: 1
-  eruption_Generate: 10
-  eruption_CoolTime: 0.5
-  eruption_Effect:
-    particle: {fileID: 0}
-    time: 1
-    loop: 0
-  eruption_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  eruption_Gizmo:
-    mode: 1
-    center: {x: 0, y: 0, z: 0}
-    size: {x: 40, y: 10, z: 0}
-    radius: 0
-    color: {r: 1, g: 0, b: 0, a: 1}
-    display: 0
-  pushUp: {fileID: 814393539243047403}
-  pushUp_Power: 1
-  pushUp_MoveSpd: 20
-  pushUp_AtkDis: 5
-  pushUp_CoolTime: 0.5
-  pushUp_Effect:
-    particle: {fileID: 842824040913451066}
-    time: 0.01
-    loop: 1
-  pushUp_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  rush: {fileID: 0}
-  rush_Power: 1
-  rush_Center: {x: 0, y: 0}
-  rush_AtkRange: {x: 10, y: 10}
-  rush_MoveSpd: 10
-  rush_AtkTime: 4
-  rush_AtkBreakTime: 1
-  rush_CoolTime: 0.5
-  rush_Effect:
-    particle: {fileID: 0}
-    time: 1
-    loop: 0
-  rush_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  spin: {fileID: 8449096857308795825, guid: b0b8bf3b90b95bd4fa8d4ad497439836, type: 3}
-  spin_Power: 1
-  spin_Center: {x: 0, y: 0}
-  spin_AtkRange: {x: 20, y: 10}
-  spin_CoolTime: 0.5
-  spin_Effect:
-    particle: {fileID: 0}
-    time: 1
-    loop: 0
-  spin_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  spin_Gizmo:
-    mode: 1
-    center: {x: 0, y: 0, z: 0}
-    size: {x: 20, y: 10, z: 0}
-    radius: 0
-    color: {r: 0, g: 1, b: 0, a: 1}
-    display: 0
-  meteor: {fileID: 8282665973735145537, guid: cef55bb05d8a27549b6eabe95e1e8e56, type: 3}
-  meteor_Power: 1
-  meteor_Center: {x: 0, y: 0}
-  meteor_AtkRange: {x: 40, y: 10}
-  meteor_AtkTime: 5
-  meteor_Generate: 10
-  meteor_CoolTime: 0.03
-  meteor_Effect:
-    particle: {fileID: 0}
-    time: 1
-    loop: 0
-  meteor_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  meteor_Gizmo:
-    mode: 1
-    center: {x: 0, y: 0, z: 0}
-    size: {x: 40, y: 10, z: 0}
-    radius: 0
-    color: {r: 0, g: 0, b: 1, a: 1}
-    display: 0
-  damage_Number: 5
-  damage_Time: 0.05
-  damage_Effect:
-    particle: {fileID: 0}
-    time: 1
-    loop: 0
-  damage_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  die_Effect:
-    particle: {fileID: 1736373518604730452}
-    time: 1
-    loop: 0
-  die_SE:
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    loop: 0
-  stage_Center: {x: 0, y: 0}
-  stage_Range: {x: 40, y: 10}
-  stage_Gizmo:
-    mode: 1
-    center: {x: 0, y: 0, z: 0}
-    size: {x: 40, y: 10, z: 0}
-    radius: 0
-    color: {r: 0, g: 0, b: 0, a: 1}
-    display: 0
-  isLock: 1
+  param:
+    pl: {fileID: 0}
+    ui: {fileID: 0}
+    virtualCamera: {fileID: 0}
+    volume: {fileID: 0}
+    stageData: {fileID: 0}
+    stage_Gizmo:
+      mode: 0
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 0
+    body: {fileID: 0}
+    body_Power: 1
+    body_Gizmo:
+      mode: 0
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 0
+    moveType: 1
+    moveTable: []
+    entry_StartPos: {x: 0, y: 0}
+    entry_SleepTime: 1
+    entry_BreakTime: 1
+    entry_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    entry_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    idle_Time: 1
+    idle_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    idle_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    attackAnticipation_Time: 1
+    attackAnticipation_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    attackAnticipation_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    move_Speed: 1
+    move_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    move_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    breath: {fileID: 0}
+    breath_Power: 1
+    breath_AtkDis: 5
+    breath_CoolTime: 0.5
+    breath_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    breath_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    eruption: {fileID: 0}
+    eruption_Power: 1
+    eruption_Center: {x: 0, y: 0}
+    eruption_AtkRange: {x: 10, y: 10}
+    eruption_AtkBreakTime: 1
+    eruption_Generate: 10
+    eruption_CoolTime: 0.5
+    eruption_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    eruption_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    eruption_Gizmo:
+      mode: 0
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 0
+    pushUp: {fileID: 0}
+    pushUp_Power: 1
+    pushUp_MoveSpd: 10
+    pushUp_AtkDis: 5
+    pushUp_CoolTime: 0.5
+    pushUp_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    pushUp_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    rush: {fileID: 0}
+    rush_Power: 1
+    rush_Center: {x: 0, y: 0}
+    rush_AtkRange: {x: 10, y: 10}
+    rush_MoveSpd: 10
+    rush_AtkTime: 4
+    rush_AtkBreakTime: 1
+    rush_CoolTime: 0.5
+    rush_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    rush_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    rush_Gizmo:
+      mode: 0
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 0
+    spin: {fileID: 0}
+    spin_Power: 1
+    spin_Center: {x: 0, y: 0}
+    spin_AtkRange: {x: 10, y: 10}
+    spin_CoolTime: 0.5
+    spin_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    spin_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    spin_Gizmo:
+      mode: 0
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 0
+    meteor: {fileID: 0}
+    meteor_Power: 1
+    meteor_Center: {x: 0, y: 0}
+    meteor_AtkRange: {x: 10, y: 10}
+    meteor_AtkTime: 5
+    meteor_Generate: 10
+    meteor_CoolTime: 0.5
+    meteor_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    meteor_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    meteor_Gizmo:
+      mode: 0
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 1, y: 1, z: 1}
+      radius: 1
+      color: {r: 0, g: 0, b: 0, a: 1}
+      display: 0
+    damageData: {fileID: 0}
+    damage_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    damage_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+    die_Effect:
+      particle: {fileID: 0}
+      time: 1
+      loop: 0
+    die_SE:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
 --- !u!114 &109140769447610397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8794,6 +8801,41 @@ MonoBehaviour:
   _renderOrder: 26
   _depthOffset: 0.00001
   _opacity: 1
+--- !u!1 &8068123547203869371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1022343448732639246}
+  m_Layer: 7
+  m_Name: Hit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1022343448732639246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8068123547203869371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 814393538620546787}
+  - {fileID: 814393538170147963}
+  - {fileID: 814393539243047380}
+  - {fileID: 864824355}
+  m_Father: {fileID: 6617422322898696463}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8106358383063167666
 GameObject:
   m_ObjectHideFlags: 0
@@ -9814,7 +9856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
       propertyPath: m_LocalScale.x
@@ -9870,11 +9912,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
---- !u!198 &1736373518604730452 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1736373518754648311, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
-  m_PrefabInstance: {fileID: 185634979}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1736373518604730453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1736373518754648310, guid: 04ad37f4a38582d4abe5afdfd51948b1, type: 3}
@@ -9953,11 +9990,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec060226807bfdf4b93852db8c75393a, type: 3}
---- !u!198 &5569375693275953491 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5046049412187629889, guid: ec060226807bfdf4b93852db8c75393a, type: 3}
-  m_PrefabInstance: {fileID: 814393539125006354}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7646662283319485874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7012993363914388896, guid: ec060226807bfdf4b93852db8c75393a, type: 3}
@@ -10087,8 +10119,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38421e344c36a7346b3e8f08eeabd831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &842824040913451066 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 71777648143422218, guid: 9439bda95405b17498475fb0dc45d5d8, type: 3}
-  m_PrefabInstance: {fileID: 814393539187764016}
-  m_PrefabAsset: {fileID: 0}

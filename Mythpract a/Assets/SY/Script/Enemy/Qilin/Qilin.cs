@@ -3,6 +3,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public class Qilin : QilinBase
+{
+    private void Start()
+    {
+        SetUp();
+    }
+
+    private void Update()
+    {
+        ReNew();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (Param.Body_Gizmo.Display)
+        {
+            bc = GetComponent<BoxCollider2D>();
+            Param.Body_Gizmo.Draw(bc.bounds.center, bc.bounds.max - bc.bounds.min);
+        }
+        if (Param.Rush_Gizmo.Display) { Param.Rush_Gizmo.Draw(Param.Rush_Center, Param.Rush_AtkRange); }
+        if (Param.Eruption_Gizmo.Display) { Param.Eruption_Gizmo.Draw(Param.Eruption_Center, Param.Eruption_AtkRange); }
+        if (Param.Spin_Gizmo.Display) { Param.Spin_Gizmo.Draw(Param.Spin_Center, Param.Spin_AtkRange); }
+        if (Param.Meteor_Gizmo.Display) { Param.Meteor_Gizmo.Draw(Param.Meteor_Center, Param.Meteor_AtkRange); }
+
+        if (Param.Stage_Gizmo.Display) { Param.Stage_Gizmo.Draw(Param.Stage.Center, Param.Stage.Range); }
+    }
+}
+
+/*
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using SY;
 using Live2D.Cubism.Rendering;
 
@@ -309,8 +342,8 @@ public class Qilin : MonoBehaviour
 
         rb.position = pos;
 
-        if (moveType == Qilin_MoveType.Idle || /*moveType == Qilin_MoveType.Breath ||*/
-            moveType == Qilin_MoveType.Eruption /*|| moveType == Qilin_MoveType.PushUp*/)
+        //if (moveType == Qilin_MoveType.Idle || moveType == Qilin_MoveType.Breath ||
+        //    moveType == Qilin_MoveType.Eruption || moveType == Qilin_MoveType.PushUp)
         {
             Direction();
         }
@@ -712,9 +745,9 @@ public class Qilin : MonoBehaviour
                 if (anim.Action != AnimSetting.Type.Idle) { break; }
                 Vector2 spin1Pos = new Vector2(stage_LeftTop.x, gPos);
                 Vector2 spin2Pos = new Vector2(stage_RightDown.x, gPos);
-                Instantiate(spin, spin1Pos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
-                spin_Last =
-                    Instantiate(spin, spin2Pos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
+                //Instantiate(spin, spin1Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
+                //spin_Last =
+                //    Instantiate(spin, spin2Pos, Quaternion.identity, transform.Find("HitandEffect").gameObject.transform);
                 phase++;
                 break;
             //case 5:
@@ -1031,3 +1064,4 @@ public class Qilin_MoveTable
     public string Name { get { return name; } }
     public Qilin_MoveType[] Move { get { return move; } }
 }
+*/

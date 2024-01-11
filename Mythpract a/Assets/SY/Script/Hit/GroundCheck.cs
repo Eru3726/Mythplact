@@ -4,23 +4,23 @@ namespace SY
 {
     public class GroundCheck : MonoBehaviour
     {
-        [SerializeField, Tooltip("ƒŒƒC‰Â‹‰»")] bool isDisplay;
-        [SerializeField, Tooltip("Ú’n”»’èƒŒƒC")] GroundRaySetting[] ray;   //—v‘f”‚Í5ˆÈ‰º
+        [SerializeField, Tooltip("ãƒ¬ã‚¤å¯è¦–åŒ–")] bool isDisplay;
+        [SerializeField, Tooltip("æ¥åœ°åˆ¤å®šãƒ¬ã‚¤")] GroundRaySetting[] ray;   //è¦ç´ æ•°ã¯5ä»¥ä¸‹
 
         [System.Flags]
         public enum Flag
         {
-            None        = 0,        //”ñÚ’n
-            Ground      = 1 << 0,   //Ú’n
-            Slope_Left  = 1 << 1,   //¶‚Éâ”»’è
-            Slope_Right = 1 << 2,   //‰E‚Éâ”»’è
-            Wall_Left   = 1 << 3,   //¶‚É•Ç”»’è
-            Wall_Right  = 1 << 4,   //‰E‚É•Ç”»’è
+            None        = 0,        //éæ¥åœ°
+            Ground      = 1 << 0,   //æ¥åœ°
+            Slope_Left  = 1 << 1,   //å·¦ã«å‚åˆ¤å®š
+            Slope_Right = 1 << 2,   //å³ã«å‚åˆ¤å®š
+            Wall_Left   = 1 << 3,   //å·¦ã«å£åˆ¤å®š
+            Wall_Right  = 1 << 4,   //å³ã«å£åˆ¤å®š
         }
-        Flag groundFlag;
+        [SerializeField, ReadOnly] Flag groundFlag;
 
-        Vector2 pos;    //À•W
-        int i;          //ŒJ‚è•Ô‚µ
+        Vector2 pos;    //åº§æ¨™
+        int i;          //ç¹°ã‚Šè¿”ã—
 
         public GroundRaySetting[] Ray { get { return ray; } }
         public Flag GroundFlag() { return groundFlag; }
@@ -29,7 +29,7 @@ namespace SY
         public bool CheckFlag(Flag checkFlag) { return (groundFlag & checkFlag) != 0 ? true : false; }
         public void ClearFlag() { groundFlag = 0; }
 
-        void Awake()    //Á‚·‚©‚à
+        void Awake()    //æ¶ˆã™ã‹ã‚‚
         {
             ray[0].IsActive = true;
         }
@@ -80,19 +80,19 @@ namespace SY
             pos = transform.position;
             if (isDisplay)
             {
-                DrawGizmo(0);  //Ú’n
+                DrawGizmo(0);  //æ¥åœ°
                 if (ray.Length <= 1) { return; }
-                DrawGizmo(1);    //â
+                DrawGizmo(1);    //å‚
                 if (ray.Length <= 2) { return; }
-                DrawGizmo(2);   //â
+                DrawGizmo(2);   //å‚
                 if (ray.Length <= 3) { return; }
-                DrawGizmo(3);  //•Ç
+                DrawGizmo(3);  //å£
                 if (ray.Length <= 4) { return; }
-                DrawGizmo(4); //•Ç
+                DrawGizmo(4); //å£
             }
 
             if (ray.Length <= 5) { return; }
-            Debug.LogError(gameObject.name + " > GroundCheck : Ray‚Ì—v‘f”‚ğ5ˆÈ‰º‚É‚µ‚Ä‚­‚¾‚³‚¢");
+            Debug.LogError(gameObject.name + " > GroundCheck : Rayã®è¦ç´ æ•°ã‚’5ä»¥ä¸‹ã«ã—ã¦ãã ã•ã„");
         }
 
         void DrawGizmo(int rayNo)
@@ -107,17 +107,17 @@ namespace SY
     [System.Serializable]
     public class GroundRaySetting
     {
-        [SerializeField, Tooltip("–¼‘O")] string name;
-        [SerializeField, Tooltip("ƒIƒtƒZƒbƒg")] Vector2 offset;
-        [SerializeField, Tooltip("”¼Œa")] float radius;
-        [SerializeField, Tooltip("•ûŒü")] Vector2 direction;
-        [SerializeField, Tooltip("‹——£")] float distance;
-        [SerializeField, Tooltip("ƒŒƒCƒ„[")] LayerMask layer;
-        [SerializeField, Tooltip("ƒ^ƒO")] Tag tag;
-        [SerializeField, Tooltip("—LŒø")] bool isActive;
-        [SerializeField, Tooltip("ƒMƒYƒ‚")] GizmoSetting gizmo;
+        [SerializeField, Tooltip("åå‰")] string name;
+        [SerializeField, Tooltip("ã‚ªãƒ•ã‚»ãƒƒãƒˆ")] Vector2 offset;
+        [SerializeField, Tooltip("åŠå¾„")] float radius;
+        [SerializeField, Tooltip("æ–¹å‘")] Vector2 direction;
+        [SerializeField, Tooltip("è·é›¢")] float distance;
+        [SerializeField, Tooltip("ãƒ¬ã‚¤ãƒ¤ãƒ¼")] LayerMask layer;
+        [SerializeField, Tooltip("ã‚¿ã‚°")] Tag tag;
+        [SerializeField, Tooltip("æœ‰åŠ¹")] bool isActive;
+        [SerializeField, Tooltip("ã‚®ã‚ºãƒ¢")] GizmoSetting gizmo;
 
-        //----------ƒvƒƒpƒeƒB----------
+        //----------ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£----------
         public string Name { get { return name; } }
         public Vector2 Offset { get { return offset; } set { offset = value; } }
         public float Radius { get { return radius; } set { radius = value; } }
@@ -128,21 +128,21 @@ namespace SY
         public bool IsActive { get { return isActive; } set { isActive = value; } }
         public GizmoSetting Gizmo { get { return gizmo; } }
 
-        //----------ƒT[ƒrƒX----------
-        //“–‚½‚è”»’è
+        //----------ã‚µãƒ¼ãƒ“ã‚¹----------
+        //å½“ãŸã‚Šåˆ¤å®š
         public RaycastHit2D Raycast(Vector2 origin)
         {
             return Physics2D.CircleCast(origin + Offset, Radius, Direction, Distance, Layer);
 
-            //CircleCastˆø”ŠT—v (‰~‚æ‚è‘¾‚¢ü‚ÌƒCƒ[ƒW)
-            //  origin...Œ´“_
-            //  radius...‰~”¼Œa
-            //  direction...ü‚ğˆø‚­•ûŒü
-            //  distance...ü‚ğˆø‚­‹——£
-            //  layer...ƒŒƒCƒ„[
+            //CircleCastå¼•æ•°æ¦‚è¦ (å††ã‚ˆã‚Šå¤ªã„ç·šã®ã‚¤ãƒ¡ãƒ¼ã‚¸)
+            //  origin...åŸç‚¹
+            //  radius...å††åŠå¾„
+            //  direction...ç·šã‚’å¼•ãæ–¹å‘
+            //  distance...ç·šã‚’å¼•ãè·é›¢
+            //  layer...ãƒ¬ã‚¤ãƒ¤ãƒ¼
         }
 
-        //‰Â‹‰»
+        //å¯è¦–åŒ–
         //public void DrawRay()
         //{
         //    Debug.DrawRay(Origin, Direction.normalized * Distance, Color.green, Time.deltaTime, false);
