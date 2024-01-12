@@ -182,7 +182,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1caf755b2d99a7542baf162564394829, type: 3}
-  m_Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5870,6 +5870,26 @@ PrefabInstance:
     - target: {fileID: 3611402570885462303, guid: 4b2a4e6cfe4514349b29fdb3619ab486, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611402570885462303, guid: 4b2a4e6cfe4514349b29fdb3619ab486, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.8253398
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611402570885462303, guid: 4b2a4e6cfe4514349b29fdb3619ab486, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611402570885462303, guid: 4b2a4e6cfe4514349b29fdb3619ab486, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.8652289
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611402570885462303, guid: 4b2a4e6cfe4514349b29fdb3619ab486, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611402570885462303, guid: 4b2a4e6cfe4514349b29fdb3619ab486, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b2a4e6cfe4514349b29fdb3619ab486, type: 3}
@@ -27090,6 +27110,10 @@ PrefabInstance:
     - target: {fileID: 9062139374609896512, guid: 23bda9387c13fb4499afba7b7de52db2, type: 3}
       propertyPath: m_Name
       value: titlelight
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062139374609896638, guid: 23bda9387c13fb4499afba7b7de52db2, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9062139374609896639, guid: 23bda9387c13fb4499afba7b7de52db2, type: 3}
       propertyPath: m_RootOrder
