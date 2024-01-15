@@ -589,6 +589,17 @@
                 },
                 {
                     "name": "",
+                    "id": "222d01a1-3a4e-4145-971f-636e899644c4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkillPick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "05d3c8f9-a0f1-4370-b321-da969a5ed8e1",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -633,6 +644,17 @@
                 },
                 {
                     "name": "",
+                    "id": "bb5fba90-b583-4ab1-8df3-d6b4d29eb6d5",
+                    "path": "<Mouse>/backButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkillRollR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b99a1ddc-da7e-4a19-92eb-c2622ee5d190",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -646,6 +668,17 @@
                     "name": "",
                     "id": "51ffc166-5aaf-41b6-8abc-e39d6e312e56",
                     "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkillRollL",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d04d92c8-40c2-4c28-9683-520a3d4aabb9",
+                    "path": "<Mouse>/forwardButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -128,7 +128,7 @@ public class CursorController : MonoBehaviour
 
         MoveCursor();
 
-
+        MouseCursorCtrl();
 
         SkillPieceInfo();
     }
@@ -242,7 +242,7 @@ public class CursorController : MonoBehaviour
 
         Vector2 MoveInp = Move.action.ReadValue<Vector2>();
         Vector2 beforeVec = Vector2.zero;
-        Debug.Log(MoveInp);
+        //Debug.Log(MoveInp);
 
 
 
@@ -913,6 +913,20 @@ public class CursorController : MonoBehaviour
     void MouseCursorCtrl()
     {
         hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider.tag == "SkillBase")
+        {
+            int skillBaseNum = 19;
+            for (int i = 1; i <= skillBaseNum; i++)
+            {
+                if (hit.collider.name == i.ToString())
+                {
+                    Debug.Log(hit.collider.transform.position);
+                    this.gameObject.transform.position = hit.collider.transform.position;
+                }
+            }
+        }
+
 
     }
     private void OnTriggerExit2D(Collider2D col)
