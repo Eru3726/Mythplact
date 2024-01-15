@@ -8,9 +8,6 @@ public class Distortion : MonoBehaviour
     private float disspd = 1f;
     [SerializeField,Header("消える速度")]
     private float fadeSpd = 0.01f;
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
