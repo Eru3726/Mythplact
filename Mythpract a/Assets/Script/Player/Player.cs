@@ -1327,7 +1327,7 @@ public partial class Player : MonoBehaviour
             achvComboCount++;
             achvComboTime = 0;
         }
-        if(achvComboTime >= SkillLoneComboSpan || HMng.CheckDamage())
+        if(achvComboTime >= playerData.Player[0].skillLoneComboSpan || HMng.CheckDamage())
         {
             achvComboCount = 0;
         }
