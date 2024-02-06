@@ -11,6 +11,9 @@ public partial class Player : MonoBehaviour
     Vector3 dir;
     Rigidbody2D PlayerRb;
 
+    [SerializeField]
+    private ExcelPlayerData playerData;
+
     [SerializeField,Tooltip("最高速度")] int maxSpeed;              // プレイヤーの最高速度
     [SerializeField, Tooltip("ジャンプ力")] float jumpPow;             // ジャンプ時に加える力
     [SerializeField, Tooltip("ダブルジャンプ力")] float doubleJumpPow;       // ダブルジャンプ時に加える力
@@ -1324,7 +1327,7 @@ public partial class Player : MonoBehaviour
             achvComboCount++;
             achvComboTime = 0;
         }
-        if(achvComboTime >= SkillLoneComboSpan || HMng.CheckDamage())
+        if(achvComboTime >= playerData.Player[0].skillLoneComboSpan || HMng.CheckDamage())
         {
             achvComboCount = 0;
         }

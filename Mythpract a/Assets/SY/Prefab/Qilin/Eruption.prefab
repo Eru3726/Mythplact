@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 0
 --- !u!1 &9093655586302129717
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +72,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2806017598587471158}
   - component: {fileID: 8225164685574938268}
-  - component: {fileID: 7087884179384401325}
+  - component: {fileID: 7572660499194787449}
+  - component: {fileID: -3479428050630551473}
   m_Layer: 7
   m_Name: Eruption
   m_TagString: Untagged
@@ -119,7 +119,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7087884179384401325
+--- !u!114 &7572660499194787449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,12 +128,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9093655586302129717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7540d4302ca489647bc4d80005b780dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ceef6dc145715941b8391eb785296b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qilinName: Qilin
-  attack: {fileID: 4776590688356478371}
-  speed: 1
+  enemyName: Qilin
+  atk: {fileID: 4776590688356478371}
   upTime: 0.5
   atkTime: 1.5
   effect:
@@ -145,6 +144,25 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+--- !u!114 &-3479428050630551473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093655586302129717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5080bb5eb6ca7c1408d55d8964f0c4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: 1
+  maxHp: 1
+  hp: 1
+  atk: 1
+  def: 1
+  atkActive: 0
+  defActive: 0
 --- !u!1001 &5914610819938850222
 PrefabInstance:
   m_ObjectHideFlags: 0
