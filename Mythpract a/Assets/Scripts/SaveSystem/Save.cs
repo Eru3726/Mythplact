@@ -11,6 +11,7 @@ public class Save : MonoBehaviour
     void OnEnable()
     {
         Debug.Log("セーブ開始");
+        AutoSaveUI.instance.AutoSaveUIOpen();
         DoSave();
     }
 
