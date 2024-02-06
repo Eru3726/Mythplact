@@ -73,7 +73,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 100
 --- !u!114 &8167833268164800276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 200
 --- !u!114 &8870469269073970247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 75
 --- !u!114 &7980314384394567725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14902,7 +14899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 100
 --- !u!114 &8922014011860414498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15084,7 +15080,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 7
+  m_GravityScale: 8
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -15103,8 +15099,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 12
-  jumpPow: 20
-  doubleJumpPow: 25
+  jumpPow: 24
+  doubleJumpPow: 38
   chargeAttackTime: 2
   maxStamina: 100
   healStamina: 50
@@ -15115,8 +15111,8 @@ MonoBehaviour:
   guardCoolTimeSec: 1
   justGuardTime: 0.1
   knockbuckTime: 0.5
-  atkJumpDownCT: 0.4
-  atkJumpUpCT: 0.3
+  atkJumpDownCT: 0.2
+  atkJumpUpCT: 0.1
   attackInp: {fileID: -4327428838556983879, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   guardInp: {fileID: 4014162791499612685, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   rightInp: {fileID: 3173363362254018375, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
@@ -15390,7 +15386,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 100
 --- !u!114 &8922014012754494217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20293,7 +20288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  power: 0
 --- !u!1 &9211903540725876237
 GameObject:
   m_ObjectHideFlags: 0
@@ -20367,7 +20361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 100
 --- !u!114 &956756221054902486
 MonoBehaviour:
   m_ObjectHideFlags: 0

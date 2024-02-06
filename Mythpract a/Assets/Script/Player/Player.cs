@@ -32,6 +32,7 @@ public partial class Player : MonoBehaviour
     SpriteRenderer plsp;
     Image brinkSlider;
     float jumpPowPlus;
+    float jumpUpCount = 0;              // ジャンプの上昇時間
     float attackCount = 0;
     float atkJumpDownCount = 0;
     float atkJumpUpCount = 0;
@@ -66,6 +67,7 @@ public partial class Player : MonoBehaviour
  
     bool space;
     bool spaceDown;
+    bool spaceup;
     bool guard;
     bool brink;
     bool skill1;
@@ -724,6 +726,14 @@ public partial class Player : MonoBehaviour
         {
             space = false;
         }
+        if (jumpInp.action.WasReleasedThisFrame())
+        {
+            spaceup = true;
+        }
+        else
+        {
+            spaceup = false;
+        }
         if (blinkInp.action.WasPressedThisFrame())
         {
             brink = true;
@@ -811,13 +821,14 @@ public partial class Player : MonoBehaviour
         {
             jumping = false;       // 大ジャンプ判定
             doublejump = false;    // ダブルジャンプ判定
-            isbrinkUp = false;     // 空中ブリンク判定]
+            isbrinkUp = false;     // 空中ブリンク判定
 
             // ジャンプ
             if (spaceDown && !isGuard && !isSkill && !isAttack &&!hitAnim)
             {
                 PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
                 PlayerRb.AddForce(Vector2.up * jumpPow, ForceMode2D.Impulse);
+                jumpUpCount = 0.2f;
 
                 JumpSE();
             }
@@ -841,6 +852,9 @@ public partial class Player : MonoBehaviour
             PlayerRb.velocity = new Vector2(PlayerRb.velocity.x, 0);
             PlayerRb.AddForce(Vector2.up * doubleJumpPow, ForceMode2D.Impulse);
             doublejump = false;
+            jumping = true;
+            jumpUpCount = 0.2f;
+
 
             JumpEffect();
             JumpSE();
@@ -861,17 +875,22 @@ public partial class Player : MonoBehaviour
             speed = 0;
         }
         // 長押しでジャンプ高さアップ
-        if (space && !jumping && PlayerRb.velocity.y > 0 )  
+        if (space && !jumping && PlayerRb.velocity.y > 0 && jumpUpCount > 0)  
         {
-            jumpPowPlus = 30;
+            PlayerRb.gravityScale = 0;
+            jumpPowPlus = 0;
+            jumpUpCount -= Time.deltaTime;
             doublejump = true;
-
         }
         else
         {
-            jumpPowPlus = 0;
-            jumping = true;
+            PlayerRb.gravityScale = 10;
+            jumpPowPlus = -30;
+            jumpUpCount = 0;
+
         }
+
+
 
         PlayerRb.AddForce(Vector2.up * jumpPowPlus);
 
