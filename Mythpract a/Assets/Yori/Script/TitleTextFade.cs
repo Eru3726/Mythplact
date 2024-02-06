@@ -7,12 +7,12 @@ public class TitleTextFade : MonoBehaviour
 {
     [SerializeField, Header("TitleTextのイメージ")]
     private Image textImage;
-    [SerializeField, Header("TitleTextのイメージ")]
-    private Image textImage;
-    [SerializeField, Header("TitleTextのイメージ")]
-    private Image textImage;
-    [SerializeField, Header("TitleTextのイメージ")]
-    private Image textImage;
+    //[SerializeField, Header("TitleTextのイメージ")]
+    //private Image textImage;
+    //[SerializeField, Header("TitleTextのイメージ")]
+    //private Image textImage;
+    //[SerializeField, Header("TitleTextのイメージ")]
+    //private Image textImage;
 
     private Color colorText;
 
