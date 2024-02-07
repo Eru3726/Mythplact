@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 0
 --- !u!1 &8449096857308795825
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8449096857308795790}
   - component: {fileID: 8449096857308795791}
-  - component: {fileID: 2522549576042251467}
+  - component: {fileID: 472523345695380035}
   - component: {fileID: -4124940790163241959}
   m_Layer: 7
   m_Name: Spin
@@ -120,7 +119,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2522549576042251467
+--- !u!114 &472523345695380035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,13 +128,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8449096857308795825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7540d4302ca489647bc4d80005b780dc, type: 3}
+  m_Script: {fileID: 11500000, guid: d1447228db543c34a86a5c3c78e0880d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qilinName: Qilin
-  attack: {fileID: 8449096856969812654}
-  speed: 2
-  upTime: 0.3
+  enemyName: Qilin
+  atk: {fileID: 8449096856969812654}
+  upTime: 1
   atkTime: 30
   effect:
     particle: {fileID: 2657639739816163701}
@@ -146,6 +144,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  speed: 2
 --- !u!114 &-4124940790163241959
 MonoBehaviour:
   m_ObjectHideFlags: 0
