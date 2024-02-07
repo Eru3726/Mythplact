@@ -16,6 +16,11 @@ public class TitleManager : MonoBehaviour
     [SerializeField]
     private GameObject optionCan, disCan, souCan, keyCan, padCan, quitCan;
 
+    [SerializeField]
+    private GameObject sceneLight;
+
+    [SerializeField]
+    private GameObject globalVol;
     private bool optionOpenFlg = false;
 
     private int nowOpution = 1;
@@ -40,6 +45,8 @@ public class TitleManager : MonoBehaviour
 
         nowOpution = 1;
         PanelUpdata();
+
+        sceneLight.SetActive(true);
     }
 
     void Update()
@@ -109,22 +116,26 @@ public class TitleManager : MonoBehaviour
     {
         optionOpenFlg = true;
         optionCan.SetActive(optionOpenFlg);
+        sceneLight.SetActive(false);
     }
 
     public void OptionClauseButton()
     {
         optionOpenFlg = false;
         optionCan.SetActive(optionOpenFlg);
+        sceneLight.SetActive(true);
     }
 
     public void QuitMenuOpen()
     {
         quitCan.SetActive(true);
+        sceneLight.SetActive(false);
     }
 
     public void QuitMenuClause()
     {
         quitCan.SetActive(false);
+        sceneLight.SetActive(true);
     }
 
     public void QuitGameButton()
