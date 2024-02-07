@@ -3161,9 +3161,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1664077803}
-        m_TargetAssemblyTypeName: TitleScene, Assembly-CSharp
-        m_MethodName: GameStart
+      - m_Target: {fileID: 1627875817}
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: FadeStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14845,6 +14845,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 412740740}
+        m_TargetAssemblyTypeName: FadeManager, Assembly-CSharp
+        m_MethodName: Fadeout
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1042917095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17636,6 +17648,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 412740740}
+        m_TargetAssemblyTypeName: FadeManager, Assembly-CSharp
+        m_MethodName: Fadeout
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1193098451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19595,7 +19619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1332058417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24940,7 +24964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conconnect: {fileID: 429582203}
-  start: {fileID: 0}
+  start: {fileID: 1914236981}
   setting: {fileID: 0}
   quit: {fileID: 0}
   keycon: {fileID: 0}
@@ -30308,6 +30332,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 412740740}
+        m_TargetAssemblyTypeName: FadeManager, Assembly-CSharp
+        m_MethodName: Fadeout
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

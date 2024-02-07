@@ -109,6 +109,10 @@ public class TitleManager : MonoBehaviour
     {
         startTime = (int)Time.time;
         Debug.Log(Time.time);
+    }
+
+    public void FadeStart()
+    {
         SceneManager.LoadScene("RestScene");
     }
 
