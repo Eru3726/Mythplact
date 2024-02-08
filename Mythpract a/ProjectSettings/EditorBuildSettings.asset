@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Yori/TitleScene.unity
+    path: Assets/Scenes/TitleScene.unity
     guid: bd2cb28a4eb99b143a1891f5ba7c38e3
   - enabled: 1
     path: Assets/Scenes/RestScene.unity
