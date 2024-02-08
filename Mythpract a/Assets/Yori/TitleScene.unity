@@ -19619,7 +19619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1332058417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30713,7 +30713,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dismat: {fileID: 2100000, guid: 15069327cbdf79343a1053b31a81929c, type: 2}
-  fadeSpd: 0.009
+  fadeSpd: 0.01
+  titleCanvas: {fileID: 1627875820}
 --- !u!1 &2021417128
 GameObject:
   m_ObjectHideFlags: 0
