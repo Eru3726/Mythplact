@@ -34,6 +34,9 @@ public class SaveSlotManager : MonoBehaviour
     [SerializeField]
     private DataManager dm;
 
+    [SerializeField]
+    private GameObject sceneLight;
+
     private bool nowOpenFlg = false;
 
     private bool newGameFlg = false;
@@ -128,6 +131,7 @@ public class SaveSlotManager : MonoBehaviour
 
         nowOpenFlg = true;
         SaveSlotPanel.SetActive(nowOpenFlg);
+        sceneLight.SetActive(!nowOpenFlg);
     }
 
     public void ContinueButton()
@@ -207,6 +211,7 @@ public class SaveSlotManager : MonoBehaviour
 
         nowOpenFlg = true;
         SaveSlotPanel.SetActive(nowOpenFlg);
+        sceneLight.SetActive(!nowOpenFlg);
     }
 
     public void GameStartButton(int value)
@@ -222,5 +227,6 @@ public class SaveSlotManager : MonoBehaviour
     {
         nowOpenFlg = false;
         SaveSlotPanel.SetActive(nowOpenFlg);
+        sceneLight.SetActive(!nowOpenFlg);
     }
 }
