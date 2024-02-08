@@ -302,7 +302,7 @@ public class CursorController : MonoBehaviour
         else left1 = false;
             
 
-        if(Move.action.WasPerformedThisFrame())
+        if(/*Move.action.WasPerformedThisFrame()*/MoveInp.x == 0 && MoveInp.y == 0)
         {
             moveonce = true;
             beforeVec = MoveInp;
@@ -311,10 +311,10 @@ public class CursorController : MonoBehaviour
         if (Pick.action.WasPressedThisFrame()) space = true;
         else space = false;
 
-        if (RSpin.action.WasPressedThisFrame()) Rspin = true;
+        if (RSpin.action.WasPressedThisFrame() || Input.GetAxis("Mouse ScrollWheel") > 0) Rspin = true;
         else Rspin = false;
 
-        if (LSpin.action.WasPressedThisFrame()) Lspin = true;
+        if (LSpin.action.WasPressedThisFrame() || Input.GetAxis("Mouse ScrollWheel") < 0) Lspin = true;
         else Lspin = false;
 
         if (Back.action.WasPressedThisFrame()) back = true;
@@ -912,6 +912,7 @@ public class CursorController : MonoBehaviour
     }
     void MouseCursorCtrl()
     {
+
         hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider.tag == "SkillBase")
