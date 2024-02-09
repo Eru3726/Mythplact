@@ -112,7 +112,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Brightness: 5
-    - DissolveAmount: -1.0999986
+    - DissolveAmount: -0.009999329
     - DissolveScale: 15
     - DissolveWidth: 0.6
     - EdgeWidth: 0.005

@@ -7,9 +7,14 @@ public class Distortion : MonoBehaviour
     [SerializeField, Header("出現速度")]
     private float fadeSpd = 0.01f;
 
-    [SerializeField, Header("タイトルキャンバス")]
-    private Canvas titleCanvas;
+    [SerializeField, Header("ボタンテキスト")]
+    private GameObject titleCanvas;
 
+
+    private void Awake()
+    {
+        titleCanvas.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -19,13 +24,13 @@ public class Distortion : MonoBehaviour
             disspd = 1;
         }
         
-        if (disspd <= 1)
+        if (disspd >= 0)
         {
             disspd -= fadeSpd;
         }
         else
         {
-            
+            titleCanvas.SetActive(true);
         }
         dismat.SetFloat("DissolveAmount", disspd);
     }
