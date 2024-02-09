@@ -6734,7 +6734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1344857313}
-  alphaColor: 0.05
+  alphaColor: 0.025
 --- !u!1 &422698219
 GameObject:
   m_ObjectHideFlags: 0
@@ -7168,7 +7168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1536747140}
-  alphaColor: 0.05
+  alphaColor: 0.1
 --- !u!1 &442419913
 GameObject:
   m_ObjectHideFlags: 0
@@ -28402,7 +28402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1709461911}
-  alphaColor: 0.05
+  alphaColor: 0.2
 --- !u!1 &1900104214
 GameObject:
   m_ObjectHideFlags: 0

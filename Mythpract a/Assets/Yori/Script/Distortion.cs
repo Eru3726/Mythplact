@@ -7,7 +7,7 @@ public class Distortion : MonoBehaviour
     [SerializeField, Header("出現速度")]
     private float fadeSpd = 0.01f;
 
-    [SerializeField, Header("ボタンテキスト")]
+    [SerializeField, Header("タイトルキャンバス")]
     private GameObject titleCanvas;
 
 
@@ -22,6 +22,7 @@ public class Distortion : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             disspd = 1;
+            titleCanvas.SetActive(false);
         }
         
         if (disspd >= 0)
