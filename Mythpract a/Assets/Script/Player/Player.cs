@@ -1206,7 +1206,7 @@ public partial class Player : MonoBehaviour
         Animation anim;
 
         anim = gameObject.GetComponent<Animation>();
-        Debug.Log(hitAnim + "HitAnim");
+        //Debug.Log(hitAnim + "HitAnim");
 
 
         // ノックバック
