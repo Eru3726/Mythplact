@@ -18,6 +18,7 @@ public class Shoggoth : MonoBehaviour
 {
     Rigidbody2D rb;                 //物理演算
     AudioSource se;                 //サウンド
+    SnakeRig sRig;
     HitMng hm;                      //当たり判定
     GroundCheck gc; //接地判定
     Circle circle = new Circle();   //円
@@ -146,12 +147,13 @@ public class Shoggoth : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        sRig = GetComponent<SnakeRig>();
+        headObj = sRig.Root;
+        rb = headObj.GetComponent<Rigidbody2D>();
         se = GetComponent<AudioSource>();
         hm = GetComponent<HitMng>();
         obj = this.gameObject;
         defColor = Color.white;
-        headObj = transform.Find("Model/Head").gameObject;
         pos = rb.position;
         plPos = pl.transform.position;
         scale = headObj.transform.localScale;
@@ -205,8 +207,9 @@ public class Shoggoth : MonoBehaviour
         afterPos = rb.position;  //移動移動後の位置保存
 
         //移動方向に向く
-        transform.rotation = MoveDirection(beforePos, afterPos);
-        BodyRot();
+        sRig.Rotate(headObj, afterPos - beforePos);
+        //transform.rotation = MoveDirection(beforePos, afterPos);
+        //BodyRot();
 
         //Debug.Log(phase);
         hm.PostUpdate();
