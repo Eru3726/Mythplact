@@ -5895,6 +5895,54 @@ PrefabInstance:
       propertyPath: pl
       value: 
       objectReference: {fileID: 792412642}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[0].particle
+      value: 
+      objectReference: {fileID: 3310788393474273938, guid: 127b697e1cba9394e8c24f0e3892359a, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[1].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[2].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[3].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[4].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[5].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[6].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[7].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[8].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[9].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[10].particle
+      value: 
+      objectReference: {fileID: 1573488918987771620, guid: c79ec5b1b9f307a4ab828f0c12ca4ab4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: die_Effect.Array.data[11].particle
+      value: 
+      objectReference: {fileID: 3768400590454048169, guid: 3b6f92f5b42f86340a63364e55943823, type: 3}
     - target: {fileID: 5971913799980852503, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_RootOrder
       value: 1
