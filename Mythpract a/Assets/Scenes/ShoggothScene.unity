@@ -5895,6 +5895,10 @@ PrefabInstance:
       propertyPath: pl
       value: 
       objectReference: {fileID: 792412642}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: slime_MaxNum
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852503, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_RootOrder
       value: 1

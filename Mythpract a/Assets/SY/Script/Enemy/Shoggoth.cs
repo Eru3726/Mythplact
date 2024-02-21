@@ -144,12 +144,16 @@ public class Shoggoth : MonoBehaviour
 
     [Header("スライム")]
     [SerializeField, Tooltip("生成間隔")] float slime_GenerateTime;
+    [SerializeField, Tooltip("最大数")] float slime_MaxNum;
+    List<GameObject> slimeObj = new List<GameObject>();
 
     private readonly AchvMeasurement achv = new AchvMeasurement();
 
 
     public GameObject Player { get { return pl; } }
     public Shoggoth_MoveType MoveType { get { return moveType; } }
+    public float HP { get { return hm.HP; } set { hm.HP = value; } }
+    public List<GameObject> SlimeObj { get { return slimeObj; } set { slimeObj = value; } }
 
     private void Start()
     {
@@ -218,6 +222,9 @@ public class Shoggoth : MonoBehaviour
         sRig.Rotate(headObj, afterPos - beforePos);
         //transform.rotation = MoveDirection(beforePos, afterPos);
         //BodyRot();
+
+        //スライム
+        SlimeGene();
 
         //Debug.Log(phase);
         hm.PostUpdate();
@@ -324,7 +331,7 @@ public class Shoggoth : MonoBehaviour
                 pos = circle.Move(timer, rotation_Speed);
                 if ((timer % slime_GenerateTime) + Time.deltaTime > slime_GenerateTime)
                 {
-                    Instantiate(slime, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+                    //Instantiate(slime, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
                     no++;
                     if (no > rotation_SlimeGenerate) { phase++; }
                 }
@@ -411,7 +418,7 @@ public class Shoggoth : MonoBehaviour
                         upDown_Effect.transform.position = new Vector2
                             (upDown_Effect.transform.position.x, groundPosY + 2.0f);
                         if (no == upDown_SlimeGenerate) { return; }   //スライム生成回数が指示回数と同一
-                        Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity); //スライム生成
+                        //Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity); //スライム生成
                         no++;                       //スライム生成回数
                     }
                 }
@@ -429,7 +436,7 @@ public class Shoggoth : MonoBehaviour
                         upDown_Effect.transform.position = new Vector2
                             (upDown_Effect.transform.position.x, groundPosY + 2.0f);
                         if (no == upDown_SlimeGenerate) { return; }   //スライム生成回数が指示回数と同一
-                        Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity);
+                        //Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity);
                         no++;
                     }
                 }
@@ -552,7 +559,7 @@ public class Shoggoth : MonoBehaviour
     public void Damage()
     {
         Debug.Log(gameObject.name + "はダメージ受けた");
-        StartCoroutine("Flash");
+        StartCoroutine(Flash());
     }
 
     void Die()
@@ -579,6 +586,27 @@ public class Shoggoth : MonoBehaviour
         LastParticle = Instantiate(die_Effect[2].Particle.gameObject,
             tail.transform.parent.gameObject.transform.position, Quaternion.identity);
         LastParticle.GetComponent<ParticleSystem>().Play();
+
+        for (int i = 0; i < slimeObj.Count; i++)
+        {
+            Destroy(slimeObj[i]);
+        }
+    }
+
+    float slimeTimer = 0;
+    void SlimeGene()
+    {
+        if (slime_MaxNum <= slimeObj.Count) { return; }
+        slimeTimer += Time.deltaTime;
+        if (slimeTimer < slime_GenerateTime) { return; }
+        int slimePos = Random.Range(0, sRig.Body.Length);
+
+        if (GameObject.Find(slime.name) != null) { return; }
+        Transform bodyTF = sRig.Body[slimePos].transform;
+        GameObject s = Instantiate(slime, bodyTF.position, bodyTF.rotation);
+        s.GetComponent<Slime>().Root = sRig.Body[slimePos];
+        slimeObj.Add(s);
+        slimeTimer = 0;
     }
 
     //----------各種データ管理----------
@@ -616,6 +644,10 @@ public class Shoggoth : MonoBehaviour
                 body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
             }
             tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
+            for (int i = 0; i < slimeObj.Count; i++)
+            {
+                slimeObj[i].GetComponent<SpriteRenderer>().color = damage_Color;
+            }
             //待つ
             yield return new WaitForSeconds(damage_Time);
             head.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
@@ -624,6 +656,10 @@ public class Shoggoth : MonoBehaviour
                 body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
             }
             tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
+            for (int i = 0; i < slimeObj.Count; i++)
+            {
+                slimeObj[i].GetComponent<SpriteRenderer>().color = defColor;
+            }
             //待つ
             yield return new WaitForSeconds(damage_Time);
             damage_Repeat++;
