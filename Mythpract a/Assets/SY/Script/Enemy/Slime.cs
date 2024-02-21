@@ -90,8 +90,8 @@ public class Slime : MonoBehaviour
 
         HMng.SetUp(Damage, Die);
 
-        shoggothObj = GameObject.Find("Shoggoth");
-        shoggoth = GameObject.Find("Shoggoth").GetComponent<Shoggoth>();
+        shoggothObj = GameObject.Find("Shoggoth_2.0");
+        shoggoth = shoggothObj.GetComponent<Shoggoth>();
         moveType = MoveType.First;
         firstMove = (int)shoggoth.MoveType;
     }

@@ -7,6 +7,7 @@ using SY;
 
 public enum Shoggoth_MoveType
 {
+    Entry,      //登場
     Eight,      //基本
     Rotation,   //共有メモパターン2
     UpDown,     //共有メモパターン3
@@ -18,6 +19,7 @@ public class Shoggoth : MonoBehaviour
 {
     Rigidbody2D rb;                 //物理演算
     AudioSource se;                 //サウンド
+    SnakeRig sRig;
     HitMng hm;                      //当たり判定
     GroundCheck gc; //接地判定
     Circle circle = new Circle();   //円
@@ -64,6 +66,11 @@ public class Shoggoth : MonoBehaviour
     Vector2 afterPos;   //移動後の位置
     Vector2 targetPos;  //目標位置
     float groundPosY;   //地面の高さ
+
+    [Header("登場")]
+    [SerializeField, Tooltip("初期位置")] Vector2 startPosition;
+    [SerializeField, Tooltip("速度")] float entry_Speed;
+    [SerializeField, Tooltip("動き")] Shoggoth_EntryMove[] entryMove;
 
     [Header("八の字")]
     [SerializeField, Tooltip("速度")] float eight_Speed;
@@ -146,20 +153,21 @@ public class Shoggoth : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        sRig = GetComponent<SnakeRig>();
+        headObj = sRig.Root;
+        rb = headObj.GetComponent<Rigidbody2D>();
+        rb.position = startPosition;
         se = GetComponent<AudioSource>();
         hm = GetComponent<HitMng>();
         obj = this.gameObject;
         defColor = Color.white;
-        headObj = transform.Find("Model/Head").gameObject;
         pos = rb.position;
         plPos = pl.transform.position;
         scale = headObj.transform.localScale;
         gravity = rb.gravityScale;
         groundPosY = GroundPosition(eight_Center.x);
 
-        tableNo = Random.Range(0, moveTable.Length);
-        moveNo = 0;
+        moveType = Shoggoth_MoveType.Entry;
 
         PowerReset();
         rush_Effect.Clear();
@@ -191,6 +199,8 @@ public class Shoggoth : MonoBehaviour
 
         switch (moveType)
         {
+            case Shoggoth_MoveType.Entry:
+                Entry(); break;
             case Shoggoth_MoveType.Eight:
                 Eight(); break;
             case Shoggoth_MoveType.Rotation:
@@ -205,14 +215,53 @@ public class Shoggoth : MonoBehaviour
         afterPos = rb.position;  //移動移動後の位置保存
 
         //移動方向に向く
-        transform.rotation = MoveDirection(beforePos, afterPos);
-        BodyRot();
+        sRig.Rotate(headObj, afterPos - beforePos);
+        //transform.rotation = MoveDirection(beforePos, afterPos);
+        //BodyRot();
 
         //Debug.Log(phase);
         hm.PostUpdate();
     }
 
     //----------アクション----------
+    //登場
+    void Entry()
+    {
+        switch(phase)
+        {
+            case 0:
+                pos = entryMove[repeat].Start;
+                dir = Distance(entryMove[repeat].Start, entryMove[repeat].Target).normalized;
+                Debug.Log(rb.velocity);
+                phase++;
+                break;
+            case 1:
+                pos += dir * (entry_Speed * speed_save);
+                Debug.Log((entryMove[repeat].Target - pos).normalized);
+                if (dir == (entryMove[repeat].Target - pos).normalized) { break; }
+                phase++;
+                break;
+            case 2:
+                pos += dir * (entry_Speed * speed_save);
+                timer += Time.deltaTime;
+                if (timer < entryMove[repeat].Interval) { break; }
+                repeat++;
+                timer = 0;
+                if (repeat == entryMove.Length) { phase++; break; }
+                phase = 0;
+                break;
+            case 3:
+                tableNo = Random.Range(0, moveTable.Length);
+                moveNo = 0;
+                moveType = moveTable[tableNo].Move[moveNo];
+                AllVariableClear();
+                break;
+            default:
+                AllVariableClear();
+                break;
+        }
+    }
+
     //8の字移動
     void Eight()
     {
@@ -681,4 +730,16 @@ public class Shoggoth_MoveTable
 
     public string Name { get { return name; } }
     public Shoggoth_MoveType[] Move { get { return move; } }
+}
+
+[System.Serializable]
+public class Shoggoth_EntryMove
+{
+    [SerializeField, Tooltip("スタート座標")] Vector2 start;
+    [SerializeField, Tooltip("目標座標")] Vector2 target;
+    [SerializeField, Tooltip("間隙")] float interval;
+
+    public Vector2 Start { get { return start; } }
+    public Vector2 Target { get { return target; } }
+    public float Interval { get { return interval; } }
 }
