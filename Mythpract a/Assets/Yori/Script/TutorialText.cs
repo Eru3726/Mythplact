@@ -63,6 +63,7 @@ public class TutorialText : MonoBehaviour
     [SerializeField, Header("チュートリアルの敵")]
     private TextMesh tutorialEnemy;
 
+    private bool canChange = false;
 
     void Start()
     {
@@ -78,17 +79,13 @@ public class TutorialText : MonoBehaviour
         color = this.GetComponent<TextMesh>().color;
         color.a = 0;
         this.GetComponent<TextMesh>().color = color;
+
+        canChange = false;
     }
     private void Update()
     {
         TutorialPopText();
         FadeText();
-        
-        if (PopTextType.tutorialBattle == popTexttype && tutorialEnemy == null)
-        {
-            // 死んだらチュートリアル終わりの実績解除&新しいスキル取得
-            // スキルピースチュートリアル追加
-        }
     }
 
     void TutorialPopText()
@@ -103,6 +100,10 @@ public class TutorialText : MonoBehaviour
             case PopTextType.Move:
                 poptext = " 「" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + ","
                     + _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "」移動";
+                if (canChange&& _actionRef[0].action.triggered)
+                {
+
+                }
                 break;
             case PopTextType.Jump:
                 poptext = " 「" + _action[(int)InputActionNum.jumpInp].GetBindingDisplayString(bindingIndex) + "」 ジャンプ"
@@ -140,11 +141,11 @@ public class TutorialText : MonoBehaviour
                 // 次表示させるテキストがチュートリアルの敵ならnextTextMeshも消す
                 if (popTexttype + 1 == PopTextType.tutorialBattle)
                 {
-                    nextTexntMesh.GetComponent<TextMesh>().color= color;
+                    nextTexntMesh.GetComponent<TextMesh>().color = color;
                 }
 
                 if (color.a <= 0)
-                {                    
+                {
                     fadeMathod++;
                     popTexttype++;
                 }
@@ -156,14 +157,9 @@ public class TutorialText : MonoBehaviour
                     color.a += popSpd * Time.deltaTime;
                     this.GetComponent<TextMesh>().color = color;
                 }
-                else if (popTexttype!=PopTextType.tutorialBattle)
+                else if (popTexttype != PopTextType.tutorialBattle)
                 {
-                    Debug.Log(color.a);
-                    // ここコントローラー対応させたいからあとで教えて～
-                    if (Input.GetKeyDown(KeyCode.Z))
-                    {
-                        fadeMathod = 0;
-                    }
+                    canChange = true;
                 }
                 break;
         }
