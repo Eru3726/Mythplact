@@ -60,6 +60,8 @@ public class Meteor : EnemyEffect
         //if (Mathf.Abs(euler.z) <= 180.0f) { euler.z += (euler.z < 0) ? 180.0f : -180.0f; }  //左右調整
         transform.rotation = Quaternion.Euler(euler);   //クォータニオンに変換し代入
 
+        Instantiate(qP.Prediction, pos, rot);
+
         //実行
         rb.velocity = vec;
         fall_Effect.PlayParticle();

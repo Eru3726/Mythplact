@@ -5896,8 +5896,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 792412642}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: prediction
+      value: 
+      objectReference: {fileID: 4072194563880188462, guid: 4a616874fd759a5478a5b99471f1d7b4, type: 3}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: slime_MaxNum
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: moveTable.Array.data[0].move.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: moveTable.Array.data[0].move.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: moveTable.Array.data[1].move.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: moveTable.Array.data[1].move.Array.data[2]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852503, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_RootOrder

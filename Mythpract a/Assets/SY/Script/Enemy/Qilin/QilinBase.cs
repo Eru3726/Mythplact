@@ -416,6 +416,7 @@ public class QilinBase : Enemy
                         gPos);
                     eruption_Last =
                         Instantiate(param.Eruption, genPos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
+                    GameObject pre = Instantiate(param.Prediction, new Vector2(genPos.x, gPos), Quaternion.identity);
                     no++;
                 }
                 if (repeat < eruption_Generatev2.y)
@@ -426,6 +427,7 @@ public class QilinBase : Enemy
                         gPos);
                     eruption_Last =
                         Instantiate(param.Eruption, genPos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
+                    GameObject pre = Instantiate(param.Prediction, new Vector2(genPos.x, gPos), Quaternion.identity);
                     no++;
                 }
                 repeat++;

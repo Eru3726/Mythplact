@@ -26,8 +26,10 @@ public class Shoggoth : MonoBehaviour
 
     //
     Color defColor;
+    [SerializeField, Tooltip("メインカメラ")] GameObject mainCamera;
     [SerializeField, Tooltip("プレイヤー")] GameObject pl;
     [SerializeField, Tooltip("スライム")] GameObject slime;
+    [SerializeField, Tooltip("予測")] GameObject prediction;
 
     //
     int phase = 0;      //汎用行動番号
@@ -390,6 +392,12 @@ public class Shoggoth : MonoBehaviour
                 Quaternion q = (dir == Vector2.down) ?
                     Quaternion.Euler(90.0f, 0, 0) : Quaternion.Euler(-90.0f, 0, 0);
                 upDown_Effect.transform.localRotation = q;
+
+                float y = (dir == Vector2.down) ?
+                    Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).y :
+                    groundPosY;
+                if (y == groundPosY) { Instantiate(prediction, new Vector2(plPos.x, y), Quaternion.identity); }
+                else { Instantiate(prediction, new Vector2(plPos.x, y), Quaternion.identity/*, Camera.main.transform*/); }
                 //SetAudio(upDown_SE, upDown_SEVolume, upDown_SEPitch, upDown_SELoop);
                 phase++;
                 repeat++;
@@ -510,6 +518,12 @@ public class Shoggoth : MonoBehaviour
                 circle.Data(plPos.x + rush_Offset.x, plPos.y + rush_Offset.y, rush_Radius.x, rush_Radius.y, 1.0f, 1.0f);
                 SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
                 rush_Effect.Play();
+
+                float x = (circle.Direction == 1) ?
+                    Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).x :
+                    Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x;
+                Quaternion q = Quaternion.Euler(0, 0, 90);
+                Instantiate(prediction, new Vector2(x, plPos.y), q/*, Camera.main.transform*/);
                 //rush_Effect.transform.rotation = new Quaternion(transform.rotation.x, 90, 0, 1);
                 phase++;
                 break;
