@@ -14,7 +14,7 @@ public class TitleManager : MonoBehaviour
     private InputActionReference moveLeft;
 
     [SerializeField]
-    private GameObject optionCan, disCan, souCan, keyCan, padCan, quitCan;
+    private GameObject optionCan, disCan, souCan, keyCan, padCan, quitCan, saveCan;
 
     [SerializeField]
     private GameObject sceneLight;
@@ -127,6 +127,7 @@ public class TitleManager : MonoBehaviour
     {
         optionOpenFlg = false;
         optionCan.SetActive(optionOpenFlg);
+        saveCan.SetActive(false);
         sceneLight.SetActive(true);
     }
 
