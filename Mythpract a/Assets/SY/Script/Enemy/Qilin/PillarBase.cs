@@ -14,6 +14,7 @@ public class PillarBase : EnemyEffect
 
     //----------パラメータ----------
     [Header("Pillarパラメータ")]
+    [SerializeField, Tooltip("攻撃前隙")] float attackAnticipationTime = 1.0f;
     [SerializeField, Tooltip("上昇時間")] float upTime = 1.0f;
     [SerializeField, Tooltip("攻撃時間")] float atkTime = 5.0f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting effect;
@@ -28,15 +29,24 @@ public class PillarBase : EnemyEffect
 
 
     //----------上書き許可関数----------
+    public virtual bool AtkAnticipation()
+    {
+        if (!Timer(attackAnticipationTime)) { return false; }
+        effect.PlayParticle();
+        sound.PlayAudio(se);
+        return true;
+    }
+
     public virtual bool Up()
     {
+        effect.StopCheck();
         if (!Timer(upTime)) { return false; }
         return true;
     }
 
     public virtual bool Keep()
     {
-        Debug.Log(timer);
+        effect.StopCheck();
         if (!Timer(atkTime)) { return false; }
         col.enabled = false;
         if (effect.IsValid) { return false; }
@@ -52,17 +62,10 @@ public class PillarBase : EnemyEffect
         state = Qilin_PillarType.Generate;
         col = Atk.GetComponent<CapsuleCollider2D>();
         qP = en.GetComponent<Qilin>().Param;
-
-        effect.PlayParticle();
-        sound.PlayAudio(se);
-
-        state = Qilin_PillarType.Up;
     }
 
     public override void ReNew()
     {
         base.ReNew();
-
-        effect.StopCheck();
     }
 }
