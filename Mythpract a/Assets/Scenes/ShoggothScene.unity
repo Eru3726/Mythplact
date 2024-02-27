@@ -5904,6 +5904,30 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: rush_Prediction.color.a
+      value: 0.48235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: rush_Prediction.scale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: rush_Prediction.scale.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: upDown_Prediction.color.a
+      value: 0.48235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: upDown_Prediction.scale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: upDown_Prediction.scale.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: moveTable.Array.data[0].move.Array.data[1]
       value: 3
       objectReference: {fileID: 0}

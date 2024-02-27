@@ -47,6 +47,7 @@ public class QilinParameter : EnemyParameter
     [SerializeField, Tooltip("エフェクト")] ParticleSetting eruption_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting eruption_SE;
     [SerializeField, Tooltip("ギズモ")] GizmoSetting eruption_Gizmo;
+    [SerializeField, Tooltip("攻撃予測")] PredictionSetting eruption_Prediction;
 
     [Header("突き上げ")]
     [SerializeField, Tooltip("突き上げ")] GameObject pushUp;
@@ -91,6 +92,7 @@ public class QilinParameter : EnemyParameter
     [SerializeField, Tooltip("エフェクト")] ParticleSetting meteor_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting meteor_SE;
     [SerializeField, Tooltip("ギズモ")] GizmoSetting meteor_Gizmo;
+    [SerializeField, Tooltip("攻撃予測")] PredictionSetting meteor_Prediction;
 
 
     [Header("被ダメージ")]
@@ -141,6 +143,7 @@ public class QilinParameter : EnemyParameter
     public ParticleSetting Eruption_Effect { get { return eruption_Effect; } }
     public AudioSetting Eruption_SE { get { return eruption_SE; } }
     public GizmoSetting Eruption_Gizmo { get { return eruption_Gizmo; } }
+    public PredictionSetting Eruption_Prediction { get { return eruption_Prediction; } }
 
     public GameObject PushUp { get { return pushUp; } }
     public float PushUp_Power { get { return pushUp_Power; } }
@@ -181,6 +184,7 @@ public class QilinParameter : EnemyParameter
     public ParticleSetting Meteor_Effect { get { return meteor_Effect; } }
     public AudioSetting Meteor_SE { get { return meteor_SE; } }
     public GizmoSetting Meteor_Gizmo { get { return meteor_Gizmo; } }
+    public PredictionSetting Meteor_Prediction { get { return meteor_Prediction; } }
 
     public Damage DamageData { get { return damageData; } }
     public ParticleSetting Damage_Effect { get { return damage_Effect; } }

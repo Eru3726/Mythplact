@@ -116,6 +116,7 @@ public class Shoggoth : MonoBehaviour
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float upDown_OutSEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool upDown_OutSELoop;
     [SerializeField, Tooltip("移動範囲可視化")] bool upDown_MoveRangeDisplay;
+    [SerializeField, Tooltip("攻撃予測")] PredictionSetting upDown_Prediction;
 
     [Header("突進")]
     [SerializeField, Tooltip("判定")] GameObject[] rush;
@@ -130,6 +131,7 @@ public class Shoggoth : MonoBehaviour
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float rush_SEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool rush_SELoop;
     [SerializeField, Tooltip("移動範囲可視化")] bool rush_MoveRangeDisplay;
+    [SerializeField, Tooltip("攻撃予測")] PredictionSetting rush_Prediction;
 
     [Header("被ダメージ")]
     [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
@@ -396,8 +398,11 @@ public class Shoggoth : MonoBehaviour
                 float y = (dir == Vector2.down) ?
                     Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).y :
                     groundPosY;
-                if (y == groundPosY) { Instantiate(prediction, new Vector2(plPos.x, y), Quaternion.identity); }
-                else { Instantiate(prediction, new Vector2(plPos.x, y), Quaternion.identity/*, Camera.main.transform*/); }
+                GameObject p;
+                if (y == groundPosY) { p = Instantiate(prediction, new Vector2(plPos.x, y), Quaternion.identity); }
+                else { p = Instantiate(prediction, new Vector2(plPos.x, y), Quaternion.identity/*, Camera.main.transform*/); }
+                p.GetComponent<SpriteRenderer>().color = upDown_Prediction.Color;
+                p.transform.localScale = upDown_Prediction.Scale;
                 //SetAudio(upDown_SE, upDown_SEVolume, upDown_SEPitch, upDown_SELoop);
                 phase++;
                 repeat++;
@@ -523,7 +528,9 @@ public class Shoggoth : MonoBehaviour
                     Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).x :
                     Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x;
                 Quaternion q = Quaternion.Euler(0, 0, 90);
-                Instantiate(prediction, new Vector2(x, plPos.y), q/*, Camera.main.transform*/);
+                GameObject p = Instantiate(prediction, new Vector2(x, plPos.y), q/*, Camera.main.transform*/);
+                p.GetComponent<SpriteRenderer>().color = rush_Prediction.Color;
+                p.transform.localScale = rush_Prediction.Scale;
                 //rush_Effect.transform.rotation = new Quaternion(transform.rotation.x, 90, 0, 1);
                 phase++;
                 break;
