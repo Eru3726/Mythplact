@@ -12,6 +12,7 @@ public class EnemyParameter
     [SerializeField, Tooltip("プレイヤー")] GameObject pl;
     [Header("UI")]
     [SerializeField, Tooltip("UI")] GameObject ui;
+    [SerializeField, Tooltip("攻撃予測")] GameObject prediction;
 
     [Header("カメラ")]
     [SerializeField, Tooltip("バーチャルカメラ")] CinemachineVirtualCamera virtualCamera;
@@ -27,6 +28,7 @@ public class EnemyParameter
 
     public GameObject Player { get { return pl; } }
     public GameObject UI { get { return ui; } }
+    public GameObject Prediction { get { return prediction; } }
 
     public CinemachineVirtualCamera VirtualCamera { get { return virtualCamera; } set { virtualCamera = value; } }
     public Volume Volume { get { return volume; } set { volume = value; } }

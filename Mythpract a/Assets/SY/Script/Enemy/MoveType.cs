@@ -21,6 +21,13 @@ namespace SY
         Death,      //死
     }
 
+    public enum Shoggoth_SlimeType
+    {
+        None = 0,       //非アクティブ
+        Survival = 1,   //生存
+        Death = 2,      //死
+    }
+
     public enum Qilin_MoveType
     {
         DebugOff = -1,  //デバックオフ

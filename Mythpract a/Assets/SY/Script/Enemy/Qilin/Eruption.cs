@@ -20,6 +20,9 @@ public class Eruption : PillarBase
 
         switch (state)
         {
+            case Qilin_PillarType.Generate:
+                if (AtkAnticipation()) { state = SY.Qilin_PillarType.Up; }
+                break;
             case Qilin_PillarType.Up:
                 if (Up()) { state = SY.Qilin_PillarType.Keep; }
                 break;
