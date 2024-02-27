@@ -20,7 +20,7 @@ public class TitleTextFade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (colorText.a >= 1)
+        if (colorText.a <= 1)
         {
             colorText.a += alphaColor;
             text.color = colorText;
