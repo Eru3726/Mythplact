@@ -2,7 +2,10 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine;
+using Cinemachine;
 using SY;
 
 public enum Shoggoth_MoveType
@@ -73,6 +76,10 @@ public class Shoggoth : MonoBehaviour
     [SerializeField, Tooltip("初期位置")] Vector2 startPosition;
     [SerializeField, Tooltip("速度")] float entry_Speed;
     [SerializeField, Tooltip("動き")] Shoggoth_EntryMove[] entryMove;
+    [SerializeField, Tooltip("咆哮エフェクト")] float entry_RoarTime = 1.0f;
+    [SerializeField, Tooltip("画面振動強度")] float entry_Vibration = 1.0f;
+    [SerializeField, Tooltip("咆哮エフェクト")] ParticleSetting entry_RoarEffect;
+    [SerializeField, Tooltip("咆哮サウンド")] AudioSetting entry_RoarSE;
 
     [Header("八の字")]
     [SerializeField, Tooltip("速度")] float eight_Speed;
@@ -240,27 +247,52 @@ public class Shoggoth : MonoBehaviour
         switch(phase)
         {
             case 0:
-                pos = entryMove[repeat].Start;
-                dir = Distance(entryMove[repeat].Start, entryMove[repeat].Target).normalized;
-                Debug.Log(rb.velocity);
+                pos = entryMove[repeat].Start;  //スタート位置に移動(転移)
+                dir = Distance(entryMove[repeat].Start, entryMove[repeat].Target).normalized;   //移動方向定義
                 phase++;
                 break;
             case 1:
-                pos += dir * (entry_Speed * speed_save);
-                Debug.Log((entryMove[repeat].Target - pos).normalized);
-                if (dir == (entryMove[repeat].Target - pos).normalized) { break; }
+                pos += dir * (entry_Speed * speed_save);    //移動
+                if (dir == (entryMove[repeat].Target - pos).normalized) { break; }  //目標座標を通過
                 phase++;
                 break;
             case 2:
-                pos += dir * (entry_Speed * speed_save);
+                pos += dir * (entry_Speed * speed_save);    //移動
                 timer += Time.deltaTime;
                 if (timer < entryMove[repeat].Interval) { break; }
                 repeat++;
                 timer = 0;
-                if (repeat == entryMove.Length) { phase++; break; }
+                if (repeat == entryMove.Length) //突進回数が指定回数と同値
+                {
+                    targetPos = Vector2.up * 5.0f;
+                    dir = Distance(pos, targetPos).normalized;
+                    phase++; break; 
+                }
                 phase = 0;
                 break;
             case 3:
+                pos += dir * (speed * speed_save);  //移動
+                if (dir == (targetPos - pos).normalized) { break; } //目標座標を通過
+                phase++;
+                break;
+            case 4:
+                timer += Time.deltaTime;
+                if (timer < 0.5f) { return; }
+                entry_RoarEffect.PlayParticle();
+                entry_RoarSE.PlayAudio(se);
+                setVibration(entry_Vibration * 0.25f);
+                timer = 0;
+                phase++;
+                break;
+            case 5:
+                VibrationSubtraction(((entry_Vibration * 0.25f) / 60.0f) / entry_RoarTime);
+                timer += Time.deltaTime;
+                if (timer < entry_RoarTime) { return; }
+                entry_RoarEffect.StopParticle();
+                setVibration(0);
+                phase++;
+                break;
+            case 6:
                 tableNo = Random.Range(0, moveTable.Length);
                 moveNo = 0;
                 moveType = moveTable[tableNo].Move[moveNo];
@@ -749,6 +781,25 @@ public class Shoggoth : MonoBehaviour
         {
             obj[i].GetComponent<HitData>().Power = power;
         }
+    }
+
+    CinemachineBasicMultiChannelPerlin vCamera2;
+    Volume v;
+    MotionBlur b;
+    void setVibration(float vibration)  //画面振動
+    {
+        CinemachineVirtualCamera vCamera = mainCamera.GetComponent<CinemachineVirtualCamera>();
+        vCamera2 = vCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        vCamera2.m_AmplitudeGain = vibration;
+
+        v = GameObject.Find("Volume").GetComponent<Volume>();
+        v.profile.TryGet(out b);
+        b.intensity.value = vibration;
+    }
+    void VibrationSubtraction(float value)
+    {
+        vCamera2.m_AmplitudeGain -= value;
+        b.intensity.value -= value;
     }
 
     //サウンド
