@@ -1335,7 +1335,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366673008}
-  m_Text: "z\u3067\u6B21\u3078\nESC\u3067\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u30B9\u30AD\u30C3\u30D7"
+  m_Text: "ESC\u3067\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u30B9\u30AD\u30C3\u30D7"
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
@@ -1644,10 +1644,10 @@ MonoBehaviour:
   - {fileID: -1851098161676894457, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   - {fileID: 8324888889075417498, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   - {fileID: 4419416704501198529, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
-  popSpd: 2
-  fadeSpd: 2
+  - {fileID: 1218491079533585869, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  popSpd: 1
+  fadeSpd: 1
   nextTexntMesh: {fileID: 366673008}
-  tutorialEnemy: {fileID: 0}
 --- !u!1 &476303086
 GameObject:
   m_ObjectHideFlags: 0
@@ -3995,7 +3995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1121305976
 MonoBehaviour:
   m_ObjectHideFlags: 0

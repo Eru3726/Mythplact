@@ -19,17 +19,18 @@ public class TutorialText : MonoBehaviour
         skill1Inp,
         jumpInp,
         blinkInp,
+        escInp
     }
 
     private enum PopTextType
     {
+        Talk,
         Move,
-        Jump,
         Attack,
         Skill,
         Guard,
         Blink,
-        tutorialBattle
+        tutorialBattle,
     }
 
     private InputActionNum inputActionNum;
@@ -38,6 +39,14 @@ public class TutorialText : MonoBehaviour
     private string poptext;
 
     private int bindingIndex = 0;
+
+    private float timer = 0;
+
+    private bool isChange = false;
+
+    private int pushCount = 0;
+
+    private int pushBottum = 0;
 
     // 入力関係ここまで
 
@@ -53,22 +62,21 @@ public class TutorialText : MonoBehaviour
 
     private int fadeMathod = 1;
 
-    [SerializeField, Header("「次へ」って書いてあるテキストメッシュ")]
+    [SerializeField, Header("スキップって書いてあるテキストメッシュ")]
     private GameObject nextTexntMesh;
 
     // 文字のフェイド関係ここまで
 
     // チュートリアルバトル関係
 
-    [SerializeField, Header("チュートリアルの敵")]
-    private TextMesh tutorialEnemy;
+    private bool isBossBatlle = false;
 
-    private bool canChange = false;
+    private int talkNum = 0;
 
     void Start()
     {
         // listにアタッチした奴を格納
-        // InputActionNumの順番通りにアタッチしないと出てくるテキストが違うものになる。何とかしたかった
+        // InputActionNumの順番通りにアタッチしないと出てくるテキストが違うものになる。何とかしたい
         _action = new List<InputAction>();
         for (inputActionNum = 0; (int)inputActionNum < _actionRef.Count; inputActionNum++)
         {
@@ -80,12 +88,24 @@ public class TutorialText : MonoBehaviour
         color.a = 0;
         this.GetComponent<TextMesh>().color = color;
 
-        canChange = false;
+        isBossBatlle = false;
+
+        pushBottum = 10;
+        pushCount = 0;
+
+        _actionRef[(int)InputActionNum.escInp].action.Enable();
     }
     private void Update()
     {
+
         TutorialPopText();
         FadeText();
+
+        // Tutorialスキップ
+        if (_actionRef[(int)InputActionNum.escInp].action.triggered)
+        {
+            popTexttype = PopTextType.tutorialBattle;
+        }
     }
 
     void TutorialPopText()
@@ -97,36 +117,130 @@ public class TutorialText : MonoBehaviour
         // popTexttypeに応じてテキスト表示
         switch (popTexttype)
         {
+            case PopTextType.Talk:
+
+                switch (talkNum)
+                {
+                    case 0:
+                        poptext = "目が覚めたか\nPress " + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex);
+                        waitSeconds(3);
+                        if (isChange&& _actionRef[(int)InputActionNum.attackInp].action.triggered)
+                        {
+                            isChange = false;
+                            talkNum++;
+                        }
+                        break;
+                    case 1:
+                        poptext = "お前はどれだけ強くなれるか楽しみだ";
+                        waitSeconds(3);
+                        break;
+                    case 2:
+                        poptext = "動作確認をする";
+                        waitSeconds(3);
+                        break;
+                }
+                
+            break;
+
             case PopTextType.Move:
                 poptext = " 「" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + ","
                     + _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "」移動";
-                if (canChange&& _actionRef[0].action.triggered)
-                {
 
+                waitSeconds(4);
+
+                if (_actionRef[(int)InputActionNum.rightInp].action.IsPressed() && _actionRef[(int)InputActionNum.leftInp].action.IsPressed())
+                {
+                    poptext = " 「<color=red>" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + "</color>,<color=red>" +
+                        _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "</color>」移動";
                 }
+                else if (_actionRef[(int)InputActionNum.leftInp].action.IsPressed())
+                {
+                    poptext = " 「<color=red>" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + "</color>,"
+                   + _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "」移動";
+                }
+                else if (_actionRef[(int)InputActionNum.rightInp].action.IsPressed())
+                {
+                    poptext = " 「" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + ",<color=red>"
+                   + _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "</color>」移動";
+                }
+
+                if (isChange && _actionRef[(int)InputActionNum.leftInp].action.triggered ||
+                    _actionRef[(int)InputActionNum.rightInp].action.triggered)
+                {
+                    pushCount++;
+                    if (pushBottum <= pushCount)
+                    {
+                        pushCount = 0;
+                        pushBottum = 5;
+                        fadeMathod = 0;
+                        isChange = false;
+                    }
+                }
+
                 break;
-            case PopTextType.Jump:
-                poptext = " 「" + _action[(int)InputActionNum.jumpInp].GetBindingDisplayString(bindingIndex) + "」 ジャンプ"
-                    + "\nジャンプ中にもう一度\n「" + _action[(int)InputActionNum.jumpInp].GetBindingDisplayString(bindingIndex) + "」二段ジャンプ";
-                break;
+
             case PopTextType.Attack:
                 poptext = " 「" + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "」攻撃\n" +
                     "　空中で上下入力で攻撃が変化";
+                if (_actionRef[(int)InputActionNum.attackInp].action.IsPressed())
+                {
+                    poptext = " 「<color=red>" + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "</color>」攻撃\n" +
+                     "　空中で上下入力で攻撃が変化";
+                }
+
+                waitSeconds(4);
+
+                nextTutorial(InputActionNum.attackInp, 5);
                 break;
+
             case PopTextType.Skill:
                 poptext = "「" + _action[(int)InputActionNum.skill1Inp].GetBindingDisplayString(bindingIndex) + "」スキル攻撃";
+
+                waitSeconds(4);
+
+                if (_actionRef[(int)InputActionNum.skill1Inp].action.IsPressed())
+                {
+                    poptext = "「<color=red>" + _action[(int)InputActionNum.skill1Inp].GetBindingDisplayString(bindingIndex) + "</color>」スキル攻撃";
+                }
+
+                nextTutorial(InputActionNum.skill1Inp, 5);
+
                 break;
+
             case PopTextType.Guard:
                 poptext = "「" + _action[(int)InputActionNum.guardInp].GetBindingDisplayString(bindingIndex) + "」ガード";
+
+                waitSeconds(4);
+
+                if (_actionRef[(int)InputActionNum.guardInp].action.IsPressed())
+                {
+                    poptext = "「<color=red>" + _action[(int)InputActionNum.guardInp].GetBindingDisplayString(bindingIndex) + "</color>」ガード";
+                }
+
+                nextTutorial(InputActionNum.guardInp, 5);
+
                 break;
             case PopTextType.Blink:
+
                 poptext = "「" + _action[(int)InputActionNum.blinkInp].GetBindingDisplayString(bindingIndex) + "」ブリンク";
+
+                waitSeconds(4);
+
+                if (_actionRef[(int)InputActionNum.blinkInp].action.IsPressed())
+                {
+                    poptext = "「<color=red>" + _action[(int)InputActionNum.blinkInp].GetBindingDisplayString(bindingIndex) + "</color>」ブリンク";
+                }
+
+                nextTutorial(InputActionNum.blinkInp, 5);
+
                 break;
             case PopTextType.tutorialBattle:
                 // ここにチュートリアルバトルの処理
                 poptext = "ボスを倒そう";
                 break;
         }
+
+
         this.GetComponent<TextMesh>().text = poptext;
     }
     void FadeText()
@@ -159,9 +273,34 @@ public class TutorialText : MonoBehaviour
                 }
                 else if (popTexttype != PopTextType.tutorialBattle)
                 {
-                    canChange = true;
+                    isBossBatlle = true;
                 }
                 break;
+        }
+    }
+
+    void waitSeconds(int sec)
+    {
+        timer += Time.deltaTime;
+        if (sec <= timer)
+        {
+            timer = 0;
+            isChange = true;
+        }
+    }
+
+    void nextTutorial(InputActionNum inputNum, int _pushBottum)
+    {
+        if (isChange && _actionRef[(int)inputNum].action.triggered)
+        {
+            pushCount++;
+            if (pushBottum <= pushCount)
+            {
+                pushCount = 0;
+                pushBottum = _pushBottum;
+                fadeMathod = 0;
+                isChange = false;
+            }
         }
     }
 }
