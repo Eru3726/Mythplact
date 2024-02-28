@@ -223,7 +223,6 @@ public class Shoggoth : MonoBehaviour
         afterPos = rb.position;  //移動移動後の位置保存
 
         //移動方向に向く
-        sRig.Rotate(headObj, afterPos - beforePos);
         //transform.rotation = MoveDirection(beforePos, afterPos);
         //BodyRot();
 
@@ -620,12 +619,12 @@ public class Shoggoth : MonoBehaviour
         if (slime_MaxNum <= slimeObj.Count) { return; }
         slimeTimer += Time.deltaTime;
         if (slimeTimer < slime_GenerateTime) { return; }
-        int slimePos = Random.Range(0, sRig.Body.Length);
+        int slimePos = Random.Range(1, sRig.Model.Length);
 
         if (GameObject.Find(slime.name) != null) { return; }
-        Transform bodyTF = sRig.Body[slimePos].transform;
+        Transform bodyTF = sRig.Model[slimePos].transform;
         GameObject s = Instantiate(slime, bodyTF.position, bodyTF.rotation);
-        s.GetComponent<Slime>().Root = sRig.Body[slimePos];
+        s.GetComponent<Slime>().Root = sRig.Model[slimePos];
         slimeObj.Add(s);
         slimeTimer = 0;
     }
