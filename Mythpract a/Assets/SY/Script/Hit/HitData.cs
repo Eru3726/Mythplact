@@ -58,7 +58,7 @@ namespace SY
             if(defMng.Layer == HitLayer.Enemy)
             {
                 Debug.Log(atkMng.ATK + "親攻撃力");
-                Debug.Log(atkData.Power + "子攻撃力");
+                Debug.Log(atkData.transform.root.name + atkData.Power + "子攻撃力");
 
                 defMng.HP -= (defMng.Result.Dmage_Enemy(atkMng.ATK, atkData.Power, defMng.DEF) >= 0) ?
                     defMng.Result.Dmage_Enemy(atkMng.ATK, atkData.Power, defMng.DEF) : 0;

@@ -59,6 +59,7 @@ public class Shoggoth : MonoBehaviour
 
     GameObject obj;     //自身
     GameObject headObj; //頭
+    GameObject effect;  //エフェクト親オブジェクト
     Vector2 pos;        //座標
     Vector2 plPos;      //プレーヤー座標
     Quaternion rot;     //角度保存
@@ -170,6 +171,7 @@ public class Shoggoth : MonoBehaviour
     {
         sRig = GetComponent<SnakeRig>();
         headObj = sRig.Root;
+        effect = GameObject.Find("Effect").gameObject;
         rb = headObj.GetComponent<Rigidbody2D>();
         rb.position = startPosition;
         se = GetComponent<AudioSource>();
@@ -226,6 +228,7 @@ public class Shoggoth : MonoBehaviour
                 Rush(); break;
         }
         rb.position = pos;
+        effect.transform.position = pos;
 
         afterPos = rb.position;  //移動移動後の位置保存
 

@@ -2513,7 +2513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &530351576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6054,7 +6054,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1372439216, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 551016590799833392, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6182,7 +6182,7 @@ PrefabInstance:
       objectReference: {fileID: 936554581}
     - target: {fileID: 4644213209042853315, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852499, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_Name
@@ -6192,6 +6192,10 @@ PrefabInstance:
       propertyPath: pl
       value: 
       objectReference: {fileID: 792412642}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: mainCamera
       value: 
@@ -7656,7 +7660,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -998
+  m_SortingOrder: -997
   m_Sprite: {fileID: 21300000, guid: 676aef818230d414cbaa36c19b60984b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -16999,6 +17003,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 78f03b4e59b2e0948947aa0101a470e0, type: 2}
     - target: {fileID: 8922014012187984017, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
       propertyPath: atk
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922014012187984017, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: maxHp
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8922014012187984023, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
