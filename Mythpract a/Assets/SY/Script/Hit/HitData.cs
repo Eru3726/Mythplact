@@ -83,16 +83,16 @@ namespace SY
             if (defMng == null)
             { Debug.LogError(this.transform.root.gameObject.name + "にHitMngがアタッチされていない"); return false; }
 
-            //有効チェック
-            if (atkMng.ATKActive == false) { return false; }
-            if (defMng.DEFActive == false) { return false; }
-
             //レイヤーチェック
             if (CheckLayer(atkMng.Layer, defMng.Layer) == false) { return false; }
 
             //当たり判定フラグを立てる
             atkMng.Result.SetAtkFlag(AtkFlag.AtkHit);
             defMng.Result.SetDefFlag(DefFlag.DefHit);
+
+            //有効チェック
+            if (atkMng.ATKActive == false) { return false; }
+            if (defMng.DEFActive == false) { return false; }
 
             //連続ヒット防止
             if (defMng.HitInterval > 0) { return false; }

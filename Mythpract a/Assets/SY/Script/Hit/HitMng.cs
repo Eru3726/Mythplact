@@ -61,7 +61,7 @@ namespace SY
             }
             else if (CheckDamage() == true)
             {
-                if (dmgFunc != null) 
+                if (dmgFunc != null)
                 {
                     dmgFunc(); 
                     if(hp == maxHp * 0.5f) { isHalfHP = true; }
