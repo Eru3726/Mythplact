@@ -6,7 +6,8 @@ namespace SY
     public class HitData : MonoBehaviour
     {
         [SerializeField] HitType type;
-        float power;        //技威力
+        float power;    //技威力
+        float dmg;      //ダメージ
 
         Player player;
 
@@ -51,18 +52,22 @@ namespace SY
                 }
                 else
                 {
-                    defMng.HP -= defMng.Result.Dmage_Player(atkMng.ATK, atkData.Power);
-
+                    dmg = defMng.Result.Damage(atkMng.ATK, atkData.Power);
                 }
             }
             if(defMng.Layer == HitLayer.Enemy)
             {
-                Debug.Log(atkMng.ATK + "親攻撃力");
-                Debug.Log(atkData.transform.root.name + atkData.Power + "子攻撃力");
+                Debug.Log(atkMng.ATK + "：攻撃力　" + atkData.Power + "：技威力\n" + 
+                    "オブジェクト名：" + atkData.transform.root.name + ".");
 
-                defMng.HP -= (defMng.Result.Dmage_Enemy(atkMng.ATK, atkData.Power, defMng.DEF) >= 0) ?
-                    defMng.Result.Dmage_Enemy(atkMng.ATK, atkData.Power, defMng.DEF) : 0;
+                dmg = defMng.Result.Damage(atkMng.ATK, atkData.Power, defMng.DEF);
             }
+
+            //ダメージチェック
+            if (dmg == 0) { return; }
+            defMng.HP -= dmg;
+
+            //HPチェック
             if (defMng.HP < 0) { defMng.HP = 0; }
 
             //ダメージフラグを立てる

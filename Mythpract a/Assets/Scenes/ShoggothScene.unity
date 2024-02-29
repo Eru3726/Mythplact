@@ -6182,7 +6182,7 @@ PrefabInstance:
       objectReference: {fileID: 936554581}
     - target: {fileID: 4644213209042853315, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852499, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_Name
@@ -6206,7 +6206,7 @@ PrefabInstance:
       objectReference: {fileID: 4072194563880188462, guid: 4a616874fd759a5478a5b99471f1d7b4, type: 3}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: slime_MaxNum
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: entry_Vibration
@@ -6242,7 +6242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: upDown_Prediction.scale.x
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: upDown_Prediction.scale.y
@@ -6310,7 +6310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5971913800347726203, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1106303035492774695, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
@@ -17007,7 +17007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8922014012187984017, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
       propertyPath: maxHp
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8922014012187984023, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
       propertyPath: m_Name

@@ -46,6 +46,29 @@ namespace SY
         //RayFlag rayFlag;
 
         //----------ダメージ----------
+        /// <summary>
+        /// プレイヤー -> エネミー
+        /// </summary>
+        /// <param name="atk">攻撃力</param>
+        /// <param name="power">技威力</param>
+        /// <returns></returns>
+        public float Damage(float atk, float power)
+        {
+            float dmg = atk * power;
+            return dmg;
+        }
+        /// <summary>
+        /// エネミー -> プレイヤー
+        /// </summary>
+        /// <param name="atk">攻撃力</param>
+        /// <param name="power">技威力</param>
+        /// <param name="def">防御力</param>
+        /// <returns></returns>
+        public float Damage(float atk, float power, float def)
+        {
+            float dmg = (atk * power / 2.0f) - (def / 4.0f);
+            return (dmg <= 0) ? 0 : dmg;
+        }
         public float Dmage_Enemy(float atk, float power, float def) { return (atk  * power / 2.0f) - (def / 4.0f); }
         public float Dmage_Player(float atk, float power) { return atk * power; }
 
