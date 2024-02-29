@@ -122,21 +122,44 @@ public class TutorialText : MonoBehaviour
                 switch (talkNum)
                 {
                     case 0:
-                        poptext = "目が覚めたか\nPress " + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex);
+                        poptext = "目が覚めたか";
                         waitSeconds(3);
-                        if (isChange&& _actionRef[(int)InputActionNum.attackInp].action.triggered)
+                        if (isChange)
                         {
-                            isChange = false;
-                            talkNum++;
+                            poptext = "目が覚めたか\nPress " + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex);
+                            if (_actionRef[(int)InputActionNum.attackInp].action.triggered)
+                            {
+                                isChange = false;
+                                talkNum++;
+                            }                            
                         }
                         break;
                     case 1:
                         poptext = "お前はどれだけ強くなれるか楽しみだ";
                         waitSeconds(3);
+                        if (isChange)
+                        {
+                            poptext = "お前はどれだけ強くなれるか楽しみだ\nPress " + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex);
+                            if (_actionRef[(int)InputActionNum.attackInp].action.triggered)
+                            {
+                                isChange = false;
+                                talkNum++;
+                            }
+                        }
                         break;
                     case 2:
                         poptext = "動作確認をする";
                         waitSeconds(3);
+                        if (isChange)
+                        {
+                            poptext = "動作確認をする\nPress " + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex);
+                            if (_actionRef[(int)InputActionNum.attackInp].action.triggered)
+                            {
+                                isChange = false;
+                                talkNum++;
+                                fadeMathod = 0;
+                            }
+                        }
                         break;
                 }
                 

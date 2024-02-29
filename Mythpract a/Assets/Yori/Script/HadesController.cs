@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HadesController : MonoBehaviour
 {
+    [SerializeField, Header("行動番号")]
+    private int actNo = 0;      // 行動番号
+    [SerializeField, Header("メソッド用汎用番号")]
+    private int methodNo = 0;   // メソッド用汎用番号
 
     enum ActNo
     {
         App,
-        StaffAttack,
+        LodAttack,
         ShockWave,
         Num         // 総数
     }
@@ -18,15 +20,117 @@ public class HadesController : MonoBehaviour
     private delegate void ActFunc();
     // 関数の配列
     private ActFunc[] actFuncTbl;
+
+    private Animator anim;
+
+    private float timer = 0;
+
+    [SerializeField, Header("Player")]
+    GameObject playerObj;
+
+    private Vector3 pos;
+
+    private Vector3 FirstPos;
+
+    [SerializeField, Header("テレポで行くときの時間")]
+    private float teleGoTime = 0.5f;
+
+    [SerializeField, Header("テレポでもどるときの時間")]
+    private float teleBackTime = 0.5f;
+
+    [SerializeField, Header("テレポ攻撃するときの時間")]
+    private float teleAttackTime = 0.5f;
+
+    [SerializeField, Header("デバッグボタン好きな行動の番号をここに入れるとEを押したときに反応する")]
+    private int debugActNum = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        actFuncTbl = new ActFunc[(int)ActNo.Num];
+        actFuncTbl[(int)ActNo.App] = ActApp;
+        actFuncTbl[(int)ActNo.LodAttack] = ActLodAttack;
+        actFuncTbl[(int)ActNo.ShockWave] = ActShockWave;
+        FirstPos = this.gameObject.transform.position;
+        timer = teleBackTime;
+        actNo = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // 関数配列を用いた関数の呼び出し
+        actFuncTbl[actNo]();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            actNo = debugActNum;
+        }
+    }
+
+    void ActApp()
+    {
+        AnimatorStateInfo animInfo = anim.GetCurrentAnimatorStateInfo(0);
+        if (animInfo.normalizedTime > 1.0f)
+        {
+            anim.Play("01_TRBoss_stay");
+        }
+
+    }
+
+    void ActLodAttack()
+    {
+        switch (methodNo)
+        {
+            case 0:
+                AnimatorStateInfo animInfo = anim.GetCurrentAnimatorStateInfo(0);
+                if (animInfo.normalizedTime > 1.0f)
+                {
+                    anim.Play("03_TRBoss_step");
+                    timer = teleGoTime;
+                    pos.x = playerObj.transform.position.x;
+                    pos.x += 2;
+                    pos.y = FirstPos.y;
+                    methodNo++;
+                }
+                
+                break;
+            case 1:
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    this.gameObject.transform.position = pos;
+                    timer = teleAttackTime;
+                    anim.Play("02b_TRBoss_attack_morefast");
+                    methodNo++;
+                }
+                break;
+            case 2:
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    AnimatorStateInfo animInfo = anim.GetCurrentAnimatorStateInfo(0);
+                    if (animInfo.normalizedTime > 1.0f)
+                    {
+                        anim.Play("03_TRBoss_step");
+                        timer = teleBackTime;
+                        methodNo++;
+                    }
+                }
+                break;
+            case 3:
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    this.gameObject.transform.position = FirstPos;
+                    methodNo = 0;
+                    actNo = (int)ActNo.App;
+                }
+                break;
+        }
+    }
+
+    void ActShockWave()
+    {
+
     }
 }
