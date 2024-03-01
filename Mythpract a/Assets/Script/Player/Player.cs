@@ -179,6 +179,7 @@ public partial class Player : MonoBehaviour
         stamina = maxStamina;
        
         InitHP();
+        ResetPower();
         PassiveSkillStart();
 
         Boss = GameObject.Find("Shoggoth");
@@ -1391,7 +1392,6 @@ public partial class Player : MonoBehaviour
             }
         }
     }
-
     void EnemyLockon()
     {
         // プレイヤーの向き

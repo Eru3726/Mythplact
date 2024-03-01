@@ -32,8 +32,18 @@ public class SkillUIDirector : MonoBehaviour
     [SerializeField] Sprite ACSkill4;
     [SerializeField] Sprite ACSkill5;
 
+    [SerializeField] Button SkillPreset1on;
+    [SerializeField] Button SkillPreset2on;
+    [SerializeField] Button SkillPreset3on;
+    [SerializeField] Button SkillPreset1off;
+    [SerializeField] Button SkillPreset2off;
+    [SerializeField] Button SkillPreset3off;
+
+
+    public SkillPieceData spdata;
     Controllerconnect conconect;
     SkillSetDirector skillSetDirector;
+    SkillPreset skillPreset;
 
     public static bool setSlot1 = false;
     public static bool setSlot2 = false;
@@ -51,6 +61,7 @@ public class SkillUIDirector : MonoBehaviour
 
         conconect = GameObject.Find("keycon").GetComponent<Controllerconnect>();
         skillSetDirector = GameObject.Find("SkillSetDirector").GetComponent<SkillSetDirector>();
+        skillPreset = GameObject.Find("SkillPreset").GetComponent<SkillPreset>();
 
 
 
@@ -350,6 +361,79 @@ public class SkillUIDirector : MonoBehaviour
         PassiveSkill.SetActive(true);
 
         passiveFirstSelect.Select();
+    }
+
+    public void pushPreset1()
+    {
+        SkillPreset1on.gameObject.SetActive(true);
+        SkillPreset1off.gameObject.SetActive(false);
+
+        SkillPreset2on.gameObject.SetActive(false);
+        SkillPreset2off.gameObject.SetActive(true);
+
+        SkillPreset3on.gameObject.SetActive(false);
+        SkillPreset3off.gameObject.SetActive(true);
+
+    }
+    public void pushPreset2()
+    {
+        SkillPreset1on.gameObject.SetActive(false);
+        SkillPreset1off.gameObject.SetActive(true);
+
+        SkillPreset2on.gameObject.SetActive(true);
+        SkillPreset2off.gameObject.SetActive(false);
+
+        SkillPreset3on.gameObject.SetActive(false);
+        SkillPreset3off.gameObject.SetActive(true);
+
+    }
+    public void pushPreset3()
+    {
+        SkillPreset1on.gameObject.SetActive(false);
+        SkillPreset1off.gameObject.SetActive(true);
+
+        SkillPreset2on.gameObject.SetActive(false);
+        SkillPreset2off.gameObject.SetActive(true);
+
+        SkillPreset3on.gameObject.SetActive(true);
+        SkillPreset3off.gameObject.SetActive(false);
+
+    }
+    public void savePreset1()
+    {
+        spdata.SaveSkillPiece();
+        Debug.Log("プリセット1保存");
+        skillPreset.Preset1save();
+    }
+    public void savePreset2()
+    {
+        spdata.SaveSkillPiece();
+        Debug.Log("プリセット2保存");
+        skillPreset.Preset2save();
+    }
+    public void savePreset3()
+    {
+        spdata.SaveSkillPiece();
+        Debug.Log("プリセット2保存");
+        skillPreset.Preset3save();
+    }
+    public void readPreset1()
+    {
+        skillPreset.Preset1read();
+        Debug.Log("プリセット1読込");
+        spdata.ReadSkillPiece();
+    }
+    public void readPreset2()
+    {
+        skillPreset.Preset2read();
+        Debug.Log("プリセット2読込");
+        spdata.ReadSkillPiece();
+    }
+    public void readPreset3()
+    {
+        skillPreset.Preset3read();
+        Debug.Log("プリセット3読込");
+        spdata.ReadSkillPiece();
     }
 
     public void Skill1Select()

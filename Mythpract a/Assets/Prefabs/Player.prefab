@@ -15098,7 +15098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77708f783b9e30419b241d0eeef089e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 78f03b4e59b2e0948947aa0101a470e0, type: 2}
   maxSpeed: 12
   jumpPow: 24
   doubleJumpPow: 38
@@ -15150,6 +15150,7 @@ MonoBehaviour:
   JumpUpAtk: {fileID: 9211903540725876237}
   JumpDownAtk: {fileID: 3830640609506620137}
   ChargeAtk: {fileID: 5660995179272322377}
+  SheriffAtk: {fileID: 8438359422445198577, guid: a7264e29880c3e24997be8bf537b70c3, type: 3}
   FleetAtk: {fileID: 6955964071985105023}
   layerMask_Ground:
     serializedVersion: 2

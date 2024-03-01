@@ -167,17 +167,15 @@ partial class Player
     {
         obj.GetComponent<SY.HitData>().Power = power;
     }
-
-    public void AtkNormalHit()
+    void ResetPower()
     {
         SetPower(NormalAtk, playerData.Player[0].normalAtk_Power);
-    }
-    public void AtkJumpHit()
-    {
         SetPower(JumpAtk, playerData.Player[0].jumpAtk_Power);
-    }
-    public void AtkJumpDownHit()
-    {
         SetPower(JumpDownAtk, playerData.Player[0].jumpDownAtk_Power);
+        SetPower(JumpUpAtk, playerData.Player[0].jumpUpAtk_Power);
+        SetPower(ChargeAtk, playerData.Player[0].chargeAtk_Power);
+        SetPower(FleetAtk, playerData.Player[0].fleetAtk_Power);
+
+
     }
 }
