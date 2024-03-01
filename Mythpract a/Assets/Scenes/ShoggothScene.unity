@@ -6206,7 +6206,7 @@ PrefabInstance:
       objectReference: {fileID: 4072194563880188462, guid: 4a616874fd759a5478a5b99471f1d7b4, type: 3}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: slime_MaxNum
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: entry_Vibration

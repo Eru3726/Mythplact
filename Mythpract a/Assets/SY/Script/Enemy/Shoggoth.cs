@@ -699,9 +699,12 @@ public class Shoggoth : MonoBehaviour
                 body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
             }
             tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
-            for (int i = 0; i < slimeObj.Count; i++)
+            if (slimeObj == null)
             {
-                slimeObj[i].GetComponent<SpriteRenderer>().color = damage_Color;
+                for (int i = 0; i < slimeObj.Count; i++)
+                {
+                    slimeObj[i].GetComponent<SpriteRenderer>().color = damage_Color;
+                }
             }
             //待つ
             yield return new WaitForSeconds(damage_Time);
@@ -711,9 +714,12 @@ public class Shoggoth : MonoBehaviour
                 body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
             }
             tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
-            for (int i = 0; i < slimeObj.Count; i++)
+            if (slimeObj == null)
             {
-                slimeObj[i].GetComponent<SpriteRenderer>().color = defColor;
+                for (int i = 0; i < slimeObj.Count; i++)
+                {
+                    slimeObj[i].GetComponent<SpriteRenderer>().color = defColor;
+                }
             }
             //待つ
             yield return new WaitForSeconds(damage_Time);
