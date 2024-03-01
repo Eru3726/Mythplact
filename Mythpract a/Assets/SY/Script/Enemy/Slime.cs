@@ -90,9 +90,12 @@ public class Slime : EnemyBase
         State = Shoggoth_SlimeType.Death;
         dieSE.PlayAudio(se);
         dieEffect.PlayParticle();
+
         Shoggoth shoggothCS = shoggoth.GetComponent<Shoggoth>();
-        shoggothCS.HP -= dieDmg;
+        HitMng shoggothHM = shoggoth.GetComponent<HitMng>();
         shoggothCS.SlimeObj.Remove(obj);
+        shoggothHM.HP -= dieDmg;
+        if (shoggothHM.HP <= 0) { shoggothHM.Result.SetDefFlag(HitResult.DefFlag.DefDeath); }
     }
 
     public void Dead()

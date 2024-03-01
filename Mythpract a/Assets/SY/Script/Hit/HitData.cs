@@ -67,12 +67,17 @@ namespace SY
             if (dmg == 0) { return; }
             defMng.HP -= dmg;
 
-            //HPチェック
-            if (defMng.HP < 0) { defMng.HP = 0; }
-
             //ダメージフラグを立てる
             atkMng.Result.SetAtkFlag(AtkFlag.AtkDamage);
             defMng.Result.SetDefFlag(DefFlag.DefDamage);
+
+            //死亡チェック
+            if (0 < defMng.HP) { return; }
+            defMng.HP = 0;
+
+            //死亡フラグを立てる
+            atkMng.Result.SetAtkFlag(AtkFlag.AtkDeath);
+            defMng.Result.SetDefFlag(DefFlag.DefDeath);
         }
 
         bool CheckMng(HitMng atkMng, HitMng defMng, GameObject col)
@@ -111,7 +116,7 @@ namespace SY
         {
             //nullチェック
             if (data == null)
-            { Debug.LogError(/*data.*/gameObject.transform.parent.name + "にHitDataがアタッチされていない"); return false; }
+            { Debug.LogError(gameObject.transform.parent.name + "にHitDataがアタッチされていない"); return false; }
 
             //タイプチェック
             if (this.Type != HitType.Defense) { return false; }

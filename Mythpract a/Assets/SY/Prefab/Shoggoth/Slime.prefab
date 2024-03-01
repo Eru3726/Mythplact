@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 0
   name: Shoggoth_2.0
-  dieDmg: 100
+  dieDmg: 50
   dmgData: {fileID: 11400000, guid: ee0e6f05847f3154cb6f9dff483ba2b1, type: 2}
   dmgEffect:
     particle: {fileID: 0}

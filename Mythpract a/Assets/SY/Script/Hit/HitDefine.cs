@@ -22,6 +22,7 @@ namespace SY
             None        = 0,
             AtkHit      = 1 << 1,   //防御と当たった
             AtkDamage   = 1 << 2,   //ダメージを与えた
+            AtkDeath    = 1 << 3,   //殺した
         }
 
         [System.Flags]
@@ -30,6 +31,7 @@ namespace SY
             None        = 0,
             DefHit      = 1 << 1,   //攻撃と当たった
             DefDamage   = 1 << 2,   //ダメージを受けた
+            DefDeath    = 1 << 3,   //死んだ
         }
 
         //[System.Flags]
@@ -69,8 +71,6 @@ namespace SY
             float dmg = (atk * power / 2.0f) - (def / 4.0f);
             return (dmg <= 0) ? 0 : dmg;
         }
-        public float Dmage_Enemy(float atk, float power, float def) { return (atk  * power / 2.0f) - (def / 4.0f); }
-        public float Dmage_Player(float atk, float power) { return atk * power; }
 
         //----------全フラグ----------
         public void AllClearFlag() { ClearAtkFlag(); ClearDefFlag(); }
