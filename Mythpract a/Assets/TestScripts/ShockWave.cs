@@ -14,22 +14,18 @@ public class ShockWave : MonoBehaviour
     private Vector3 Wavepos = new Vector3(-7, -5, 0);
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Return))
+        if (time >= Genetime)
         {
-            if (time >= Genetime)
-            {
-                WaveCreate();
-                time = 0;
-            }
-            time += 0.017f;
-            Debug.Log(time);
+            WaveCreate();
+            time = 0;
         }
+        time += 0.017f;
 
     }
 
