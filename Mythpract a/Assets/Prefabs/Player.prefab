@@ -15098,6 +15098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77708f783b9e30419b241d0eeef089e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 0}
   maxSpeed: 12
   jumpPow: 24
   doubleJumpPow: 38
@@ -15125,6 +15126,9 @@ MonoBehaviour:
   skill2Inp: {fileID: 8093098002335912430, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   skill3Inp: {fileID: -3351416296920379119, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
   skill4Inp: {fileID: 4872046447432301327, guid: 63e51ee15a949d64e9af9c7e665c796f, type: 3}
+  shoggothDirecionTime: 0
+  fafnirDirectionTime: 10
+  qilinDirectionTime: 8
   brinkSE: {fileID: 8300000, guid: 12a25d0334bcefa4cb431a8efa8a3a30, type: 3}
   jumpSE: {fileID: 8300000, guid: 9cd1d3bd52787644b8227986b92a0479, type: 3}
   landingSE: {fileID: 8300000, guid: 90cd170494e25eb43b36dba19d90e849, type: 3}
@@ -15147,12 +15151,6 @@ MonoBehaviour:
   JumpDownAtk: {fileID: 3830640609506620137}
   ChargeAtk: {fileID: 5660995179272322377}
   FleetAtk: {fileID: 6955964071985105023}
-  NormalAtk_Power: 100
-  JumpAtk_Power: 100
-  JumpUpAtk_Power: 100
-  JumpDownAtk_Power: 100
-  ChargeAtk_Power: 300
-  FleetAtk_Power: 200
   layerMask_Ground:
     serializedVersion: 2
     m_Bits: 8
@@ -15175,25 +15173,11 @@ MonoBehaviour:
   EffectSkillFleet: {fileID: 1554730836146924147}
   EffectCharge: {fileID: 7565754181327435236}
   EffectChargeAttack: {fileID: 8283102843032860055}
-  skillSlashCT: 8
-  skillFleetCT: 5
-  skillFleetTime: 0.3
-  skillLoneWarriorCT: 10
-  skillLoneWarriorTime: 10
-  skillGreemCT: 2
-  skillDStrikeCT: 5
-  SkillLoneAtk: 1.5
-  SkillLoneAtkPlus: 0.1
-  SkillLoneComboSpan: 2
   SkillLWFirstColor: {r: 1, g: 1, b: 1, a: 0.5019608}
   SkillLWSecondColor: {r: 0.16666657, g: 0.35762754, b: 1, a: 0.6}
   SkillLWThirdColor: {r: 0.41106305, g: 1, b: 0.24213827, a: 0.69803923}
   SkillLWFoursColor: {r: 1, g: 0.24213827, b: 0.84464633, a: 0.8}
   SkillLWLastColor: {r: 1, g: 0, b: 0, a: 0.9019608}
-  SkillBrinkMove: 10
-  SkillJustGuard: 0.2
-  SkillMaxSpeed: 10
-  SkillKajibaAtk: 1.5
   FleetCol: {fileID: 62246546407088735}
   slash: {fileID: 8438359422445198577, guid: a7264e29880c3e24997be8bf537b70c3, type: 3}
   greem: {fileID: 4028125354744199665, guid: 20215f1e58e9f2444b2164c655f0aed0, type: 3}
