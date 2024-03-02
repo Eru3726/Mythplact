@@ -56,6 +56,9 @@ public class HadesController : MonoBehaviour
     private Vector3 wavePos;
 
     private float waveTime = 0;
+
+    [SerializeField, Header("ショック")]
+    GameObject shockEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +85,7 @@ public class HadesController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             actNo = debugActNum;
+            methodNo = 0;
         }
         hitmng.PostUpdate();
     }
@@ -168,22 +172,29 @@ public class HadesController : MonoBehaviour
                     timer = teleGoTime;
 
                     wavePos = transform.position;
-                    wavePos.y -= 4;
+                    wavePos.y -= 3.3f;
+                    wavePos.x -= 2.5f;
 
-                    
+
                     methodNo++;
                 }
                 break;
             case 1:
+                
+                break;
+            case 2:
+                waveTime += 0.017f;
                 if (waveTime >= Genetime)
                 {
                     WaveCreate();
                     waveTime = 0;
                 }
-                waveTime += 0.017f;
-                methodNo++;
-                break;
-            case 2:
+                if (wavePos.x <= -20)
+                {
+                    actNo = (int)ActNo.App;
+                    methodNo=0;
+                }
+                
                 break;
         }
     }
@@ -201,6 +212,12 @@ public class HadesController : MonoBehaviour
     void WaveCreate()
     {
         Instantiate(waveObj, wavePos, Quaternion.identity);
-        wavePos += new Vector3(0.2f, 0, 0);
+        wavePos -= new Vector3(0.2f, 0, 0);
+    }
+
+    void WaveStart()
+    {
+        Instantiate(shockEffect, wavePos, Quaternion.identity);
+        methodNo++;
     }
 }
