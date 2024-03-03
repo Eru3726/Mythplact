@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -65,6 +66,12 @@ public class TutorialText : MonoBehaviour
     [SerializeField, Header("スキップって書いてあるテキストメッシュ")]
     private GameObject nextTexntMesh;
 
+    private string talks;
+
+    private string[] words;
+
+    Coroutine dialogCoroutine;
+
     // 文字のフェイド関係ここまで
 
     // チュートリアルバトル関係
@@ -122,48 +129,54 @@ public class TutorialText : MonoBehaviour
                 switch (talkNum)
                 {
                     case 0:
-                        poptext = "目が覚めたか";
-                        waitSeconds(3);
+                        talks = "目 が 覚 め た か";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
                         if (isChange)
                         {
-                            poptext = "目が覚めたか\nPress " + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex);
-                            if (_actionRef[(int)InputActionNum.attackInp].action.triggered)
-                            {
-                                isChange = false;
-                                talkNum++;
-                            }                            
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            talkNum++;
                         }
                         break;
                     case 1:
-                        poptext = "お前はどれだけ強くなれるか楽しみだ";
-                        waitSeconds(3);
+                        talks = "お 前 は ど れ だ け 強 く な れ る か 楽 し み だ";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
                         if (isChange)
                         {
-                            poptext = "お前はどれだけ強くなれるか楽しみだ\nPress " + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex);
-                            if (_actionRef[(int)InputActionNum.attackInp].action.triggered)
-                            {
-                                isChange = false;
-                                talkNum++;
-                            }
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            talkNum++;
                         }
                         break;
                     case 2:
-                        poptext = "動作確認をする";
-                        waitSeconds(3);
+                        talks = "動 作 確 認 を す る";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
                         if (isChange)
                         {
-                            poptext = "動作確認をする\nPress " + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex);
-                            if (_actionRef[(int)InputActionNum.attackInp].action.triggered)
-                            {
-                                isChange = false;
-                                talkNum++;
-                                fadeMathod = 0;
-                            }
+                            isChange = false;
+                            poptext = null;
+
+                            fadeMathod = 0;
+                            isChange = false;
                         }
                         break;
                 }
-                
-            break;
+
+                break;
 
             case PopTextType.Move:
                 poptext = " 「" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + ","
@@ -324,6 +337,19 @@ public class TutorialText : MonoBehaviour
                 fadeMathod = 0;
                 isChange = false;
             }
+        }
+    }
+
+    private IEnumerator Dialogue()
+    {
+        // 半角スペースで文字を分割する。
+        words = talks.Split(' ');
+
+        foreach (var word in words)
+        {
+            // 0.1秒刻みで１文字ずつ表示する。
+            poptext = poptext + word;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }
