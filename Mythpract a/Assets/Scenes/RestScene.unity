@@ -698,6 +698,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffe78e1e288530d49a5934f43469d8e8, type: 3}
+--- !u!1 &179845957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6157186400425621473, guid: 2737a142671adde47a9691eb1600cb34, type: 3}
+  m_PrefabInstance: {fileID: 1661089791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &185148069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1706,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8922014012187984016, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: setting
+      value: 
+      objectReference: {fileID: 179845957}
+    - target: {fileID: 8922014012187984016, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 78f03b4e59b2e0948947aa0101a470e0, type: 2}
     - target: {fileID: 8922014012187984019, guid: dbf89826de2b33d4090af2d550fc5b50, type: 3}
       propertyPath: m_GravityScale
       value: 10
