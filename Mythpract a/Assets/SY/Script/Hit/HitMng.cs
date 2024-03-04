@@ -55,13 +55,13 @@ namespace SY
         //毎フレーム更新(先頭)
         public void HitUpdate()
         {
-            if (HP <= 0)
+            if (CheckDeath() == true)
             {
                 if (dieFunc != null) { dieFunc(); }
             }
             else if (CheckDamage() == true)
             {
-                if (dmgFunc != null) 
+                if (dmgFunc != null)
                 {
                     dmgFunc(); 
                     if(hp == maxHp * 0.5f) { isHalfHP = true; }
@@ -83,5 +83,8 @@ namespace SY
         
         // ダメージを与えたか
         public bool CheckAttack() { return Result.CheckAtkFlag(AtkFlag.AtkDamage); }
+
+        //死んだか
+        public bool CheckDeath() { return Result.CheckDefFlag(DefFlag.DefDeath); }
     }
 }

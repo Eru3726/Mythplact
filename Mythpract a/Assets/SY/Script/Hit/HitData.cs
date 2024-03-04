@@ -6,7 +6,8 @@ namespace SY
     public class HitData : MonoBehaviour
     {
         [SerializeField] HitType type;
-        float power;        //技威力
+        float power;    //技威力
+        float dmg;      //ダメージ
 
         Player player;
 
@@ -51,23 +52,32 @@ namespace SY
                 }
                 else
                 {
-                    defMng.HP -= defMng.Result.Dmage_Player(atkMng.ATK, atkData.Power);
-
+                    dmg = defMng.Result.Damage(atkMng.ATK, atkData.Power);
                 }
             }
             if(defMng.Layer == HitLayer.Enemy)
             {
-                Debug.Log(atkMng.ATK + "親攻撃力");
-                Debug.Log(atkData.Power + "子攻撃力");
+                Debug.Log(atkMng.ATK + "：攻撃力　" + atkData.Power + "：技威力\n" + 
+                    "オブジェクト名：" + atkData.transform.root.name + ".");
 
-                defMng.HP -= (defMng.Result.Dmage_Enemy(atkMng.ATK, atkData.Power, defMng.DEF) >= 0) ?
-                    defMng.Result.Dmage_Enemy(atkMng.ATK, atkData.Power, defMng.DEF) : 0;
+                dmg = defMng.Result.Damage(atkMng.ATK, atkData.Power, defMng.DEF);
             }
-            if (defMng.HP < 0) { defMng.HP = 0; }
+
+            //ダメージチェック
+            if (dmg == 0) { return; }
+            defMng.HP -= dmg;
 
             //ダメージフラグを立てる
             atkMng.Result.SetAtkFlag(AtkFlag.AtkDamage);
             defMng.Result.SetDefFlag(DefFlag.DefDamage);
+
+            //死亡チェック
+            if (0 < defMng.HP) { return; }
+            defMng.HP = 0;
+
+            //死亡フラグを立てる
+            atkMng.Result.SetAtkFlag(AtkFlag.AtkDeath);
+            defMng.Result.SetDefFlag(DefFlag.DefDeath);
         }
 
         bool CheckMng(HitMng atkMng, HitMng defMng, GameObject col)
@@ -78,16 +88,16 @@ namespace SY
             if (defMng == null)
             { Debug.LogError(this.transform.root.gameObject.name + "にHitMngがアタッチされていない"); return false; }
 
-            //有効チェック
-            if (atkMng.ATKActive == false) { return false; }
-            if (defMng.DEFActive == false) { return false; }
-
             //レイヤーチェック
             if (CheckLayer(atkMng.Layer, defMng.Layer) == false) { return false; }
 
             //当たり判定フラグを立てる
             atkMng.Result.SetAtkFlag(AtkFlag.AtkHit);
             defMng.Result.SetDefFlag(DefFlag.DefHit);
+
+            //有効チェック
+            if (atkMng.ATKActive == false) { return false; }
+            if (defMng.DEFActive == false) { return false; }
 
             //連続ヒット防止
             if (defMng.HitInterval > 0) { return false; }
@@ -106,7 +116,7 @@ namespace SY
         {
             //nullチェック
             if (data == null)
-            { Debug.LogError(/*data.*/gameObject.transform.parent.name + "にHitDataがアタッチされていない"); return false; }
+            { Debug.LogError(gameObject.transform.parent.name + "にHitDataがアタッチされていない"); return false; }
 
             //タイプチェック
             if (this.Type != HitType.Defense) { return false; }

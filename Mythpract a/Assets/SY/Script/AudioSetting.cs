@@ -5,20 +5,20 @@ namespace SY
     [System.Serializable]
     public class AudioSetting
     {
-        //[SerializeField, Tooltip("–¼‘O")] string name;
-        [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒNƒŠƒbƒv")] AudioClip clip;
-        [SerializeField, Range(0, 1), Tooltip("‰¹—Ê")] float volume = 1.0f;
-        [SerializeField, Range(-3, 3), Tooltip("Ä¶‘¬“x")] float pitch = 1.0f;
-        [SerializeField, Tooltip("ƒTƒEƒ“ƒhƒ‹[ƒv")] bool loop = false;
+        //[SerializeField, Tooltip("åå‰")] string name;
+        [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ã‚¯ãƒªãƒƒãƒ—")] AudioClip clip;
+        [SerializeField, Range(0, 1), Tooltip("éŸ³é‡")] float volume = 1.0f;
+        [SerializeField, Range(-3, 3), Tooltip("å†ç”Ÿé€Ÿåº¦")] float pitch = 1.0f;
+        [SerializeField, Tooltip("ã‚µã‚¦ãƒ³ãƒ‰ãƒ«ãƒ¼ãƒ—")] bool loop = false;
 
-        //----------ƒvƒƒpƒeƒB----------
+        //----------ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£----------
         //public string Name { get { return name; } }
         public AudioClip Clip { get { return clip; } }
         public float Volume { get { return volume; } }
         public float Pitch { get { return pitch; } }
         public bool Loop { get { return loop; } }
 
-        //----------ƒT[ƒrƒX----------
+        //----------ã‚µãƒ¼ãƒ“ã‚¹----------
         public void PlayAudio(AudioSource audioSource)
         {
             if (clip == null) { return; }

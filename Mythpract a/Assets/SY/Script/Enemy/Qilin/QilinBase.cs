@@ -416,6 +416,9 @@ public class QilinBase : Enemy
                         gPos);
                     eruption_Last =
                         Instantiate(param.Eruption, genPos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
+                    GameObject pre = Instantiate(param.Prediction, new Vector2(genPos.x, gPos), Quaternion.identity);
+                    pre.GetComponent<SpriteRenderer>().color = param.Eruption_Prediction.Color;
+                    pre.transform.localScale = param.Eruption_Prediction.Scale;
                     no++;
                 }
                 if (repeat < eruption_Generatev2.y)
@@ -426,6 +429,9 @@ public class QilinBase : Enemy
                         gPos);
                     eruption_Last =
                         Instantiate(param.Eruption, genPos, Quaternion.identity/*, transform.Find("HitandEffect").gameObject.transform*/);
+                    GameObject pre = Instantiate(param.Prediction, new Vector2(genPos.x, gPos), Quaternion.identity);
+                    pre.GetComponent<SpriteRenderer>().color = param.Eruption_Prediction.Color;
+                    pre.transform.localScale = param.Eruption_Prediction.Scale;
                     no++;
                 }
                 repeat++;

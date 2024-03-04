@@ -2,11 +2,15 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine;
+using Cinemachine;
 using SY;
 
 public enum Shoggoth_MoveType
 {
+    Entry,      //登場
     Eight,      //基本
     Rotation,   //共有メモパターン2
     UpDown,     //共有メモパターン3
@@ -18,14 +22,17 @@ public class Shoggoth : MonoBehaviour
 {
     Rigidbody2D rb;                 //物理演算
     AudioSource se;                 //サウンド
+    SnakeRig sRig;
     HitMng hm;                      //当たり判定
     GroundCheck gc; //接地判定
     Circle circle = new Circle();   //円
 
     //
     Color defColor;
+    [SerializeField, Tooltip("メインカメラ")] GameObject mainCamera;
     [SerializeField, Tooltip("プレイヤー")] GameObject pl;
     [SerializeField, Tooltip("スライム")] GameObject slime;
+    [SerializeField, Tooltip("予測")] GameObject prediction;
 
     //
     int phase = 0;      //汎用行動番号
@@ -52,6 +59,7 @@ public class Shoggoth : MonoBehaviour
 
     GameObject obj;     //自身
     GameObject headObj; //頭
+    GameObject effect;  //エフェクト親オブジェクト
     Vector2 pos;        //座標
     Vector2 plPos;      //プレーヤー座標
     Quaternion rot;     //角度保存
@@ -64,6 +72,15 @@ public class Shoggoth : MonoBehaviour
     Vector2 afterPos;   //移動後の位置
     Vector2 targetPos;  //目標位置
     float groundPosY;   //地面の高さ
+
+    [Header("登場")]
+    [SerializeField, Tooltip("初期位置")] Vector2 startPosition;
+    [SerializeField, Tooltip("速度")] float entry_Speed;
+    [SerializeField, Tooltip("動き")] Shoggoth_EntryMove[] entryMove;
+    [SerializeField, Tooltip("咆哮エフェクト")] float entry_RoarTime = 1.0f;
+    [SerializeField, Tooltip("画面振動強度")] float entry_Vibration = 1.0f;
+    [SerializeField, Tooltip("咆哮エフェクト")] ParticleSetting entry_RoarEffect;
+    [SerializeField, Tooltip("咆哮サウンド")] AudioSetting entry_RoarSE;
 
     [Header("八の字")]
     [SerializeField, Tooltip("速度")] float eight_Speed;
@@ -107,6 +124,7 @@ public class Shoggoth : MonoBehaviour
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float upDown_OutSEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool upDown_OutSELoop;
     [SerializeField, Tooltip("移動範囲可視化")] bool upDown_MoveRangeDisplay;
+    [SerializeField, Tooltip("攻撃予測")] PredictionSetting upDown_Prediction;
 
     [Header("突進")]
     [SerializeField, Tooltip("判定")] GameObject[] rush;
@@ -121,6 +139,7 @@ public class Shoggoth : MonoBehaviour
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float rush_SEPitch;
     [SerializeField, Tooltip("サウンドループ化")] bool rush_SELoop;
     [SerializeField, Tooltip("移動範囲可視化")] bool rush_MoveRangeDisplay;
+    [SerializeField, Tooltip("攻撃予測")] PredictionSetting rush_Prediction;
 
     [Header("被ダメージ")]
     [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
@@ -137,29 +156,35 @@ public class Shoggoth : MonoBehaviour
 
     [Header("スライム")]
     [SerializeField, Tooltip("生成間隔")] float slime_GenerateTime;
+    [SerializeField, Tooltip("最大数")] float slime_MaxNum;
+    List<GameObject> slimeObj = new List<GameObject>();
 
     private readonly AchvMeasurement achv = new AchvMeasurement();
 
 
     public GameObject Player { get { return pl; } }
     public Shoggoth_MoveType MoveType { get { return moveType; } }
+    public float HP { get { return hm.HP; } set { hm.HP = value; } }
+    public List<GameObject> SlimeObj { get { return slimeObj; } set { slimeObj = value; } }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        sRig = GetComponent<SnakeRig>();
+        headObj = sRig.Root;
+        effect = GameObject.Find("Effect").gameObject;
+        rb = headObj.GetComponent<Rigidbody2D>();
+        rb.position = startPosition;
         se = GetComponent<AudioSource>();
         hm = GetComponent<HitMng>();
         obj = this.gameObject;
         defColor = Color.white;
-        headObj = transform.Find("Model/Head").gameObject;
         pos = rb.position;
         plPos = pl.transform.position;
         scale = headObj.transform.localScale;
         gravity = rb.gravityScale;
         groundPosY = GroundPosition(eight_Center.x);
 
-        tableNo = Random.Range(0, moveTable.Length);
-        moveNo = 0;
+        moveType = Shoggoth_MoveType.Entry;
 
         PowerReset();
         rush_Effect.Clear();
@@ -191,6 +216,8 @@ public class Shoggoth : MonoBehaviour
 
         switch (moveType)
         {
+            case Shoggoth_MoveType.Entry:
+                Entry(); break;
             case Shoggoth_MoveType.Eight:
                 Eight(); break;
             case Shoggoth_MoveType.Rotation:
@@ -201,18 +228,85 @@ public class Shoggoth : MonoBehaviour
                 Rush(); break;
         }
         rb.position = pos;
+        effect.transform.position = pos;
 
         afterPos = rb.position;  //移動移動後の位置保存
 
         //移動方向に向く
-        transform.rotation = MoveDirection(beforePos, afterPos);
-        BodyRot();
+        //transform.rotation = MoveDirection(beforePos, afterPos);
+        //BodyRot();
+
+        //スライム
+        SlimeGene();
 
         //Debug.Log(phase);
         hm.PostUpdate();
     }
 
     //----------アクション----------
+    //登場
+    void Entry()
+    {
+        switch(phase)
+        {
+            case 0:
+                pos = entryMove[repeat].Start;  //スタート位置に移動(転移)
+                dir = Distance(entryMove[repeat].Start, entryMove[repeat].Target).normalized;   //移動方向定義
+                phase++;
+                break;
+            case 1:
+                pos += dir * (entry_Speed * speed_save);    //移動
+                if (dir == (entryMove[repeat].Target - pos).normalized) { break; }  //目標座標を通過
+                phase++;
+                break;
+            case 2:
+                pos += dir * (entry_Speed * speed_save);    //移動
+                timer += Time.deltaTime;
+                if (timer < entryMove[repeat].Interval) { break; }
+                repeat++;
+                timer = 0;
+                if (repeat == entryMove.Length) //突進回数が指定回数と同値
+                {
+                    targetPos = Vector2.up * 5.0f;
+                    dir = Distance(pos, targetPos).normalized;
+                    phase++; break; 
+                }
+                phase = 0;
+                break;
+            case 3:
+                pos += dir * (speed * speed_save);  //移動
+                if (dir == (targetPos - pos).normalized) { break; } //目標座標を通過
+                phase++;
+                break;
+            case 4:
+                timer += Time.deltaTime;
+                if (timer < 0.5f) { return; }
+                entry_RoarEffect.PlayParticle();
+                entry_RoarSE.PlayAudio(se);
+                setVibration(entry_Vibration * 0.25f);
+                timer = 0;
+                phase++;
+                break;
+            case 5:
+                VibrationSubtraction(((entry_Vibration * 0.25f) / 60.0f) / entry_RoarTime);
+                timer += Time.deltaTime;
+                if (timer < entry_RoarTime) { return; }
+                entry_RoarEffect.StopParticle();
+                setVibration(0);
+                phase++;
+                break;
+            case 6:
+                tableNo = Random.Range(0, moveTable.Length);
+                moveNo = 0;
+                moveType = moveTable[tableNo].Move[moveNo];
+                AllVariableClear();
+                break;
+            default:
+                AllVariableClear();
+                break;
+        }
+    }
+
     //8の字移動
     void Eight()
     {
@@ -275,7 +369,7 @@ public class Shoggoth : MonoBehaviour
                 pos = circle.Move(timer, rotation_Speed);
                 if ((timer % slime_GenerateTime) + Time.deltaTime > slime_GenerateTime)
                 {
-                    Instantiate(slime, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+                    //Instantiate(slime, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
                     no++;
                     if (no > rotation_SlimeGenerate) { phase++; }
                 }
@@ -334,6 +428,15 @@ public class Shoggoth : MonoBehaviour
                 Quaternion q = (dir == Vector2.down) ?
                     Quaternion.Euler(90.0f, 0, 0) : Quaternion.Euler(-90.0f, 0, 0);
                 upDown_Effect.transform.localRotation = q;
+
+                float y = (dir == Vector2.down) ?
+                    Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).y :
+                    groundPosY;
+                GameObject p;
+                if (y == groundPosY) { p = Instantiate(prediction, new Vector2(plPos.x, y), Quaternion.identity); }
+                else { p = Instantiate(prediction, new Vector2(plPos.x, y), Quaternion.identity/*, Camera.main.transform*/); }
+                p.GetComponent<SpriteRenderer>().color = upDown_Prediction.Color;
+                p.transform.localScale = upDown_Prediction.Scale;
                 //SetAudio(upDown_SE, upDown_SEVolume, upDown_SEPitch, upDown_SELoop);
                 phase++;
                 repeat++;
@@ -362,7 +465,7 @@ public class Shoggoth : MonoBehaviour
                         upDown_Effect.transform.position = new Vector2
                             (upDown_Effect.transform.position.x, groundPosY + 2.0f);
                         if (no == upDown_SlimeGenerate) { return; }   //スライム生成回数が指示回数と同一
-                        Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity); //スライム生成
+                        //Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity); //スライム生成
                         no++;                       //スライム生成回数
                     }
                 }
@@ -380,7 +483,7 @@ public class Shoggoth : MonoBehaviour
                         upDown_Effect.transform.position = new Vector2
                             (upDown_Effect.transform.position.x, groundPosY + 2.0f);
                         if (no == upDown_SlimeGenerate) { return; }   //スライム生成回数が指示回数と同一
-                        Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity);
+                        //Instantiate(slime, new Vector3(pos.x, groundPosY, 0), Quaternion.identity);
                         no++;
                     }
                 }
@@ -454,6 +557,14 @@ public class Shoggoth : MonoBehaviour
                 circle.Data(plPos.x + rush_Offset.x, plPos.y + rush_Offset.y, rush_Radius.x, rush_Radius.y, 1.0f, 1.0f);
                 SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
                 rush_Effect.Play();
+
+                float x = (circle.Direction == 1) ?
+                    Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).x :
+                    Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x;
+                Quaternion q = Quaternion.Euler(0, 0, 90);
+                GameObject p = Instantiate(prediction, new Vector2(x, plPos.y), q/*, Camera.main.transform*/);
+                p.GetComponent<SpriteRenderer>().color = rush_Prediction.Color;
+                p.transform.localScale = rush_Prediction.Scale;
                 //rush_Effect.transform.rotation = new Quaternion(transform.rotation.x, 90, 0, 1);
                 phase++;
                 break;
@@ -503,7 +614,7 @@ public class Shoggoth : MonoBehaviour
     public void Damage()
     {
         Debug.Log(gameObject.name + "はダメージ受けた");
-        StartCoroutine("Flash");
+        StartCoroutine(Flash());
     }
 
     void Die()
@@ -530,6 +641,27 @@ public class Shoggoth : MonoBehaviour
         LastParticle = Instantiate(die_Effect[2].Particle.gameObject,
             tail.transform.parent.gameObject.transform.position, Quaternion.identity);
         LastParticle.GetComponent<ParticleSystem>().Play();
+
+        for (int i = 0; i < slimeObj.Count; i++)
+        {
+            Destroy(slimeObj[i]);
+        }
+    }
+
+    float slimeTimer = 0;
+    void SlimeGene()
+    {
+        if (slime_MaxNum <= slimeObj.Count) { return; }
+        slimeTimer += Time.deltaTime;
+        if (slimeTimer < slime_GenerateTime) { return; }
+        int slimePos = Random.Range(1, sRig.Model.Length);
+
+        if (GameObject.Find(slime.name) != null) { return; }
+        Transform bodyTF = sRig.Model[slimePos].transform;
+        GameObject s = Instantiate(slime, bodyTF.position, bodyTF.rotation);
+        s.GetComponent<Slime>().Root = sRig.Model[slimePos];
+        slimeObj.Add(s);
+        slimeTimer = 0;
     }
 
     //----------各種データ管理----------
@@ -567,6 +699,13 @@ public class Shoggoth : MonoBehaviour
                 body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
             }
             tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = damage_Color;
+            if (slimeObj == null)
+            {
+                for (int i = 0; i < slimeObj.Count; i++)
+                {
+                    slimeObj[i].GetComponent<SpriteRenderer>().color = damage_Color;
+                }
+            }
             //待つ
             yield return new WaitForSeconds(damage_Time);
             head.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
@@ -575,6 +714,13 @@ public class Shoggoth : MonoBehaviour
                 body[i].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
             }
             tail.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = defColor;
+            if (slimeObj == null)
+            {
+                for (int i = 0; i < slimeObj.Count; i++)
+                {
+                    slimeObj[i].GetComponent<SpriteRenderer>().color = defColor;
+                }
+            }
             //待つ
             yield return new WaitForSeconds(damage_Time);
             damage_Repeat++;
@@ -646,6 +792,25 @@ public class Shoggoth : MonoBehaviour
         }
     }
 
+    CinemachineBasicMultiChannelPerlin vCamera2;
+    Volume v;
+    MotionBlur b;
+    void setVibration(float vibration)  //画面振動
+    {
+        CinemachineVirtualCamera vCamera = mainCamera.GetComponent<CinemachineVirtualCamera>();
+        vCamera2 = vCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        vCamera2.m_AmplitudeGain = vibration;
+
+        v = GameObject.Find("Volume").GetComponent<Volume>();
+        v.profile.TryGet(out b);
+        b.intensity.value = vibration;
+    }
+    void VibrationSubtraction(float value)
+    {
+        vCamera2.m_AmplitudeGain -= value;
+        b.intensity.value -= value;
+    }
+
     //サウンド
     void SetAudio(AudioClip audio, float Volume, float Pitch, bool isLoop)
     {
@@ -681,4 +846,16 @@ public class Shoggoth_MoveTable
 
     public string Name { get { return name; } }
     public Shoggoth_MoveType[] Move { get { return move; } }
+}
+
+[System.Serializable]
+public class Shoggoth_EntryMove
+{
+    [SerializeField, Tooltip("スタート座標")] Vector2 start;
+    [SerializeField, Tooltip("目標座標")] Vector2 target;
+    [SerializeField, Tooltip("間隙")] float interval;
+
+    public Vector2 Start { get { return start; } }
+    public Vector2 Target { get { return target; } }
+    public float Interval { get { return interval; } }
 }

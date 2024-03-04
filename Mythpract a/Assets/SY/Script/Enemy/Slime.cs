@@ -1,6 +1,113 @@
+using System.Collections;
 using UnityEngine;
 using SY;
 
+public class Slime : EnemyBase
+{
+    SpriteRenderer sr;
+    Vector3 diffScale;
+    GameObject shoggoth;
+    GameObject root;
+    Color defColor;
+
+    [SerializeField, ReadOnly] Shoggoth_SlimeType State = Shoggoth_SlimeType.None;
+    [SerializeField, Tooltip("親オブジェクト名")] new string name = "Shoggoth";
+    [SerializeField, Tooltip("死亡時与ダメージ")] float dieDmg = 1.0f;
+    [SerializeField, Tooltip("ダメージ")] Damage dmgData;
+    [SerializeField, Tooltip("ダメージエフェクト")] ParticleSetting dmgEffect;
+    [SerializeField, Tooltip("ダメージサウンド")] AudioSetting dmgSE;
+    [SerializeField, Tooltip("死亡時エフェクト")] ParticleSetting dieEffect;
+    [SerializeField, Tooltip("死亡時サウンド")] AudioSetting dieSE;
+
+    public GameObject Root { get { return root; } set { root = value; } }
+
+    Vector3 TFPos(GameObject obj) { return obj.transform.position; }
+    Quaternion TFRot(GameObject obj) { return obj.transform.rotation; }
+    Vector3 TFScl(GameObject obj) { return obj.transform.localScale; }
+
+    private void Start()
+    {
+        SetUp();
+    }
+
+    private void Update()
+    {
+        if (State == Shoggoth_SlimeType.Death) { Dead(); return; }
+
+        hm.HitUpdate();
+
+        transform.position = TFPos(root);
+        transform.rotation = TFRot(root);
+        diffScale = TFScl(obj) - TFScl(root);
+        transform.localScale = TFScl(root) + diffScale;
+
+        hm.PostUpdate();
+    }
+
+    public override void SetUp()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        se = GetComponent<AudioSource>();
+        hm = GetComponent<HitMng>();
+
+        obj = this.gameObject;
+        pos = TFPos(obj);
+        scale = TFScl(obj);
+
+        shoggoth = GameObject.Find(name).gameObject;
+
+        defColor = sr.color;
+
+        hm.SetUp(Damage, Die);
+    }
+
+    public void Damage()
+    {
+        StartCoroutine(Flash());
+    }
+
+    IEnumerator Flash()
+    {
+        int damage_Repeat = 0;  //繰り返し回数
+
+        while (damage_Repeat < dmgData.Time)
+        {
+            //色変更
+            sr.color = dmgData.Color;
+            //待つ
+            yield return new WaitForSeconds(dmgData.Interval);
+            //色戻す
+            sr.color = defColor;
+            //待つ
+            yield return new WaitForSeconds(dmgData.Interval);
+            damage_Repeat++;    //繰り返し回数加算
+        }
+    }
+
+    public override void Die()
+    {
+        State = Shoggoth_SlimeType.Death;
+        dieSE.PlayAudio(se);
+        dieEffect.PlayParticle();
+
+        Shoggoth shoggothCS = shoggoth.GetComponent<Shoggoth>();
+        HitMng shoggothHM = shoggoth.GetComponent<HitMng>();
+        shoggothCS.SlimeObj.Remove(obj);
+        shoggothHM.HP -= dieDmg;
+        if (shoggothHM.HP <= 0) { shoggothHM.Result.SetDefFlag(HitResult.DefFlag.DefDeath); }
+    }
+
+    public void Dead()
+    {
+        if (dieEffect.Particle == null) { Destroy(obj); return; }
+        dieEffect.StopParticle();
+        if (dieEffect.IsValid == false) { return; }
+        Destroy(obj);
+    }
+}
+
+#if false
 public class Slime : MonoBehaviour
 {
     HitMng HMng;
@@ -90,8 +197,8 @@ public class Slime : MonoBehaviour
 
         HMng.SetUp(Damage, Die);
 
-        shoggothObj = GameObject.Find("Shoggoth");
-        shoggoth = GameObject.Find("Shoggoth").GetComponent<Shoggoth>();
+        shoggothObj = GameObject.Find("Shoggoth_2.0");
+        shoggoth = shoggothObj.GetComponent<Shoggoth>();
         moveType = MoveType.First;
         firstMove = (int)shoggoth.MoveType;
     }
@@ -318,3 +425,4 @@ public class Slime : MonoBehaviour
         se.Play();
     }
 }
+#endif

@@ -19619,7 +19619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1332058417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24975,8 +24975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conconnect: {fileID: 429582203}
   start: {fileID: 1914236981}
-  setting: {fileID: 0}
-  quit: {fileID: 0}
+  setting: {fileID: 1647068074}
+  quit: {fileID: 414359269}
   keycon: {fileID: 0}
   keyconCmana: {fileID: 1717445130}
   titleCanvas: {fileID: 0}
