@@ -132,12 +132,10 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Tooltip("威力")] float rush_Power = 1.0f;
     [SerializeField, Tooltip("中心座標")] Vector2 rush_Center = new Vector2(0.0f, 0.0f);
     [SerializeField, Tooltip("攻撃範囲")] Vector2 rush_AtkRange = new Vector2(40.0f, 10.0f);
+    [SerializeField, Tooltip("叫び時間")] float rush_RoarTime = 1.0f;
     [SerializeField, Tooltip("隙")] float rush_BreakTime = 0.5f;
     [SerializeField, Tooltip("実行回数")] int rush_AtkTime = 3;
-    [SerializeField, Tooltip("サウンドエフェクト")] AudioClip rush_SE;
-    [SerializeField, Range(0, 1), Tooltip("音量")] float rush_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("再生速度")] float rush_SEPitch;
-    [SerializeField, Tooltip("サウンドループ化")] bool rush_SELoop;
+    [SerializeField, Tooltip("サウンドエフェクト")] AudioSetting rush_SE;
     [SerializeField, Tooltip("ギズモ")] GizmoSetting rush_Gizmo;
 
     [Header("ブレス")]
@@ -491,24 +489,39 @@ public class Fafnir : MonoBehaviour
     {
         switch (phase)
         {
-            case 0:     //突進威力設定、始動アニメーション開始
-                SetPower(body, rush_Power);
-                SetAudio(attackAnticipation_SE, attackAnticipation_SEVolume, attackAnticipation_SEPitch, attackAnticipation_SELoop);
-                anim.AnimChage("Rush_Start", isLock);   //アニメーション適用に1フレーム必要らしい
+            case 0:
+                AnimChange("Rush_RoarStart");
                 phase++;
                 break;
-            case 1:     //始動アニメーション終了→突進アニメーション開始
-                Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
+            case 1:
+                if (anim.NormalizedTime < 1.0f) { break; }
+                AnimChange("Rush_RoarAir");
+                phase++;
+                break;
+            case 2:
+                timer += Time.deltaTime;
+                if (timer < rush_RoarTime) { break; }
+                AnimChange("Rush_RoarEnd");
+                phase++;
+                break;
+            case 3:
+                if (anim.NormalizedTime < 1.0f) { break; }
+                SetPower(body, rush_Power);
+                SetAudio(attackAnticipation_SE, attackAnticipation_SEVolume, attackAnticipation_SEPitch, attackAnticipation_SELoop);
+                AnimChange("Rush_Start");
+                phase++;
+                break;
+            case 4:
                 if (anim.NormalizedTime < 1.0f) { break; }
                 body.SetActive(true);
-                SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
+                rush_SE.PlayAudio(se);
                 tackle_Effect.gameObject.SetActive(true);
                 tackle_Effect.Play();
-                anim.AnimChage("Rush_Air", isLock);
+                AnimChange("Rush_Air");
                 repeat++;
                 phase++;
                 break;
-            case 2:     //突進開始、画面端また画面中央付近に到達→停止、威力設定、終了アニメーション開始
+            case 5:
                 timer += Time.deltaTime;
                 rb.velocity = (-dir * Vector2.right).normalized * rush_MoveSpd;
                 if (timer < 0.2f) { break; }
@@ -521,7 +534,7 @@ public class Fafnir : MonoBehaviour
                     if (pos.x < (rush_Center.x + rush_AtkRange.x * 0.5f) &&
                         (rush_Center.x - rush_AtkRange.x * 0.5f) < pos.x) { break; }
                 }
-                rb.velocity = Vector2.zero; 
+                rb.velocity = Vector2.zero;
                 body.SetActive(false);
                 SetPower(body, body_Power);
                 anim.AnimChage("Rush_End", isLock);
@@ -529,11 +542,11 @@ public class Fafnir : MonoBehaviour
                 timer = 0;
                 phase++;
                 break;
-            case 3:     //終了アニメーション終了
+            case 6:     //終了アニメーション終了
                 if (anim.NormalizedTime < 1.0f) { break; }
                 phase++;
                 break;
-            case 4:     //折り返し時間→向き更新、回数に応じて次アクション定義
+            case 7:     //折り返し時間→向き更新、回数に応じて次アクション定義
                 timer += Time.deltaTime;
                 if (timer < rush_BreakTime) { break; }
                 Direction();
@@ -541,7 +554,7 @@ public class Fafnir : MonoBehaviour
                 if (repeat == rush_AtkTime) { phase++; }
                 else { phase = 0; }
                 break;
-            case 5:
+            case 8:
                 //moveType = rush_NextMove;
                 MoveEnd();
                 break;
@@ -771,6 +784,11 @@ public class Fafnir : MonoBehaviour
     }
 
     //----------アニメーション----------
+    void AnimChange(string name)
+    {
+        anim.AnimChage(name, true);
+    }
+
     void Anim_Basis()
     {
         if (CheckGroundFlag(GroundCheck.Flag.Ground))
