@@ -59,6 +59,9 @@ public class HadesController : MonoBehaviour
 
     [SerializeField, Header("ショック")]
     GameObject shockEffect;
+
+    [SerializeField, Header("スラッシュエフェクト")]
+    private GameObject slashEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +77,8 @@ public class HadesController : MonoBehaviour
         hitmng.SetUp(hit, die);
 
         anim.Play("08_TRBoss_appearance");
+
+        actNo = (int)ActNo.App;
     }
 
     // Update is called once per frame
@@ -98,6 +103,13 @@ public class HadesController : MonoBehaviour
             anim.Play("01_TRBoss_stay");
             hitmng.DEFActive = true;
             hitmng.ATKActive = true;
+
+            animInfo = anim.GetCurrentAnimatorStateInfo(0);
+            if (animInfo.normalizedTime > 1.0f)
+            {
+                actNo = (int)ActNo.LodAttack;
+                methodNo = 0;
+            }
         }
 
     }
@@ -128,6 +140,7 @@ public class HadesController : MonoBehaviour
                     this.gameObject.transform.position = pos;
                     timer = teleAttackTime;
                     anim.Play("02b_TRBoss_attack_morefast");
+                    //Instantiate(slashEffect, transform.position.x,transform.position.y+1,Quaternion.Euler(0, 0, 120));
                     hitmng.DEFActive = true;
                     hitmng.ATKActive = true;
                     methodNo++;
@@ -154,7 +167,7 @@ public class HadesController : MonoBehaviour
                 {
                     this.gameObject.transform.position = firstPos;
                     methodNo = 0;
-                    actNo = (int)ActNo.App;
+                    actNo = (int)ActNo.ShockWave;
                 }
                 break;
         }
@@ -172,7 +185,7 @@ public class HadesController : MonoBehaviour
                     timer = teleGoTime;
 
                     wavePos = transform.position;
-                    wavePos.y -= 3.3f;
+                    wavePos.y -= 3f;
                     wavePos.x -= 2.5f;
 
 
@@ -217,7 +230,7 @@ public class HadesController : MonoBehaviour
 
     void WaveStart()
     {
-        Instantiate(shockEffect, wavePos, Quaternion.identity);
+        Instantiate(shockEffect, wavePos, Quaternion.Euler(- 90, 0, 0));
         methodNo++;
     }
 }

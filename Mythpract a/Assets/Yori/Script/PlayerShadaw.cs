@@ -15,6 +15,11 @@ public class PlayerShadaw : MonoBehaviour
     private float difPlPos;
     private Vector3 jumpPos;
     private Vector3 shadowpos;
+
+    private Vector3 wavePos;
+
+    [SerializeField, Header("shockEffect")]
+    GameObject shockEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +40,13 @@ public class PlayerShadaw : MonoBehaviour
         jumpPos.y = shadowpos.y - difPlPos;
         jumpPos.x = playerObj.transform.position.x;
         transform.position = jumpPos;
+    }
+
+    void WaveStart()
+    {
+        wavePos = transform.position;
+        wavePos.y += 3f;
+        wavePos.x -= 1.5f;
+        Instantiate(shockEffect, wavePos, Quaternion.Euler(90,0,180));
     }
 }
