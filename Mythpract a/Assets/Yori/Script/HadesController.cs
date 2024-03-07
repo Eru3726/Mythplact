@@ -4,13 +4,14 @@ using UnityEngine;
 public class HadesController : MonoBehaviour
 {
     [SerializeField, Header("行動番号")]
-    private int actNo = 0;      // 行動番号
+    public int actNo = 0;      // 行動番号
     [SerializeField, Header("メソッド用汎用番号")]
     private int methodNo = 0;   // メソッド用汎用番号
 
     enum ActNo
     {
         App,
+        Wait,
         LodAttack,
         ShockWave,
         Num         // 総数
@@ -62,6 +63,10 @@ public class HadesController : MonoBehaviour
 
     [SerializeField, Header("スラッシュエフェクト")]
     private GameObject slashEffect;
+
+    public bool dieFlg;
+
+    private bool AttackType;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +74,7 @@ public class HadesController : MonoBehaviour
         anim = GetComponent<Animator>();
         actFuncTbl = new ActFunc[(int)ActNo.Num];
         actFuncTbl[(int)ActNo.App] = ActApp;
+        actFuncTbl[(int)ActNo.Wait] = ActWait;
         actFuncTbl[(int)ActNo.LodAttack] = ActLodAttack;
         actFuncTbl[(int)ActNo.ShockWave] = ActShockWave;
         firstPos = this.gameObject.transform.position;
@@ -76,15 +82,16 @@ public class HadesController : MonoBehaviour
 
         hitmng.SetUp(hit, die);
 
-        anim.Play("08_TRBoss_appearance");
-
         actNo = (int)ActNo.App;
+
+        dieFlg = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         hitmng.HitUpdate();
+
         // 関数配列を用いた関数の呼び出し
         actFuncTbl[actNo]();
         if (Input.GetKeyDown(KeyCode.E))
@@ -97,23 +104,52 @@ public class HadesController : MonoBehaviour
 
     void ActApp()
     {
-        AnimatorStateInfo animInfo = anim.GetCurrentAnimatorStateInfo(0);
-        if (animInfo.normalizedTime > 1.0f)
+        switch (methodNo)
         {
-            anim.Play("01_TRBoss_stay");
-            hitmng.DEFActive = true;
-            hitmng.ATKActive = true;
-
-            animInfo = anim.GetCurrentAnimatorStateInfo(0);
-            if (animInfo.normalizedTime > 1.0f)
-            {
-                actNo = (int)ActNo.LodAttack;
-                methodNo = 0;
-            }
+            case 0:
+                anim.Play("08_TRBoss_appearance");
+                hitmng.DEFActive = false;
+                hitmng.ATKActive = false;
+                methodNo++;
+                break;
+            case 1:
+                AnimatorStateInfo animInfo = anim.GetCurrentAnimatorStateInfo(0);
+                if (animInfo.normalizedTime > 0.8f)
+                {
+                    anim.Play("01_TRBoss_stay");
+                }
+                break;
         }
-
     }
 
+    void ActWait()
+    {
+        switch (methodNo)
+        {
+            case 0:
+                AnimatorStateInfo animInfo = anim.GetCurrentAnimatorStateInfo(0);
+                if (animInfo.normalizedTime > 1.0f)
+                {
+                    anim.Play("01_TRBoss_stay");
+                    hitmng.DEFActive = true;
+                    hitmng.ATKActive = true;
+                    methodNo++;
+                }
+                break;
+            case 1:
+                if (AttackType)
+                {
+                    methodNo = 0;
+                    actNo = (int)ActNo.LodAttack;
+                }
+                else
+                {
+                    methodNo = 0;
+                    actNo = (int)ActNo.ShockWave;
+                }
+                break;
+        }
+    }
     void ActLodAttack()
     {
         switch (methodNo)
@@ -167,7 +203,8 @@ public class HadesController : MonoBehaviour
                 {
                     this.gameObject.transform.position = firstPos;
                     methodNo = 0;
-                    actNo = (int)ActNo.ShockWave;
+                    AttackType = false;
+                    actNo = (int)ActNo.Wait;
                 }
                 break;
         }
@@ -193,7 +230,7 @@ public class HadesController : MonoBehaviour
                 }
                 break;
             case 1:
-                
+
                 break;
             case 2:
                 waveTime += 0.017f;
@@ -204,10 +241,11 @@ public class HadesController : MonoBehaviour
                 }
                 if (wavePos.x <= -20)
                 {
-                    actNo = (int)ActNo.App;
-                    methodNo=0;
+                    AttackType = true;
+                    actNo = (int)ActNo.Wait;
+                    methodNo = 0;
                 }
-                
+
                 break;
         }
     }
@@ -219,7 +257,7 @@ public class HadesController : MonoBehaviour
 
     void die()
     {
-
+        dieFlg = true;
     }
 
     void WaveCreate()
@@ -230,7 +268,7 @@ public class HadesController : MonoBehaviour
 
     void WaveStart()
     {
-        Instantiate(shockEffect, wavePos, Quaternion.Euler(- 90, 0, 0));
+        Instantiate(shockEffect, wavePos, Quaternion.Euler(-90, 0, 0));
         methodNo++;
     }
 }

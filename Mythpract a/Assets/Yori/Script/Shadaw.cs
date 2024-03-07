@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class PlayerShadaw : MonoBehaviour
+public class Shadaw : MonoBehaviour
 {
 
     public Animator sourceAnimator; // 同期させるアニメーター

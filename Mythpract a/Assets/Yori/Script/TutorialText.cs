@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class TutorialText : MonoBehaviour
 {
     // 入力関係
-
     [SerializeField]
     private List<InputActionReference> _actionRef;
     private List<InputAction> _action;
@@ -23,18 +22,20 @@ public class TutorialText : MonoBehaviour
         escInp
     }
 
+    
     private enum PopTextType
     {
         Talk,
         Move,
         Attack,
-        Skill,
         Guard,
         Blink,
         tutorialBattle,
+        num
     }
 
     private InputActionNum inputActionNum;
+    [SerializeField]
     private PopTextType popTexttype;
 
     private string poptext;
@@ -80,6 +81,11 @@ public class TutorialText : MonoBehaviour
 
     private int talkNum = 0;
 
+    [SerializeField, Header("hades")]
+    HadesController hadesCon;
+
+    private int endTalkNum = 0;
+    
     void Start()
     {
         // listにアタッチした奴を格納
@@ -89,7 +95,6 @@ public class TutorialText : MonoBehaviour
         {
             _action.Add(_actionRef[(int)inputActionNum]);
         }
-
 
         color = this.GetComponent<TextMesh>().color;
         color.a = 0;
@@ -101,18 +106,13 @@ public class TutorialText : MonoBehaviour
         pushCount = 0;
 
         _actionRef[(int)InputActionNum.escInp].action.Enable();
+
+        endTalkNum = 0;
     }
     private void Update()
     {
-
         TutorialPopText();
-        FadeText();
-
-        // Tutorialスキップ
-        if (_actionRef[(int)InputActionNum.escInp].action.triggered)
-        {
-            popTexttype = PopTextType.tutorialBattle;
-        }
+        FadeText();        
     }
 
     void TutorialPopText()
@@ -125,13 +125,15 @@ public class TutorialText : MonoBehaviour
         switch (popTexttype)
         {
             case PopTextType.Talk:
-
+                // Tutorialスキップ
+                TutorialSkip();
                 switch (talkNum)
                 {
                     case 0:
                         talks = "目 が 覚 め た か";
                         if (dialogCoroutine == null)
                         {
+                            Debug.Log("目 が 覚 め た か");
                             dialogCoroutine = StartCoroutine(Dialogue());
                         }
                         waitSeconds(4);
@@ -179,6 +181,8 @@ public class TutorialText : MonoBehaviour
                 break;
 
             case PopTextType.Move:
+                // Tutorialスキップ
+                TutorialSkip();
                 poptext = " 「" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + ","
                     + _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "」移動";
 
@@ -216,6 +220,8 @@ public class TutorialText : MonoBehaviour
                 break;
 
             case PopTextType.Attack:
+                // Tutorialスキップ
+                TutorialSkip();
                 poptext = " 「" + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "」攻撃\n" +
                     "　空中で上下入力で攻撃が変化";
                 if (_actionRef[(int)InputActionNum.attackInp].action.IsPressed())
@@ -229,21 +235,9 @@ public class TutorialText : MonoBehaviour
                 nextTutorial(InputActionNum.attackInp, 5);
                 break;
 
-            case PopTextType.Skill:
-                poptext = "「" + _action[(int)InputActionNum.skill1Inp].GetBindingDisplayString(bindingIndex) + "」スキル攻撃";
-
-                waitSeconds(4);
-
-                if (_actionRef[(int)InputActionNum.skill1Inp].action.IsPressed())
-                {
-                    poptext = "「<color=red>" + _action[(int)InputActionNum.skill1Inp].GetBindingDisplayString(bindingIndex) + "</color>」スキル攻撃";
-                }
-
-                nextTutorial(InputActionNum.skill1Inp, 5);
-
-                break;
-
             case PopTextType.Guard:
+                // Tutorialスキップ
+                TutorialSkip();
                 poptext = "「" + _action[(int)InputActionNum.guardInp].GetBindingDisplayString(bindingIndex) + "」ガード";
 
                 waitSeconds(4);
@@ -257,7 +251,8 @@ public class TutorialText : MonoBehaviour
 
                 break;
             case PopTextType.Blink:
-
+                // Tutorialスキップ
+                TutorialSkip();
                 poptext = "「" + _action[(int)InputActionNum.blinkInp].GetBindingDisplayString(bindingIndex) + "」ブリンク";
 
                 waitSeconds(4);
@@ -268,15 +263,68 @@ public class TutorialText : MonoBehaviour
                 }
 
                 nextTutorial(InputActionNum.blinkInp, 5);
+                talkNum = 0;
 
                 break;
             case PopTextType.tutorialBattle:
                 // ここにチュートリアルバトルの処理
-                poptext = "ボスを倒そう";
+                switch (endTalkNum)
+                {
+                    case 0:
+                        talks = "問 題 な い よ う だ な";
+                        if (dialogCoroutine == null)
+                        {
+                            Debug.Log(popTexttype);
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
+                        if (isChange)
+                        {
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            // テキスト送りが終わったら速攻攻撃
+                            hadesCon.actNo = 2;
+                            endTalkNum++;
+                        }
+                        break;
+                    case 1:
+                        Debug.Log("死ぬの待機中");
+                        if (hadesCon.dieFlg)
+                        {
+                            endTalkNum++;
+                        }
+                        break;
+                    case 2:
+                        talks = "ス キ ル を う ま く 使 え";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
+                        if (isChange)
+                        {
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            endTalkNum++;
+                        }
+                        break;
+                    case 3:
+                        talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 赴 き\n そ こ の 世 界 で 貴 様 の 実 力 を 示 す の だ";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(6);
+                        if (isChange)
+                        {
+                            // シーン移動
+                        }
+                        break;
+                }
                 break;
         }
-
-
         this.GetComponent<TextMesh>().text = poptext;
     }
     void FadeText()
@@ -296,6 +344,12 @@ public class TutorialText : MonoBehaviour
 
                 if (color.a <= 0)
                 {
+                    if (popTexttype + 1 == PopTextType.tutorialBattle)
+                    {
+                        isBossBatlle = true;
+                        dialogCoroutine = null;
+                        poptext = null;
+                    }
                     fadeMathod++;
                     popTexttype++;
                 }
@@ -306,10 +360,6 @@ public class TutorialText : MonoBehaviour
                 {
                     color.a += popSpd * Time.deltaTime;
                     this.GetComponent<TextMesh>().color = color;
-                }
-                else if (popTexttype != PopTextType.tutorialBattle)
-                {
-                    isBossBatlle = true;
                 }
                 break;
         }
@@ -350,6 +400,24 @@ public class TutorialText : MonoBehaviour
             // 0.1秒刻みで１文字ずつ表示する。
             poptext = poptext + word;
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    private void TutorialSkip()
+    {
+        // Tutorialスキップ
+        if (_actionRef[(int)InputActionNum.escInp].action.triggered)
+        {
+            StopCoroutine(dialogCoroutine);
+            dialogCoroutine = null;
+            popTexttype = PopTextType.tutorialBattle;
+            Debug.Log(popTexttype);
+            nextTexntMesh.SetActive(false);
+            
+            poptext = null;
+            talks = null;
+            Debug.Log(dialogCoroutine);            
+            talkNum = 3;
         }
     }
 }
