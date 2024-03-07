@@ -91,14 +91,14 @@ public class HadesController : MonoBehaviour
     void Update()
     {
         hitmng.HitUpdate();
-
+        if (dieFlg)
+        {
+            anim.Play("01_TRBoss_stay");
+            return;
+        }
         // 関数配列を用いた関数の呼び出し
         actFuncTbl[actNo]();
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            actNo = debugActNum;
-            methodNo = 0;
-        }
+        
         hitmng.PostUpdate();
     }
 
@@ -176,7 +176,7 @@ public class HadesController : MonoBehaviour
                     this.gameObject.transform.position = pos;
                     timer = teleAttackTime;
                     anim.Play("02b_TRBoss_attack_morefast");
-                    //Instantiate(slashEffect, transform.position.x,transform.position.y+1,Quaternion.Euler(0, 0, 120));
+                    Instantiate(slashEffect,new Vector3( transform.position.x, transform.position.y+1,transform.position.z), Quaternion.Euler(0, 0, 120));
                     hitmng.DEFActive = true;
                     hitmng.ATKActive = true;
                     methodNo++;

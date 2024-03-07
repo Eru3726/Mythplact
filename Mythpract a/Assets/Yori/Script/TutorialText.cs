@@ -85,7 +85,13 @@ public class TutorialText : MonoBehaviour
     HadesController hadesCon;
 
     private int endTalkNum = 0;
-    
+
+    [SerializeField, Header("フェイド")]
+    private SpriteRenderer fadeSprite;
+
+    private int fadeMathodSprite = 0;
+
+    private Color fadeColor;
     void Start()
     {
         // listにアタッチした奴を格納
@@ -108,6 +114,8 @@ public class TutorialText : MonoBehaviour
         _actionRef[(int)InputActionNum.escInp].action.Enable();
 
         endTalkNum = 0;
+
+        fadeSprite = fadeSprite.GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
@@ -274,18 +282,47 @@ public class TutorialText : MonoBehaviour
                         talks = "問 題 な い よ う だ な";
                         if (dialogCoroutine == null)
                         {
+                            poptext = null;
                             Debug.Log(popTexttype);
+                            fadeColor = fadeSprite.color;
                             dialogCoroutine = StartCoroutine(Dialogue());
                         }
                         waitSeconds(4);
                         if (isChange)
                         {
-                            dialogCoroutine = null;
-                            isChange = false;
-                            poptext = null;
-                            // テキスト送りが終わったら速攻攻撃
-                            hadesCon.actNo = 2;
-                            endTalkNum++;
+                            
+                            switch (fadeMathodSprite)
+                            {
+                                case 0:
+                                    if (fadeColor.a <= 1)
+                                    {
+                                        fadeColor.a += popSpd * Time.deltaTime;
+                                        fadeSprite.color = fadeColor;
+                                    }
+                                    else
+                                    {
+                                        poptext = null;
+                                        fadeMathodSprite++;
+                                    }                                    
+                                    break;
+                                case 1:
+                                    fadeColor.a -= fadeSpd * Time.deltaTime;
+                                    fadeSprite.color = fadeColor;
+
+                                    if (fadeColor.a <= 0)
+                                    {
+                                        fadeMathodSprite++;
+                                    }
+                                    break;
+                                case 2:
+                                    dialogCoroutine = null;
+                                    poptext = null;
+                                    // テキスト送りが終わったら速攻攻撃
+                                    hadesCon.actNo = 2;
+                                    endTalkNum++;
+                                    isChange = false;
+                                    break;
+                            }                            
                         }
                         break;
                     case 1:
@@ -408,13 +445,14 @@ public class TutorialText : MonoBehaviour
         // Tutorialスキップ
         if (_actionRef[(int)InputActionNum.escInp].action.triggered)
         {
+            poptext = " ";
             StopCoroutine(dialogCoroutine);
             dialogCoroutine = null;
             popTexttype = PopTextType.tutorialBattle;
             Debug.Log(popTexttype);
             nextTexntMesh.SetActive(false);
             
-            poptext = null;
+            
             talks = null;
             Debug.Log(dialogCoroutine);            
             talkNum = 3;
