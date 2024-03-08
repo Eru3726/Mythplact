@@ -56,9 +56,10 @@ public class Fafnir : MonoBehaviour
     [Header("本体")]
     [SerializeField, Tooltip("接触攻撃判定")] GameObject body;
     [SerializeField, Tooltip("接触威力")] float body_Power = 1.0f;
-    [SerializeField, Tooltip("ジャンプエフェクト")] ParticleSystem jumpEnd_Effect;
-    [SerializeField, Tooltip("タックルエフェクト")] ParticleSystem tackle_Effect;
-    [SerializeField, Tooltip("叩きつけエフェクト")] ParticleSystem earthpuake_Effect;
+    [SerializeField, Tooltip("叫びエフェクト")] ParticleSetting roar_Effect;
+    [SerializeField, Tooltip("ジャンプエフェクト")] ParticleSetting jumpEnd_Effect;
+    [SerializeField, Tooltip("タックルエフェクト")] ParticleSetting tackle_Effect;
+    [SerializeField, Tooltip("叩きつけエフェクト")] ParticleSetting earthpuake_Effect;
     [SerializeField, Tooltip("サウンドエフェクト")] AudioClip Move_SE;
     [SerializeField, Range(0, 1), Tooltip("音量")] float Move_SEVolume;
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float Move_SEPitch;
@@ -159,9 +160,8 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Tooltip("サウンドループ化")] bool earthquake_SELoop;
 
     [Header("被ダメージ")]
-    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
-    [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
-    [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
+    [SerializeField, Tooltip("ダメージデータ")] Damage damage;
+    [SerializeField, Tooltip("ダメージ時描画")] int sortingOrder = 0;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting damage_SE;
     float damage_Repeat = 0;
@@ -351,7 +351,7 @@ public class Fafnir : MonoBehaviour
                 rb.gravityScale = gravity;
                 rb.velocity = Vector2.zero;
                 anim.AnimChage("Entry_FallEnd", isLock);
-                jumpEnd_Effect.Play();
+                jumpEnd_Effect.PlayParticle();
                 setVibration(entry_Vibration * 0.25f);
                 phase++;
                 break;
@@ -465,7 +465,7 @@ public class Fafnir : MonoBehaviour
                 if (anim.Play != GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name || anim.NormalizedTime < 0.7f) { break; }
                 //Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
                 SetAudio(pound_SE, pound_SEVolume, pound_SEPitch, pound_SELoop);
-                earthpuake_Effect.Play();
+                earthpuake_Effect.PlayParticle();
                 timer = 0;
                 no++;
                 phase++;
@@ -496,12 +496,15 @@ public class Fafnir : MonoBehaviour
             case 1:
                 if (anim.NormalizedTime < 1.0f) { break; }
                 AnimChange("Rush_RoarAir");
+                roar_Effect.PlayParticle();
                 phase++;
                 break;
             case 2:
                 timer += Time.deltaTime;
                 if (timer < rush_RoarTime) { break; }
+                roar_Effect.StopParticle();
                 AnimChange("Rush_RoarEnd");
+                timer = 0;
                 phase++;
                 break;
             case 3:
@@ -515,8 +518,7 @@ public class Fafnir : MonoBehaviour
                 if (anim.NormalizedTime < 1.0f) { break; }
                 body.SetActive(true);
                 rush_SE.PlayAudio(se);
-                tackle_Effect.gameObject.SetActive(true);
-                tackle_Effect.Play();
+                tackle_Effect.PlayParticle();
                 AnimChange("Rush_Air");
                 repeat++;
                 phase++;
@@ -538,7 +540,7 @@ public class Fafnir : MonoBehaviour
                 body.SetActive(false);
                 SetPower(body, body_Power);
                 anim.AnimChage("Rush_End", isLock);
-                tackle_Effect.gameObject.SetActive(false);
+                tackle_Effect.StopParticle();
                 timer = 0;
                 phase++;
                 break;
@@ -818,7 +820,7 @@ public class Fafnir : MonoBehaviour
             if(anim_JumpFlag != 0)
             {
                 Debug.Log("ジャンプ終わり");
-                jumpEnd_Effect.Play();
+                jumpEnd_Effect.PlayParticle();
                 SetAudio(jumpEnd_SE, jumpEnd_SEVolume, jumpStart_SEPitch, jumpEnd_SELoop);
                 anim.AnimChage("Idle", false);
                 anim_JumpFlag = 0;
@@ -851,27 +853,31 @@ public class Fafnir : MonoBehaviour
 
     IEnumerator Flash()
     {
-        int damage_Repeat = 0;
+        int damage_Repeat = 0;  //繰り返し回数
+        int defSortingOrder = renderController.SortingOrder;
 
-        while (damage_Repeat < damage_Number)
+        while (damage_Repeat < damage.Time)
         {
             //色変更
             for (int i = 0; i < renderController.Renderers.Length; i++)
             {
-                renderController.Renderers[i].ScreenColor = damage_Color;
+                renderController.Renderers[i].ScreenColor = damage.Color;
             }
-            renderController.Opacity = damage_Color.a;
+            renderController.Opacity = 0;
+            renderController.SortingOrder = sortingOrder;
+            Debug.Log("色：" + damage.Color + "　透明度：" + renderController.Opacity);
             //待つ
-            yield return new WaitForSeconds(damage_Time);
+            yield return new WaitForSeconds(damage.Interval);
             //色戻す
             for (int i = 0; i < renderController.Renderers.Length; i++)
             {
-                renderController.Renderers[i].ScreenColor = defColor;
+                renderController.Renderers[i].ScreenColor = Color.black;
             }
             renderController.Opacity = 1;
+            renderController.SortingOrder = defSortingOrder;
             //待つ
-            yield return new WaitForSeconds(damage_Time);
-            damage_Repeat++;
+            yield return new WaitForSeconds(damage.Interval);
+            damage_Repeat++;    //繰り返し回数加算
         }
     }
 
