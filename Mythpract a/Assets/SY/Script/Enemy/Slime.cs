@@ -28,6 +28,8 @@ public class Slime : EnemyBase
     private void Start()
     {
         SetUp();
+
+        obj.GetComponent<SpriteRenderer>().sortingOrder = root.GetComponent<SpriteRenderer>().sortingOrder + 1;
     }
 
     private void Update()
@@ -38,8 +40,8 @@ public class Slime : EnemyBase
 
         transform.position = TFPos(root);
         transform.rotation = TFRot(root);
-        diffScale = TFScl(obj) - TFScl(root);
-        transform.localScale = TFScl(root) + diffScale;
+        //diffScale = TFScl(obj) - TFScl(root);
+        //transform.localScale = TFScl(root) + diffScale;
 
         hm.PostUpdate();
     }
@@ -90,9 +92,12 @@ public class Slime : EnemyBase
         State = Shoggoth_SlimeType.Death;
         dieSE.PlayAudio(se);
         dieEffect.PlayParticle();
+
         Shoggoth shoggothCS = shoggoth.GetComponent<Shoggoth>();
-        shoggothCS.HP -= dieDmg;
+        HitMng shoggothHM = shoggoth.GetComponent<HitMng>();
         shoggothCS.SlimeObj.Remove(obj);
+        shoggothHM.HP -= dieDmg;
+        if (shoggothHM.HP <= 0) { shoggothHM.Result.SetDefFlag(HitResult.DefFlag.DefDeath); }
     }
 
     public void Dead()

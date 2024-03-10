@@ -79,6 +79,7 @@ public class QilinParameter : EnemyParameter
     [SerializeField, Tooltip("クールタイム")] float spin_CoolTime = 0.5f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting spin_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting spin_SE;
+    [SerializeField, Tooltip("攻撃予測")] PredictionSetting spin_Prediction;
     [SerializeField, Tooltip("ギズモ")] GizmoSetting spin_Gizmo;
 
     [Header("隕石")]
@@ -91,8 +92,8 @@ public class QilinParameter : EnemyParameter
     [SerializeField, Tooltip("クールタイム")] float meteor_CoolTime = 0.5f;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting meteor_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting meteor_SE;
-    [SerializeField, Tooltip("ギズモ")] GizmoSetting meteor_Gizmo;
     [SerializeField, Tooltip("攻撃予測")] PredictionSetting meteor_Prediction;
+    [SerializeField, Tooltip("ギズモ")] GizmoSetting meteor_Gizmo;
 
 
     [Header("被ダメージ")]
@@ -142,8 +143,8 @@ public class QilinParameter : EnemyParameter
     public float Eruption_CoolTime { get { return eruption_CoolTime; } }
     public ParticleSetting Eruption_Effect { get { return eruption_Effect; } }
     public AudioSetting Eruption_SE { get { return eruption_SE; } }
-    public GizmoSetting Eruption_Gizmo { get { return eruption_Gizmo; } }
     public PredictionSetting Eruption_Prediction { get { return eruption_Prediction; } }
+    public GizmoSetting Eruption_Gizmo { get { return eruption_Gizmo; } }
 
     public GameObject PushUp { get { return pushUp; } }
     public float PushUp_Power { get { return pushUp_Power; } }
@@ -172,6 +173,7 @@ public class QilinParameter : EnemyParameter
     public float Spin_CoolTime { get { return spin_CoolTime; } }
     public ParticleSetting Spin_Effect { get { return spin_Effect; } }
     public AudioSetting Spin_SE { get { return spin_SE; } }
+    public PredictionSetting Spin_Prediction { get { return spin_Prediction; } }
     public GizmoSetting Spin_Gizmo { get { return spin_Gizmo; } }
 
     public GameObject Meteor { get { return meteor; } }
@@ -183,8 +185,8 @@ public class QilinParameter : EnemyParameter
     public float Meteor_CoolTime { get { return meteor_CoolTime; } }
     public ParticleSetting Meteor_Effect { get { return meteor_Effect; } }
     public AudioSetting Meteor_SE { get { return meteor_SE; } }
-    public GizmoSetting Meteor_Gizmo { get { return meteor_Gizmo; } }
     public PredictionSetting Meteor_Prediction { get { return meteor_Prediction; } }
+    public GizmoSetting Meteor_Gizmo { get { return meteor_Gizmo; } }
 
     public Damage DamageData { get { return damageData; } }
     public ParticleSetting Damage_Effect { get { return damage_Effect; } }

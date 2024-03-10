@@ -56,9 +56,10 @@ public class Fafnir : MonoBehaviour
     [Header("本体")]
     [SerializeField, Tooltip("接触攻撃判定")] GameObject body;
     [SerializeField, Tooltip("接触威力")] float body_Power = 1.0f;
-    [SerializeField, Tooltip("ジャンプエフェクト")] ParticleSystem jumpEnd_Effect;
-    [SerializeField, Tooltip("タックルエフェクト")] ParticleSystem tackle_Effect;
-    [SerializeField, Tooltip("叩きつけエフェクト")] ParticleSystem earthpuake_Effect;
+    [SerializeField, Tooltip("叫びエフェクト")] ParticleSetting roar_Effect;
+    [SerializeField, Tooltip("ジャンプエフェクト")] ParticleSetting jumpEnd_Effect;
+    [SerializeField, Tooltip("タックルエフェクト")] ParticleSetting tackle_Effect;
+    [SerializeField, Tooltip("叩きつけエフェクト")] ParticleSetting earthpuake_Effect;
     [SerializeField, Tooltip("サウンドエフェクト")] AudioClip Move_SE;
     [SerializeField, Range(0, 1), Tooltip("音量")] float Move_SEVolume;
     [SerializeField, Range(-3, 3), Tooltip("再生速度")] float Move_SEPitch;
@@ -132,12 +133,10 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Tooltip("威力")] float rush_Power = 1.0f;
     [SerializeField, Tooltip("中心座標")] Vector2 rush_Center = new Vector2(0.0f, 0.0f);
     [SerializeField, Tooltip("攻撃範囲")] Vector2 rush_AtkRange = new Vector2(40.0f, 10.0f);
+    [SerializeField, Tooltip("叫び時間")] float rush_RoarTime = 1.0f;
     [SerializeField, Tooltip("隙")] float rush_BreakTime = 0.5f;
     [SerializeField, Tooltip("実行回数")] int rush_AtkTime = 3;
-    [SerializeField, Tooltip("サウンドエフェクト")] AudioClip rush_SE;
-    [SerializeField, Range(0, 1), Tooltip("音量")] float rush_SEVolume;
-    [SerializeField, Range(-3, 3), Tooltip("再生速度")] float rush_SEPitch;
-    [SerializeField, Tooltip("サウンドループ化")] bool rush_SELoop;
+    [SerializeField, Tooltip("サウンドエフェクト")] AudioSetting rush_SE;
     [SerializeField, Tooltip("ギズモ")] GizmoSetting rush_Gizmo;
 
     [Header("ブレス")]
@@ -161,9 +160,8 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Tooltip("サウンドループ化")] bool earthquake_SELoop;
 
     [Header("被ダメージ")]
-    [SerializeField, Tooltip("色")] Color damage_Color = Color.white;
-    [SerializeField, Tooltip("点滅回数")] int damage_Number = 10;
-    [SerializeField, Tooltip("時間")] float damage_Time = 0.05f;
+    [SerializeField, Tooltip("ダメージデータ")] Damage damage;
+    [SerializeField, Tooltip("ダメージ時描画")] int sortingOrder = 0;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting damage_SE;
     float damage_Repeat = 0;
@@ -353,7 +351,7 @@ public class Fafnir : MonoBehaviour
                 rb.gravityScale = gravity;
                 rb.velocity = Vector2.zero;
                 anim.AnimChage("Entry_FallEnd", isLock);
-                jumpEnd_Effect.Play();
+                jumpEnd_Effect.PlayParticle();
                 setVibration(entry_Vibration * 0.25f);
                 phase++;
                 break;
@@ -467,7 +465,7 @@ public class Fafnir : MonoBehaviour
                 if (anim.Play != GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name || anim.NormalizedTime < 0.7f) { break; }
                 //Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
                 SetAudio(pound_SE, pound_SEVolume, pound_SEPitch, pound_SELoop);
-                earthpuake_Effect.Play();
+                earthpuake_Effect.PlayParticle();
                 timer = 0;
                 no++;
                 phase++;
@@ -491,24 +489,41 @@ public class Fafnir : MonoBehaviour
     {
         switch (phase)
         {
-            case 0:     //突進威力設定、始動アニメーション開始
-                SetPower(body, rush_Power);
-                SetAudio(attackAnticipation_SE, attackAnticipation_SEVolume, attackAnticipation_SEPitch, attackAnticipation_SELoop);
-                anim.AnimChage("Rush_Start", isLock);   //アニメーション適用に1フレーム必要らしい
+            case 0:
+                AnimChange("Rush_RoarStart");
                 phase++;
                 break;
-            case 1:     //始動アニメーション終了→突進アニメーション開始
-                Debug.Log(anim.Play + " : " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name + " : " + anim.NormalizedTime);
+            case 1:
+                if (anim.NormalizedTime < 1.0f) { break; }
+                AnimChange("Rush_RoarAir");
+                roar_Effect.PlayParticle();
+                phase++;
+                break;
+            case 2:
+                timer += Time.deltaTime;
+                if (timer < rush_RoarTime) { break; }
+                roar_Effect.StopParticle();
+                AnimChange("Rush_RoarEnd");
+                timer = 0;
+                phase++;
+                break;
+            case 3:
+                if (anim.NormalizedTime < 1.0f) { break; }
+                SetPower(body, rush_Power);
+                SetAudio(attackAnticipation_SE, attackAnticipation_SEVolume, attackAnticipation_SEPitch, attackAnticipation_SELoop);
+                AnimChange("Rush_Start");
+                phase++;
+                break;
+            case 4:
                 if (anim.NormalizedTime < 1.0f) { break; }
                 body.SetActive(true);
-                SetAudio(rush_SE, rush_SEVolume, rush_SEPitch, rush_SELoop);
-                tackle_Effect.gameObject.SetActive(true);
-                tackle_Effect.Play();
-                anim.AnimChage("Rush_Air", isLock);
+                rush_SE.PlayAudio(se);
+                tackle_Effect.PlayParticle();
+                AnimChange("Rush_Air");
                 repeat++;
                 phase++;
                 break;
-            case 2:     //突進開始、画面端また画面中央付近に到達→停止、威力設定、終了アニメーション開始
+            case 5:
                 timer += Time.deltaTime;
                 rb.velocity = (-dir * Vector2.right).normalized * rush_MoveSpd;
                 if (timer < 0.2f) { break; }
@@ -521,19 +536,19 @@ public class Fafnir : MonoBehaviour
                     if (pos.x < (rush_Center.x + rush_AtkRange.x * 0.5f) &&
                         (rush_Center.x - rush_AtkRange.x * 0.5f) < pos.x) { break; }
                 }
-                rb.velocity = Vector2.zero; 
+                rb.velocity = Vector2.zero;
                 body.SetActive(false);
                 SetPower(body, body_Power);
                 anim.AnimChage("Rush_End", isLock);
-                tackle_Effect.gameObject.SetActive(false);
+                tackle_Effect.StopParticle();
                 timer = 0;
                 phase++;
                 break;
-            case 3:     //終了アニメーション終了
+            case 6:     //終了アニメーション終了
                 if (anim.NormalizedTime < 1.0f) { break; }
                 phase++;
                 break;
-            case 4:     //折り返し時間→向き更新、回数に応じて次アクション定義
+            case 7:     //折り返し時間→向き更新、回数に応じて次アクション定義
                 timer += Time.deltaTime;
                 if (timer < rush_BreakTime) { break; }
                 Direction();
@@ -541,7 +556,7 @@ public class Fafnir : MonoBehaviour
                 if (repeat == rush_AtkTime) { phase++; }
                 else { phase = 0; }
                 break;
-            case 5:
+            case 8:
                 //moveType = rush_NextMove;
                 MoveEnd();
                 break;
@@ -771,6 +786,11 @@ public class Fafnir : MonoBehaviour
     }
 
     //----------アニメーション----------
+    void AnimChange(string name)
+    {
+        anim.AnimChage(name, true);
+    }
+
     void Anim_Basis()
     {
         if (CheckGroundFlag(GroundCheck.Flag.Ground))
@@ -800,7 +820,7 @@ public class Fafnir : MonoBehaviour
             if(anim_JumpFlag != 0)
             {
                 Debug.Log("ジャンプ終わり");
-                jumpEnd_Effect.Play();
+                jumpEnd_Effect.PlayParticle();
                 SetAudio(jumpEnd_SE, jumpEnd_SEVolume, jumpStart_SEPitch, jumpEnd_SELoop);
                 anim.AnimChage("Idle", false);
                 anim_JumpFlag = 0;
@@ -833,27 +853,31 @@ public class Fafnir : MonoBehaviour
 
     IEnumerator Flash()
     {
-        int damage_Repeat = 0;
+        int damage_Repeat = 0;  //繰り返し回数
+        int defSortingOrder = renderController.SortingOrder;
 
-        while (damage_Repeat < damage_Number)
+        while (damage_Repeat < damage.Time)
         {
             //色変更
             for (int i = 0; i < renderController.Renderers.Length; i++)
             {
-                renderController.Renderers[i].ScreenColor = damage_Color;
+                renderController.Renderers[i].ScreenColor = damage.Color;
             }
-            renderController.Opacity = damage_Color.a;
+            renderController.Opacity = 0;
+            renderController.SortingOrder = sortingOrder;
+            Debug.Log("色：" + damage.Color + "　透明度：" + renderController.Opacity);
             //待つ
-            yield return new WaitForSeconds(damage_Time);
+            yield return new WaitForSeconds(damage.Interval);
             //色戻す
             for (int i = 0; i < renderController.Renderers.Length; i++)
             {
-                renderController.Renderers[i].ScreenColor = defColor;
+                renderController.Renderers[i].ScreenColor = Color.black;
             }
             renderController.Opacity = 1;
+            renderController.SortingOrder = defSortingOrder;
             //待つ
-            yield return new WaitForSeconds(damage_Time);
-            damage_Repeat++;
+            yield return new WaitForSeconds(damage.Interval);
+            damage_Repeat++;    //繰り返し回数加算
         }
     }
 
