@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: bbc3a65d23e1b214caa49837901b96b6
+<<<<<<<< HEAD:Mythpract a/Assets/Yori/KirinB1.png.meta
+guid: df9a112c2199ab44caea982ea4fdda3e
+========
+guid: d75076682b12bc14ab623ff958457ef6
+>>>>>>>> 61923f0f4014ceb90137ddc01e5a7dcb9499791c:Mythpract a/Assets/Yori/KirinB2.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

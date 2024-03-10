@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,7 +6,6 @@ using UnityEngine.InputSystem;
 public class TutorialText : MonoBehaviour
 {
     // 入力関係
-
     [SerializeField]
     private List<InputActionReference> _actionRef;
     private List<InputAction> _action;
@@ -19,25 +19,36 @@ public class TutorialText : MonoBehaviour
         skill1Inp,
         jumpInp,
         blinkInp,
+        escInp
     }
 
+    
     private enum PopTextType
     {
+        Talk,
         Move,
-        Jump,
         Attack,
-        Skill,
         Guard,
         Blink,
-        tutorialBattle
+        tutorialBattle,
+        num
     }
 
     private InputActionNum inputActionNum;
+    [SerializeField]
     private PopTextType popTexttype;
 
     private string poptext;
 
     private int bindingIndex = 0;
+
+    private float timer = 0;
+
+    private bool isChange = false;
+
+    private int pushCount = 0;
+
+    private int pushBottum = 0;
 
     // 入力関係ここまで
 
@@ -53,39 +64,63 @@ public class TutorialText : MonoBehaviour
 
     private int fadeMathod = 1;
 
-    [SerializeField, Header("「次へ」って書いてあるテキストメッシュ")]
+    [SerializeField, Header("スキップって書いてあるテキストメッシュ")]
     private GameObject nextTexntMesh;
+
+    private string talks;
+
+    private string[] words;
+
+    Coroutine dialogCoroutine;
 
     // 文字のフェイド関係ここまで
 
     // チュートリアルバトル関係
 
-    [SerializeField, Header("チュートリアルの敵")]
-    private TextMesh tutorialEnemy;
+    private bool isBossBatlle = false;
 
-    private bool canChange = false;
+    private int talkNum = 0;
 
+    [SerializeField, Header("hades")]
+    HadesController hadesCon;
+
+    private int endTalkNum = 0;
+
+    [SerializeField, Header("フェイド")]
+    private SpriteRenderer fadeSprite;
+
+    private int fadeMathodSprite = 0;
+
+    private Color fadeColor;
     void Start()
     {
         // listにアタッチした奴を格納
-        // InputActionNumの順番通りにアタッチしないと出てくるテキストが違うものになる。何とかしたかった
+        // InputActionNumの順番通りにアタッチしないと出てくるテキストが違うものになる。何とかしたい
         _action = new List<InputAction>();
         for (inputActionNum = 0; (int)inputActionNum < _actionRef.Count; inputActionNum++)
         {
             _action.Add(_actionRef[(int)inputActionNum]);
         }
 
-
         color = this.GetComponent<TextMesh>().color;
         color.a = 0;
         this.GetComponent<TextMesh>().color = color;
 
-        canChange = false;
+        isBossBatlle = false;
+
+        pushBottum = 10;
+        pushCount = 0;
+
+        _actionRef[(int)InputActionNum.escInp].action.Enable();
+
+        endTalkNum = 0;
+
+        fadeSprite = fadeSprite.GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
         TutorialPopText();
-        FadeText();
+        FadeText();        
     }
 
     void TutorialPopText()
@@ -97,34 +132,234 @@ public class TutorialText : MonoBehaviour
         // popTexttypeに応じてテキスト表示
         switch (popTexttype)
         {
+            case PopTextType.Talk:
+                // Tutorialスキップ
+                TutorialSkip();
+                switch (talkNum)
+                {
+                    case 0:
+                        talks = "目 が 覚 め た か";
+                        if (dialogCoroutine == null)
+                        {
+                            Debug.Log("目 が 覚 め た か");
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
+                        if (isChange)
+                        {
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            talkNum++;
+                        }
+                        break;
+                    case 1:
+                        talks = "お 前 は ど れ だ け 強 く な れ る か 楽 し み だ";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
+                        if (isChange)
+                        {
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            talkNum++;
+                        }
+                        break;
+                    case 2:
+                        talks = "動 作 確 認 を す る";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
+                        if (isChange)
+                        {
+                            isChange = false;
+                            poptext = null;
+
+                            fadeMathod = 0;
+                            isChange = false;
+                        }
+                        break;
+                }
+
+                break;
+
             case PopTextType.Move:
+                // Tutorialスキップ
+                TutorialSkip();
                 poptext = " 「" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + ","
                     + _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "」移動";
-                if (canChange&& _actionRef[0].action.triggered)
-                {
 
+                waitSeconds(4);
+
+                if (_actionRef[(int)InputActionNum.rightInp].action.IsPressed() && _actionRef[(int)InputActionNum.leftInp].action.IsPressed())
+                {
+                    poptext = " 「<color=red>" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + "</color>,<color=red>" +
+                        _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "</color>」移動";
                 }
+                else if (_actionRef[(int)InputActionNum.leftInp].action.IsPressed())
+                {
+                    poptext = " 「<color=red>" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + "</color>,"
+                   + _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "」移動";
+                }
+                else if (_actionRef[(int)InputActionNum.rightInp].action.IsPressed())
+                {
+                    poptext = " 「" + _action[(int)InputActionNum.leftInp].GetBindingDisplayString(bindingIndex) + ",<color=red>"
+                   + _action[(int)InputActionNum.rightInp].GetBindingDisplayString(bindingIndex) + "</color>」移動";
+                }
+
+                if (isChange && _actionRef[(int)InputActionNum.leftInp].action.triggered ||
+                    _actionRef[(int)InputActionNum.rightInp].action.triggered)
+                {
+                    pushCount++;
+                    if (pushBottum <= pushCount)
+                    {
+                        pushCount = 0;
+                        pushBottum = 5;
+                        fadeMathod = 0;
+                        isChange = false;
+                    }
+                }
+
                 break;
-            case PopTextType.Jump:
-                poptext = " 「" + _action[(int)InputActionNum.jumpInp].GetBindingDisplayString(bindingIndex) + "」 ジャンプ"
-                    + "\nジャンプ中にもう一度\n「" + _action[(int)InputActionNum.jumpInp].GetBindingDisplayString(bindingIndex) + "」二段ジャンプ";
-                break;
+
             case PopTextType.Attack:
+                // Tutorialスキップ
+                TutorialSkip();
                 poptext = " 「" + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "」攻撃\n" +
                     "　空中で上下入力で攻撃が変化";
+                if (_actionRef[(int)InputActionNum.attackInp].action.IsPressed())
+                {
+                    poptext = " 「<color=red>" + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "</color>」攻撃\n" +
+                     "　空中で上下入力で攻撃が変化";
+                }
+
+                waitSeconds(4);
+
+                nextTutorial(InputActionNum.attackInp, 5);
                 break;
-            case PopTextType.Skill:
-                poptext = "「" + _action[(int)InputActionNum.skill1Inp].GetBindingDisplayString(bindingIndex) + "」スキル攻撃";
-                break;
+
             case PopTextType.Guard:
+                // Tutorialスキップ
+                TutorialSkip();
                 poptext = "「" + _action[(int)InputActionNum.guardInp].GetBindingDisplayString(bindingIndex) + "」ガード";
+
+                waitSeconds(4);
+
+                if (_actionRef[(int)InputActionNum.guardInp].action.IsPressed())
+                {
+                    poptext = "「<color=red>" + _action[(int)InputActionNum.guardInp].GetBindingDisplayString(bindingIndex) + "</color>」ガード";
+                }
+
+                nextTutorial(InputActionNum.guardInp, 5);
+
                 break;
             case PopTextType.Blink:
+                // Tutorialスキップ
+                TutorialSkip();
                 poptext = "「" + _action[(int)InputActionNum.blinkInp].GetBindingDisplayString(bindingIndex) + "」ブリンク";
+
+                waitSeconds(4);
+
+                if (_actionRef[(int)InputActionNum.blinkInp].action.IsPressed())
+                {
+                    poptext = "「<color=red>" + _action[(int)InputActionNum.blinkInp].GetBindingDisplayString(bindingIndex) + "</color>」ブリンク";
+                }
+
+                nextTutorial(InputActionNum.blinkInp, 5);
+                talkNum = 0;
+
                 break;
             case PopTextType.tutorialBattle:
                 // ここにチュートリアルバトルの処理
-                poptext = "ボスを倒そう";
+                switch (endTalkNum)
+                {
+                    case 0:
+                        talks = "問 題 な い よ う だ な";
+                        if (dialogCoroutine == null)
+                        {
+                            poptext = null;
+                            Debug.Log(popTexttype);
+                            fadeColor = fadeSprite.color;
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
+                        if (isChange)
+                        {
+                            
+                            switch (fadeMathodSprite)
+                            {
+                                case 0:
+                                    if (fadeColor.a <= 1)
+                                    {
+                                        fadeColor.a += popSpd * Time.deltaTime;
+                                        fadeSprite.color = fadeColor;
+                                    }
+                                    else
+                                    {
+                                        poptext = null;
+                                        fadeMathodSprite++;
+                                    }                                    
+                                    break;
+                                case 1:
+                                    fadeColor.a -= fadeSpd * Time.deltaTime;
+                                    fadeSprite.color = fadeColor;
+
+                                    if (fadeColor.a <= 0)
+                                    {
+                                        fadeMathodSprite++;
+                                    }
+                                    break;
+                                case 2:
+                                    dialogCoroutine = null;
+                                    poptext = null;
+                                    // テキスト送りが終わったら速攻攻撃
+                                    hadesCon.actNo = 2;
+                                    endTalkNum++;
+                                    isChange = false;
+                                    break;
+                            }                            
+                        }
+                        break;
+                    case 1:
+                        Debug.Log("死ぬの待機中");
+                        if (hadesCon.dieFlg)
+                        {
+                            endTalkNum++;
+                        }
+                        break;
+                    case 2:
+                        talks = "ス キ ル を う ま く 使 え";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
+                        if (isChange)
+                        {
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            endTalkNum++;
+                        }
+                        break;
+                    case 3:
+                        talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 赴 き\n そ こ の 世 界 で 貴 様 の 実 力 を 示 す の だ";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(6);
+                        if (isChange)
+                        {
+                            // シーン移動
+                        }
+                        break;
+                }
                 break;
         }
         this.GetComponent<TextMesh>().text = poptext;
@@ -146,6 +381,12 @@ public class TutorialText : MonoBehaviour
 
                 if (color.a <= 0)
                 {
+                    if (popTexttype + 1 == PopTextType.tutorialBattle)
+                    {
+                        isBossBatlle = true;
+                        dialogCoroutine = null;
+                        poptext = null;
+                    }
                     fadeMathod++;
                     popTexttype++;
                 }
@@ -157,11 +398,64 @@ public class TutorialText : MonoBehaviour
                     color.a += popSpd * Time.deltaTime;
                     this.GetComponent<TextMesh>().color = color;
                 }
-                else if (popTexttype != PopTextType.tutorialBattle)
-                {
-                    canChange = true;
-                }
                 break;
+        }
+    }
+
+    void waitSeconds(int sec)
+    {
+        timer += Time.deltaTime;
+        if (sec <= timer)
+        {
+            timer = 0;
+            isChange = true;
+        }
+    }
+
+    void nextTutorial(InputActionNum inputNum, int _pushBottum)
+    {
+        if (isChange && _actionRef[(int)inputNum].action.triggered)
+        {
+            pushCount++;
+            if (pushBottum <= pushCount)
+            {
+                pushCount = 0;
+                pushBottum = _pushBottum;
+                fadeMathod = 0;
+                isChange = false;
+            }
+        }
+    }
+
+    private IEnumerator Dialogue()
+    {
+        // 半角スペースで文字を分割する。
+        words = talks.Split(' ');
+
+        foreach (var word in words)
+        {
+            // 0.1秒刻みで１文字ずつ表示する。
+            poptext = poptext + word;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    private void TutorialSkip()
+    {
+        // Tutorialスキップ
+        if (_actionRef[(int)InputActionNum.escInp].action.triggered)
+        {
+            poptext = " ";
+            StopCoroutine(dialogCoroutine);
+            dialogCoroutine = null;
+            popTexttype = PopTextType.tutorialBattle;
+            Debug.Log(popTexttype);
+            nextTexntMesh.SetActive(false);
+            
+            
+            talks = null;
+            Debug.Log(dialogCoroutine);            
+            talkNum = 3;
         }
     }
 }
