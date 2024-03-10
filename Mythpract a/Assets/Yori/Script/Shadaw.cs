@@ -49,4 +49,12 @@ public class Shadaw : MonoBehaviour
         wavePos.x -= 1.5f;
         Instantiate(shockEffect, wavePos, Quaternion.Euler(90,0,180));
     }
+
+    void RodColi()
+    {
+    }
+
+    void RodColed()
+    {
+    }
 }
