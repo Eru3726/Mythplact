@@ -22,6 +22,7 @@ public class PlayerData
     public float jumpUpAtk_Power;
     public float jumpDownAtk_Power;
     public float chargeAtk_Power;
+    public float sheriffAtk_Power;
     public float fleetAtk_Power;
     
     public float skillSlashCT;

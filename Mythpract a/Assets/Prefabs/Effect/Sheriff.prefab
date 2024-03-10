@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4504490051169798282}
   - component: {fileID: 5003613725571455609}
   - component: {fileID: 3358134781284129316}
+  - component: {fileID: 5810366424479085612}
   m_Layer: 8
   m_Name: atk
   m_TagString: Untagged
@@ -62,7 +63,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  power: 75
+--- !u!114 &5810366424479085612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998509376284250380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ddc0d6807fe414889e633cce2c224a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 78f03b4e59b2e0948947aa0101a470e0, type: 2}
 --- !u!1 &8438359422445198577
 GameObject:
   m_ObjectHideFlags: 0
