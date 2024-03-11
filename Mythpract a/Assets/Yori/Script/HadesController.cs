@@ -6,7 +6,10 @@ public class HadesController : MonoBehaviour
     [SerializeField, Header("行動番号")]
     public int actNo = 0;      // 行動番号
     [SerializeField, Header("メソッド用汎用番号")]
-    private int methodNo = 0;   // メソッド用汎用番号
+    public int methodNo = 0;   // メソッド用汎用番号
+
+    [SerializeField, Header("杖殴り判定")]
+    GameObject RodUse;
 
     enum ActNo
     {
@@ -67,6 +70,9 @@ public class HadesController : MonoBehaviour
     public bool dieFlg;
 
     private bool AttackType;
+
+    [SerializeField, Header("ウェーブの当たり判定")]
+    private GameObject waveColi;
     // Start is called before the first frame update
     void Start()
     {
@@ -176,7 +182,8 @@ public class HadesController : MonoBehaviour
                     this.gameObject.transform.position = pos;
                     timer = teleAttackTime;
                     anim.Play("02b_TRBoss_attack_morefast");
-                    Instantiate(slashEffect,new Vector3( transform.position.x, transform.position.y+1,transform.position.z), Quaternion.Euler(0, 0, 120));
+                    Instantiate(slashEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),
+                        Quaternion.Euler(0, 0, 120));
                     hitmng.DEFActive = true;
                     hitmng.ATKActive = true;
                     methodNo++;
@@ -238,14 +245,15 @@ public class HadesController : MonoBehaviour
                 {
                     WaveCreate();
                     waveTime = 0;
+                    waveColi.SetActive(true);
                 }
                 if (wavePos.x <= -20)
                 {
+                    waveColi.SetActive(false);
                     AttackType = true;
                     actNo = (int)ActNo.Wait;
                     methodNo = 0;
                 }
-
                 break;
         }
     }
@@ -264,11 +272,22 @@ public class HadesController : MonoBehaviour
     {
         Instantiate(waveObj, wavePos, Quaternion.identity);
         wavePos -= new Vector3(0.2f, 0, 0);
+        waveColi.transform.position = wavePos;
     }
 
     void WaveStart()
     {
         Instantiate(shockEffect, wavePos, Quaternion.Euler(-90, 0, 0));
         methodNo++;
+    }
+
+    void RodColi()
+    {
+        RodUse.SetActive(true);
+    }
+
+    void RodColed()
+    {
+        RodUse.SetActive(false);
     }
 }

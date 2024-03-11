@@ -4027,3 +4027,17 @@ AnimationClip:
     floatParameter: 0
     intParameter: -38934
     messageOptions: 1
+  - time: 0.5
+    functionName: RodColi
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8666667
+    functionName: RodColed
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

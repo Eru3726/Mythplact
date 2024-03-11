@@ -22,7 +22,6 @@ public class TutorialText : MonoBehaviour
         escInp
     }
 
-    
     private enum PopTextType
     {
         Talk,
@@ -92,6 +91,9 @@ public class TutorialText : MonoBehaviour
     private int fadeMathodSprite = 0;
 
     private Color fadeColor;
+
+    [SerializeField, Header("HPゲージ")]
+    private GameObject HpGarge;
     void Start()
     {
         // listにアタッチした奴を格納
@@ -120,7 +122,7 @@ public class TutorialText : MonoBehaviour
     private void Update()
     {
         TutorialPopText();
-        FadeText();        
+        FadeText();
     }
 
     void TutorialPopText()
@@ -287,10 +289,10 @@ public class TutorialText : MonoBehaviour
                             fadeColor = fadeSprite.color;
                             dialogCoroutine = StartCoroutine(Dialogue());
                         }
-                        waitSeconds(4);
+                        waitSeconds(6);
                         if (isChange)
                         {
-                            
+
                             switch (fadeMathodSprite)
                             {
                                 case 0:
@@ -303,7 +305,8 @@ public class TutorialText : MonoBehaviour
                                     {
                                         poptext = null;
                                         fadeMathodSprite++;
-                                    }                                    
+                                        HpGarge.SetActive(true);
+                                    }
                                     break;
                                 case 1:
                                     fadeColor.a -= fadeSpd * Time.deltaTime;
@@ -312,27 +315,47 @@ public class TutorialText : MonoBehaviour
                                     if (fadeColor.a <= 0)
                                     {
                                         fadeMathodSprite++;
+                                        dialogCoroutine = null;
+                                        talks = null;
+                                        endTalkNum++;
+                                        fadeColor = fadeSprite.color;
                                     }
                                     break;
-                                case 2:
-                                    dialogCoroutine = null;
-                                    poptext = null;
-                                    // テキスト送りが終わったら速攻攻撃
-                                    hadesCon.actNo = 2;
-                                    endTalkNum++;
-                                    isChange = false;
-                                    break;
-                            }                            
+                            }
                         }
                         break;
                     case 1:
+                        talks = "行 く ぞ";
+                        if (dialogCoroutine == null)
+                        {
+                            poptext = null;
+
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                            isChange = false;
+                        }
+                        waitSeconds(3);
+                        // テキスト送りが終わったら速攻攻撃
+                        if (isChange)
+                        {
+                            hadesCon.actNo = 2;
+                            hadesCon.methodNo = 0;
+                            isChange = false;
+                            endTalkNum++;
+                        }
+                        break;
+                    case 2:
+                        waitSeconds(6);
+                        if (isChange)
+                        {
+                            poptext = null;
+                        }
                         Debug.Log("死ぬの待機中");
                         if (hadesCon.dieFlg)
                         {
                             endTalkNum++;
                         }
                         break;
-                    case 2:
+                    case 3:
                         talks = "ス キ ル を う ま く 使 え";
                         if (dialogCoroutine == null)
                         {
@@ -347,7 +370,7 @@ public class TutorialText : MonoBehaviour
                             endTalkNum++;
                         }
                         break;
-                    case 3:
+                    case 4:
                         talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 赴 き\n そ こ の 世 界 で 貴 様 の 実 力 を 示 す の だ";
                         if (dialogCoroutine == null)
                         {
@@ -451,10 +474,9 @@ public class TutorialText : MonoBehaviour
             popTexttype = PopTextType.tutorialBattle;
             Debug.Log(popTexttype);
             nextTexntMesh.SetActive(false);
-            
-            
+
             talks = null;
-            Debug.Log(dialogCoroutine);            
+            Debug.Log(dialogCoroutine);
             talkNum = 3;
         }
     }
