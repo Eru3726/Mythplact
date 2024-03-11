@@ -205,4 +205,6 @@ public class GameData
     public static int clearAchv;
 
     public static int clearBoss;
+
+    public static bool Firsttime;
 }

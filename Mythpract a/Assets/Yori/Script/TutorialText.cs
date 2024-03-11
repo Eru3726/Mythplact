@@ -9,6 +9,7 @@ public class TutorialText : MonoBehaviour
     [SerializeField]
     private List<InputActionReference> _actionRef;
     private List<InputAction> _action;
+    public FadeManager Fade;
 
     private enum InputActionNum
     {
@@ -379,7 +380,7 @@ public class TutorialText : MonoBehaviour
                         waitSeconds(6);
                         if (isChange)
                         {
-                            // シーン移動
+                            Fade.Fadeout();// シーン移動
                         }
                         break;
                 }

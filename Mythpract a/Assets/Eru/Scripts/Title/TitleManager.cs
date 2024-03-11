@@ -113,7 +113,14 @@ public class TitleManager : MonoBehaviour
 
     public void FadeStart()
     {
-        SceneManager.LoadScene("RestScene");
+        if (GameData.Firsttime == false)
+        {
+            SceneManager.LoadScene("RestScene");
+        }
+        if (GameData.Firsttime == true)
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
     }
 
     public void OptionOpenButton()

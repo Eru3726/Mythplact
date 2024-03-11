@@ -352,6 +352,7 @@ public class Read : MonoBehaviour
 
         GameData.clearBoss = saveData.clearBoss;
 
+        GameData.Firsttime = saveData.Firsttime;
         if (Conconnect != null)
         {
             if (Conconnect == false)

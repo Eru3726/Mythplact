@@ -218,8 +218,18 @@ public class SaveSlotManager : MonoBehaviour
     {
         if (value < 1 && value > 3) return;
         DataManager.saveFile = value;
-        if (newGameFlg) dm.Delete();
-        dm.Read();
+            dm.Read();
+        if (newGameFlg)
+        {
+            dm.Delete();
+            dm.Read();
+            GameData.Firsttime = true;
+        }
+        else
+        {
+            GameData.Firsttime = false;
+        }
+        dm.Save();
         tm.GameStart();
     }
 

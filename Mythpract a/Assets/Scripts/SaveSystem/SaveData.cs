@@ -205,4 +205,7 @@ public class SaveData
     public int clearAchv;
 
     public int clearBoss;
+
+    //チュートリアルいくかどうか
+    public bool Firsttime;
 }

@@ -286,6 +286,7 @@ public class Save : MonoBehaviour
 
         saveData.clearBoss = GameData.clearBoss;
 
+        saveData.Firsttime = GameData.Firsttime;
 
         return saveData;
     }

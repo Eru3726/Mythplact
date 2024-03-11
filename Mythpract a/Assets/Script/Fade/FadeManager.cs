@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class FadeManager : MonoBehaviour
 {
     public GameObject FadeinPanel;
@@ -45,5 +45,9 @@ public class FadeManager : MonoBehaviour
     public void Fadein()
     {
         Fadeins = true;
+    }
+    public void GameStart()
+    {
+        SceneManager.LoadScene("Restscene");
     }
 }
