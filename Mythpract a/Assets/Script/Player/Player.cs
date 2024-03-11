@@ -1093,19 +1093,43 @@ public partial class Player : MonoBehaviour
 
             if(stamina > 0)
             {
-                // 普通のガード 
                 if (HMng.CheckDamage() == true)
                 {
-                    
-                    stamina -= 50;
-                    audioSource.PlayOneShot(guardHitSE);
-                    achv.GuardNum();
-                    EffectGuardBreak.Play();
-                    //guardCount = 0;
-                    //canGuard = false;
-                    //guardCTCount = 0;
+                    // ジャスガ
+                    if (justGuardTime > guardCount)
+                    {
+                        Debug.Log("ジャストガード成功");
+                        achv.JustGuardNum();
 
-                    //isGuard = false;
+                        GameData.justGuardCount++;
+                        EffectJustGuard.Play();
+                        audioSource.PlayOneShot(justguardSE);
+                        //guardCount = 0;
+                        HitStopManager.hitstop.StartHitStop(0.3f);
+
+                        stamina += 30;
+                        //canGuard = false;
+                        //guardCTCount = 0;
+
+                        if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
+                        {
+                            SkillWise();
+                        }
+                    }
+                    // 普通のガード 
+                    else
+                    {
+                        stamina -= 50;
+                        audioSource.PlayOneShot(guardHitSE);
+                        achv.GuardNum();
+                        EffectGuardBreak.Play();
+                        //guardCount = 0;
+                        //canGuard = false;
+                        //guardCTCount = 0;
+
+                        //isGuard = false;
+
+                    }
                 }
 
             }
@@ -1124,30 +1148,30 @@ public partial class Player : MonoBehaviour
 
             }
 
-            if (justGuardTime > guardCount)
-            {
-                if (HMng.CheckDamage() == true)
-                {
-                    Debug.Log("ジャストガード成功");
-                    achv.JustGuardNum();
+            //if (justGuardTime > guardCount)
+            //{
+            //    if (HMng.CheckDamage() == true)
+            //    {
+            //        Debug.Log("ジャストガード成功");
+            //        achv.JustGuardNum();
 
-                    GameData.justGuardCount++;
-                    EffectJustGuard.Play();
-                    audioSource.PlayOneShot(justguardSE);
-                    //guardCount = 0;
-                    HitStopManager.hitstop.StartHitStop(0.3f);
+            //        GameData.justGuardCount++;
+            //        EffectJustGuard.Play();
+            //        audioSource.PlayOneShot(justguardSE);
+            //        //guardCount = 0;
+            //        HitStopManager.hitstop.StartHitStop(0.3f);
 
-                    stamina += 30;
-                    //canGuard = false;
-                    //guardCTCount = 0;
+            //        stamina += 30;
+            //        //canGuard = false;
+            //        //guardCTCount = 0;
 
-                    if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
-                    {
-                        SkillWise();
-                    }
+            //        if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
+            //        {
+            //            SkillWise();
+            //        }
 
-                }
-            }
+            //    }
+            //}
 
         }
         else
