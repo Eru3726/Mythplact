@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Qilin
   atk: {fileID: 6804787042626513585}
-  speed: 20
+  speed: 25
   fall_Effect:
     particle: {fileID: 0}
     time: 1

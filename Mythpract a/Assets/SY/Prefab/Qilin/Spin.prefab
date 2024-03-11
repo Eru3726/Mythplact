@@ -135,7 +135,7 @@ MonoBehaviour:
   atk: {fileID: 8449096856969812654}
   attackAnticipationTime: 1
   upTime: 1
-  atkTime: 27
+  atkTime: 15
   effect:
     particle: {fileID: 2657639739816163701}
     time: 30
