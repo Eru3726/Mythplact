@@ -357,32 +357,33 @@ public class TutorialText : MonoBehaviour
                         }
                         break;
                     case 3:
-                        talks = "ス キ ル を う ま く 使 え";
+                        talks = "よ く や っ た \nス キ ル を 渡 し て や る";
                         if (dialogCoroutine == null)
                         {
                             dialogCoroutine = StartCoroutine(Dialogue());
                         }
-                        waitSeconds(4);
+                        waitSeconds(5);
                         if (isChange)
                         {
-                            dialogCoroutine = null;
-                            isChange = false;
-                            poptext = null;
-                            endTalkNum++;
-                        }
-                        break;
-                    case 4:
-                        talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 赴 き\n そ こ の 世 界 で 貴 様 の 実 力 を 示 す の だ";
-                        if (dialogCoroutine == null)
-                        {
-                            dialogCoroutine = StartCoroutine(Dialogue());
-                        }
-                        waitSeconds(6);
-                        if (isChange)
-                        {
+                            //dialogCoroutine = null;
+                            //isChange = false;
+                            //poptext = null;
+                            //endTalkNum++;
                             Fade.Fadeout();// シーン移動
                         }
                         break;
+                    //case 4:
+                    //    talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 赴 き\n そ の 世 界 で 貴 様 の 実 力 を 示 す の だ";
+                    //    if (dialogCoroutine == null)
+                    //    {
+                    //        dialogCoroutine = StartCoroutine(Dialogue());
+                    //    }
+                    //    waitSeconds(6);
+                    //    if (isChange)
+                    //    {
+                    //        Fade.Fadeout();// シーン移動
+                    //    }
+                    //    break;
                 }
                 break;
         }
