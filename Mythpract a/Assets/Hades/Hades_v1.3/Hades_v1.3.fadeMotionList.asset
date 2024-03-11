@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
+  m_Name: Hades_v1.3.fadeMotionList
+  m_EditorClassIdentifier: 
+  MotionInstanceIds: 548effffde80ffffd480ffffca80ffffc080ffffb680ffffac80ffffa280ffff9880ffff8e80ffff8480ffff7a80ffffea67ffff
+  CubismFadeMotionObjects:
+  - {fileID: 11400000, guid: 91dab78130071eb41b92a433de012045, type: 2}
+  - {fileID: 11400000, guid: c52460e93fef5bd4eb917730dec3c0f8, type: 2}
+  - {fileID: 11400000, guid: 270df39a37ae7d743a3834d545d32c05, type: 2}
+  - {fileID: 11400000, guid: 50aaf37acbea1534daa32930c8b98348, type: 2}
+  - {fileID: 11400000, guid: 95a1e4b735acb88459f4ab3b56256e43, type: 2}
+  - {fileID: 11400000, guid: 8d41e2d371b13d8439a22548ac8b39f7, type: 2}
+  - {fileID: 11400000, guid: 0b70f34585b6b7c48af142764c6a0b0f, type: 2}
+  - {fileID: 11400000, guid: 43a002104853fa141a694d620409a7b4, type: 2}
+  - {fileID: 11400000, guid: bd22d0c1ede54c84f9484d9645ce8e75, type: 2}
+  - {fileID: 11400000, guid: 581f84231bdcabe48a3151fc5eb1e105, type: 2}
+  - {fileID: 11400000, guid: 8a67219ac9eb6f846954a84733c73767, type: 2}
+  - {fileID: 11400000, guid: 18aa3731e437a594b8aeaba56e926eb7, type: 2}
+  - {fileID: 11400000, guid: dc07a420deca1c54dab9142d02cb59a2, type: 2}

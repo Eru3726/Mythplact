@@ -45,6 +45,7 @@ public partial class Player : MonoBehaviour
     float knockbuckCount = 0;        // ノックバックする時間のカウント
     float damageBlinkCount = 0;
     float stamina = 0;              // 現在のスタミナの値
+    float bossDurationCount = 0;
 
     bool jumping = false;       // ジャンプ落下時の判定
     bool doublejump = false;    // ダブルジャンプ使用判定
@@ -61,6 +62,8 @@ public partial class Player : MonoBehaviour
 
     bool deadStop;
     bool gameover;
+    bool bossDurationStop;
+    bool bossDurationStopOnce = false;
     bool isAttack;
     bool isGuard;
     bool guardEnd;
@@ -136,6 +139,12 @@ public partial class Player : MonoBehaviour
     [SerializeField, Header("スキル4")]
     private InputActionReference skill4Inp;
 
+    [SerializeField] float shoggothDirecionTime;
+
+    [SerializeField] float fafnirDirectionTime;
+
+    [SerializeField] float qilinDirectionTime;
+
 
     public bool IsGuard { get { return isGuard; } set { isGuard = value; } }
 
@@ -170,6 +179,7 @@ public partial class Player : MonoBehaviour
         stamina = maxStamina;
        
         InitHP();
+        ResetPower();
         PassiveSkillStart();
 
         Boss = GameObject.Find("Shoggoth");
@@ -177,6 +187,7 @@ public partial class Player : MonoBehaviour
         if (Boss == null) Boss = GameObject.Find("Qilin");
 
         if (Boss != null) BossAnim = Boss.GetComponent<Anim>();
+
         //有効化
         attackInp.action.Enable();
         guardInp.action.Enable();
@@ -208,8 +219,9 @@ public partial class Player : MonoBehaviour
             HMng.HitUpdate();
 
             CheckGround();  // 地面にいるかの判定
+            BossDirectionLock();
 
-            if (!gameover && !deadStop) MoveInput();        // 入力
+            if (!gameover && !deadStop && !bossDurationStop) MoveInput();        // 入力
             MoveController();   // プレイヤー操作
             DeadController();
             ActiveSkillController();    // スキル管理
@@ -1081,19 +1093,43 @@ public partial class Player : MonoBehaviour
 
             if(stamina > 0)
             {
-                // 普通のガード 
                 if (HMng.CheckDamage() == true)
                 {
-                    
-                    stamina -= 50;
-                    audioSource.PlayOneShot(guardHitSE);
-                    achv.GuardNum();
-                    EffectGuardBreak.Play();
-                    //guardCount = 0;
-                    //canGuard = false;
-                    //guardCTCount = 0;
+                    // ジャスガ
+                    if (justGuardTime > guardCount)
+                    {
+                        Debug.Log("ジャストガード成功");
+                        achv.JustGuardNum();
 
-                    //isGuard = false;
+                        GameData.justGuardCount++;
+                        EffectJustGuard.Play();
+                        audioSource.PlayOneShot(justguardSE);
+                        //guardCount = 0;
+                        HitStopManager.hitstop.StartHitStop(0.3f);
+
+                        stamina += 30;
+                        //canGuard = false;
+                        //guardCTCount = 0;
+
+                        if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
+                        {
+                            SkillWise();
+                        }
+                    }
+                    // 普通のガード 
+                    else
+                    {
+                        stamina -= 50;
+                        audioSource.PlayOneShot(guardHitSE);
+                        achv.GuardNum();
+                        EffectGuardBreak.Play();
+                        //guardCount = 0;
+                        //canGuard = false;
+                        //guardCTCount = 0;
+
+                        //isGuard = false;
+
+                    }
                 }
 
             }
@@ -1112,30 +1148,30 @@ public partial class Player : MonoBehaviour
 
             }
 
-            if (justGuardTime > guardCount)
-            {
-                if (HMng.CheckDamage() == true)
-                {
-                    Debug.Log("ジャストガード成功");
-                    achv.JustGuardNum();
+            //if (justGuardTime > guardCount)
+            //{
+            //    if (HMng.CheckDamage() == true)
+            //    {
+            //        Debug.Log("ジャストガード成功");
+            //        achv.JustGuardNum();
 
-                    GameData.justGuardCount++;
-                    EffectJustGuard.Play();
-                    audioSource.PlayOneShot(justguardSE);
-                    //guardCount = 0;
-                    HitStopManager.hitstop.StartHitStop(0.3f);
+            //        GameData.justGuardCount++;
+            //        EffectJustGuard.Play();
+            //        audioSource.PlayOneShot(justguardSE);
+            //        //guardCount = 0;
+            //        HitStopManager.hitstop.StartHitStop(0.3f);
 
-                    stamina += 30;
-                    //canGuard = false;
-                    //guardCTCount = 0;
+            //        stamina += 30;
+            //        //canGuard = false;
+            //        //guardCTCount = 0;
 
-                    if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
-                    {
-                        SkillWise();
-                    }
+            //        if (HMng.HP < HMng.MaxHP && HMng.HP > 0)
+            //        {
+            //            SkillWise();
+            //        }
 
-                }
-            }
+            //    }
+            //}
 
         }
         else
@@ -1334,6 +1370,51 @@ public partial class Player : MonoBehaviour
 
         if (achvComboCount >= 10) achv.AttackCombo();
 
+    }
+    void BossDirectionLock()
+    {
+        Debug.Log("bossds" + bossDurationStop);
+        if(Boss != null && !bossDurationStopOnce)
+        {
+            if(Boss.name == "Shoggoth")
+            {
+                bossDurationStop = true;
+                bossDurationCount += Time.deltaTime;
+                if(bossDurationCount >= shoggothDirecionTime)
+                {
+                    bossDurationStop = false;
+                    bossDurationCount = 0;
+                    bossDurationStopOnce = true;
+                  
+                }
+            }
+            else if(Boss.name == "Fafnir m 1")
+            {
+                bossDurationStop = true;
+                bossDurationCount += Time.deltaTime;
+                if (bossDurationCount >= fafnirDirectionTime)
+                {
+                    bossDurationStop = false;
+                    bossDurationCount = 0;
+                    bossDurationStopOnce = true;
+
+                }
+
+            }
+            else if(Boss.name == "Qilin")
+            {
+                bossDurationStop = true;
+                bossDurationCount += Time.deltaTime;
+                if (bossDurationCount >= qilinDirectionTime)
+                {
+                    bossDurationStop = false;
+                    bossDurationCount = 0;
+                    bossDurationStopOnce = true;
+
+                }
+
+            }
+        }
     }
     void EnemyLockon()
     {

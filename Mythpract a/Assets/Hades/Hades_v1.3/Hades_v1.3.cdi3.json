@@ -1,0 +1,291 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param25",
+			"GroupId": "",
+			"Name": "透明"
+		},
+		{
+			"Id": "Param29",
+			"GroupId": "",
+			"Name": "全回転"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "",
+			"Name": "上半身回転"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "頭"
+		},
+		{
+			"Id": "Param27",
+			"GroupId": "",
+			"Name": "全移動x"
+		},
+		{
+			"Id": "Param28",
+			"GroupId": "",
+			"Name": "全移動y"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "ParamGroup2",
+			"Name": "肩"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "ParamGroup2",
+			"Name": "腕"
+		},
+		{
+			"Id": "Param26",
+			"GroupId": "ParamGroup2",
+			"Name": "特殊腕"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "ParamGroup2",
+			"Name": "手首"
+		},
+		{
+			"Id": "Param20",
+			"GroupId": "ParamGroup2",
+			"Name": "杖"
+		},
+		{
+			"Id": "Param22",
+			"GroupId": "ParamGroup2",
+			"Name": "杖先端"
+		},
+		{
+			"Id": "Param24",
+			"GroupId": "ParamGroup2",
+			"Name": "杖左右"
+		},
+		{
+			"Id": "Param23",
+			"GroupId": "ParamGroup2",
+			"Name": "杖上下"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "ParamGroup2",
+			"Name": "手変更"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "ParamGroup",
+			"Name": "左足回転上"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "ParamGroup",
+			"Name": "左足脛"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "ParamGroup",
+			"Name": "左足首"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "ParamGroup",
+			"Name": "右足捻り"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "ParamGroup",
+			"Name": "右足首"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "ParamGroup",
+			"Name": "右足回転上"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "ParamGroup",
+			"Name": "右足回転下"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "ParamGroup3",
+			"Name": "マント左"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "ParamGroup3",
+			"Name": "マント右"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "ParamGroup3",
+			"Name": "腰"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "ParamGroup3",
+			"Name": "マフラー"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "ParamGroup3",
+			"Name": "チェーン"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "ParamGroup3",
+			"Name": "肩"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "ParamGroup3",
+			"Name": "王冠"
+		}
+	],
+	"ParameterGroups": [
+		{
+			"Id": "ParamGroup2",
+			"GroupId": "",
+			"Name": "手"
+		},
+		{
+			"Id": "ParamGroup",
+			"GroupId": "",
+			"Name": "足"
+		},
+		{
+			"Id": "ParamGroup3",
+			"GroupId": "",
+			"Name": "装飾"
+		}
+	],
+	"Parts": [
+		{
+			"Id": "Part28",
+			"Name": "Hades_hand.psd"
+		},
+		{
+			"Id": "Part26",
+			"Name": "backmant.psd"
+		},
+		{
+			"Id": "Part",
+			"Name": "冠"
+		},
+		{
+			"Id": "Part2",
+			"Name": "襟"
+		},
+		{
+			"Id": "Part3",
+			"Name": "肩パッド1"
+		},
+		{
+			"Id": "Part4",
+			"Name": "肩パッド2"
+		},
+		{
+			"Id": "Part5",
+			"Name": "布"
+		},
+		{
+			"Id": "Part6",
+			"Name": "チェーン"
+		},
+		{
+			"Id": "Part7",
+			"Name": "マント左"
+		},
+		{
+			"Id": "Part8",
+			"Name": "マント右"
+		},
+		{
+			"Id": "Part9",
+			"Name": "チャーム"
+		},
+		{
+			"Id": "Part10",
+			"Name": "服"
+		},
+		{
+			"Id": "Part11",
+			"Name": "服腰"
+		},
+		{
+			"Id": "Part12",
+			"Name": "上腕"
+		},
+		{
+			"Id": "Part13",
+			"Name": "前腕"
+		},
+		{
+			"Id": "Part14",
+			"Name": "手"
+		},
+		{
+			"Id": "Part15",
+			"Name": "左靴"
+		},
+		{
+			"Id": "Part16",
+			"Name": "左靴先"
+		},
+		{
+			"Id": "Part17",
+			"Name": "右靴"
+		},
+		{
+			"Id": "Part18",
+			"Name": "右ズボン"
+		},
+		{
+			"Id": "Part19",
+			"Name": "左ズボン"
+		},
+		{
+			"Id": "Part20",
+			"Name": "目右"
+		},
+		{
+			"Id": "Part21",
+			"Name": "目左"
+		},
+		{
+			"Id": "Part22",
+			"Name": "頭"
+		},
+		{
+			"Id": "Part23",
+			"Name": "襟裏"
+		},
+		{
+			"Id": "Part24",
+			"Name": "杖"
+		},
+		{
+			"Id": "Part27",
+			"Name": "手_掴み"
+		},
+		{
+			"Id": "Part25",
+			"Name": "マント裏"
+		}
+	],
+	"CombinedParameters": [
+		[
+			"Param27",
+			"Param28"
+		],
+		[
+			"Param24",
+			"Param23"
+		]
+	]
+}
