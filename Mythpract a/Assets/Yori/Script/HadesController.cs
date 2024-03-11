@@ -73,6 +73,9 @@ public class HadesController : MonoBehaviour
 
     [SerializeField, Header("ウェーブの当たり判定")]
     private GameObject waveColi;
+
+    [SerializeField, Header("ヒットデータ")]
+    GameObject waveHitData,rodHitData;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +94,9 @@ public class HadesController : MonoBehaviour
         actNo = (int)ActNo.App;
 
         dieFlg = false;
+
+        SetPower(waveHitData, 1);
+        SetPower(rodHitData, 1);
     }
 
     // Update is called once per frame
@@ -289,5 +295,10 @@ public class HadesController : MonoBehaviour
     void RodColed()
     {
         RodUse.SetActive(false);
+    }
+
+    void SetPower(GameObject obj, float power)
+    {
+        obj.GetComponent<SY.HitData>().Power = power;
     }
 }
