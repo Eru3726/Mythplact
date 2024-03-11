@@ -144,7 +144,6 @@ public class TutorialText : MonoBehaviour
                         talks = "目 が 覚 め た か";
                         if (dialogCoroutine == null)
                         {
-                            Debug.Log("目 が 覚 め た か");
                             dialogCoroutine = StartCoroutine(Dialogue());
                         }
                         waitSeconds(4);

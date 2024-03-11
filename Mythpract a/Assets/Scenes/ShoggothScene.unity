@@ -2374,6 +2374,7 @@ MonoBehaviour:
     timeAttack: 0
     clearAchv: 0
     clearBoss: 0
+    Firsttime: 0
 --- !u!1 &520873377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6209,8 +6210,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: upDown_Speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: entry_Vibration
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
+      propertyPath: upDown_Radius.y
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5971913799980852500, guid: 2d85d65890f3de849ae9b18363714cf0, type: 3}
       propertyPath: entry_RoarEffect.loop
