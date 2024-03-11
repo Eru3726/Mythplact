@@ -776,6 +776,7 @@ public class Fafnir : MonoBehaviour
     void Die()      //死亡
     {
         Debug.Log(obj.name + "は死んだ");
+        hm.ATKActive = false;
         achv.DefeatedBoss(1);
         if (soundcount == 0)
         {
