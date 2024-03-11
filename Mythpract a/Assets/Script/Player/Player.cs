@@ -59,6 +59,7 @@ public partial class Player : MonoBehaviour
     bool rtDown;
     bool ltup;
     bool rtup;
+    public static bool guardhit;
 
     bool deadStop;
     bool gameover;
@@ -182,11 +183,13 @@ public partial class Player : MonoBehaviour
         ResetPower();
         PassiveSkillStart();
 
-        Boss = GameObject.Find("Shoggoth");
-        if (Boss == null) Boss = GameObject.Find("Fafnir m 1");
+        Boss = GameObject.Find("Shoggoth_2.0");
+        if (Boss == null) Boss = GameObject.Find("Fafnir_var1.6");
         if (Boss == null) Boss = GameObject.Find("Qilin");
 
         if (Boss != null) BossAnim = Boss.GetComponent<Anim>();
+
+        bossDurationStopOnce = false;
 
         //有効化
         attackInp.action.Enable();
@@ -1093,7 +1096,7 @@ public partial class Player : MonoBehaviour
 
             if(stamina > 0)
             {
-                if (HMng.CheckDamage() == true)
+                if (guardhit == true)
                 {
                     // ジャスガ
                     if (justGuardTime > guardCount)
@@ -1115,6 +1118,7 @@ public partial class Player : MonoBehaviour
                         {
                             SkillWise();
                         }
+                        guardhit = false;
                     }
                     // 普通のガード 
                     else
@@ -1128,8 +1132,11 @@ public partial class Player : MonoBehaviour
                         //guardCTCount = 0;
 
                         //isGuard = false;
+                        guardhit = false;
+
 
                     }
+                    isGuard = false;
                 }
 
             }
@@ -1374,9 +1381,9 @@ public partial class Player : MonoBehaviour
     void BossDirectionLock()
     {
         Debug.Log("bossds" + bossDurationStop);
-        if(Boss != null && !bossDurationStopOnce)
+        if(!bossDurationStopOnce)
         {
-            if(Boss.name == "Shoggoth")
+            if(Boss.name == "Shoggoth_2.0")
             {
                 bossDurationStop = true;
                 bossDurationCount += Time.deltaTime;
@@ -1388,8 +1395,9 @@ public partial class Player : MonoBehaviour
                   
                 }
             }
-            else if(Boss.name == "Fafnir m 1")
+            else if(Boss.name == "Fafnir_var1.6")
             {
+                Debug.Log("faf");
                 bossDurationStop = true;
                 bossDurationCount += Time.deltaTime;
                 if (bossDurationCount >= fafnirDirectionTime)
@@ -1413,6 +1421,10 @@ public partial class Player : MonoBehaviour
 
                 }
 
+            }
+            else
+            {
+                bossDurationStop = false;
             }
         }
     }

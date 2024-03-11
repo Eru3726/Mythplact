@@ -40,9 +40,10 @@ namespace SY
             {
                 if (player.IsGuard)
                 {
-
-                    defMng.HP -= 0;
+                    Debug.Log("ガードちゅう");
+                    dmg = 0;
                     player.IsGuard = false;
+                    Player.guardhit = true;
                 }
                 else if (player.IsFleet)
                 {
@@ -64,6 +65,7 @@ namespace SY
             }
 
             //ダメージチェック
+            Debug.Log("dmg" + dmg);
             if (dmg == 0) { return; }
             defMng.HP -= dmg;
 
