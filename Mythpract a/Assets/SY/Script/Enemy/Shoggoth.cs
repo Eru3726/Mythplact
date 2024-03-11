@@ -622,6 +622,7 @@ public class Shoggoth : MonoBehaviour
         Debug.Log(gameObject.name + "は死んだ");
         achv.DefeatedBoss(0);
         moveType = Shoggoth_MoveType.Dead;
+        hm.ATKActive = false;
         //head.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
         head.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         Debug.Log(head.transform.parent.gameObject.name);
