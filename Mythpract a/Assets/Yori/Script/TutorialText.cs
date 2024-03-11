@@ -238,6 +238,7 @@ public class TutorialText : MonoBehaviour
                 {
                     poptext = " 「<color=red>" + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "</color>」攻撃\n" +
                      "　空中で上下入力で攻撃が変化";
+                    Debug.Log("攻撃"+_action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "+" +"ジャンプ"+ _action[(int)InputActionNum.jumpInp].GetBindingDisplayString(bindingIndex));
                 }
 
                 waitSeconds(4);

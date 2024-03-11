@@ -4365,6 +4365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PadCursor
       objectReference: {fileID: 0}
+    - target: {fileID: 6617127458018108512, guid: 292d4f1fb91ca8548a5ca31bdf5ca281, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6617127458018108514, guid: 292d4f1fb91ca8548a5ca31bdf5ca281, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -4408,6 +4412,10 @@ PrefabInstance:
     - target: {fileID: 6617127458018108514, guid: 292d4f1fb91ca8548a5ca31bdf5ca281, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617127458018108515, guid: 292d4f1fb91ca8548a5ca31bdf5ca281, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 292d4f1fb91ca8548a5ca31bdf5ca281, type: 3}
@@ -5666,6 +5674,10 @@ PrefabInstance:
       propertyPath: dm
       value: 
       objectReference: {fileID: 3857621663192714318}
+    - target: {fileID: 6157186400425621484, guid: 2737a142671adde47a9691eb1600cb34, type: 3}
+      propertyPath: cursorCan
+      value: 
+      objectReference: {fileID: 1315399008}
     - target: {fileID: 6157186400425621485, guid: 2737a142671adde47a9691eb1600cb34, type: 3}
       propertyPath: m_Pivot.x
       value: 0

@@ -156,8 +156,8 @@ public partial class Player : MonoBehaviour
     {
         PlayerRb = GetComponent<Rigidbody2D>();
 
-        conconect = GameObject.Find("keycon").GetComponent<Controllerconnect>();
-        keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
+        //conconect = GameObject.Find("keycon").GetComponent<Controllerconnect>();
+        //keycon = GameObject.Find("keycon").GetComponent<Keyconfig>();
         HMng = GetComponent<HitMng>();
         plsp = gameObject.GetComponent<SpriteRenderer>();
         atkJumpDown = transform.GetChild(4).GetComponent<AtkJumpDown>();
@@ -1381,7 +1381,7 @@ public partial class Player : MonoBehaviour
     void BossDirectionLock()
     {
         Debug.Log("bossds" + bossDurationStop);
-        if(!bossDurationStopOnce)
+        if(!bossDurationStopOnce && Boss != null)
         {
             if(Boss.name == "Shoggoth_2.0")
             {
@@ -1426,6 +1426,10 @@ public partial class Player : MonoBehaviour
             {
                 bossDurationStop = false;
             }
+        }
+        else
+        {
+            bossDurationStop = false;
         }
     }
     void EnemyLockon()

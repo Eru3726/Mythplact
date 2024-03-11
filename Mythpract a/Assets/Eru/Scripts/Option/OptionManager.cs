@@ -19,6 +19,9 @@ public class OptionManager : MonoBehaviour
     [SerializeField]
     private GameObject settingCan,optionCan, disCan, souCan, keyCan, padCan, quitMenu;
 
+    [SerializeField]
+    private GameObject cursorCan;
+
     private bool settingOpenFlg = false;
     private bool optionOpenFlg = false;
     private bool achvOpenFlg = false;
@@ -70,6 +73,7 @@ public class OptionManager : MonoBehaviour
             {
                 settingOpenFlg = !settingOpenFlg;
                 settingCan.SetActive(settingOpenFlg);
+                cursorCan.SetActive(settingOpenFlg);
             }
             else if(optionOpenFlg && !achvOpenFlg)
             {
@@ -81,6 +85,7 @@ public class OptionManager : MonoBehaviour
                 if (achvOpenFlg) AchvUIClause();
                 else AchvUIClause();
             }
+
         }
 
         if (moveRight.action.triggered && nowOpution < optionRightBorder && optionOpenFlg && !rebindFlg)
@@ -136,6 +141,7 @@ public class OptionManager : MonoBehaviour
     {
         settingOpenFlg = false;
         settingCan.SetActive(settingOpenFlg);
+        cursorCan.SetActive(settingOpenFlg);
     }
 
     public void OptionOpenButton()
