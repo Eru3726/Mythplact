@@ -48,6 +48,8 @@ public class Fafnir : MonoBehaviour
     int tableNo = 0;    //テーブル指定
     int moveNo = 0;     //行動指定
 
+    int defSortingOrder;
+
 
     [SerializeField, Tooltip("行動")] Fafnir_MoveType moveType = Fafnir_MoveType.Idle;
     [SerializeField, Tooltip("行動テーブル")] Fafnir_MoveTable[] moveTable;
@@ -235,6 +237,7 @@ public class Fafnir : MonoBehaviour
         CameraData();
 
         renderController.OverwriteFlagForModelScreenColors = true;
+        defSortingOrder = renderController.SortingOrder;
 
         moveType = Fafnir_MoveType.Entry;
         AllVariableClear();
@@ -854,7 +857,6 @@ public class Fafnir : MonoBehaviour
     IEnumerator Flash()
     {
         int damage_Repeat = 0;  //繰り返し回数
-        int defSortingOrder = renderController.SortingOrder;
 
         while (damage_Repeat < damage.Time)
         {
