@@ -204,7 +204,7 @@ MonoBehaviour:
     layer:
       serializedVersion: 2
       m_Bits: 8
-    tag: 3
+    tag: 0
     isActive: 0
     gizmo:
       mode: 2
@@ -213,6 +213,7 @@ MonoBehaviour:
       radius: 0.1
       color: {r: 1, g: 1, b: 1, a: 1}
       display: 1
+  groundFlag: 0
 --- !u!1001 &1190631223268975505
 PrefabInstance:
   m_ObjectHideFlags: 0
