@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Qilin
   atk: {fileID: 6804787042626513585}
-  speed: 20
+  speed: 25
   fall_Effect:
     particle: {fileID: 0}
     time: 1
@@ -213,6 +213,7 @@ MonoBehaviour:
       radius: 0.1
       color: {r: 1, g: 1, b: 1, a: 1}
       display: 1
+  groundFlag: 0
 --- !u!1001 &1190631223268975505
 PrefabInstance:
   m_ObjectHideFlags: 0
