@@ -186,6 +186,7 @@ public class Enemy : EnemyBase
     public override void Die()
     {
         Debug.Log(obj.name + "は死んだ");
+        hm.ATKActive = false;
         rb.velocity = Vector2.zero;
         AllHitActive(false);
     }
