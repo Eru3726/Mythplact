@@ -14,6 +14,8 @@ public class SkillTutorial : MonoBehaviour
         GoodByHades,
         Num
     }
+    [SerializeField]
+    public FadeManager Fade;
 
     private string poptext;
 
@@ -94,7 +96,8 @@ public class SkillTutorial : MonoBehaviour
                 }
                 break;
             case SkillLog.DoSetSkill:
-                talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択 し 、\n ス キ ル を 選 択 、そ し て  \n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト し て み ろ  ";
+                talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択  し 、\n ス キ ル を 選 択 、そ し て  " +
+                    "\n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト し て み ろ  ";
                 if (dialogCoroutine == null)
                 {
                     dialogCoroutine = StartCoroutine(Dialogue());
@@ -140,6 +143,7 @@ public class SkillTutorial : MonoBehaviour
                 }
                 if (methodTimer >= 7)
                 {
+                    methodTimer = 0;
                     poptext = null;
                     dialogCoroutine = null;
                     skillLogPhase++;
@@ -152,9 +156,9 @@ public class SkillTutorial : MonoBehaviour
                 {
                     dialogCoroutine = StartCoroutine(Dialogue());
                 }
-                if (methodTimer >= 5)
+                if (methodTimer >= 3)
                 {
-                    // シーン移動
+                    Fade.Fadeout();
                 }
                 break;
             default:
