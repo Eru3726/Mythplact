@@ -9203,7 +9203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1376574687
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16254,7 +16254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173429410121635626, guid: 1fc88e80e5639ea46a5262c84cb241fc, type: 3}
       propertyPath: rush_AtkTime
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6173429410121635626, guid: 1fc88e80e5639ea46a5262c84cb241fc, type: 3}
       propertyPath: rush_MoveSpd
