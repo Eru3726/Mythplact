@@ -272,6 +272,8 @@ public class HadesController : MonoBehaviour
     void die()
     {
         dieFlg = true;
+        waveColi.SetActive(false);
+        actNo = (int)ActNo.App;
     }
 
     void WaveCreate()

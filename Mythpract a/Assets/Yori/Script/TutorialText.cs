@@ -349,11 +349,14 @@ public class TutorialText : MonoBehaviour
                         if (isChange)
                         {
                             poptext = null;
+                            isChange = false;
                         }
                         Debug.Log("死ぬの待機中");
                         if (hadesCon.dieFlg)
                         {
                             endTalkNum++;
+                            dialogCoroutine = null;
+                            timer = 0;
                         }
                         break;
                     case 3:
@@ -362,7 +365,7 @@ public class TutorialText : MonoBehaviour
                         {
                             dialogCoroutine = StartCoroutine(Dialogue());
                         }
-                        waitSeconds(5);
+                        waitSeconds(4);
                         if (isChange)
                         {
                             //dialogCoroutine = null;

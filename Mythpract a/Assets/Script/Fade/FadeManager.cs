@@ -46,6 +46,11 @@ public class FadeManager : MonoBehaviour
     {
         Fadeins = true;
     }
+
+    public void skilltutorial()
+    {
+        SceneManager.LoadScene("SkillPieceTutorial");
+    }
     public void GameStart()
     {
         SceneManager.LoadScene("Restscene");
