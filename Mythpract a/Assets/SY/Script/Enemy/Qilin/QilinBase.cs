@@ -567,11 +567,13 @@ public class QilinBase : Enemy
                 Vector2 vec = new Vector2(param.Stage.Center.x - pos.x, 0);
                 scale.x = defScale.x * ((vec.x <= 0) ? -1 : 1);
                 transform.localScale = scale;
+                isDirection = false;
                 Move(vec, param.Move_Speed);
                 phase++;
                 break;
             case 1:
                 if (pos.x < param.Stage.Center.x - 2.5f || param.Stage.Center.x + 2.5f < pos.x) { return; }
+                isDirection = true;
                 Stop();
                 ClearGravity();
                 phase++;

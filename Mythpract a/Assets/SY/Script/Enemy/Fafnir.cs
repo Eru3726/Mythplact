@@ -529,16 +529,15 @@ public class Fafnir : MonoBehaviour
             case 5:
                 timer += Time.deltaTime;
                 rb.velocity = (-dir * Vector2.right).normalized * rush_MoveSpd;
-                if (timer < 0.2f) { break; }
+                if (timer < 0.2f) { break; }    
                 if (repeat == rush_AtkTime)
                 {
-                    if (pos.x > center.x + 5.0f || center.x - 5.0f > pos.x) { break; }
+                    if (pos.x < plPos.x + 1.0f && plPos.x - 1.0f < pos.x) { phase++; break; }
                 }
-                else
-                {
-                    if (pos.x < (rush_Center.x + rush_AtkRange.x * 0.5f) &&
-                        (rush_Center.x - rush_AtkRange.x * 0.5f) < pos.x) { break; }
-                }
+                if ((rush_Center.x + rush_AtkRange.x * 0.5f) < pos.x ||
+                    pos.x < (rush_Center.x - rush_AtkRange.x * 0.5f)) { phase++; }
+                break;
+            case 6:
                 rb.velocity = Vector2.zero;
                 body.SetActive(false);
                 SetPower(body, body_Power);
@@ -547,11 +546,11 @@ public class Fafnir : MonoBehaviour
                 timer = 0;
                 phase++;
                 break;
-            case 6:     //終了アニメーション終了
+            case 7:     //終了アニメーション終了
                 if (anim.NormalizedTime < 1.0f) { break; }
                 phase++;
                 break;
-            case 7:     //折り返し時間→向き更新、回数に応じて次アクション定義
+            case 8:     //折り返し時間→向き更新、回数に応じて次アクション定義
                 timer += Time.deltaTime;
                 if (timer < rush_BreakTime) { break; }
                 Direction();
@@ -559,7 +558,7 @@ public class Fafnir : MonoBehaviour
                 if (repeat == rush_AtkTime) { phase++; }
                 else { phase = 0; }
                 break;
-            case 8:
+            case 9:
                 //moveType = rush_NextMove;
                 MoveEnd();
                 break;
