@@ -94,10 +94,7 @@ public class SkillTutorial : MonoBehaviour
                 }
                 break;
             case SkillLog.DoSetSkill:
-                talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択 ( "
-                    + select.GetBindingDisplayString(bindingIndex) + " ) し 、\n ス キ ル を 選 択( "
-                    + select.GetBindingDisplayString(bindingIndex) + " ) 、そ し て  \n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト ( "
-                    + select.GetBindingDisplayString(bindingIndex) + " ) し て み ろ  ";
+                talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択 し 、\n ス キ ル を 選 択 、そ し て  \n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト し て み ろ  ";
                 if (dialogCoroutine == null)
                 {
                     dialogCoroutine = StartCoroutine(Dialogue());
