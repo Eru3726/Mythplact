@@ -917,20 +917,21 @@ public class TutorialCursorController : MonoBehaviour
 
         hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-        if (hit.collider.tag == "SkillBase")
+        if (hit.collider!=null)
         {
-            int skillBaseNum = 19;
-            for (int i = 1; i <= skillBaseNum; i++)
+            if (hit.collider.tag == "SkillBase")
             {
-                if (hit.collider.name == i.ToString())
+                int skillBaseNum = 19;
+                for (int i = 1; i <= skillBaseNum; i++)
                 {
-                    Debug.Log(hit.collider.transform.position);
-                    this.gameObject.transform.position = hit.collider.transform.position;
+                    if (hit.collider.name == i.ToString())
+                    {
+                        Debug.Log(hit.collider.transform.position);
+                        this.gameObject.transform.position = hit.collider.transform.position;
+                    }
                 }
             }
         }
-
-
     }
     private void OnTriggerExit2D(Collider2D col)
     {
