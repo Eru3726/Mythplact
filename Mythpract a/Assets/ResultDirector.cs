@@ -90,6 +90,10 @@ public class ResultDirector : MonoBehaviour
         if (time < waitTime) return;
         if (GameData.QilinDead)
         {
+            GameData.QilinDead = false;
+            GameData.FafnirDead = false;
+            GameData.ShoggothDead = false;
+            dataManager.Save();
             SceneManager.LoadScene("TitleScene");
         }
         else if (GameData.ShoggothDead || GameData.FafnirDead)

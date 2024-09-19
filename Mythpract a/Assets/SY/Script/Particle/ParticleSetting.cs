@@ -25,7 +25,7 @@ namespace SY
             if (particle == null) { return; }
             Debug.Log(particle.name);
             var main = particle.main;
-            //main.duration = time;
+            main.duration = time;
             main.loop = loop;
             stopCheck = particle.GetComponent<ParticleStopCheck>();
             if (stopCheck != null) { stopCheck.IsStop = false; }
