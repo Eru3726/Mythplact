@@ -40,9 +40,8 @@ public class SkillTutorial : MonoBehaviour
 
     [SerializeField]
     private InputActionReference selectRef;
-    private InputAction select;
 
-    private int bindingIndex;
+    //private int bindingIndex;
 
     private bool isCoroutine;
 
@@ -57,7 +56,6 @@ public class SkillTutorial : MonoBehaviour
     {
         textMesh = textMesh.GetComponent<TextMesh>();
         setSkill = false;
-        select = selectRef;
         isCoroutine = false;
     }
 
@@ -69,10 +67,9 @@ public class SkillTutorial : MonoBehaviour
     [SerializeField, Header("しゃべてる箱")]
     private GameObject textBox;
     void SkillDescription()
-    {
-        
-        if (Gamepad.current == null) bindingIndex = 0;
-        else bindingIndex = 1;
+    {        
+        //if (Gamepad.current == null) bindingIndex = 0;
+        //else bindingIndex = 1;
         switch (skillLogPhase)
         {
             case SkillLog.SetSkillDescription:
@@ -105,11 +102,6 @@ public class SkillTutorial : MonoBehaviour
                 if (!isCoroutine)
                 {
                     button.enabled = true;
-                    button2.enabled = true;
-                    button3.enabled = true;
-                    button4.enabled = true;
-                    button5.enabled = true;
-                    button6.enabled = true;
                 }
                 break;
             case SkillLog.PassiveSkillDescription:
@@ -183,16 +175,6 @@ public class SkillTutorial : MonoBehaviour
 
         }
         isCoroutine = false;
-    }
-
-    public void SelectedSkill()
-    {
-        textBackGround.SetActive(false);
-        hades.SetActive(false);
-        dialogCoroutine = null;
-        methodTimer = 0;
-        skillLogPhase++;
-        poptext = null;
     }
 }
 

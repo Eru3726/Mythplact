@@ -77,8 +77,6 @@ public class TutorialText : MonoBehaviour
 
     // チュートリアルバトル関係
 
-    private bool isBossBatlle = false;
-
     private int talkNum = 0;
 
     [SerializeField, Header("hades")]
@@ -108,8 +106,6 @@ public class TutorialText : MonoBehaviour
         color = this.GetComponent<TextMesh>().color;
         color.a = 0;
         this.GetComponent<TextMesh>().color = color;
-
-        isBossBatlle = false;
 
         pushBottum = 10;
         pushCount = 0;
@@ -238,7 +234,7 @@ public class TutorialText : MonoBehaviour
                 {
                     poptext = " 「<color=red>" + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "</color>」攻撃\n" +
                      "　空中で上下入力で攻撃が変化";
-                    Debug.Log("攻撃"+_action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "+" +"ジャンプ"+ _action[(int)InputActionNum.jumpInp].GetBindingDisplayString(bindingIndex));
+                    Debug.Log("攻撃" + _action[(int)InputActionNum.attackInp].GetBindingDisplayString(bindingIndex) + "+" + "ジャンプ" + _action[(int)InputActionNum.jumpInp].GetBindingDisplayString(bindingIndex));
                 }
 
                 waitSeconds(4);
@@ -375,18 +371,18 @@ public class TutorialText : MonoBehaviour
                             Fade.Fadeout();// シーン移動
                         }
                         break;
-                    //case 4:
-                    //    talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 赴 き\n そ の 世 界 で 貴 様 の 実 力 を 示 す の だ";
-                    //    if (dialogCoroutine == null)
-                    //    {
-                    //        dialogCoroutine = StartCoroutine(Dialogue());
-                    //    }
-                    //    waitSeconds(6);
-                    //    if (isChange)
-                    //    {
-                    //        Fade.Fadeout();// シーン移動
-                    //    }
-                    //    break;
+                        //case 4:
+                        //    talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 赴 き\n そ の 世 界 で 貴 様 の 実 力 を 示 す の だ";
+                        //    if (dialogCoroutine == null)
+                        //    {
+                        //        dialogCoroutine = StartCoroutine(Dialogue());
+                        //    }
+                        //    waitSeconds(6);
+                        //    if (isChange)
+                        //    {
+                        //        Fade.Fadeout();// シーン移動
+                        //    }
+                        //    break;
                 }
                 break;
         }
@@ -411,7 +407,6 @@ public class TutorialText : MonoBehaviour
                 {
                     if (popTexttype + 1 == PopTextType.tutorialBattle)
                     {
-                        isBossBatlle = true;
                         dialogCoroutine = null;
                         poptext = null;
                     }

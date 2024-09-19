@@ -46,8 +46,8 @@ public class HadesController : MonoBehaviour
     [SerializeField, Header("テレポ攻撃するときの時間")]
     private float teleAttackTime = 0.5f;
 
-    [SerializeField, Header("デバッグボタン好きな行動の番号をここに入れるとEを押したときに反応する")]
-    private int debugActNum = 0;
+    // [SerializeField, Header("デバッグボタン好きな行動の番号をここに入れるとEを押したときに反応する")]
+    // private int debugActNum = 0;
 
     SY.HitMng hitmng;
 
