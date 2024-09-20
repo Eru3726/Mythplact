@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -51,12 +52,18 @@ public class SkillTutorial : MonoBehaviour
     [SerializeField,Header("ぼたん")]
     Button button, button2, button3, button4, button5, button6;
 
+
+    [SerializeField]
+    private List<InputActionReference> _actionRef;
+    private List<InputAction> _action;
+
     // Start is called before the first frame update
     void Start()
     {
         textMesh = textMesh.GetComponent<TextMesh>();
         setSkill = false;
         isCoroutine = false;
+        _actionRef[0].action.Enable();
     }
 
     // Update is called once per frame
@@ -91,8 +98,10 @@ public class SkillTutorial : MonoBehaviour
                     skillLogPhase++;
                     poptext = null;
                 }
+                TutorialSkip();
                 break;
             case SkillLog.DoSetSkill:
+                
                 talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択  し 、\n ス キ ル を 選 択 、そ し て  " +
                     "\n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト し て み ろ  ";
                 if (dialogCoroutine == null)
@@ -103,8 +112,10 @@ public class SkillTutorial : MonoBehaviour
                 {
                     button.enabled = true;
                 }
+                TutorialSkip();
                 break;
             case SkillLog.PassiveSkillDescription:
+                TutorialSkip();
                 if (setSkill)
                 {
                     textBackGround.SetActive(true);
@@ -124,6 +135,7 @@ public class SkillTutorial : MonoBehaviour
                         skillLogPhase++;
                     }
                 }
+                TutorialSkip();
                 break;
             case SkillLog.GameDescription:
                 methodTimer += Time.deltaTime;
@@ -160,7 +172,21 @@ public class SkillTutorial : MonoBehaviour
 
         textMesh.text = poptext;
     }
-
+    private void TutorialSkip()
+    {
+        // エスケープに値するボタンを押したらスキップ
+        if (_actionRef[0].action.triggered)
+        {
+            skillLogPhase = SkillLog.GameDescription;
+            talks = " ";
+            poptext = " ";
+            StopCoroutine(dialogCoroutine);
+            dialogCoroutine = null;
+            words = null;
+            poptext = null;
+            methodTimer = 0;
+        }
+    }
     private IEnumerator Dialogue()
     {
         isCoroutine = true;
@@ -176,5 +202,7 @@ public class SkillTutorial : MonoBehaviour
         }
         isCoroutine = false;
     }
+
+    
 }
 

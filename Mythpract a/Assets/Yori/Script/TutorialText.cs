@@ -472,11 +472,9 @@ public class TutorialText : MonoBehaviour
             StopCoroutine(dialogCoroutine);
             dialogCoroutine = null;
             popTexttype = PopTextType.tutorialBattle;
-            Debug.Log(popTexttype);
             nextTexntMesh.SetActive(false);
 
             talks = null;
-            Debug.Log(dialogCoroutine);
             talkNum = 3;
         }
     }
