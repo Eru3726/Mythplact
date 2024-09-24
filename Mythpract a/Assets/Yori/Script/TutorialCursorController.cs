@@ -136,7 +136,6 @@ public class TutorialCursorController : MonoBehaviour
     public void PickupUpdate(Transform piece)
     {
         pickupTfm = piece;
-
     }
 
 
@@ -334,8 +333,10 @@ public class TutorialCursorController : MonoBehaviour
                 if (space)
                 {
                     // 持ち上げ判定にする
+                    sTutorial.skillLog++;
                     sTutorial.setSkill = true;
                     PickUpProp = true;
+                    Debug.Log("a");
                 }
             }
         }

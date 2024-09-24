@@ -15,12 +15,13 @@ public class SkillTutorial : MonoBehaviour
         GoodByHades,
         Num
     }
+
     [SerializeField]
     public FadeManager Fade;
 
     private string poptext;
 
-    SkillLog skillLogPhase;
+    public SkillLog skillLogPhase;
 
     private string talks;
 
@@ -41,8 +42,6 @@ public class SkillTutorial : MonoBehaviour
 
     [SerializeField]
     private InputActionReference selectRef;
-
-    //private int bindingIndex;
 
     private bool isCoroutine;
 
@@ -68,13 +67,10 @@ public class SkillTutorial : MonoBehaviour
 
     private float plusScale = 60f;
 
-    enum SwitchScale
-    {
-        xScale,
-        yScale
-    }
-
     private SwitchScale switchScale;
+
+    [SerializeField]
+    private GameObject SpriteObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,12 +88,11 @@ public class SkillTutorial : MonoBehaviour
     }
     
     void SkillDescription()
-    {        
-        //if (Gamepad.current == null) bindingIndex = 0;
-        //else bindingIndex = 1;
+    { 
         switch (skillLogPhase)
         {
             case SkillLog.SetSkillDescription:
+
                 button.enabled = false;
                 button2.enabled = false;
                 button3.enabled = false;
@@ -118,8 +113,10 @@ public class SkillTutorial : MonoBehaviour
                 }
                 TutorialSkip();
                 break;
+
             case SkillLog.DoSetSkill:
-                SpriteMaskMove(true);
+
+                SpriteMaskMove(3, 1);
                 talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択  し 、\n ス キ ル を 選 択 、そ し て  " +
                     "\n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト し て み ろ  ";
                 if (dialogCoroutine == null)
@@ -132,8 +129,8 @@ public class SkillTutorial : MonoBehaviour
                 }
                 TutorialSkip();
                 break;
+
             case SkillLog.PassiveSkillDescription:
-                TutorialSkip();
                 if (setSkill)
                 {
                     textBackGround.SetActive(true);
@@ -155,6 +152,7 @@ public class SkillTutorial : MonoBehaviour
                 }
                 TutorialSkip();
                 break;
+
             case SkillLog.GameDescription:
                 methodTimer += Time.deltaTime;
                 talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 行 っ て も ら う \n " +
@@ -171,6 +169,7 @@ public class SkillTutorial : MonoBehaviour
                     skillLogPhase++;
                 }
                 break;
+
             case SkillLog.GoodByHades:
                 methodTimer += Time.deltaTime;
                 talks = "貴 様 に は期 待 し て い る ";
@@ -183,6 +182,7 @@ public class SkillTutorial : MonoBehaviour
                     Fade.Fadeout();
                 }
                 break;
+
             default:
                 Debug.Log("なんかおかしいことになってるぞ");
                 break;
@@ -221,45 +221,23 @@ public class SkillTutorial : MonoBehaviour
         isCoroutine = false;
     }    
 
-    private void SpriteMaskMove(bool changeSizeMode)
+    public void ResetSpriteMask()
     {
-        // スプライトマスクを徐々に小さくする
-        if (changeSizeMode)
-        {
-            switch (switchScale)
-            {
-                case SwitchScale.xScale:
-                    if (spriteMaskGameObject.transform.localScale.x > forcusedVector3.x)
-                    {
-                        spriteMaskGameObject.transform.localScale -= new Vector3(plusScale * Time.deltaTime, 0, 0);
-                    }
-                    else
-                    {
-                        switchScale = SwitchScale.yScale;
-                    }
-                    break;
-                case SwitchScale.yScale:
-                    if (spriteMaskGameObject.transform.localScale.y > forcusedVector3.y)
-                    {
-                        spriteMaskGameObject.transform.localScale -= new Vector3(0, plusScale * Time.deltaTime/2.5f, 0);
-                    }
-                    else
-                    {
+        spriteMaskGameObject.transform.localScale = serializeSpriteMaskScale;
+        SpriteObj.SetActive(false);
+    }
 
-                    }
-                    break;
-            }
-           
-        }
-        // スプライトマスクを徐々に大きくする
-        else
+    private void SpriteMaskMove(float xScale,float yScale)
+    {
+        SpriteObj.SetActive(true);
+        if (spriteMaskGameObject.transform.localScale.x > xScale)
         {
-            if (spriteMaskGameObject.transform.localScale.x < forcusedVector3.x)
-            {
-                spriteMaskGameObject.transform.localScale += new Vector3(plusScale * Time.deltaTime, (plusScale * Time.deltaTime) / 2.4f, 0);
-            }
+            spriteMaskGameObject.transform.localScale -= new Vector3(plusScale * Time.deltaTime, 0, 0);
         }
-        
-    } 
+        if (spriteMaskGameObject.transform.localScale.y > yScale)
+        {
+            spriteMaskGameObject.transform.localScale -= new Vector3(0, plusScale * Time.deltaTime, 0);
+        }
+    }
 }
 
