@@ -52,11 +52,29 @@ public class SkillTutorial : MonoBehaviour
     [SerializeField,Header("ぼたん")]
     Button button, button2, button3, button4, button5, button6;
 
+    [SerializeField, Header("しゃべてる箱")]
+    private GameObject textBox;
 
     [SerializeField]
     private List<InputActionReference> _actionRef;
     private List<InputAction> _action;
 
+    [SerializeField, Header("スプライトマスク")]
+    private GameObject spriteMaskGameObject;
+
+    private Vector3 serializeSpriteMaskScale;
+
+    private Vector3 forcusedVector3 = new Vector3(3.0f, 1f, 1);
+
+    private float plusScale = 60f;
+
+    enum SwitchScale
+    {
+        xScale,
+        yScale
+    }
+
+    private SwitchScale switchScale;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +82,7 @@ public class SkillTutorial : MonoBehaviour
         setSkill = false;
         isCoroutine = false;
         _actionRef[0].action.Enable();
+        serializeSpriteMaskScale = spriteMaskGameObject.transform.localScale;
     }
 
     // Update is called once per frame
@@ -71,8 +90,7 @@ public class SkillTutorial : MonoBehaviour
     {
         SkillDescription();
     }
-    [SerializeField, Header("しゃべてる箱")]
-    private GameObject textBox;
+    
     void SkillDescription()
     {        
         //if (Gamepad.current == null) bindingIndex = 0;
@@ -101,7 +119,7 @@ public class SkillTutorial : MonoBehaviour
                 TutorialSkip();
                 break;
             case SkillLog.DoSetSkill:
-                
+                SpriteMaskMove(true);
                 talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択  し 、\n ス キ ル を 選 択 、そ し て  " +
                     "\n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト し て み ろ  ";
                 if (dialogCoroutine == null)
@@ -201,8 +219,47 @@ public class SkillTutorial : MonoBehaviour
 
         }
         isCoroutine = false;
-    }
+    }    
 
-    
+    private void SpriteMaskMove(bool changeSizeMode)
+    {
+        // スプライトマスクを徐々に小さくする
+        if (changeSizeMode)
+        {
+            switch (switchScale)
+            {
+                case SwitchScale.xScale:
+                    if (spriteMaskGameObject.transform.localScale.x > forcusedVector3.x)
+                    {
+                        spriteMaskGameObject.transform.localScale -= new Vector3(plusScale * Time.deltaTime, 0, 0);
+                    }
+                    else
+                    {
+                        switchScale = SwitchScale.yScale;
+                    }
+                    break;
+                case SwitchScale.yScale:
+                    if (spriteMaskGameObject.transform.localScale.y > forcusedVector3.y)
+                    {
+                        spriteMaskGameObject.transform.localScale -= new Vector3(0, plusScale * Time.deltaTime/2.5f, 0);
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+            }
+           
+        }
+        // スプライトマスクを徐々に大きくする
+        else
+        {
+            if (spriteMaskGameObject.transform.localScale.x < forcusedVector3.x)
+            {
+                spriteMaskGameObject.transform.localScale += new Vector3(plusScale * Time.deltaTime, (plusScale * Time.deltaTime) / 2.4f, 0);
+            }
+        }
+        
+    } 
 }
 
