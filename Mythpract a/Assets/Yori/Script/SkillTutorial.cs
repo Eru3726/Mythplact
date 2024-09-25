@@ -63,8 +63,8 @@ public class SkillTutorial : MonoBehaviour
 
     private Vector3 serializeSpriteMaskScale;
 
-    private float plusScaleX = 90f;
-    private float plusScaleY = 40f;
+    private float plusScaleX = 0.4f;
+    private float plusScaleY = 0.2f;
 
     public bool selectedSkill = false;
 
@@ -118,7 +118,7 @@ public class SkillTutorial : MonoBehaviour
 
             case SkillLog.DoSetSkill:
 
-                
+
                 talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択  し 、\n ス キ ル を 選 択 、そ し て  " +
                     "\n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト し て み ろ  ";
                 if (dialogCoroutine == null)
@@ -127,25 +127,17 @@ public class SkillTutorial : MonoBehaviour
                 }
                 if (!isCoroutine)
                 {
-                    switch (SkillSelectNum)
-                    {
-                        case 0:
-                            SpriteMaskMove(3, 1);
-                            break;
-                        case 1:
-                            spriteMaskGameObject.transform.position += new Vector3(0, 0.65f, 0);
-                            SpriteMaskMove(3, 1);
-                            break;
-                    }
+                    SetSkillTutorial();
                     button.enabled = true;
                     if (setSkill)
                     {
+                        ResetSpriteMask();
                         methodTimer = 0;
                         skillLogPhase++;
                         dialogCoroutine = null;
                         poptext = null;
                     }
-                }               
+                }
 
                 TutorialSkip();
                 break;
@@ -153,7 +145,7 @@ public class SkillTutorial : MonoBehaviour
             case SkillLog.PassiveSkillDescription:
                 textBackGround.SetActive(true);
                 hades.SetActive(true);
-                
+
                 talks = "ス キ ル を セ ッ ト で き た な \nい ま セ ッ ト し た ア ク テ ィ ブ ス キ ル 以 外 に も \n" +
                     " 常 時 発 動 す る パ ッ シ ブ ス キ ル も あ る";
                 if (dialogCoroutine == null)
@@ -171,7 +163,7 @@ public class SkillTutorial : MonoBehaviour
                         skillLogPhase++;
                     }
                 }
-                
+
                 TutorialSkip();
                 break;
 
@@ -228,6 +220,35 @@ public class SkillTutorial : MonoBehaviour
             ResetSpriteMask();
         }
     }
+
+    private void SetSkillTutorial()
+    {
+        Debug.Log(SkillSelectNum);
+        switch (SkillSelectNum)
+        {
+            case 0:
+                // 一回目の注目
+                SpriteMaskMove(3, 1);
+                break;
+            case 1:
+                // ポジションを上にあげる
+                spriteMaskGameObject.transform.position += new Vector3(0, 0.6f, 0);
+                SkillSelectNum++;
+                break;
+            case 2:
+                // 二回目の注目
+                SpriteMaskMove(3.5f, 1.5f);
+                break;
+            case 3:
+                spriteMaskGameObject.transform.position = new Vector3(-0.7f, 0.5f, 0);
+                SkillSelectNum++;
+                break;
+            case 4:
+                SpriteMaskMove(4.5f, 4.7f);
+                break;
+
+        }
+    }
     private IEnumerator Dialogue()
     {
         isCoroutine = true;
@@ -255,16 +276,17 @@ public class SkillTutorial : MonoBehaviour
         SpriteObj.SetActive(true);
         if (spriteMaskGameObject.transform.localScale.x > xScale)
         {
-            spriteMaskGameObject.transform.localScale -= new Vector3(plusScaleX * Time.deltaTime, 0, 0);
+            spriteMaskGameObject.transform.localScale -= new Vector3(plusScaleX, 0, 0);
         }
         if (spriteMaskGameObject.transform.localScale.y > yScale)
         {
-            spriteMaskGameObject.transform.localScale -= new Vector3(0, plusScaleY * Time.deltaTime, 0);
+            spriteMaskGameObject.transform.localScale -= new Vector3(0, plusScaleY, 0);
         }
     }
 
     public void SelectSkill()
     {
+        ResetSpriteMask();
         SkillSelectNum++;
     }
 }
