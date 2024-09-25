@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SkillTutorial : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class SkillTutorial : MonoBehaviour
 
     private string poptext;
 
-    public SkillLog skillLogPhase;
+    private SkillLog skillLogPhase;
 
     private string talks;
 
@@ -46,9 +46,9 @@ public class SkillTutorial : MonoBehaviour
     private bool isCoroutine;
 
     [SerializeField, Header("背景")]
-    private GameObject textBackGround,hades;
+    private GameObject textBackGround, hades;
 
-    [SerializeField,Header("ぼたん")]
+    [SerializeField, Header("ぼたん")]
     Button button, button2, button3, button4, button5, button6;
 
     [SerializeField, Header("しゃべてる箱")]
@@ -63,14 +63,15 @@ public class SkillTutorial : MonoBehaviour
 
     private Vector3 serializeSpriteMaskScale;
 
-    private Vector3 forcusedVector3 = new Vector3(3.0f, 1f, 1);
+    private float plusScaleX = 90f;
+    private float plusScaleY = 40f;
 
-    private float plusScale = 60f;
-
-    private SwitchScale switchScale;
+    public bool selectedSkill = false;
 
     [SerializeField]
     private GameObject SpriteObj;
+
+    int SkillSelectNum;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +80,7 @@ public class SkillTutorial : MonoBehaviour
         isCoroutine = false;
         _actionRef[0].action.Enable();
         serializeSpriteMaskScale = spriteMaskGameObject.transform.localScale;
+        selectedSkill = false;
     }
 
     // Update is called once per frame
@@ -86,9 +88,9 @@ public class SkillTutorial : MonoBehaviour
     {
         SkillDescription();
     }
-    
+
     void SkillDescription()
-    { 
+    {
         switch (skillLogPhase)
         {
             case SkillLog.SetSkillDescription:
@@ -116,7 +118,7 @@ public class SkillTutorial : MonoBehaviour
 
             case SkillLog.DoSetSkill:
 
-                SpriteMaskMove(3, 1);
+                
                 talks = "左 側 の ス キ ル ス ロ ッ ト を 「 カ ー ソ ル 」 で   選 択  し 、\n ス キ ル を 選 択 、そ し て  " +
                     "\n 画 面 真 ん 中 の ス ロ ッ ト に ス キ ル を セ ッ ト し て み ろ  ";
                 if (dialogCoroutine == null)
@@ -125,24 +127,43 @@ public class SkillTutorial : MonoBehaviour
                 }
                 if (!isCoroutine)
                 {
+                    switch (SkillSelectNum)
+                    {
+                        case 0:
+                            SpriteMaskMove(3, 1);
+                            break;
+                        case 1:
+                            spriteMaskGameObject.transform.position += new Vector3(0, 0.65f, 0);
+                            SpriteMaskMove(3, 1);
+                            break;
+                    }
                     button.enabled = true;
-                }
+                    if (setSkill)
+                    {
+                        methodTimer = 0;
+                        skillLogPhase++;
+                        dialogCoroutine = null;
+                        poptext = null;
+                    }
+                }               
+
                 TutorialSkip();
                 break;
 
             case SkillLog.PassiveSkillDescription:
-                if (setSkill)
+                textBackGround.SetActive(true);
+                hades.SetActive(true);
+                
+                talks = "ス キ ル を セ ッ ト で き た な \nい ま セ ッ ト し た ア ク テ ィ ブ ス キ ル 以 外 に も \n" +
+                    " 常 時 発 動 す る パ ッ シ ブ ス キ ル も あ る";
+                if (dialogCoroutine == null)
                 {
-                    textBackGround.SetActive(true);
-                    hades.SetActive(true);
+                    dialogCoroutine = StartCoroutine(Dialogue());
+                }
+                if (!isCoroutine)
+                {
                     methodTimer += Time.deltaTime;
-                    talks = "ス キ ル を セ ッ ト で き た な \nい ま セ ッ ト し た ア ク テ ィ ブ ス キ ル 以 外 に も \n" +
-                        " 常 時 発 動 す る パ ッ シ ブ ス キ ル も あ る";
-                    if (dialogCoroutine == null)
-                    {
-                        dialogCoroutine = StartCoroutine(Dialogue());
-                    }
-                    if (methodTimer >= 7)
+                    if (methodTimer >= 3)
                     {
                         poptext = null;
                         dialogCoroutine = null;
@@ -150,6 +171,7 @@ public class SkillTutorial : MonoBehaviour
                         skillLogPhase++;
                     }
                 }
+                
                 TutorialSkip();
                 break;
 
@@ -203,6 +225,7 @@ public class SkillTutorial : MonoBehaviour
             words = null;
             poptext = null;
             methodTimer = 0;
+            ResetSpriteMask();
         }
     }
     private IEnumerator Dialogue()
@@ -219,7 +242,7 @@ public class SkillTutorial : MonoBehaviour
 
         }
         isCoroutine = false;
-    }    
+    }
 
     public void ResetSpriteMask()
     {
@@ -227,17 +250,22 @@ public class SkillTutorial : MonoBehaviour
         SpriteObj.SetActive(false);
     }
 
-    private void SpriteMaskMove(float xScale,float yScale)
+    private void SpriteMaskMove(float xScale, float yScale)
     {
         SpriteObj.SetActive(true);
         if (spriteMaskGameObject.transform.localScale.x > xScale)
         {
-            spriteMaskGameObject.transform.localScale -= new Vector3(plusScale * Time.deltaTime, 0, 0);
+            spriteMaskGameObject.transform.localScale -= new Vector3(plusScaleX * Time.deltaTime, 0, 0);
         }
         if (spriteMaskGameObject.transform.localScale.y > yScale)
         {
-            spriteMaskGameObject.transform.localScale -= new Vector3(0, plusScale * Time.deltaTime, 0);
+            spriteMaskGameObject.transform.localScale -= new Vector3(0, plusScaleY * Time.deltaTime, 0);
         }
+    }
+
+    public void SelectSkill()
+    {
+        SkillSelectNum++;
     }
 }
 

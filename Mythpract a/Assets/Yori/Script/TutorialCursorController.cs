@@ -333,10 +333,9 @@ public class TutorialCursorController : MonoBehaviour
                 if (space)
                 {
                     // 持ち上げ判定にする
-                    sTutorial.skillLog++;
                     sTutorial.setSkill = true;
                     PickUpProp = true;
-                    Debug.Log("a");
+                    this.gameObject.GetComponent<TutorialCursorController>().enabled = false;
                 }
             }
         }
