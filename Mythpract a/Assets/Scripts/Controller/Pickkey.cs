@@ -48,7 +48,7 @@ public class Pickkey : MonoBehaviour
 
     private float deadzone = 0.5f;     //スティックをどれだけ倒したら反応するかの値
 
-    private bool Cnotcon = false;
+    //private bool Cnotcon = false;
     void Start()
     {
 

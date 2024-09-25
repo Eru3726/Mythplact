@@ -130,7 +130,6 @@ public class Shoggoth : MonoBehaviour
     [SerializeField, Tooltip("判定")] GameObject[] rush;
     [SerializeField, Tooltip("エフェクト")] ParticleSystem rush_Effect;
     [SerializeField, Tooltip("速度")] float rush_Speed;
-    [SerializeField, Tooltip("中心座標"), ReadOnly] string rush_Center = "プレイヤーの位置";
     [SerializeField, Tooltip("オフセット")] Vector2 rush_Offset;
     [SerializeField, Tooltip("半径")] Vector2 rush_Radius;
     [SerializeField, Tooltip("威力")] float rush_Power;

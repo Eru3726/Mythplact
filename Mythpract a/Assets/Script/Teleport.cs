@@ -5,7 +5,7 @@ public class Teleport : MonoBehaviour
 {
     public FadeManager fade;
 
-    float time=0;
+    //float time=0;
     //public bool portal;
     //private void Start()
     //{

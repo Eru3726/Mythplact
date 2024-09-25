@@ -15,20 +15,20 @@ public class TitleCmanager : MonoBehaviour
     
     public GameObject keycon;
 
-    private GameObject Button;
+    //private GameObject Button;
 
-    private float PickButton = 3;
+    //private float PickButton = 3;
 
     private bool connect = true;
 
-    //左スティックをどこに倒しているかを判別するやつ
-    private bool lsvup = true;        //上
-    private bool lsvdown = true;　　　//下
-    //十字キーをどこに倒しているかを判別するやつ
-    private bool dpvup = true;        //上
-    private bool dpvdown = true;      //下
+    ////左スティックをどこに倒しているかを判別するやつ
+    //private bool lsvup = true;        //上
+    //private bool lsvdown = true;　　　//下
+    ////十字キーをどこに倒しているかを判別するやつ
+    //private bool dpvup = true;        //上
+    //private bool dpvdown = true;      //下
 
-    private float deadzone = 0.5f;     //スティックをどれだけ倒したら反応するかの値
+    //private float deadzone = 0.5f;     //スティックをどれだけ倒したら反応するかの値
     void Start()
     {
 
@@ -169,7 +169,7 @@ public class TitleCmanager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 //Button.GetComponent<Image>().sprite = Button.GetComponent<Button>().spriteState.selectedSprite;
                 connect = true;
-                Button = null;
+                //Button = null;
                 cbutton.Select();
                 Debug.Log("コントローラー非接続");
             }

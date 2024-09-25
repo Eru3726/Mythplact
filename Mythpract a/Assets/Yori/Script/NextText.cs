@@ -12,8 +12,6 @@ public class NextText : MonoBehaviour
     private string poptext;
 
     private Color color;
-
-    private int bindingIndex = 0;
     private void Start()
     {
         isPop = false;

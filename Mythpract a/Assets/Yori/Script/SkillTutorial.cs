@@ -42,7 +42,7 @@ public class SkillTutorial : MonoBehaviour
     private InputActionReference selectRef;
     private InputAction select;
 
-    private int bindingIndex;
+    //private int bindingIndex;
 
     private bool isCoroutine;
 
@@ -71,8 +71,8 @@ public class SkillTutorial : MonoBehaviour
     void SkillDescription()
     {
         
-        if (Gamepad.current == null) bindingIndex = 0;
-        else bindingIndex = 1;
+        if (Gamepad.current == null)
+
         switch (skillLogPhase)
         {
             case SkillLog.SetSkillDescription:

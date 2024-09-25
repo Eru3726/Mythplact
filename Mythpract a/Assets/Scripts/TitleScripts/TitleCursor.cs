@@ -12,7 +12,7 @@ public class TitleCursor : MonoBehaviour
     [SerializeField]
     private AchvUI achv;
 
-    private bool openFlg = false;
+    //private bool openFlg = false;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class TitleCursor : MonoBehaviour
     {
         keyPanel.SetActive(true);
         padPanel.SetActive(false);
-        openFlg = true;
+        //openFlg = true;
         Time.timeScale = 0;
     }
 
@@ -44,7 +44,7 @@ public class TitleCursor : MonoBehaviour
     {
         padPanel.SetActive(true);
         keyPanel.SetActive(false);
-        openFlg = true;
+        //openFlg = true;
         Time.timeScale = 0;
     }
 
@@ -52,7 +52,7 @@ public class TitleCursor : MonoBehaviour
     {
         padPanel.SetActive(false);
         keyPanel.SetActive(false);
-        openFlg = false;
+        //openFlg = false;
         Time.timeScale = 1;
     }
 

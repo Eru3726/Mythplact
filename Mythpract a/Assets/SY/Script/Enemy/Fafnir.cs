@@ -43,7 +43,6 @@ public class Fafnir : MonoBehaviour
     int phaseSub = 0;   //汎用行動番号
     float timerSub = 0; //汎用タイマー
     int repeatSub = 0;  //汎用繰り返し回数
-    int noSub = 0;      //汎用ナンバ
 
     int tableNo = 0;    //テーブル指定
     int moveNo = 0;     //行動指定
@@ -166,7 +165,7 @@ public class Fafnir : MonoBehaviour
     [SerializeField, Tooltip("ダメージ時描画")] int sortingOrder = 0;
     [SerializeField, Tooltip("エフェクト")] ParticleSetting damage_Effect;
     [SerializeField, Tooltip("サウンド")] AudioSetting damage_SE;
-    float damage_Repeat = 0;
+    //float damage_Repeat = 0;
 
     [Header("死亡")]
     [SerializeField, Tooltip("変色前時間")] float dead_Time = 0.5f; 
@@ -1024,7 +1023,6 @@ public class Fafnir : MonoBehaviour
         phaseSub = 0;
         timerSub = 0;
         repeatSub = 0;
-        noSub = 0;
     }
 
     void AllHitActive(bool value)

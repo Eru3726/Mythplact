@@ -74,7 +74,7 @@ public partial class Player : MonoBehaviour
  
     bool space;
     bool spaceDown;
-    bool spaceup;
+    //bool spaceup;
     bool guard;
     bool brink;
     bool skill1;
@@ -746,11 +746,11 @@ public partial class Player : MonoBehaviour
         }
         if (jumpInp.action.WasReleasedThisFrame())
         {
-            spaceup = true;
+            //spaceup = true;
         }
         else
         {
-            spaceup = false;
+            //spaceup = false;
         }
         if (blinkInp.action.WasPressedThisFrame())
         {
