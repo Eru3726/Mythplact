@@ -26,6 +26,7 @@ public class TutorialText : MonoBehaviour
     private enum PopTextType
     {
         Talk,
+        GageInfo,
         Move,
         Attack,
         Guard,
@@ -93,6 +94,16 @@ public class TutorialText : MonoBehaviour
 
     [SerializeField, Header("HPゲージ")]
     private GameObject HpGarge;
+
+    [SerializeField,Header("画像")]
+    GameObject spriteObj;
+    [SerializeField,Header("Mask")]
+    GameObject spriteMaskGameObject;
+
+    private float plusScaleX = 0.4f;
+    private float plusScaleY = 0.4f;
+
+    private Vector3 serializeSpriteMaskScale;
     void Start()
     {
         // listにアタッチした奴を格納
@@ -115,6 +126,10 @@ public class TutorialText : MonoBehaviour
         endTalkNum = 0;
 
         fadeSprite = fadeSprite.GetComponent<SpriteRenderer>();
+
+        serializeSpriteMaskScale = spriteMaskGameObject.transform.localScale;
+
+        this.gameObject.GetComponent<MeshRenderer>().sortingOrder = 105;
     }
     private void Update()
     {
@@ -152,7 +167,7 @@ public class TutorialText : MonoBehaviour
                         }
                         break;
                     case 1:
-                        talks = "お 前 は ど れ だ け 強 く な れ る か 楽 し み だ";
+                        talks = "貴 様 は ど れ だ け 強 く な れ る か 楽 し み だ";
                         if (dialogCoroutine == null)
                         {
                             dialogCoroutine = StartCoroutine(Dialogue());
@@ -177,15 +192,68 @@ public class TutorialText : MonoBehaviour
                         {
                             isChange = false;
                             poptext = null;
+                            talkNum = 0;
+                            isChange = false;
+                            dialogCoroutine = null;
+                            popTexttype = PopTextType.GageInfo;
+                        }
+                        break;
+                }
+
+                break;
+            case PopTextType.GageInfo:
+                switch (talkNum)
+                {
+                    case 0:
+                        talks = "こ れ が 貴 様 の コ ア だ \n こ れ が な く な る と 体 が 崩 れ る";
+                        SpriteMaskMove(13, 2.6f);
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(4);
+                        if (isChange)
+                        {
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            talkNum++;
+                        }
+                        break;
+                    case 1:
+                        talks =  "コ ア の 下 の メ ー タ ー は 動 力 だ \n 回 避 や ガ ー ド で 消 費 さ れ る";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        waitSeconds(7);
+                        if (isChange)
+                        {
+                            dialogCoroutine = null;
+                            isChange = false;
+                            poptext = null;
+                            talkNum++;
+                        }
+                        break;
+                    case 2:
+                        talks = "次 は 体 の 動 か し 方 だ";
+                        if (dialogCoroutine == null)
+                        {
+                            dialogCoroutine = StartCoroutine(Dialogue());
+                        }
+                        SpriteMaskBigMove(50, 50);
+                        waitSeconds(7);
+                        if (isChange)
+                        {
+                            isChange = false;
+                            poptext = null;
 
                             fadeMathod = 0;
                             isChange = false;
                         }
                         break;
                 }
-
                 break;
-
             case PopTextType.Move:
                 // Tutorialスキップ
                 TutorialSkip();
@@ -371,18 +439,6 @@ public class TutorialText : MonoBehaviour
                             Fade.Fadeout();// シーン移動
                         }
                         break;
-                        //case 4:
-                        //    talks = "貴 様 に は こ れ か ら 様 々 な 世 界 へ と 赴 き\n そ の 世 界 で 貴 様 の 実 力 を 示 す の だ";
-                        //    if (dialogCoroutine == null)
-                        //    {
-                        //        dialogCoroutine = StartCoroutine(Dialogue());
-                        //    }
-                        //    waitSeconds(6);
-                        //    if (isChange)
-                        //    {
-                        //        Fade.Fadeout();// シーン移動
-                        //    }
-                        //    break;
                 }
                 break;
         }
@@ -410,8 +466,8 @@ public class TutorialText : MonoBehaviour
                         dialogCoroutine = null;
                         poptext = null;
                     }
-                    fadeMathod++;
                     popTexttype++;
+                    fadeMathod++;
                 }
                 break;
             case 1:
@@ -473,9 +529,41 @@ public class TutorialText : MonoBehaviour
             dialogCoroutine = null;
             popTexttype = PopTextType.tutorialBattle;
             nextTexntMesh.SetActive(false);
-
+            ResetSpriteMask();
             talks = null;
             talkNum = 3;
         }
+    }
+    private void SpriteMaskMove(float xScale, float yScale)
+    {
+        spriteObj.SetActive(true);
+        if (spriteMaskGameObject.transform.localScale.x > xScale)
+        {
+            spriteMaskGameObject.transform.localScale -= new Vector3(plusScaleX, 0, 0);
+        }
+        if (spriteMaskGameObject.transform.localScale.y > yScale)
+        {
+            spriteMaskGameObject.transform.localScale -= new Vector3(0, plusScaleY, 0);
+        }
+    }
+
+
+    private void SpriteMaskBigMove(float xScale, float yScale)
+    {
+        spriteObj.SetActive(true);
+        if (spriteMaskGameObject.transform.localScale.x < xScale)
+        {
+            spriteMaskGameObject.transform.localScale += new Vector3(plusScaleX, 0, 0);
+        }
+        if (spriteMaskGameObject.transform.localScale.y < yScale)
+        {
+            spriteMaskGameObject.transform.localScale += new Vector3(0, plusScaleY, 0);
+        }
+    }
+
+    public void ResetSpriteMask()
+    {
+        spriteMaskGameObject.transform.localScale = serializeSpriteMaskScale;
+        spriteObj.SetActive(false);
     }
 }
