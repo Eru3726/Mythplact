@@ -136,7 +136,6 @@ public class TutorialCursorController : MonoBehaviour
     public void PickupUpdate(Transform piece)
     {
         pickupTfm = piece;
-
     }
 
 
@@ -333,10 +332,10 @@ public class TutorialCursorController : MonoBehaviour
             {
                 if (space)
                 {
-                    Debug.Log("space");
                     // 持ち上げ判定にする
                     sTutorial.setSkill = true;
                     PickUpProp = true;
+                    this.gameObject.GetComponent<TutorialCursorController>().enabled = false;
                 }
             }
         }
@@ -926,7 +925,7 @@ public class TutorialCursorController : MonoBehaviour
                 {
                     if (hit.collider.name == i.ToString())
                     {
-                        Debug.Log(hit.collider.transform.position);
+                        // Debug.Log(hit.collider.transform.position);
                         this.gameObject.transform.position = hit.collider.transform.position;
                     }
                 }
