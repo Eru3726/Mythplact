@@ -9,17 +9,6 @@ partial class Player
     [SerializeField, Tooltip("溜め攻撃判定")] GameObject ChargeAtk;
     [SerializeField, Tooltip("フリート判定")] GameObject FleetAtk;
 
-
-    //[SerializeField, Tooltip("通常攻撃攻撃力")] float normalAtk_Power;
-    //[SerializeField, Tooltip("ジャンプ攻撃攻撃力")] float jumpAtk_Power;
-    //[SerializeField, Tooltip("ジャンプ上攻撃攻撃力")] float jumpUpAtk_Power;
-    //[SerializeField, Tooltip("ジャンプ下攻撃攻撃力")] float jumpDownAtk_Power;
-    //[SerializeField, Tooltip("ジャンプ攻撃攻撃力")] float chargeAtk_Power;
-    //[SerializeField, Tooltip("フリート攻撃力")] float fleetAtk_Power;
-
-
-
-
     public LayerMask layerMask_Ground;
     public LayerMask layerMask_Hit;
 
@@ -153,16 +142,6 @@ partial class Player
         }
         return false;
     }
-    //void PowerReset()
-    //{
-    //    SetPower(NormalAtk, NormalAtk_Power);
-    //    SetPower(JumpAtk, JumpAtk_Power);
-    //    SetPower(JumpUpAtk, JumpUpAtk_Power);
-    //    SetPower(JumpDownAtk, JumpDownAtk_Power);
-    //    SetPower(ChargeAtk, ChargeAtk_Power);
-
-    //}
-
     void SetPower(GameObject obj, float power)
     {
         obj.GetComponent<SY.HitData>().Power = power;
@@ -175,7 +154,5 @@ partial class Player
         SetPower(JumpUpAtk, playerData.Player[0].jumpUpAtk_Power);
         SetPower(ChargeAtk, playerData.Player[0].chargeAtk_Power);
         SetPower(FleetAtk, playerData.Player[0].fleetAtk_Power);
-
-
     }
 }
